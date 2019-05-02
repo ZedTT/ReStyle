@@ -19,7 +19,7 @@ export class ItemCardServiceService {
         size: 3,
         brand: 'gucci',
         description: 'lorem ipsum dolor sit amet',
-        picturePath: ['/path1', '/path2', 'path3']
+        picturePath: ['/path1', '/path2', '/path3']
       },
       {
         itemId: 'j',
@@ -28,7 +28,7 @@ export class ItemCardServiceService {
         size: 2,
         brand: 'levi',
         description: 'lorem ipsum dolor sit amet',
-        picturePath: ['/path1', '/path2', 'path3']
+        picturePath: ['/path1', '/path2', '/path3']
       }
     ]
   }

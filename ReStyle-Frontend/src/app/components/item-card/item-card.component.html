@@ -1,5 +1,17 @@
 <div [ngClass]="setClasses()">
   <div>
-    {{ item.title }}
-</div>
+    <br> item id: {{ item.itemId }}
+    <br> user id: {{ item.userId }}
+    <br> title: {{ item.title }}
+    <br> size number: {{ item.size }}
+    <br> size name: {{ sizeArray[item.size] }}
+    <br> brand: {{ item.brand }}
+    <br> description: {{ item.brand }}
+    <br> picturepaths: 
+    <ul>
+      <li *ngFor="let path of item.picturePath; let myIndex = index">
+        {{ item.picturePath[myIndex] }}
+      </li>
+    </ul>
+  </div>
 </div>
