@@ -4,7 +4,7 @@ import { TradeItem } from '../../models/TradeItem';
 @Component({
   selector: 'app-item-card',
   templateUrl: './item-card.component.html',
-  styleUrls: ['./item-card.component.sass']
+  styleUrls: ['./item-card.component.css']
 })
 export class ItemCardComponent implements OnInit {
   @Input() item: TradeItem; // for getting the items
