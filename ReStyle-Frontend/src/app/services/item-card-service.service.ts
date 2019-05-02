@@ -15,18 +15,24 @@ export class ItemCardServiceService {
       {
         itemId: 'i',
         userId: 'u',
+        userPicturePath: '/path',
+        verified: true,
+        rating: 5,
         title: 'test shirt',
         size: 3,
-        brand: 'gucci',
+        category: 'shirt',
         description: 'lorem ipsum dolor sit amet',
         picturePath: ['/path1', '/path2', '/path3']
       },
       {
         itemId: 'j',
         userId: 'v',
+        userPicturePath: '/path',
+        verified: false,
+        rating: 4,
         title: 'test pants',
         size: 2,
-        brand: 'levi',
+        category: 'pants',
         description: 'lorem ipsum dolor sit amet',
         picturePath: ['/path1', '/path2', '/path3']
       }
@@ -36,8 +42,11 @@ export class ItemCardServiceService {
 // For reference during development. Can be removed
 // itemId: string; // a unique id to identify this item
 // userId: string; // the id of the user that owns this item
+// userPicturePath: string; // the path to the profile picture of the user who owns the item
+// verified: boolean; // indicates if the user is verified
+// rating: number; // the rating of the user who owns the item
 // title: string; // the name of the item
 // size: number; // the size, 0: XS, 1: S, 2: M, 3: L, 4: XL
-// brand: string; // the brand that manufactured this item
+// category: string; // the brand that manufactured this item
 // description: string; // the description of the item
 // picturePath: string[]; // an array of paths to the pictures that are displayed for this item
