@@ -22,7 +22,8 @@ export class ItemCardServiceService {
         size: 3,
         category: 'shirt',
         description: 'lorem ipsum dolor sit amet',
-        picturePath: ['/path1', '/path2', '/path3']
+        picturePath: ['/path1', '/path2', '/path3'],
+        bookmarked: false
       },
       {
         itemId: 'j',
@@ -34,7 +35,8 @@ export class ItemCardServiceService {
         size: 2,
         category: 'pants',
         description: 'lorem ipsum dolor sit amet',
-        picturePath: ['/path1', '/path2', '/path3']
+        picturePath: ['/path1', '/path2', '/path3'],
+        bookmarked: true
       }
     ]
   }
