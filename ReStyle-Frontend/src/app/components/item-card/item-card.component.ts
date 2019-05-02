@@ -27,4 +27,12 @@ export class ItemCardComponent implements OnInit {
     return classes;
   }
 
+  onTrade() {
+    console.log("Trade item: " + this.item.itemId);
+  }
+
+  onPass() {
+    console.log("Pass item: " + this.item.itemId);
+  }
+
 }
