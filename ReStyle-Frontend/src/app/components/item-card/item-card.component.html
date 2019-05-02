@@ -9,7 +9,7 @@
     <br> size number: {{ item.size }}
     <br> size name: {{ sizeArray[item.size] }}
     <br> category: {{ item.category }}
-    <br> description: {{ item.brand }}
+    <br> description: {{ item.description }}
     <br> picturepaths: 
     <ul>
       <li *ngFor="let path of item.picturePath; let myIndex = index">
@@ -27,8 +27,8 @@
       <div class="size">size: {{ item.size }}</div>
       <div class="description">description: {{ item.description }}</div>
       <div class="buttons">
-          <button (click)="onPass(item)" class="pass-btn btn btn-danger">&lt; Pass</button>
-          <button (click)="onTrade(item)" class="trade-btn btn btn-success">Trade &gt;</button>
+          <button (click)="onPass()" class="pass-btn btn btn-danger">&lt; Pass</button>
+          <button (click)="onTrade()" class="trade-btn btn btn-success">Trade &gt;</button>
       </div>
     </div>
   </div>
