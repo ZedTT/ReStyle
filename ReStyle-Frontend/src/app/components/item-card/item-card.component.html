@@ -17,4 +17,19 @@
       </li>
     </ul>
   </div>
+  <div class="item-card">
+    <div class="bookmark">Bookmark: t/f</div>
+    <div class="user-picture">
+      User Picture: {{ item.userPicturePath }}
+      </div>
+    <div class="item-info">
+      <div class="title">title: {{ item.title }}</div>
+      <div class="size">size: {{ item.size }}</div>
+      <div class="description">description: {{ item.description }}</div>
+      <div class="buttons">
+          <button (click)="onPass(item)" class="pass-btn">&lt; Pass</button>
+          <button (click)="onTrade(item)" class="trade-btn">Trade &gt;</button>
+      </div>
+    </div>
+  </div>
 </div>
