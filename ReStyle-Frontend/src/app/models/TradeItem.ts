@@ -6,5 +6,5 @@ export class TradeItem {
     size: number; // the size, 0: XS, 1: S, 2: M, 3: L, 4: XL
     brand: string; // the brand that manufactured this item
     description: string; // the description of the item
-    picturePath: string; // a path to the picture that is displayed for this item
+    picturePath: string[]; // an array of paths to the pictures that are displayed for this item
 }
