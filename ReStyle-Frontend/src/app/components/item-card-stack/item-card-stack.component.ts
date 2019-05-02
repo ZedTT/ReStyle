@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TradeItem } from '../../models/TradeItem';
+import { ItemCardServiceService } from '../../services/item-card-service.service';
 
 @Component({
   selector: 'app-item-card-stack',
@@ -9,9 +10,10 @@ import { TradeItem } from '../../models/TradeItem';
 export class ItemCardStackComponent implements OnInit {
   items:TradeItem[];
 
-  constructor() { }
+  constructor(private itemCardServiceService: ItemCardServiceService) { }
 
   ngOnInit() {
+    this.items = this.itemCardServiceService.getItems();
   }
 
 }
