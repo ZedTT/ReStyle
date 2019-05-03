@@ -8,7 +8,7 @@ import { ItemCardServiceService } from '../../services/item-card-service.service
   styleUrls: ['./item-card-stack.component.sass']
 })
 export class ItemCardStackComponent implements OnInit {
-  items:TradeItem[];
+  items: TradeItem[];
 
   constructor(private itemCardServiceService: ItemCardServiceService) { }
 
