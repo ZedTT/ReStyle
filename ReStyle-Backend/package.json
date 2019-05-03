@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsc && ts-node ./src/server.ts"
+    "start": "tsc && ts-node ./src/server.ts",
+    "startall": "cd ../ReStyle-Frontend && ng build --prod && cd ../ReStyle-Backend && tsc && ts-node ./src/server.ts"
   },
   "keywords": [],
   "author": "",
