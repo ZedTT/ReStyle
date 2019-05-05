@@ -5,7 +5,7 @@ import { ItemCardServiceService } from '../../services/item-card-service.service
 @Component({
   selector: 'app-item-card',
   templateUrl: './item-card.component.html',
-  styleUrls: ['./item-card.component.sass']
+  styleUrls: ['./item-card.component.css']
 })
 export class ItemCardComponent implements OnInit {
   @Input() item: ItemCard; // for getting the items
@@ -61,12 +61,21 @@ export class ItemCardComponent implements OnInit {
    * TODO: In the future, this should be used to take the user to the trade screen.
    */
   onTrade() {
-    // logs the trade item id. Proof of concept.
-    console.log('Trade item: ' + this.item.itemId);
+    console.log("Trade item: " + this.item.itemId);
+
+    // Fetching the parent card and swiping it right
+    var parent = <HTMLElement>( <HTMLElement>event.target).parentNode.parentNode.parentNode.parentNode;
+    console.log(parent);
+    parent.classList.add("slide-out-right");
   }
 
   onPass() {
-    console.log('Pass item: ' + this.item.itemId);
+    console.log("Pass item: " + this.item.itemId);
+
+    // Fetching the parent card and hiding it
+    var parent = <HTMLElement>( <HTMLElement>event.target).parentNode.parentNode.parentNode.parentNode;
+    console.log(parent);
+    parent.classList.add("slide-out-left");
   }
 
 }
