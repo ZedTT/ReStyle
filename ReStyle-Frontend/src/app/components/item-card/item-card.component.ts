@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TradeItem } from '../../models/TradeItem';
+import { ItemCard } from '../../models/ItemCard';
 import { ItemCardServiceService } from '../../services/item-card-service.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { ItemCardServiceService } from '../../services/item-card-service.service
   styleUrls: ['./item-card.component.sass']
 })
 export class ItemCardComponent implements OnInit {
-  @Input() item: TradeItem; // for getting the items
+  @Input() item: ItemCard; // for getting the items
 
   sizeArray: string[] = ['xs', 's', 'm', 'l', 'xl'];
 
