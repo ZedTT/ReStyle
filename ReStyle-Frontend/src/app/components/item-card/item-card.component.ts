@@ -61,21 +61,21 @@ export class ItemCardComponent implements OnInit {
    * TODO: In the future, this should be used to take the user to the trade screen.
    */
   onTrade() {
-    console.log("Trade item: " + this.item.itemId);
+    console.log('Trade item: ' + this.item.itemId);
 
     // Fetching the parent card and swiping it right
-    var parent = <HTMLElement>( <HTMLElement>event.target).parentNode.parentNode.parentNode.parentNode;
+    const parent =  (event.target as HTMLElement).parentNode.parentNode.parentNode.parentNode as HTMLElement;
     console.log(parent);
-    parent.classList.add("slide-out-right");
+    parent.classList.add('slide-out-right');
   }
 
   onPass() {
-    console.log("Pass item: " + this.item.itemId);
+    console.log('Pass item: ' + this.item.itemId);
 
     // Fetching the parent card and hiding it
-    var parent = <HTMLElement>( <HTMLElement>event.target).parentNode.parentNode.parentNode.parentNode;
+    const parent =  (event.target as HTMLElement).parentNode.parentNode.parentNode.parentNode as HTMLElement;
     console.log(parent);
-    parent.classList.add("slide-out-left");
+    parent.classList.add('slide-out-left');
   }
 
 }
