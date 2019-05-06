@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "startall": "ng build --prod && cd ../ReStyle-Backend && tsc && ts-node ./src/server.ts"
+    "startall": "ng build && cd ../ReStyle-Backend && tsc && ts-node ./src/server.ts"
   },
   "private": true,
   "dependencies": {
