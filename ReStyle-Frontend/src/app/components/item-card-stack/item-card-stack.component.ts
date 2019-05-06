@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TradeItem } from '../../models/TradeItem';
+import { ItemCard } from '../../models/ItemCard';
 import { ItemCardServiceService } from '../../services/item-card-service.service';
 
 @Component({
@@ -8,12 +8,37 @@ import { ItemCardServiceService } from '../../services/item-card-service.service
   styleUrls: ['./item-card-stack.component.sass']
 })
 export class ItemCardStackComponent implements OnInit {
-  items: TradeItem[];
+  items: ItemCard[];
 
   constructor(private itemCardServiceService: ItemCardServiceService) { }
 
   ngOnInit() {
-    this.items = this.itemCardServiceService.getItems();
+    const temp: any[] = this.itemCardServiceService.getItems();
+    for(const card of temp) {
+      card.pass = false;
+      card.trade = false;
+    }
+    this.items = temp;
+  }
+
+  /**
+   * Pass item
+   * Sets the pass attribute of the item to true, this causes the class to be set to slide the item.
+   * @param item the item to be passed. Emitted from item-card.component.ts
+   */
+  passItem(item: ItemCard) {
+    console.log(item);
+    item.pass = true;
+  }
+
+  /**
+   * Trades item.
+   * Sets the trade attribute of the item to true, this causes the class to be set to slide the item.
+   * @param item the item to be traded. Emitted from the item-card.component.ts
+   */
+  tradeItem(item: ItemCard) {
+    console.log(item);
+    item.trade = true;
   }
 
 }

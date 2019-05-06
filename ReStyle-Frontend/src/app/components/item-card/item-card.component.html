@@ -27,8 +27,8 @@
       <div class="size">size: {{ item.size }}</div>
       <div class="description">description: {{ item.description }}</div>
       <div class="buttons d-flex justify-content-around">
-          <button (click)="onPass()" class="pass-btn btn btn-danger">&lt; Pass</button>
-          <button (click)="onTrade()" class="trade-btn btn btn-success">Trade &gt;</button>
+          <button (click)="onPass(item)" class="pass-btn btn btn-danger">&lt; Pass</button>
+          <button (click)="onTrade(item)" class="trade-btn btn btn-success">Trade &gt;</button>
       </div>
     </div>
   </div>
