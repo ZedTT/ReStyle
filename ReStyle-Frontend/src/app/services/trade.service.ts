@@ -34,6 +34,7 @@ export class TradeService {
       }
     ];
   }
+  // ! for reference during development, can be removed.
   // itemId: string; // a unique id to identify this item
   // picturePath: string[]; // an array of paths to the pictures that are displayed for this item
   // selected: boolean; // keeps track of if the item is selected for trading or not
