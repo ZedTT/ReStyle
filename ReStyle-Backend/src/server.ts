@@ -5,11 +5,7 @@ const app = express();
 
 // -----TEST DATABASE CONNECTION-------------------------------------------------------------
 // this is an example used to test connection between node.js server and PostgreSQL database
-const { Pool, Client } = require('pg')
-
-const pool = new Pool({
-  connectionString: connectionString,
-})
+const { Client } = require('pg')
 
 const client = new Client({
   connectionString: connectionString,
