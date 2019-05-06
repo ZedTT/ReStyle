@@ -4,7 +4,6 @@ DROP TABLE IF EXISTS dev.contact_details CASCADE;
 DROP TABLE IF EXISTS dev.address CASCADE;
 DROP TABLE IF EXISTS dev.swap CASCADE;
 DROP TABLE IF EXISTS dev.item CASCADE;
-DROP TABLE IF EXISTS dev.photos CASCADE;
 DROP TABLE IF EXISTS dev.bookmark CASCADE;
 DROP TABLE IF EXISTS dev.hide CASCADE;
 DROP TABLE IF EXISTS dev.trade_request CASCADE;
@@ -13,7 +12,8 @@ CREATE TABLE dev.restyle_user(
 
 	userID CHARACTER(28) PRIMARY KEY, 
 	swapScore NUMERIC(2,1) CHECK (swapScore > 0 AND swapScore <= 5),
-	userName TEXT
+	userName TEXT,
+	userPhotoPath TEXT
 
 );
 
@@ -81,20 +81,11 @@ CREATE TABLE dev.item(
 	size INTEGER
 		CHECK (size > 0 AND size <= 4),
 	title TEXT,
-	category TEXT
+	category TEXT,
+	photoPaths TEXT[]
 );
 
 CREATE INDEX idx_item_id ON dev.item(itemID);
-
-
-CREATE TABLE dev.photos(
-
-	photoID SERIAL PRIMARY KEY, 
-	itemID INTEGER REFERENCES dev.item,
-	picturePath VARCHAR(20)
-);
-
-CREATE INDEX idx_photo_id ON dev.photos(photoID);
 
 CREATE TABLE dev.bookmark(
 
