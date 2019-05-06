@@ -23,6 +23,7 @@ export class ItemCardStackComponent implements OnInit {
 
   /**
    * Pass item
+   * Sets the pass attribute of the item to true, this causes the class to be set to slide the item.
    * @param item the item to be passed. Emitted from item-card.component.ts
    */
   passItem(item: ItemCard) {
@@ -31,7 +32,8 @@ export class ItemCardStackComponent implements OnInit {
   }
 
   /**
-   * Trades item
+   * Trades item.
+   * Sets the trade attribute of the item to true, this causes the class to be set to slide the item.
    * @param item the item to be traded. Emitted from the item-card.component.ts
    */
   tradeItem(item: ItemCard) {
