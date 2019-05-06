@@ -18,6 +18,8 @@
     "typescript": "^3.4.5"
   },
   "dependencies": {
-    "express": "^4.16.4"
+    "@types/pg": "^7.4.14",
+    "express": "^4.16.4",
+    "pg": "^7.10.0"
   }
 }
