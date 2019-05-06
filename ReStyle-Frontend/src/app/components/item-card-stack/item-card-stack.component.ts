@@ -21,11 +21,19 @@ export class ItemCardStackComponent implements OnInit {
     this.items = temp;
   }
 
+  /**
+   * Pass item
+   * @param item the item to be passed. Emitted from item-card.component.ts
+   */
   passItem(item: ItemCard) {
     console.log(item);
     item.pass = true;
   }
 
+  /**
+   * Trades item
+   * @param item the item to be traded. Emitted from the item-card.component.ts
+   */
   tradeItem(item: ItemCard) {
     console.log(item);
     item.trade = true;

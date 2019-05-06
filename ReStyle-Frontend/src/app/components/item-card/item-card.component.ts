@@ -32,6 +32,9 @@ export class ItemCardComponent implements OnInit {
   /**
    * Sets dynamic classes
    * @returns the classes that need to be set by angular
+   * When the value of an attribute changes, the class is automatically set.
+   * For example, when the value of this.item.pass changes from false to true, 
+   * the 'slide-out-left' class is automatically added.
    */
   setClasses() {
     const classes = {
@@ -67,15 +70,27 @@ export class ItemCardComponent implements OnInit {
 
   /**
    * Is called when the trade button is clicked on a card.
+   * See item-card.component.html for the code that causes this function to be called
+   * Emits the ItemCard object that represents the item that was clicked.
+   * this causes '(tradeItem)=tradeItem($event)' to fire
+   * See item-card-stack.component.html
+   * @param item the ItemCard object that is associated with the item that was clicked.
    * TODO: In the future, this should be used to take the user to the trade screen.
    */
   onTrade(item) {
-    console.log(item);
     this.tradeItem.emit(item);
   }
 
+  /**
+   * Is called when the user clicks the 'pass' button on a card.
+   * See item-card.component.html for the code that causes this function to be called
+   * Emits the ItemCard object that represents the item that was clicked.
+   * this causes '(passItem)=passItem($event)' to fire
+   * See item-card-stack.component.html
+   * @param item the ItemCard object that is associated with the item that was clicked.
+   * TODO: Should tell the backend to update the database so that this item is never showed to the user again.
+   */
   onPass(item: ItemCard) {
-    console.log(item);
     this.passItem.emit(item);
   }
 
