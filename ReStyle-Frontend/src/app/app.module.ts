@@ -9,6 +9,8 @@ import { ItemCardStackComponent } from './components/item-card-stack/item-card-s
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TradePageComponent } from './components/trade-page/trade-page.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { LoginCardComponent } from './components/login-card/login-card.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { TradePageComponent } from './components/trade-page/trade-page.component
     ItemCardStackComponent,
     HeaderComponent,
     FooterComponent,
-    TradePageComponent
+    TradePageComponent,
+    HomePageComponent,
+    LoginCardComponent
   ],
   imports: [
     BrowserModule,
