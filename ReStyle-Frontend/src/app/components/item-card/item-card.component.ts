@@ -33,7 +33,7 @@ export class ItemCardComponent implements OnInit {
    * Sets dynamic classes
    * @returns the classes that need to be set by angular
    * When the value of an attribute changes, the class is automatically set.
-   * For example, when the value of this.item.pass changes from false to true, 
+   * For example, when the value of this.item.pass changes from false to true,
    * the 'slide-out-left' class is automatically added.
    */
   setClasses() {
