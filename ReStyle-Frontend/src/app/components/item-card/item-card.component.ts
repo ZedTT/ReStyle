@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ItemCard } from '../../models/ItemCard';
 import { ItemCardServiceService } from '../../services/item-card-service.service';
 
@@ -9,6 +9,11 @@ import { ItemCardServiceService } from '../../services/item-card-service.service
 })
 export class ItemCardComponent implements OnInit {
   @Input() item: ItemCard; // for getting the items
+  /**
+   * Output used to call the onPass function in the item card stack ts
+   */
+  @Output() passItem: EventEmitter<ItemCard> = new EventEmitter();
+  @Output() tradeItem: EventEmitter<ItemCard> = new EventEmitter();
 
   sizeArray: string[] = ['xs', 's', 'm', 'l', 'xl'];
 
@@ -16,10 +21,12 @@ export class ItemCardComponent implements OnInit {
    * Creates an instance of an item card component.
    * @param itemCardServiceService used to communicate with the back end
    */
-  constructor(private itemCardServiceService: ItemCardServiceService) { }
+  constructor(private itemCardServiceService: ItemCardServiceService) {
+  }
 
   ngOnInit() {
     this.setClasses();
+    this.item.pass = false;
   }
 
   /**
@@ -31,6 +38,8 @@ export class ItemCardComponent implements OnInit {
       item: true,
       size: this.sizeArray[this.item.size], // proof of concept, may not actually be useful.
       // Changes the class attribute (html class="") based on the size of the item.
+      'slide-out-left': this.item.pass,
+      'slide-out-right': this.item.trade
     };
 
     return classes;
@@ -60,22 +69,14 @@ export class ItemCardComponent implements OnInit {
    * Is called when the trade button is clicked on a card.
    * TODO: In the future, this should be used to take the user to the trade screen.
    */
-  onTrade() {
-    console.log('Trade item: ' + this.item.itemId);
-
-    // Fetching the parent card and swiping it right
-    const parent =  (event.target as HTMLElement).parentNode.parentNode.parentNode.parentNode as HTMLElement;
-    console.log(parent);
-    parent.classList.add('slide-out-right');
+  onTrade(item) {
+    console.log(item);
+    this.tradeItem.emit(item);
   }
 
-  onPass() {
-    console.log('Pass item: ' + this.item.itemId);
-
-    // Fetching the parent card and hiding it
-    const parent =  (event.target as HTMLElement).parentNode.parentNode.parentNode.parentNode as HTMLElement;
-    console.log(parent);
-    parent.classList.add('slide-out-left');
+  onPass(item: ItemCard) {
+    console.log(item);
+    this.passItem.emit(item);
   }
 
 }

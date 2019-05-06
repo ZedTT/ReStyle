@@ -1,4 +1,6 @@
 <app-item-card 
     *ngFor="let item of items" [item]="item"
-    [item]="item">
+    [item]="item"
+    (passItem)="passItem($event)"
+    (tradeItem)="tradeItem($event)">
 </app-item-card>

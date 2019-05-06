@@ -13,7 +13,22 @@ export class ItemCardStackComponent implements OnInit {
   constructor(private itemCardServiceService: ItemCardServiceService) { }
 
   ngOnInit() {
-    this.items = this.itemCardServiceService.getItems();
+    const temp: any[] = this.itemCardServiceService.getItems();
+    for(const card of temp) {
+      card.pass = false;
+      card.trade = false;
+    }
+    this.items = temp;
+  }
+
+  passItem(item: ItemCard) {
+    console.log(item);
+    item.pass = true;
+  }
+
+  tradeItem(item: ItemCard) {
+    console.log(item);
+    item.trade = true;
   }
 
 }
