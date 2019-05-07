@@ -39,6 +39,7 @@ export class ItemCardComponent implements OnInit {
   setClasses() {
     const classes = {
       item: true,
+      card: true,
       size: this.sizeArray[this.item.size], // proof of concept, may not actually be useful.
       // Changes the class attribute (html class="") based on the size of the item.
       'slide-out-left': this.item.pass,
