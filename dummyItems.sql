@@ -1,3 +1,22 @@
 INSERT INTO dev.item (userID, swapID , description, gender, size, title, category) 
-VALUES  ('l15CGtMJ5bSnEkRPpYEgyvVWeLt2',NULL, 'testDescription', 'Female', 1, 'testTitle', 'testCategory'),
-('mD7ZT6d9P1bcrBsdQNRGqVaI30m2', NULL ,'testDescription', 'Male', 4, 'testTitle', 'testCategory');
+VALUES  
+('l15CGtMJ5bSnEkRPpYEgyvVWeLt2',NULL, 'testDescription', 'Female', 1, 'testTitle', 'shirt'),
+('l15CGtMJ5bSnEkRPpYEgyvVWeLt2', NULL ,'testDescription', 'Male', 2, 'testTitle', 'jeans'),
+('l15CGtMJ5bSnEkRPpYEgyvVWeLt2', NULL ,'testDescription', 'Unisex', 3, 'testTitle', 'dress'),
+('mD7ZT6d9P1bcrBsdQNRGqVaI30m2', NULL ,'testDescription', 'Female', 4, 'testTitle', 'skirt'),
+('mD7ZT6d9P1bcrBsdQNRGqVaI30m2', NULL ,'testDescription', 'Male', 1, 'testTitle', 'sweater'),
+('mD7ZT6d9P1bcrBsdQNRGqVaI30m2', NULL ,'testDescription', 'Unisex', 2, 'testTitle', 'shirt'),
+('Vc8UfAPEQkXR7ebwsAqAlaocWCC2', NULL ,'testDescription', 'Female', 3, 'testTitle', 'jeans'),
+('Vc8UfAPEQkXR7ebwsAqAlaocWCC2', NULL ,'testDescription', 'Male', 4, 'testTitle', 'dress'),
+('Vc8UfAPEQkXR7ebwsAqAlaocWCC2', NULL ,'testDescription', 'Unisex', 1, 'testTitle', 'skirt'),
+('ieUNOnM2bFWrQBDanavf5ea6rJm1', NULL ,'testDescription', 'Female', 1, 'testTitle', 'sweater'),
+('ieUNOnM2bFWrQBDanavf5ea6rJm1', NULL ,'testDescription', 'Male', 1, 'testTitle', 'shirt'),
+('ieUNOnM2bFWrQBDanavf5ea6rJm1', NULL ,'testDescription', 'Unisex', 4, 'testTitle', 'jeans'),
+('tSMvjt39LyYI8eHHyz8UQ7iVsK32', NULL ,'testDescription', 'Female', 1, 'testTitle', 'dress'),
+('tSMvjt39LyYI8eHHyz8UQ7iVsK32', NULL ,'testDescription', 'Male', 1, 'testTitle', 'skirt'),
+('tSMvjt39LyYI8eHHyz8UQ7iVsK32', NULL ,'testDescription', 'Unisex', 1, 'testTitle', 'sweater'),
+('fXz3AWKGPIVpDF8s8FsIr4WC9Vl1', NULL ,'testDescription', 'Female', 4, 'testTitle', 'shirt'),
+('fXz3AWKGPIVpDF8s8FsIr4WC9Vl1', NULL ,'testDescription', 'Male', 1, 'testTitle', 'jeans'),
+('fXz3AWKGPIVpDF8s8FsIr4WC9Vl1', NULL ,'testDescription', 'Unisex', 2, 'testTitle', 'dress'),
+('fXz3AWKGPIVpDF8s8FsIr4WC9Vl1', NULL ,'testDescription', 'Female', 3, 'testTitle', 'skirt'),
+('fXz3AWKGPIVpDF8s8FsIr4WC9Vl1', NULL ,'testDescription', 'Male', 4, 'testTitle', 'sweater');
