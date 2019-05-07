@@ -16,6 +16,9 @@ import { ItemCardComponent } from './components/item-card/item-card.component';
 import { ItemCardStackComponent } from './components/item-card-stack/item-card-stack.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { TradePageComponent } from './components/trade-page/trade-page.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { LoginCardComponent } from './components/login-card/login-card.component';
 import { LoginComponent } from './components/login/login.component';
 
 
@@ -31,7 +34,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
         'user_friends'
       ],
       customParameters: {
-        'auth_type': 'reauthenticate'
+        auth_type: 'reauthenticate'
       },
       provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID
     },
@@ -48,7 +51,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
   privacyPolicyUrl: '<your-privacyPolicyUrl-link>',
   credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM
 };
- 
+
 
 @NgModule({
   declarations: [
@@ -57,7 +60,10 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     ItemCardStackComponent,
     HeaderComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    TradePageComponent,
+    HomePageComponent,
+    LoginCardComponent
   ],
   imports: [
     BrowserModule,
