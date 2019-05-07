@@ -68,7 +68,7 @@ CREATE TABLE dev.hide(
 
 	hideID SERIAL PRIMARY KEY,
 	userID CHARACTER(28) REFERENCES dev.restyle_user,
-	items ITEM []
+	items INTEGER []
 );
 
 /*
