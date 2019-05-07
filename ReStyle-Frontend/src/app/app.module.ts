@@ -16,7 +16,7 @@ import { ItemCardComponent } from './components/item-card/item-card.component';
 import { ItemCardStackComponent } from './components/item-card-stack/item-card-stack.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
