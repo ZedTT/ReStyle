@@ -9,14 +9,12 @@ export class UserAccountService {
 
   constructor(private http: HttpClient) { }
 
-  postUserData(): Observable<any> {
+  postUserData(uid, userName): Observable<any> {
     // test sending data via post request body to the server
     return this.http.post<any>('/api/users', 
     {
-      'uid': 'VPTnlsJHFldNgshbw7M8GcZiZqH3', 
-      'swapScore': 1, 
-      'displayName': 'Haejoon', 
-      'picturePath': null
+      'uid': uid, 
+      'userName': userName
     });
   }
 

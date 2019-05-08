@@ -84,13 +84,18 @@ export class ItemCardComponent implements OnInit {
      * Logs the observable returned by the item card service's test server method without subscribing to it.
      * This shows what we get if we don't subscribe.
      */
-     console.log(this.userAccountService.postUserData());
-     /**
-      * * Logs response returned from the back end.
-      * By subscribing to the observable,
-      * we should get updated whenever there is a change.
-      */
-     this.userAccountService.postUserData().subscribe(res => {
+    /**
+     * * Logs response returned from the back end.
+     * By subscribing to the observable,
+     * we should get updated whenever there is a change.
+     */
+    let currentUser = firebase.auth().currentUser;
+    let uid = currentUser.uid;
+    let userName = currentUser.displayName;
+    
+    console.log(this.userAccountService.postUserData(uid, userName));
+
+     this.userAccountService.postUserData(uid, userName).subscribe(res => {
        console.log(res);
      });
   }
