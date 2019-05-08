@@ -9,7 +9,7 @@
 	userPhotoPath text
 
 	Example:
-	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2',1, 'Haejoon', null]
+	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2', 5, 'Haejoon', null]
 */
 export const insert_user_with_return = 
 "INSERT INTO dev.restyle_user (userID, swapScore, userName, userPhotoPath)"+ 
@@ -97,6 +97,17 @@ export const insert_item_no_return =
 	['15CGtMJ5bSnEkRPpYEgyvVWeLt2']
 */
 export const get_user_item =
+"SELECT * FROM dev.item" +
+"WHERE userID = '$1'"
+
+/*
+	Get item(s) for a specific user based on userID
+
+	Example:
+	[userID]
+	['15CGtMJ5bSnEkRPpYEgyvVWeLt2']
+*/
+export const display_item =
 "SELECT * FROM dev.item" +
 "WHERE userID = '$1'"
 
