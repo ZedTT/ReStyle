@@ -63,12 +63,13 @@ CREATE INDEX idx_rating_id ON dev.rating(ratingID);
 
 	hideID is serialized 
 	userID from the user table
+		constraint: a single user should have a single hideID
 	items as an array of items
 */
 CREATE TABLE dev.hide(
 
 	hideID SERIAL PRIMARY KEY,
-	userID CHARACTER(28) REFERENCES dev.restyle_user,
+	userID CHARACTER(28) REFERENCES dev.restyle_user UNIQUE,
 	items INTEGER []
 );
 
@@ -213,6 +214,8 @@ CREATE INDEX idx_bookmark_id ON dev.bookmark(bookmarkID);
 		for the items from the requester
 	notified_itemArray2 an array of integers 
 		for the items for the requestee to be notified
+	status of the trade request
+		either accept, reject or null
 
 */
 CREATE TABLE dev.trade_request(
@@ -221,8 +224,9 @@ CREATE TABLE dev.trade_request(
 	requester_userID1 CHARACTER(28) REFERENCES dev.restyle_user,
 	notified_userID2 CHARACTER(28) REFERENCES dev.restyle_user,
 	requester_itemArray1 INTEGER [],
-	notified_itemArray2 INTEGER []
-
+	notified_itemArray2 INTEGER [],
+	status TEXT
+		CHECK (status = 'Accept' OR status = 'Reject')
 );
 
 /*

@@ -19,7 +19,7 @@ export const insert_user_with_return =
 	Insert user into the user table
 	without return of the row that was just created
 	Array of values, fill with three values:
-	
+
 	userID character(28) 
 	swapScore Numeric(2,1), swapScore > 0 AND swapScore <= 5
 	userName text
@@ -88,16 +88,30 @@ export const insert_item_no_return =
 "INSERT INTO dev.item (userID, swapID, description, gender, size, title, category, photoPaths)"+
 "VALUES ($1, NULL, $2, $3, $4, $5, $6, $7::text[])"
 
+
+/*
+	Get item(s) for a specific user based on userID
+
+	Example:
+	[userID]
+	['15CGtMJ5bSnEkRPpYEgyvVWeLt2']
+*/
+export const get_user_item =
+"SELECT * FROM dev.item" +
+"WHERE userID = '$1'"
+
 /*
 	Insert an item into the hide table
 	This is for when the user no longer 
-	wishes to see the item in their feed
+	wishes to see the item in their feed.
+	A single user should have a single hide list.
 	
 	userID character(28)
 	items should be initialized as an empty array
 
 	Example:
-	['15CGtMJ5bSnEkRPpYEgyvVWeLt2', empty array]
+	[userID, emptyArray]
+	['15CGtMJ5bSnEkRPpYEgyvVWeLt2', {}]
 
 
 	note may need to create empty array??? '{}'
@@ -111,6 +125,7 @@ export const new_user_hide =
 	userID character(28)
 
 	Example:
+	[userID]
 	['15CGtMJ5bSnEkRPpYEgyvVWeLt2']
 */
 export const get_hide_list =
@@ -127,7 +142,8 @@ export const get_hide_list =
 	Note: items = array_append(items, $1) is the same as items = items + 1
 
 	Example:
-	[[23, itemID],'15CGtMJ5bSnEkRPpYEgyvVWeLt2']
+	[itemID, userID]
+	[23,'15CGtMJ5bSnEkRPpYEgyvVWeLt2']
 */
 export const add_hide =
 "UPDATE dev.hide SET items = array_append(items, $1)" +
@@ -143,20 +159,40 @@ export const add_hide =
 	Note array_append: append an element to the end of an array
 
 	Example:
-	[[23,itemID],'15CGtMJ5bSnEkRPpYEgyvVWeLt2']
+	[itemID, userID]
+	[23,'15CGtMJ5bSnEkRPpYEgyvVWeLt2']
 */
 export const remove_hide =
 "UPDATE dev.hide SET items = array_remove(items, $1)" +
 "WHERE userID = '$2'"
 
 /*
-	Create new trade request
+	Create new trade request with return
 
 	requester_userID1 character(28)
 	notfied_userID2 character(28)
 	requester_itemArray1 an array of integers
 	notified_itemArray2 an array of integers
+	
+	Example:
+	[userID, userID, [item1, item2], [item1,item2]]
 
+*/
+export const new_trade_request =
+"INSERT INTO dev.trade_request" +
+"(requester_userID1, notified_userID2, requester_itemArray1, notified_itemArray2)" +
+"VALUES ('$1', '$2', '$3::integer[]', '$4::integer[]') RETURNING *"
+
+/*
+	Create new trade request with no return
+
+	requester_userID1 character(28)
+	notfied_userID2 character(28)
+	requester_itemArray1 an array of integers
+	notified_itemArray2 an array of integers
+	
+	Example:
+	[userID, userID, [item1, item2], [item1,item2]]
 
 */
 export const new_trade_request =
