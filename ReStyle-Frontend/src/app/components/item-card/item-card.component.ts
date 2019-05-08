@@ -26,7 +26,6 @@ export class ItemCardComponent implements OnInit {
 
   ngOnInit() {
     this.setClasses();
-    this.item.pass = false;
   }
 
   /**

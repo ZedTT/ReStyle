@@ -18,13 +18,13 @@
     </ul> -->
     <!-- Above is used for testing -->
     <!-- Below should be a carousel once prateek is done work on those -->
-    <img src="{{ item.picturePath[0] }}" alt="Could not get this item's image">
+    <img src="item.picturePath[0]" alt="Could not get this item's image">
   </div>
   <div class="item-card card-footer">
-    <div class="bookmark">Bookmark: t/f</div>
-    <div class="user-picture">
-      User Picture: {{ item.userPicturePath }}
-      </div>
+    <div class="user">
+      <img src="{{ item.userPicturePath }}" alt="User image">
+      <div class="user-name">{{ item.userName }}</div>
+    </div>
     <div class="item-info">
       <div class="title">title: {{ item.title }}</div>
       <div class="size">size: {{ item.size }}</div>

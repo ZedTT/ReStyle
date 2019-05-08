@@ -7,6 +7,7 @@ export class ItemCard {
     itemPicturePath: string[]; // an array of paths to the pictures that are displayed for this item
     bookmarked: boolean; // true if the currently signed in user has bookmarked this trade item
     userId: string; // the id of the user that owns this item
+    userName: string; // the name of the user
     userPicturePath: string; // the path to the profile picture of the user who owns the item
     userVerified: boolean; // indicates if the user is verified
     userRating: number; // the rating of the user who owns the item
