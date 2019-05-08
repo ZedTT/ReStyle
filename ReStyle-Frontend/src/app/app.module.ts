@@ -24,6 +24,9 @@ import { LoginComponent } from './components/login/login.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
+  // it has issue that when it comes back to the homepage after login, logout button work as intended.
+  // need to be addressed later
+  signInSuccessUrl: '/',
   signInOptions: [
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
     {
@@ -38,20 +41,23 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
       },
       provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID
     },
-    firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-    firebase.auth.GithubAuthProvider.PROVIDER_ID,
     {
       requireDisplayName: false,
       provider: firebase.auth.EmailAuthProvider.PROVIDER_ID
     },
     firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-    firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
+    firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID,
+    // supposed to make the authentification persistence to be only in the session.
+    // I'm not sure if it's working - haejoon
+    firebase.auth.Auth.Persistence.SESSION	
   ],
-  tosUrl: '<your-tos-link>',
-  privacyPolicyUrl: '<your-privacyPolicyUrl-link>',
+  // Terms of service url.
+  tosUrl: '/',
+  // Privacy policy url.
+  privacyPolicyUrl: '/',
   credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM
-};
 
+};
 
 @NgModule({
   declarations: [

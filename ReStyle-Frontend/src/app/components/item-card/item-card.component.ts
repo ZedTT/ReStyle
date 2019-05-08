@@ -5,7 +5,7 @@ import { ItemCardServiceService } from '../../services/item-card-service.service
 @Component({
   selector: 'app-item-card',
   templateUrl: './item-card.component.html',
-  styleUrls: ['./item-card.component.css']
+  styleUrls: ['./item-card.component.sass']
 })
 export class ItemCardComponent implements OnInit {
   @Input() item: ItemCard; // for getting the items
