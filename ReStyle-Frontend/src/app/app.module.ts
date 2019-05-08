@@ -57,7 +57,11 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
 
   
 };
-
+/**
+ * Initialize firebase globally, early. 
+ * ? https://stackoverflow.com/a/54706749
+ * ? https://www.freakyjolly.com/ionic-4-firebase-login-registration-by-email-and-password/
+ */
 firebase.initializeApp(environment.firebase);
 
 @NgModule({
