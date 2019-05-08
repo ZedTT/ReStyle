@@ -21,6 +21,7 @@ DROP TABLE IF EXISTS dev.trade_request CASCADE;
 
 	UserID is from Firebase
 	swapScore is an average of the ratings
+		swapScore > 0 AND swapScore <= 5
 	userName is from Firebase
 	userPhotoPath is the path to the photo
 
@@ -150,8 +151,9 @@ CREATE INDEX idx_swap_id ON dev.swap(swapID);
 	userID from the user table
 	swapID from the swap table
 	description for describing the item
-	gender if the item is male, female or unisex
+	gender if the item is Male, Female or Unisex
 	size of the item, 0: XS, 1: S, 2: M, 3: L, 4: XL
+		(size > 0 AND size <= 4)
 	title the display title for the item
 	category the category the item falls under for filtering
 	photoPaths an array of photo paths
@@ -207,8 +209,10 @@ CREATE INDEX idx_bookmark_id ON dev.bookmark(bookmarkID);
 	requester_userID1 is the user id for the requester from user table
 	notfied_userID2 is the user id 
 		for the requestee to be notified from user table
-	requester_itemArray1 an array of items from the requester
-	notified_itemArray2 an array of items for the requestee to be notified
+	requester_itemArray1 an array of integers 
+		for the items from the requester
+	notified_itemArray2 an array of integers 
+		for the items for the requestee to be notified
 
 */
 CREATE TABLE dev.trade_request(

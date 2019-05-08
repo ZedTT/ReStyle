@@ -4,72 +4,186 @@
 
 	Array of values, fill with three values: 
 	userID character(28) 
+	swapScore Numeric(2,1), swapScore > 0 AND swapScore <= 5
 	userName text
 	userPhotoPath text
+
+	Example:
+	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2',1, 'Haejoon', null]
 */
 export const insert_user_with_return = 
-'INSERT INTO dev.restyle_user (userID, userName, userPhotoPath)'+ 
-'VALUES ($1, $2, $3) RETURNING *'
+"INSERT INTO dev.restyle_user (userID, swapScore, userName, userPhotoPath)"+ 
+"VALUES ($1, $2, $3, $4) RETURNING *"
 
 /*
 	Insert user into the user table
 	without return of the row that was just created
 	Array of values, fill with three values:
+	
 	userID character(28) 
+	swapScore Numeric(2,1), swapScore > 0 AND swapScore <= 5
 	userName text
 	userPhotoPath text 
+
+	Example:
+	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2',1, 'Haejoon', null]
 */
 export const insert_user_no_return = 
-'INSERT INTO dev.restyle_user (userID, userName, userPhotoPath)'+ 
-'VALUES ($1, $2, $3)'
+"INSERT INTO dev.restyle_user (userID, userName, userPhotoPath)"+ 
+"VALUES ($1, $2, $3)"
 
 /*
 	Get user based on user id from login 
-	
 	userID character(28)
+
+	Example:
+	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2']
 
 */
 export const get_user = 
-'SELECT * FROM dev.restyle_user' +
-'WHERE userID = '$1''
+"SELECT * FROM dev.restyle_user"+
+"WHERE userID = '$1'"
+
+/*
+	Get user rating based on the userID 
+	userID character(28)
+
+	Example:
+	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2']
+*/
+export const get_user_rating =
+"SELECT AVG(rating) FROM dev.rating" +
+"WHERE userID = '$1'"
 
 /*
 	Insert item into item table
 	with return to get the row back that was just created
 	userID character(28)
 	swapID integer
-	description, gender text
-	size integer
+	description text
+	gender text, Male, Female or Unisex
+	size integer, (size > 0 AND size <= 4)
 	title, category, photoPaths text
+
+	Example:
+	['15CGtMJ5bSnEkRPpYEgyvVWeLt2', null , 'description', 'Female', 1, 'title', 'category', ['path1','path2','path3]]
 */
 export const insert_item_with_return =
-'INSERT INTO dev.item (userID, swapID, description, gender, size, title, category, photoPaths)'+
-'VALUES ($1, NULL, $2, $3, $4, $5, $6, $7::text[]) RETURNING *'
+"INSERT INTO dev.item (userID, swapID, description, gender, size, title, category, photoPaths)"+
+"VALUES ($1, NULL, $2, $3, $4, $5, $6, $7::text[]) RETURNING *"
 
 /*
-	Insert a hidden item into the hide table
+	Insert item into item table without return 
+	userID character(28)
+	swapID integer
+	description text
+	gender text, Male, Female or Unisex
+	size integer, (size > 0 AND size <= 4)
+	title, category, photoPaths text
+
+	Example:
+	['15CGtMJ5bSnEkRPpYEgyvVWeLt2', null , 'description', 'Female', 1, 'title', 'category', ['path1','path2','path3]]
+*/
+export const insert_item_no_return =
+"INSERT INTO dev.item (userID, swapID, description, gender, size, title, category, photoPaths)"+
+"VALUES ($1, NULL, $2, $3, $4, $5, $6, $7::text[])"
+
+/*
+	Insert an item into the hide table
+	This is for when the user no longer 
+	wishes to see the item in their feed
 	
 	userID character(28)
-	items as an array of integers
-*/
-export const new_hide =
-'INSERT INTO dev.hide (userID, items)' + 
-'VALUES ('$1', '{$2}'), ('$3', '{$4}')'
+	items should be initialized as an empty array
 
+	Example:
+	['15CGtMJ5bSnEkRPpYEgyvVWeLt2', empty array]
+
+
+	note may need to create empty array??? '{}'
+*/
+export const new_user_hide =
+"INSERT INTO dev.hide (userID, items)" + 
+"VALUES ('$1', null)" 
+
+/*
+	Get hide list for a specific user based on the userID
+	userID character(28)
+
+	Example:
+	['15CGtMJ5bSnEkRPpYEgyvVWeLt2']
+*/
+export const get_hide_list =
+"SELECT items FROM dev.hide" +
+"WHERE userID = '$1'"
+
+/*
+	Add item to hide table for a specific user
+
+	userID character(28)
+	itemID integer
+
+	Note array_append: append an element to the end of an array
+	Note: items = array_append(items, $1) is the same as items = items + 1
+
+	Example:
+	[[23, itemID],'15CGtMJ5bSnEkRPpYEgyvVWeLt2']
+*/
+export const add_hide =
+"UPDATE dev.hide SET items = array_append(items, $1)" +
+"WHERE userID = '$2'"
+
+
+/*
+	Remove an item from the hide table for a specific user
+
+	userID character(28)
+	itemID integer
+
+	Note array_append: append an element to the end of an array
+
+	Example:
+	[[23,itemID],'15CGtMJ5bSnEkRPpYEgyvVWeLt2']
+*/
+export const remove_hide =
+"UPDATE dev.hide SET items = array_remove(items, $1)" +
+"WHERE userID = '$2'"
 
 /*
 	Create new trade request
 
+	requester_userID1 character(28)
+	notfied_userID2 character(28)
+	requester_itemArray1 an array of integers
+	notified_itemArray2 an array of integers
+
+
 */
 export const new_trade_request =
-'INSERT INTO dev.trade_request' +
-'(requester_userID1, notified_userID2, requester_itemArray1, notified_itemArray2)' +
-'VALUES ('l15CGtMJ5bSnEkRPpYEgyvVWeLt2', 'mD7ZT6d9P1bcrBsdQNRGqVaI30m2', '{1, 2, 3}', '{4}')'
-
-
+"INSERT INTO dev.trade_request" +
+"(requester_userID1, notified_userID2, requester_itemArray1, notified_itemArray2)" +
+"VALUES ('$1', '$2', '$3::integer[]', '$4::integer[]')"
 
 
 /*
+	User pending requests
 
-	SELECT AVG(Score) FROM rating  WHERE USERID = $1
 */
+
+/*
+
+	Users requests pending
+*/
+
+/*
+	Display items that have never been swapped
+
+	userID character(28)
+
+	Example:
+	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2']
+*/
+export const display_neverbeen_swapped_items =
+"SELECT * FROM dev.item" + 
+"WHERE userID ='$1' AND swapID IS NULL"
+
