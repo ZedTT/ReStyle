@@ -11,6 +11,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { TradePageComponent } from './components/trade-page/trade-page.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginCardComponent } from './components/login-card/login-card.component';
+import { LoginCarouselComponent } from './components/login-carousel/login-carousel.component';
+import { NguCarouselModule } from '@ngu/carousel';
 
 @NgModule({
   declarations: [
@@ -21,13 +23,15 @@ import { LoginCardComponent } from './components/login-card/login-card.component
     FooterComponent,
     TradePageComponent,
     HomePageComponent,
-    LoginCardComponent
+    LoginCardComponent,
+    LoginCarouselComponent
   ],
   imports: [
     BrowserModule,
     // import HttpClientModule after BrowserModule.
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NguCarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]
