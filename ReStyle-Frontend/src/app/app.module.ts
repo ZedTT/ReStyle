@@ -1,13 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 // Angular Firebase import section
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
-import {FirebaseUIModule, firebase, firebaseui} from 'firebaseui-angular';
+import { FirebaseUIModule, firebase, firebaseui } from 'firebaseui-angular';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -55,7 +55,14 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
   privacyPolicyUrl: '/',
   credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM
 
+  
 };
+/**
+ * Initialize firebase globally, early. 
+ * ? https://stackoverflow.com/a/54706749
+ * ? https://www.freakyjolly.com/ionic-4-firebase-login-registration-by-email-and-password/
+ */
+firebase.initializeApp(environment.firebase);
 
 @NgModule({
   declarations: [

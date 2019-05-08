@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseUIModule, firebase, firebaseui } from 'firebaseui-angular';
+import { firebase } from 'firebaseui-angular';
 
 @Component({
   selector: 'app-login-card',

@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ItemCard } from '../../models/ItemCard';
 import { ItemCardServiceService } from '../../services/item-card-service.service';
+import { firebase } from 'firebaseui-angular';
+
 
 @Component({
   selector: 'app-item-card',
@@ -66,6 +68,10 @@ export class ItemCardComponent implements OnInit {
      this.itemCardServiceService.testServer().subscribe(JSON => {
        console.log(JSON);
      });
+     console.log(firebase.auth().currentUser);
+     console.log(firebase.auth().currentUser.displayName);
+     console.log(firebase.auth().currentUser.email);
+     console.log(firebase.auth().currentUser.uid);
   }
 
   /**
