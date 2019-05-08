@@ -178,7 +178,7 @@ export const remove_hide =
 	[userID, userID, [item1, item2], [item1,item2]]
 
 */
-export const new_trade_request =
+export const new_trade_request_with_return =
 "INSERT INTO dev.trade_request" +
 "(requester_userID1, notified_userID2, requester_itemArray1, notified_itemArray2)" +
 "VALUES ('$1', '$2', '$3::integer[]', '$4::integer[]') RETURNING *"
@@ -195,21 +195,10 @@ export const new_trade_request =
 	[userID, userID, [item1, item2], [item1,item2]]
 
 */
-export const new_trade_request =
+export const new_trade_request_no_return =
 "INSERT INTO dev.trade_request" +
 "(requester_userID1, notified_userID2, requester_itemArray1, notified_itemArray2)" +
 "VALUES ('$1', '$2', '$3::integer[]', '$4::integer[]')"
-
-
-/*
-	User pending requests
-
-*/
-
-/*
-
-	Users requests pending
-*/
 
 /*
 	Display items that have never been swapped
