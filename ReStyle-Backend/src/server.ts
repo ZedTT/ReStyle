@@ -30,9 +30,11 @@ app.post('/api/users', (request, response) => {
     // get a user from the frontend
     console.log(request.body);
     const uid = request.body.uid;
+    const userName = request.body.userName;
+    const initialSwapScore = 5;
 
     // insert the new user into the DB
-    client.query(insertUserQuery, [uid, 1, 'Haejoon', null], (err, res) => {
+    client.query(insertUserQuery, [uid, initialSwapScore, userName, null], (err, res) => {
         if (err) {
             console.log("Error:", err)
         } else {
