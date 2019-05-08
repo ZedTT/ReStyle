@@ -46,11 +46,9 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
       provider: firebase.auth.EmailAuthProvider.PROVIDER_ID
     },
     firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-    firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID,
-    // supposed to make the authentification persistence to be only in the session.
-    // I'm not sure if it's working - haejoon
-    firebase.auth.Auth.Persistence.SESSION	
+    firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
   ],
+  
   // Terms of service url.
   tosUrl: '/',
   // Privacy policy url.
