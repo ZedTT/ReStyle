@@ -6,5 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ngbd-carousel.component.sass']
 })
 export class NgbdCarouselComponent {
-  images = [1, 2, 3].map(() => `https://picsum.photos/900/500?random&t=${Math.random()}`);
+  images = [
+    'https://dummyimage.com/200x300/000/fff&text=Welcome+to+Restyle',
+    'https://dummyimage.com/200x300/615461/bcbdc4&text=Information',
+    'https://dummyimage.com/200x300/576154/bcbdc4&text=More+Information'
+  ];
 }
