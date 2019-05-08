@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ItemCard } from '../../models/ItemCard';
 import { ItemCardServiceService } from '../../services/item-card-service.service';
 import { firebase } from 'firebaseui-angular';
-
+import { UserAccountService } from '../../services/user-account.service';
 
 @Component({
   selector: 'app-item-card',
@@ -23,7 +23,7 @@ export class ItemCardComponent implements OnInit {
    * Creates an instance of an item card component.
    * @param itemCardServiceService used to communicate with the back end
    */
-  constructor(private itemCardServiceService: ItemCardServiceService) {
+  constructor(private itemCardServiceService: ItemCardServiceService, private userAccountService: UserAccountService) {
   }
 
   ngOnInit() {
@@ -72,6 +72,27 @@ export class ItemCardComponent implements OnInit {
      console.log(firebase.auth().currentUser.displayName);
      console.log(firebase.auth().currentUser.email);
      console.log(firebase.auth().currentUser.uid);
+  }
+
+
+  /**
+   * Sends json to the server
+   * ! This is an example and should not be kept long term
+   */
+  sendUserId() {
+    /**
+     * Logs the observable returned by the item card service's test server method without subscribing to it.
+     * This shows what we get if we don't subscribe.
+     */
+     console.log(this.userAccountService.postUserData());
+     /**
+      * * Logs response returned from the back end.
+      * By subscribing to the observable,
+      * we should get updated whenever there is a change.
+      */
+     this.userAccountService.postUserData().subscribe(res => {
+       console.log(res);
+     });
   }
 
   /**
