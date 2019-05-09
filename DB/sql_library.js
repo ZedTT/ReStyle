@@ -101,7 +101,8 @@ export const get_user_item =
 "WHERE userID = '$1'"
 
 /*
-	Get item(s) for a specific user based on userID
+	Get item(s) to display for a user that does not 
+	include their own items
 
 	Example:
 	[userID]
@@ -109,7 +110,7 @@ export const get_user_item =
 */
 export const display_item =
 "SELECT * FROM dev.item" +
-"WHERE userID = '$1'"
+"WHERE userID !='$1' AND swapID IS NULL"
 
 /*
 	Insert an item into the hide table
