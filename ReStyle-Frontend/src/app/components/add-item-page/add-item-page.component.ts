@@ -11,10 +11,10 @@ export class AddItemPageComponent implements OnInit {
 
   constructor(private http: HttpClient) {}
 
-  onFileSelected($event) {
-// tslint:disable-next-line: deprecation
-    console.log(event);
-    this.selectedFile = event.target.files[0] as File;
+  onFileSelected(fileEvent) {
+    console.log(fileEvent);
+    this.selectedFile = fileEvent.target.files[0] as File;
+    console.log(this.selectedFile);
   }
 
   onUpload() {
