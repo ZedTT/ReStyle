@@ -4,14 +4,21 @@
     <div style="height: 50px"></div>
 
     <h1>File Upload</h1>
-    <input type="file" id="filepick" (change)="onFileSelected($event)" style="display: none" #fileinput>
-    <button class="btn btn-success" (click)="fileinput.click()">Choose Image</button>
-    <button class="btn btn-success" (click)="onUpload()">Upload</button>
+    <form>
+        <input type="file" id="filepick" (change)="onFileSelected($event)" style="display: none" #fileinput>
+        <button class="btn btn-success" (click)="fileinput.click()">Choose Image</button>
+        <!-- <button class="btn btn-success" (click)="onUpload()">Upload</button> -->
+    
+        {{ fileName }}
+    </form>
 
     <!-- ! Remove this -->
     <div style="height: 50px"></div>
 
     <input type="text" name="title" [(ngModel)]="title" placeholder="Add title">
+
+    <!-- ! Remove this -->
+    <div style="height: 50px"></div>
 
     <input type="text" name="description" [(ngModel)]="description" placeholder="Add description">
     
@@ -40,7 +47,13 @@
     <!-- ! Remove this -->
     <div style="height: 50px"></div>
 
-    <mat-slider min="0" max="5" step="1" value="value"></mat-slider>
+    <mat-slider
+        thumbLabel
+        [displayWith]="formatLabel"
+        tickInterval="1"
+        min="1"
+        max="5">
+    </mat-slider>
 
     <!-- ! Remove this -->
     <div style="height: 50px"></div>
@@ -51,5 +64,8 @@
     <div style="height: 50px"></div>
 
     <input type="submit" value="submit" class="btn">
+
+    <!-- ! Remove this -->
+    <div style="height: 50px"></div>
     
 </form>

@@ -12,7 +12,7 @@ export interface Category {
   styleUrls: ['./add-item-page.component.sass']
 })
 export class AddItemPageComponent implements OnInit {
-  selectedFile: File = null;
+  selectedFile: File;
   title: string;
   description: string;
   sCat: string;
@@ -20,13 +20,13 @@ export class AddItemPageComponent implements OnInit {
     { value: 'Shirt', viewValue: 'Shirt' },
     { value: 'Pants', viewValue: 'Pants' }
   ];
+  fileName = 'No file selected';
 
   constructor(private http: HttpClient) {}
 
   onFileSelected(fileEvent) {
-    console.log(fileEvent);
     this.selectedFile = fileEvent.target.files[0] as File;
-    console.log(this.selectedFile);
+    this.fileName = this.selectedFile.name;
   }
 
   onUpload() {
@@ -39,7 +39,15 @@ export class AddItemPageComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('test');
+    console.log('onSubmit ran');
+    const fd = new FormData();
+    fd.append('image', this.selectedFile);
+    fd.append('title', this.title);
+    fd.append('description', this.title);
+    console.log(fd.getAll('image'));
+    // this.http.post('/api/new-item', fd).subscribe(res => {
+    //   console.log(res);
+    // });
   }
 
   ngOnInit() {
