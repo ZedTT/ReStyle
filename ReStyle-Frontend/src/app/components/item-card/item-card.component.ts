@@ -89,13 +89,13 @@ export class ItemCardComponent implements OnInit {
      * By subscribing to the observable,
      * we should get updated whenever there is a change.
      */
-    let currentUser = firebase.auth().currentUser;
-    let uid = currentUser.uid;
-    let userName = currentUser.displayName;
-    
+    const currentUser = firebase.auth().currentUser;
+    const uid = currentUser.uid;
+    const userName = currentUser.displayName;
+
     console.log(this.userAccountService.postUserData(uid, userName));
 
-     this.userAccountService.postUserData(uid, userName).subscribe(res => {
+    this.userAccountService.postUserData(uid, userName).subscribe(res => {
        console.log(res);
      });
   }
