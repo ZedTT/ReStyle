@@ -123,14 +123,15 @@ export const display_item =
 
 	Example:
 	[userID, emptyArray]
-	['15CGtMJ5bSnEkRPpYEgyvVWeLt2', {}]
+	['15CGtMJ5bSnEkRPpYEgyvVWeLt2', []]
 
 
-	note may need to create empty array??? '{}'
+	note: create an empty array when user is first created/inserted
+	into the user table
 */
 export const new_user_hide =
 "INSERT INTO dev.hide (userID, items)" + 
-"VALUES ('$1', null)" 
+"VALUES ('$1', [])" 
 
 /*
 	Get hide list for a specific user based on the userID
