@@ -1,6 +1,6 @@
-<div [ngClass]="setClasses()" class="card">
+<div [ngClass]="setClasses()">
   <div class="card-body">
-    <br> item id: {{ item.itemId }}
+    <!-- <br> item id: {{ item.itemId }}
     <br> user id: {{ item.userId }}
     <br> user picture path: {{ item.userPicturePath }}
     <br> user verified: {{ item.verified }}
@@ -15,13 +15,16 @@
       <li *ngFor="let path of item.picturePath; let myIndex = index">
         {{ item.picturePath[myIndex] }}
       </li>
-    </ul>
+    </ul> -->
+    <!-- Above is used for testing -->
+    <!-- Below should be a carousel once prateek is done work on those -->
+    <img src="item.picturePath[0]" alt="Could not get this item's image">
   </div>
-  <div class="item-card card-footer">
-    <div class="bookmark">Bookmark: t/f</div>
-    <div class="user-picture">
-      User Picture: {{ item.userPicturePath }}
-      </div>
+  <div class="card-footer">
+    <div class="user">
+      <img class="user-image" src="{{ item.userPicturePath }}" alt="User image">
+      <div class="user-name">{{ item.userName }}</div>
+    </div>
     <div class="item-info">
       <div class="title">title: {{ item.title }}</div>
       <div class="size">size: {{ item.size }}</div>
@@ -33,4 +36,5 @@
     </div>
   </div>
   <button (click)="retrieveJSON()">retrieve JSON from backend</button>
+  <button (click)="sendUserId()">Send user ID to backend</button>
 </div>
