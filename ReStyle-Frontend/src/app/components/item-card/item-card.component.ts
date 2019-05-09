@@ -1,11 +1,13 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ItemCard } from '../../models/ItemCard';
 import { ItemCardServiceService } from '../../services/item-card-service.service';
+import { firebase } from 'firebaseui-angular';
+import { UserAccountService } from '../../services/user-account.service';
 
 @Component({
   selector: 'app-item-card',
   templateUrl: './item-card.component.html',
-  styleUrls: ['./item-card.component.css']
+  styleUrls: ['./item-card.component.sass']
 })
 export class ItemCardComponent implements OnInit {
   @Input() item: ItemCard; // for getting the items
@@ -21,12 +23,11 @@ export class ItemCardComponent implements OnInit {
    * Creates an instance of an item card component.
    * @param itemCardServiceService used to communicate with the back end
    */
-  constructor(private itemCardServiceService: ItemCardServiceService) {
+  constructor(private itemCardServiceService: ItemCardServiceService, private userAccountService: UserAccountService) {
   }
 
   ngOnInit() {
     this.setClasses();
-    this.item.pass = false;
   }
 
   /**
@@ -66,6 +67,31 @@ export class ItemCardComponent implements OnInit {
       */
      this.itemCardServiceService.testServer().subscribe(JSON => {
        console.log(JSON);
+     });
+     console.log(firebase.auth().currentUser);
+     console.log(firebase.auth().currentUser.displayName);
+     console.log(firebase.auth().currentUser.email);
+     console.log(firebase.auth().currentUser.uid);
+  }
+
+
+  /**
+   * Sends json to the server
+   * ! This is an example and should not be kept long term
+   */
+  sendUserId() {
+    /**
+     * * Logs response returned from the back end.
+     * Sends the current users uid and display name to the server
+     */
+    const currentUser = firebase.auth().currentUser;
+    const uid = currentUser.uid;
+    const userName = currentUser.displayName;
+
+    console.log(this.userAccountService.postUserData(uid, userName));
+
+    this.userAccountService.postUserData(uid, userName).subscribe(res => {
+       console.log(res);
      });
   }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { firebase } from 'firebaseui-angular';
 
 @Component({
   selector: 'app-login-card',
@@ -25,6 +26,19 @@ export class LoginCardComponent implements OnInit {
     };
 
     return classes;
+  }
+
+  logOut() {
+    firebase.auth().signOut()
+    .then(function() {
+      console.log("User is signed out.")
+      // Sign-out successful.
+    })
+    .catch(function(error) {
+      console.log("An error is caught.")
+
+      // An error happened
+    });
   }
 
 }
