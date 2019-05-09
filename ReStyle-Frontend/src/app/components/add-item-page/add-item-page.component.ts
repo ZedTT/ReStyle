@@ -15,10 +15,10 @@ export class AddItemPageComponent implements OnInit {
   selectedFile: File = null;
   title: string;
   description: string;
-  selectedCategory: string;
-  categories: Category[] = [
-    {value: 'Shirt', viewValue: 'Shirt'},
-    {value: 'Pants', viewValue: 'Pants'}
+  sCat: string;
+  cats: Category[] = [
+    { value: 'Shirt', viewValue: 'Shirt' },
+    { value: 'Pants', viewValue: 'Pants' }
   ];
 
   constructor(private http: HttpClient) {}
