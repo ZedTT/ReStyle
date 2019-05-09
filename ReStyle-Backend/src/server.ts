@@ -32,9 +32,11 @@ app.post('/api/users', (request, response) => {
     console.log(request.body);
     const uid = request.body.uid;
     const userName = request.body.userName;
+    // Initial swap score is hard coded to five
     const initialSwapScore = 5;
     
     // insert the new user into the DB
+    // ? Piture path is hardcoded to null for now
     client.query(insertUserQuery, [uid, initialSwapScore, userName, null], (err, res) => {
         if (err) {
             console.log("Error:", err)
