@@ -1,4 +1,13 @@
 /*
+	Author: Catreana Cunningham
+	Date: May 6, 2019
+*/
+
+/*
+--------------------------------------------------User Queries-------------------------------
+*/
+
+/*
 	Insert user into table
 	with return to get the row back that was just created
 
@@ -12,8 +21,8 @@
 	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2', 5, 'Haejoon', null]
 */
 export const insert_user_with_return = 
-"INSERT INTO dev.restyle_user (userID, swapScore, userName, userPhotoPath)"+ 
-"VALUES ($1, $2, $3, $4) RETURNING *"
+"INSERT INTO dev.restyle_user (userID, swapScore, userName, userPhotoPath) "+ 
+"VALUES ($1, $2, $3, $4) RETURNING * "
 
 /*
 	Insert user into the user table
@@ -29,8 +38,8 @@ export const insert_user_with_return =
 	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2',1, 'Haejoon', null]
 */
 export const insert_user_no_return = 
-"INSERT INTO dev.restyle_user (userID, userName, userPhotoPath)"+ 
-"VALUES ($1, $2, $3)"
+"INSERT INTO dev.restyle_user (userID, userName, userPhotoPath) "+ 
+"VALUES ($1, $2, $3) "
 
 /*
 	Get user based on user id from login 
@@ -41,8 +50,8 @@ export const insert_user_no_return =
 
 */
 export const get_user = 
-"SELECT * FROM dev.restyle_user"+
-"WHERE userID = '$1'"
+"SELECT * FROM dev.restyle_user "+
+"WHERE userID = $1"
 
 /*
 	Get user rating based on the userID 
@@ -52,8 +61,13 @@ export const get_user =
 	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2']
 */
 export const get_user_rating =
-"SELECT AVG(rating) FROM dev.rating" +
-"WHERE userID = '$1'"
+"SELECT AVG(rating) FROM dev.rating " +
+"WHERE userID = $1"
+
+/*
+--------------------------------------------------Item Queries----------------------------------
+*/
+
 
 /*
 	Insert item into item table
@@ -66,39 +80,38 @@ export const get_user_rating =
 	title, category, photoPaths text
 
 	Example:
-	['15CGtMJ5bSnEkRPpYEgyvVWeLt2', null , 'description', 'Female', 1, 'title', 'category', ['path1','path2','path3]]
+	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2', null , 'description', 'Female', 1, 'title', 'category', ['path1','path2','path3]]
 */
 export const insert_item_with_return =
-"INSERT INTO dev.item (userID, swapID, description, gender, size, title, category, photoPaths)"+
-"VALUES ($1, NULL, $2, $3, $4, $5, $6, $7::text[]) RETURNING *"
+"INSERT INTO dev.item (userID, description, gender, size, title, category, photoPaths) " +
+"VALUES ($1, $2, $3, $4, $5, $6, $7::text[]) RETURNING * "
 
 /*
 	Insert item into item table without return 
 	userID character(28)
-	swapID integer
 	description text
 	gender text, Male, Female or Unisex
 	size integer, (size > 0 AND size <= 4)
 	title, category, photoPaths text
 
 	Example:
-	['15CGtMJ5bSnEkRPpYEgyvVWeLt2', null , 'description', 'Female', 1, 'title', 'category', ['path1','path2','path3]]
+	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2', 'description', 'Female', 1, 'title', 'category', ['path1','path2','path3]]
 */
 export const insert_item_no_return =
-"INSERT INTO dev.item (userID, swapID, description, gender, size, title, category, photoPaths)"+
-"VALUES ($1, NULL, $2, $3, $4, $5, $6, $7::text[])"
+"INSERT INTO dev.item (userID, description, gender, size, title, category, photoPaths) " +
+"VALUES ($1, $2, $3, $4, $5, $6, $7::text[]) "
 
 
 /*
 	Get item(s) for a specific user based on userID
-
+	This is for the user viewing their inventory
 	Example:
 	[userID]
-	['15CGtMJ5bSnEkRPpYEgyvVWeLt2']
+	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2']
 */
 export const get_user_item =
-"SELECT * FROM dev.item" +
-"WHERE userID = '$1'"
+"SELECT * FROM dev.item " +
+"WHERE userID = $1 "
 
 /*
 	Get item(s) to display for a user that does not 
@@ -106,11 +119,58 @@ export const get_user_item =
 
 	Example:
 	[userID]
-	['15CGtMJ5bSnEkRPpYEgyvVWeLt2']
+	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2']
 */
 export const display_item =
-"SELECT * FROM dev.item" +
-"WHERE userID !='$1' AND swapID IS NULL"
+"SELECT * FROM dev.item " +
+"WHERE userID != $1 AND swapID IS NULL "
+
+/*
+	Insert the item's photoPath array into the item table
+
+	Example:
+	[[photoPath1, photoPath2],userID]
+	[[photoPath1, photoPath2],'l15CGtMJ5bSnEkRPpYEgyvVWeLt2']
+*/
+export const add_photoPath_to_item =
+"UPDATE dev.item SET photoPaths = array_cat(photoPaths, $1::text[]) " +
+"WHERE itemID = $2 "
+
+/*
+	Get photos in array for an item
+
+	itemID as an integer
+
+	Example:
+	[itemID]
+
+*/
+export const get_photos =
+"SELECT photoPaths FROM dev.item " +
+"WHERE itemID = $1 "
+
+/*
+	Display items with pagination
+
+	userID character(28)
+	Limit: no more than that many rows will 
+			be returned (but possibly less, if the query itself yields less rows)
+	
+	Example:
+	[userID, limit by amount, Offset by amount]
+	first page: [userID, 5, 0]
+	second page: [userID, 5, 5]
+	third page: [userID, 5, 10]
+*/
+export const display_items_paginated =
+"SELECT * FROM dev.item " +
+"WHERE userID != $1 AND swapID IS NULL " +
+"ORDER BY itemID " + 
+"LIMIT $2 OFFSET $3 "
+
+/*
+--------------------------------------------------Hide Queries-------------------------------
+*/
 
 /*
 	Insert an item into the hide table
@@ -130,8 +190,8 @@ export const display_item =
 	into the user table
 */
 export const new_user_hide =
-"INSERT INTO dev.hide (userID, items)" + 
-"VALUES ('$1', [])" 
+"INSERT INTO dev.hide (userID, items) " + 
+"VALUES ($1, []) " 
 
 /*
 	Get hide list for a specific user based on the userID
@@ -142,8 +202,8 @@ export const new_user_hide =
 	['15CGtMJ5bSnEkRPpYEgyvVWeLt2']
 */
 export const get_hide_list =
-"SELECT items FROM dev.hide" +
-"WHERE userID = '$1'"
+"SELECT items FROM dev.hide " +
+"WHERE userID = $1 "
 
 /*
 	Add item to hide table for a specific user
@@ -159,8 +219,8 @@ export const get_hide_list =
 	[23,'15CGtMJ5bSnEkRPpYEgyvVWeLt2']
 */
 export const add_hide =
-"UPDATE dev.hide SET items = array_append(items, $1)" +
-"WHERE userID = '$2'"
+"UPDATE dev.hide SET items = array_append(items, $1) " +
+"WHERE userID = $2 "
 
 
 /*
@@ -176,8 +236,12 @@ export const add_hide =
 	[23,'15CGtMJ5bSnEkRPpYEgyvVWeLt2']
 */
 export const remove_hide =
-"UPDATE dev.hide SET items = array_remove(items, $1)" +
-"WHERE userID = '$2'"
+"UPDATE dev.hide SET items = array_remove(items, $1) " +
+"WHERE userID = $2 "
+
+/*
+--------------------------------------------------Trade Request Queries-------------------------------
+*/
 
 /*
 	Create new trade request with return
@@ -192,9 +256,9 @@ export const remove_hide =
 
 */
 export const new_trade_request_with_return =
-"INSERT INTO dev.trade_request" +
-"(requester_userID1, notified_userID2, requester_itemArray1, notified_itemArray2)" +
-"VALUES ('$1', '$2', '$3::integer[]', '$4::integer[]') RETURNING *"
+"INSERT INTO dev.trade_request " +
+"(requester_userID1, notified_userID2, requester_itemArray1, notified_itemArray2) " +
+"VALUES ($1, $2, $3::integer[], $4::integer[]) RETURNING * "
 
 /*
 	Create new trade request with no return
@@ -209,9 +273,13 @@ export const new_trade_request_with_return =
 
 */
 export const new_trade_request_no_return =
-"INSERT INTO dev.trade_request" +
-"(requester_userID1, notified_userID2, requester_itemArray1, notified_itemArray2)" +
-"VALUES ('$1', '$2', '$3::integer[]', '$4::integer[]')"
+"INSERT INTO dev.trade_request " +
+"(requester_userID1, notified_userID2, requester_itemArray1, notified_itemArray2) " +
+"VALUES ($1, $2, $3::integer[], $4::integer[]) "
+
+/*
+--------------------------------------------------Swap Queries-------------------------------
+*/
 
 /*
 	Display items that have never been swapped
@@ -222,6 +290,6 @@ export const new_trade_request_no_return =
 	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2']
 */
 export const display_neverbeen_swapped_items =
-"SELECT * FROM dev.item" + 
-"WHERE userID ='$1' AND swapID IS NULL"
+"SELECT * FROM dev.item " + 
+"WHERE userID =$1 AND swapID IS NULL "
 
