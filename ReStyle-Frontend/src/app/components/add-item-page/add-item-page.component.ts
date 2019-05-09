@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+export interface Category {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-add-item-page',
   templateUrl: './add-item-page.component.html',
@@ -8,6 +13,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AddItemPageComponent implements OnInit {
   selectedFile: File = null;
+  title: string;
+  description: string;
+  selectedCategory: string;
+  categories: Category[] = [
+    {value: 'Shirt', viewValue: 'Shirt'},
+    {value: 'Pants', viewValue: 'Pants'}
+  ];
 
   constructor(private http: HttpClient) {}
 
@@ -24,6 +36,10 @@ export class AddItemPageComponent implements OnInit {
       .subscribe(res => {
         console.log(res);
       });
+  }
+
+  onSubmit() {
+    console.log('test');
   }
 
   ngOnInit() {
