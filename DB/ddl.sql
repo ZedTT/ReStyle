@@ -21,6 +21,7 @@ DROP TABLE IF EXISTS dev.trade_request CASCADE;
 
 	UserID is from Firebase
 	swapScore is an average of the ratings
+		swapScore > 0 AND swapScore <= 5
 	userName is from Firebase
 	userPhotoPath is the path to the photo
 
@@ -62,13 +63,14 @@ CREATE INDEX idx_rating_id ON dev.rating(ratingID);
 
 	hideID is serialized 
 	userID from the user table
+		constraint: a single user should have a single hideID
 	items as an array of items
 */
 CREATE TABLE dev.hide(
 
 	hideID SERIAL PRIMARY KEY,
-	userID CHARACTER(28) REFERENCES dev.restyle_user,
-	items ITEM []
+	userID CHARACTER(28) REFERENCES dev.restyle_user UNIQUE,
+	items INTEGER []
 );
 
 /*
@@ -150,8 +152,9 @@ CREATE INDEX idx_swap_id ON dev.swap(swapID);
 	userID from the user table
 	swapID from the swap table
 	description for describing the item
-	gender if the item is male, female or unisex
+	gender if the item is Male, Female or Unisex
 	size of the item, 0: XS, 1: S, 2: M, 3: L, 4: XL
+		(size > 0 AND size <= 4)
 	title the display title for the item
 	category the category the item falls under for filtering
 	photoPaths an array of photo paths
@@ -207,8 +210,12 @@ CREATE INDEX idx_bookmark_id ON dev.bookmark(bookmarkID);
 	requester_userID1 is the user id for the requester from user table
 	notfied_userID2 is the user id 
 		for the requestee to be notified from user table
-	requester_itemArray1 an array of items from the requester
-	notified_itemArray2 an array of items for the requestee to be notified
+	requester_itemArray1 an array of integers 
+		for the items from the requester
+	notified_itemArray2 an array of integers 
+		for the items for the requestee to be notified
+	status of the trade request
+		either accept, reject or null
 
 */
 CREATE TABLE dev.trade_request(
@@ -217,8 +224,9 @@ CREATE TABLE dev.trade_request(
 	requester_userID1 CHARACTER(28) REFERENCES dev.restyle_user,
 	notified_userID2 CHARACTER(28) REFERENCES dev.restyle_user,
 	requester_itemArray1 INTEGER [],
-	notified_itemArray2 INTEGER []
-
+	notified_itemArray2 INTEGER [],
+	status TEXT
+		CHECK (status = 'Accept' OR status = 'Reject')
 );
 
 /*
