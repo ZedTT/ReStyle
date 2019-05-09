@@ -13,6 +13,7 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginCardComponent } from './components/login-card/login-card.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbdCarouselComponent } from './components/ngbd-carousel/ngbd-carousel.component';
+import { AddItemPageComponent } from './components/add-item-page/add-item-page.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NgbdCarouselComponent } from './components/ngbd-carousel/ngbd-carousel.
     TradePageComponent,
     HomePageComponent,
     LoginCardComponent,
-    NgbdCarouselComponent
+    NgbdCarouselComponent,
+    AddItemPageComponent
   ],
   imports: [
     BrowserModule,
