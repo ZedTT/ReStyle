@@ -1,4 +1,13 @@
 /*
+	Author: Catreana Cunningham
+	Date: May 6, 2019
+*/
+
+/*
+--------------------------------------------------User Queries-------------------------------
+*/
+
+/*
 	Insert user into table
 	with return to get the row back that was just created
 
@@ -56,6 +65,11 @@ export const get_user_rating =
 "WHERE userID = '$1'"
 
 /*
+--------------------------------------------------Item Queries----------------------------------
+*/
+
+
+/*
 	Insert item into item table
 	with return to get the row back that was just created
 	userID character(28)
@@ -111,6 +125,44 @@ export const get_user_item =
 export const display_item =
 "SELECT * FROM dev.item" +
 "WHERE userID !='$1' AND swapID IS NULL"
+
+/*
+	Insert the item's photoPath array into the item table
+
+	Example:
+	[[photoPath1, photoPath2],userID]
+	[[photoPath1, photoPath2],'15CGtMJ5bSnEkRPpYEgyvVWeLt2']
+*/
+export const add_photoPath_to_item =
+"UPDATE dev.item SET photoPaths = array_cat(photoPaths, $1::text[])" +
+"WHERE itemID = '$2'"
+
+/*
+	Get photos in array for an item
+
+	itemID as an integer
+
+	Example:
+	[itemID]
+
+*/
+export const get_photos =
+"SELECT photoPaths FROM dev.item" +
+"WHERE itemID = $1"
+
+/*
+	Display items with pagination
+
+	userID character(28)
+*/
+export const display_items_paginated =
+"SELECT * FROM dev.item" +
+"WHERE userID !='$1' AND swapID IS NULL"
+" [ LIMIT { number | ALL } ] [ OFFSET number ]"
+
+/*
+--------------------------------------------------Hide Queries-------------------------------
+*/
 
 /*
 	Insert an item into the hide table
@@ -180,6 +232,10 @@ export const remove_hide =
 "WHERE userID = '$2'"
 
 /*
+--------------------------------------------------Trade Request Queries-------------------------------
+*/
+
+/*
 	Create new trade request with return
 
 	requester_userID1 character(28)
@@ -212,6 +268,10 @@ export const new_trade_request_no_return =
 "INSERT INTO dev.trade_request" +
 "(requester_userID1, notified_userID2, requester_itemArray1, notified_itemArray2)" +
 "VALUES ('$1', '$2', '$3::integer[]', '$4::integer[]')"
+
+/*
+--------------------------------------------------Swap Queries-------------------------------
+*/
 
 /*
 	Display items that have never been swapped
