@@ -11,6 +11,7 @@ app.use(bodyParser.json());
 // -----TEST DATABASE CONNECTION-------------------------------------------------------------
 // this is an example used to test connection between node.js server and PostgreSQL database
 import { Client } from 'pg'
+// TODO: Replace this with query from SQL library
 const insertUserQuery = 'INSERT INTO dev.restyle_user (userID, swapScore, userName, userPhotoPath)' +
     'VALUES ($1, $2, $3, $4) RETURNING *'
 
