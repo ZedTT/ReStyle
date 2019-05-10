@@ -1,4 +1,4 @@
 # Mac ignore
 /build
 /node_modules
-/src/dbKey.ts
+/src/db/dbKey.ts
