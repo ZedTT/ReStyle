@@ -169,17 +169,19 @@ export const display_items_paginated =
 "LIMIT $2 OFFSET $3 "
 
 /*
-	Update item with swapID
+	Update item(s) with swapID
 
+	swapID as an integer
 	itemID as an integer
 
 	Example:
-	[itemID]
-	[1]
+	[swapID, [itemID1, itemID2]
+	[1, [1, 2]]
 */
 export const item_add_swapID =
-"UPDATE swapID FOR dev.item " +
-"WHERE itemID = $1"
+"UPDATE dev.item SET swapID = $1 " +
+"WHERE itemID = Any($2::INT[]) "
+
 /*
 --------------------------------------------------Hide Queries-------------------------------
 */
@@ -288,6 +290,20 @@ export const new_trade_request_no_return =
 "INSERT INTO dev.trade_request " +
 "(requester_userID1, notified_userID2, requester_itemArray1, notified_itemArray2) " +
 "VALUES ($1, $2, $3::integer[], $4::integer[]) "
+
+/*
+	Update status for trade request
+
+	tradeRequestID integer
+
+	Example:
+	[status, tradeRequestID]
+	[Accept/Reject, 1]
+
+*/
+export const status_update_trade_request =
+"UPDATE dev.trade_request SET status = $1" +
+"WHERE tradeRequestID = $2 "
 
 /*
 --------------------------------------------------Swap Queries-------------------------------
