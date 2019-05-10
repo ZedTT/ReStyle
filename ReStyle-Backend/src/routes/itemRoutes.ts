@@ -1,21 +1,19 @@
-import { Express } from 'express';
-import { insertItemForUserWithId } from '../controllers/itemControllers';
-import { TradeItemModel } from '../models/tradeItemModel';
-import { TradeItemInterface } from '../models/TradeItemInterface';
+import { Express } from "express";
+import { insertItemForUserWithId } from "../controllers/itemControllers";
+import { TradeItemModel } from "../models/tradeItemModel";
 
 const itemRoutes = (app: Express) => {
+  app
+    .route("/api/items")
+    // to add a new item to the db
+    .post((request, response) => {
+      console.log("Inside adding new item route, request body: ", request.body);
 
-    app.route('/api/items')
-        // to add a new item to the db
-        .post((request, response) => {
+      let item = new TradeItemModel(request.body);
 
-            console.log("Inside adding new item route, request body: ", request.body)
+      // insert the new user into the DB
+      insertItemForUserWithId(response, item);
+    });
+};
 
-            let item = new TradeItemModel(request.body)
-
-            // insert the new user into the DB
-            insertItemForUserWithId(response, item)
-        })
-}
-
-export default itemRoutes
+export default itemRoutes;

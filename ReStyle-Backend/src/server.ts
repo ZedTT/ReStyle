@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import userRoutes from './routes/userRoutes';
+import itemRoutes from './routes/itemRoutes';
 
 const app = express();
 // parse JSON from request
@@ -8,6 +9,7 @@ app.use(bodyParser.json());
 
 
 userRoutes(app)
+itemRoutes(app)
 
 /** 
  * Fallback on routes other than '/' because otherwise we get "Cannot get /..." issues.

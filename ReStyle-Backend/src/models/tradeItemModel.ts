@@ -1,4 +1,4 @@
-import { TradeItemInterface } from './TradeItemInterface';
+import { TradeItemInterface } from "./TradeItemInterface";
 
 export class TradeItemModel {
 
