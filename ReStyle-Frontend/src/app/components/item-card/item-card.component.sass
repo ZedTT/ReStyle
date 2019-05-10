@@ -16,21 +16,21 @@
   background-position: 50%
 
 .item-footer
-  background: rgb(119, 119, 119)
-  padding: 10px
+  background: $card-background-color
   position: relative
 
   .user-image
     float: right
     position: relative
     top: -40px
-    right: 10px // should increase right for larger screens
+    right: 20px
     width: 60px
     height: 60px
     border-radius: 50%
     border: 2px solid black
 
   .title
+    padding: 10px
     text-transform: uppercase
     font-size: 150%
     letter-spacing: 110%
@@ -46,77 +46,15 @@
   justify-content: space-around
   align-items: center
 
-  .btn
-    width: 45%
-
-  // Trade Button
+  .button
+    width: 50%
+    border-top: 1px solid white
+  
   .btn-trade
-    color: #fff
-    background-color: $green-color
-    border-color: $green-color
+    border-left: 1px solid white
 
-  .btn-trade:hover 
-    color: #fff
-    background-color: #218838
-    border-color: #1e7e34
-
-  .btn-trade:focus,
-  .btn-trade.focus 
-    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5)
-  
-  .btn-trade.disabled,
-  .btn-trade:disabled 
-    color: #fff
-    background-color: $green-color
-    border-color: $green-color
-  
-  .btn-trade:not(:disabled):not(.disabled):active,
-  .btn-trade:not(:disabled):not(.disabled).active,
-  .show > .btn-trade.dropdown-toggle 
-    color: #fff
-    background-color: #1e7e34
-    border-color: #1c7430
-  
-  .btn-trade:not(:disabled):not(.disabled):active:focus,
-  .btn-trade:not(:disabled):not(.disabled).active:focus,
-  .show > .btn-trade.dropdown-toggle:focus 
-    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5)
-  
-  // Pass Button
-  .btn-pass 
-    color: #fff
-    background-color: $red-color
-    border-color: $red-color
-
-  .btn-pass:hover 
-    color: #fff
-    background-color: #c82333
-    border-color: #bd2130
-
-  .btn-pass:focus,
-  .btn-pass.focus 
-    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5)
-
-  .btn-pass.disabled,
-  .btn-pass:disabled 
-    color: #fff
-    background-color: $red-color
-    border-color: $red-color
-
-  .btn-pass:not(:disabled):not(.disabled):active,
-  .btn-pass:not(:disabled):not(.disabled).active,
-  .show > .btn-pass.dropdown-toggle 
-    color: #fff
-    background-color: #bd2130
-    border-color: #b21f2d
-
-  .btn-pass:not(:disabled):not(.disabled):active:focus,
-  .btn-pass:not(:disabled):not(.disabled).active:focus,
-  .show > .btn-pass.dropdown-toggle:focus 
-    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5)
-
-  
-    
+  .btn-pass
+    border-right: 1px solid white
 
 /* ----------------------
  * Classes for animations

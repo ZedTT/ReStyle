@@ -1,3 +1,57 @@
 /* You can add global styles to this file, and also import other style files */
 $red-color: #dc565c;
 $green-color: #009688;
+$card-background-color: #3c444d;
+$button-active-color: #525d6a;
+
+button
+  display: inline-block
+  border: none
+  padding: 1rem 2rem
+  margin: 0
+  text-decoration: none
+  background: $card-background-color
+  color: #ffffff
+  font-family: sans-serif
+  font-size: 1rem
+  cursor: pointer
+  text-align: center
+  transition: background 250ms ease-in-out,  transform 150ms ease
+  -webkit-appearance: none
+  -moz-appearance: none
+  position: relative // ripple
+  overflow: hidden // contain the ripple
+  &:hover
+    background: $button-active-color
+  &:focus
+    background: $button-active-color
+    // outline: 1px solid #fff
+    // outline-offset: -4px
+    outline: 1px solid #fff
+    outline-offset: -1px
+  &:active
+    transform: scale(0.99)
+  &:after
+    content: ''
+    display: none
+    position: absolute
+    border-radius: 50% // make the ripple a circle
+    background: #333333
+    width: 100px
+    height: 100px
+    /* center the ripple */
+    top: -40%
+    left: 30%
+    animation: ripple 1s
+    opacity: 0
+  &:focus:not(:active)::after
+    display: block
+
+@keyframes ripple
+  from
+    opacity: 1
+    transform: scale(0)
+
+  to
+    opacity: 0
+    transform: scale(10)
