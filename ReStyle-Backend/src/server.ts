@@ -1,25 +1,13 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import { insertNewUser } from './controllers/userAccountController';
+import userRoutes from './routes/userRoutes';
 
 const app = express();
 // parse JSON from request
 app.use(bodyParser.json());
 
-// this is an example used to test sending simple data to the front end
-app.get('/ajax', function (req, res) {
-    res.send({ 'text': 'hello angular' });
-});
 
-// to add a new user to the db
-app.post('/api/users', (request, response) => {
-    // get a user from the frontend
-    const uid = request.body.uid;
-    const userName = request.body.userName;
-
-    // insert the new user into the DB
-    insertNewUser(response, uid, userName)
-})
+userRoutes(app)
 
 /** 
  * Fallback on routes other than '/' because otherwise we get "Cannot get /..." issues.
