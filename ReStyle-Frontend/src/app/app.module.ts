@@ -24,7 +24,7 @@ import { NgbdCarouselComponent } from './components/ngbd-carousel/ngbd-carousel.
 import { AddItemPageComponent } from './components/add-item-page/add-item-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatFormFieldModule, MatRadioModule, MatSelectModule, MatSliderModule, MatInputModule } from '@angular/material';
+import { MatFormFieldModule, MatRadioModule, MatSelectModule, MatSliderModule, MatInputModule, MatButtonToggleModule } from '@angular/material';
 
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
@@ -86,7 +86,8 @@ firebase.initializeApp(environment.firebase);
     MatInputModule,
     MatRadioModule,
     MatSelectModule,
-    MatSliderModule
+    MatSliderModule,
+    MatButtonToggleModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
