@@ -1,30 +1,24 @@
-<form class="form" (submit)="onSubmit()">
+<form id="addItemContainer" class="form" (submit)="onSubmit()">
+    <h5>Add Item</h5>
 
-    <!-- ! Remove this -->
-    <div style="height: 50px"></div>
+    <!-- Button to upload image (with label) -->
+    <div id="imgupload">
+      <input type="file" accept="image/*" id="filepick" (change)="onFileSelected($event)" style="display: none" #fileinput>
+      <div id ="uploadButton" class="btn btn-outline-primary" (click)="fileinput.click()">Choose Image</div>
+    <br>{{ fileName }}
+    <img [src]="imgURL" height="80" width="80" *ngIf="imgURL">
+    </div>
 
-    <h1>File Upload</h1>
-    <form>
-        <input type="file" id="filepick" (change)="onFileSelected($event)" style="display: none" #fileinput>
-        <button class="btn btn-success" (click)="fileinput.click()">Choose Image</button>
-        <!-- <button class="btn btn-success" (click)="onUpload()">Upload</button> -->
+    <!-- Form group for adding the title and description -->
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Title" value="" name="title" [(ngModel)]="title">
+        </mat-form-field>        
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Description" value="" name="description" [(ngModel)]="description"></textarea>
+        </mat-form-field>
+    </form>   
     
-        {{ fileName }}
-    </form>
-
-    <!-- ! Remove this -->
-    <div style="height: 50px"></div>
-
-    <input type="text" name="title" [(ngModel)]="title" placeholder="Add title">
-
-    <!-- ! Remove this -->
-    <div style="height: 50px"></div>
-
-    <input type="text" name="description" [(ngModel)]="description" placeholder="Add description">
-    
-    <!-- ! Remove this -->
-    <div style="height: 50px"></div>
-
     <!-- Drop down selector for category -->
     <mat-form-field>
         <mat-select placeholder="Select Category" [(ngModel)]="sCat" name="item">
@@ -34,36 +28,35 @@
         </mat-select>
     </mat-form-field>
 
-    <!-- ! Remove this -->
-    <div style="height: 50px"></div>
-
     <!-- Radio buttons for gender of clothing -->
-    <mat-radio-group>
-        <mat-radio-button value="male">Male</mat-radio-button>
-        <mat-radio-button value="unisex">Unisex</mat-radio-button>
-        <mat-radio-button value="female">Female</mat-radio-button>
-    </mat-radio-group>
+    <mat-button-toggle-group id="genderToggles" name="fontStyle" aria-label="Font Style">
+      <mat-button-toggle value="Male">Male</mat-button-toggle>
+      <mat-button-toggle value="Female">Female</mat-button-toggle>
+      <mat-button-toggle value="Unisex">Unisex</mat-button-toggle>
+    </mat-button-toggle-group>
+      
+    <div id="sizeSlider">
+        <span class="text-small">XS</span>        
+        <mat-slider
+            thumbLabel
+            [displayWith]="formatLabel"
+            tickInterval="1"
+            min="0"
+            max="4">
+        </mat-slider>
+        <span class="text-small">XL</span>
+    </div>
 
     <!-- ! Remove this -->
     <div style="height: 50px"></div>
 
-    <mat-slider
-        thumbLabel
-        [displayWith]="formatLabel"
-        tickInterval="1"
-        min="1"
-        max="5">
-    </mat-slider>
-
-    <!-- ! Remove this -->
-    <div style="height: 50px"></div>
+    <input type="submit" value="Submit" class="btn btn-success btn-block">
     
     {{ title }} {{ description }} {{ selectedCategory }}
 
     <!-- ! Remove this -->
     <div style="height: 50px"></div>
 
-    <input type="submit" value="submit" class="btn">
 
     <!-- ! Remove this -->
     <div style="height: 50px"></div>
