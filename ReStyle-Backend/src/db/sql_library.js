@@ -191,7 +191,7 @@ export const display_items_paginated =
 */
 export const new_user_hide =
 "INSERT INTO dev.hide (userID, items) " + 
-"VALUES ($1, []) " 
+"VALUES ($1, $2) " 
 
 /*
 	Get hide list for a specific user based on the userID
