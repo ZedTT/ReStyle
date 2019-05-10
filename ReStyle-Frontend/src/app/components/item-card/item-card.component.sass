@@ -1,16 +1,120 @@
-.card
-  // styling for the entire card
+.item
+  margin-top: 50px // spacing between items
+  font-family: Arial, Helvetica, sans-serif
+  color: white
 
-.card-footer
-  background: lightgray
+.item-image-container
+  width: 100% // responsive
+  height: 0 // height is set by padding-bottom
+  padding-bottom: 100% // padding is based on width. Makes a square
+  overflow: hidden // crop the image to the square
+  // background-image set in html inline style
+  background-size: cover
+  background-repeat: no-repeat
+  background-position: 50%
 
-.btn
-  // styling for btn
+.item-footer
+  background: rgb(119, 119, 119)
+  padding: 10px
+  position: relative
 
-.user-image
-  width: 60px
-  height: 60px
-  border-radius: 50%
+  .user-image
+    float: right
+    position: relative
+    top: -40px
+    right: 10px // should increase right for larger screens
+    width: 60px
+    height: 60px
+    border-radius: 50%
+    border: 2px solid black
+
+  .title
+    text-transform: uppercase
+    font-size: 150%
+    letter-spacing: 110%
+
+  .description
+    padding: 10px
+    overflow: hidden
+    max-height: 60px
+
+.buttons
+  margin-top: 10px
+  display: flex
+  justify-content: space-around
+  align-items: center
+
+  .btn
+    width: 45%
+
+  // Trade Button
+  .btn-trade
+    color: #fff
+    background-color: #28a745
+    border-color: #28a745
+
+  .btn-trade:hover 
+    color: #fff
+    background-color: #218838
+    border-color: #1e7e34
+
+  .btn-trade:focus,
+  .btn-trade.focus 
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5)
+  
+  .btn-trade.disabled,
+  .btn-trade:disabled 
+    color: #fff
+    background-color: #28a745
+    border-color: #28a745
+  
+  .btn-trade:not(:disabled):not(.disabled):active,
+  .btn-trade:not(:disabled):not(.disabled).active,
+  .show > .btn-trade.dropdown-toggle 
+    color: #fff
+    background-color: #1e7e34
+    border-color: #1c7430
+  
+  .btn-trade:not(:disabled):not(.disabled):active:focus,
+  .btn-trade:not(:disabled):not(.disabled).active:focus,
+  .show > .btn-trade.dropdown-toggle:focus 
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5)
+  
+  // Pass Button
+  .btn-pass 
+    color: #fff
+    background-color: #dc3545
+    border-color: #dc3545
+
+  .btn-pass:hover 
+    color: #fff
+    background-color: #c82333
+    border-color: #bd2130
+
+  .btn-pass:focus,
+  .btn-pass.focus 
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5)
+
+  .btn-pass.disabled,
+  .btn-pass:disabled 
+    color: #fff
+    background-color: #dc3545
+    border-color: #dc3545
+
+  .btn-pass:not(:disabled):not(.disabled):active,
+  .btn-pass:not(:disabled):not(.disabled).active,
+  .show > .btn-pass.dropdown-toggle 
+    color: #fff
+    background-color: #bd2130
+    border-color: #b21f2d
+
+  .btn-pass:not(:disabled):not(.disabled):active:focus,
+  .btn-pass:not(:disabled):not(.disabled).active:focus,
+  .show > .btn-pass.dropdown-toggle:focus 
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5)
+
+  
+    
 
 /* ----------------------
  * Classes for animations
