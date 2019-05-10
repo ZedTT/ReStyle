@@ -1,54 +1,24 @@
 import express from 'express';
-// local dbKey.ts file is required, not pushed to gitHub for security reasons
-import { connectionString } from './dbKey';
-const app = express();
-
 import bodyParser from 'body-parser';
+import { insertNewUser } from './controllers/userAccountController';
 
+const app = express();
 // parse JSON from request
 app.use(bodyParser.json());
-
-// -----TEST DATABASE CONNECTION-------------------------------------------------------------
-// this is an example used to test connection between node.js server and PostgreSQL database
-import { Client } from 'pg'
-// TODO: Replace this with query from SQL library
-const insertUserQuery = 'INSERT INTO dev.restyle_user (userID, swapScore, userName, userPhotoPath)' +
-    'VALUES ($1, $2, $3, $4) RETURNING *'
-
-const client = new Client({
-    connectionString: connectionString,
-})
-client.connect()
-
-// --------------------------------------------------------------------------------------------
 
 // this is an example used to test sending simple data to the front end
 app.get('/ajax', function (req, res) {
     res.send({ 'text': 'hello angular' });
 });
 
+// to add a new user to the db
 app.post('/api/users', (request, response) => {
     // get a user from the frontend
-    console.log(request.body);
     const uid = request.body.uid;
     const userName = request.body.userName;
-    // Initial swap score is hard coded to five
-    const initialSwapScore = 5;
-    
+
     // insert the new user into the DB
-    // ? Piture path is hardcoded to null for now
-    client.query(insertUserQuery, [uid, initialSwapScore, userName, null], (err, res) => {
-        if (err) {
-            console.log("Error:", err)
-        } else {
-            console.log("Inside insert_user_with_return", res)
-            if (res.rowCount === 1){
-                console.log("New user added")
-                response.send({'text': 'New user added'})
-            }
-        }
-        client.end();
-    })
+    insertNewUser(response, uid, userName)
 })
 
 /** 
