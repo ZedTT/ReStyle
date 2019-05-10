@@ -1,3 +1,5 @@
+@import "../../../styles.sass"
+
 .item
   margin-top: 50px // spacing between items
   font-family: Arial, Helvetica, sans-serif
@@ -50,8 +52,8 @@
   // Trade Button
   .btn-trade
     color: #fff
-    background-color: #28a745
-    border-color: #28a745
+    background-color: $green-color
+    border-color: $green-color
 
   .btn-trade:hover 
     color: #fff
@@ -65,8 +67,8 @@
   .btn-trade.disabled,
   .btn-trade:disabled 
     color: #fff
-    background-color: #28a745
-    border-color: #28a745
+    background-color: $green-color
+    border-color: $green-color
   
   .btn-trade:not(:disabled):not(.disabled):active,
   .btn-trade:not(:disabled):not(.disabled).active,
@@ -83,8 +85,8 @@
   // Pass Button
   .btn-pass 
     color: #fff
-    background-color: #dc3545
-    border-color: #dc3545
+    background-color: $red-color
+    border-color: $red-color
 
   .btn-pass:hover 
     color: #fff
@@ -98,8 +100,8 @@
   .btn-pass.disabled,
   .btn-pass:disabled 
     color: #fff
-    background-color: #dc3545
-    border-color: #dc3545
+    background-color: $red-color
+    border-color: $red-color
 
   .btn-pass:not(:disabled):not(.disabled):active,
   .btn-pass:not(:disabled):not(.disabled).active,
