@@ -12,7 +12,8 @@ export class LoginCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.authenticated = false; // TODO: Changed based on if user is logged in or not. Subscribe to an observable
+    // this.authenticated = false; // TODO: Changed based on if user is logged in or not. Subscribe to an observable
+
   }
 
   /**
@@ -20,25 +21,26 @@ export class LoginCardComponent implements OnInit {
    * @returns the classes that need to be set by angular
    * When the value of an attribute changes, the class is automatically set.
    */
-   setClasses() {
+  setClasses() {
+    var user = firebase.auth().currentUser;
     const classes = {
-      hidden: this.authenticated,
+      hidden: user !== null,
+      shown: user === null
     };
-
     return classes;
   }
 
   logOut() {
     firebase.auth().signOut()
-    .then(function() {
-      console.log("User is signed out.")
-      // Sign-out successful.
-    })
-    .catch(function(error) {
-      console.log("An error is caught.")
+      .then(function () {
+        console.log("User is signed out.")
+        // Sign-out successful.
+      })
+      .catch(function (error) {
+        console.log("An error is caught.")
 
-      // An error happened
-    });
+        // An error happened
+      });
   }
 
 }
