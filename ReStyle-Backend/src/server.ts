@@ -66,4 +66,5 @@ app.use('*', express.static('../ReStyle-Frontend/dist/ReStyle')); // fallback
 let port = 8000;
 app.listen(port, function () {
     console.log("Application is listening on port " + port + "!");
+    console.log("Click and check: http://localhost:8000/");
 });

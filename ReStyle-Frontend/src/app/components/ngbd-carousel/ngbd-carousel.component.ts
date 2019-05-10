@@ -7,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NgbdCarouselComponent {
   images = [
-    'https://dummyimage.com/200x300/000/fff&text=Welcome+to+Restyle',
-    'https://dummyimage.com/200x300/615461/bcbdc4&text=Information',
+    'assets/pexels-photo-322207.jpeg',
+    'assets/info-card-2.png',
     'https://dummyimage.com/200x300/576154/bcbdc4&text=More+Information'
   ];
 }
