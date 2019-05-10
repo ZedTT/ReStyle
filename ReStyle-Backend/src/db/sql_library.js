@@ -169,6 +169,18 @@ export const display_items_paginated =
 "LIMIT $2 OFFSET $3 "
 
 /*
+	Update item with swapID
+
+	itemID as an integer
+
+	Example:
+	[itemID]
+	[1]
+*/
+export const item_add_swapID =
+"UPDATE swapID FOR dev.item " +
+"WHERE itemID = $1"
+/*
 --------------------------------------------------Hide Queries-------------------------------
 */
 
@@ -280,6 +292,37 @@ export const new_trade_request_no_return =
 /*
 --------------------------------------------------Swap Queries-------------------------------
 */
+
+/*
+	Add swap to swap table after a trade request has been approved
+	with return
+
+	userID of requeter: character (28)
+	userID of requestee: character (28)
+
+	Example:
+	[userID1, userID2]
+	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2', 'mD7ZT6d9P1bcrBsdQNRGqVaI30m2']
+*/
+export const add_swap_with_return =
+"INSERT INTO dev.swap " +
+"VALUES ($1, $2) RETURNING * "
+
+/*
+	Add swap to swap table after a trade request has been approved
+	no return
+
+	userID of requeter: character (28)
+	userID of requestee: character (28)
+
+	Example:
+	[userID1, userID2]
+	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2', 'mD7ZT6d9P1bcrBsdQNRGqVaI30m2']
+*/
+export const add_swap_no_return =
+"INSERT INTO dev.swap " +
+"VALUES ($1, $2) "
+
 
 /*
 	Display items that have never been swapped
