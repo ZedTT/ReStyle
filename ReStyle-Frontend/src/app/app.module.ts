@@ -48,17 +48,17 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     firebase.auth.PhoneAuthProvider.PROVIDER_ID,
     firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
   ],
-  
+
   // Terms of service url.
   tosUrl: '/',
   // Privacy policy url.
   privacyPolicyUrl: '/',
   credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM
 
-  
+
 };
 /**
- * Initialize firebase globally, early. 
+ * Initialize firebase globally, early.
  * ? https://stackoverflow.com/a/54706749
  * ? https://www.freakyjolly.com/ionic-4-firebase-login-registration-by-email-and-password/
  */
