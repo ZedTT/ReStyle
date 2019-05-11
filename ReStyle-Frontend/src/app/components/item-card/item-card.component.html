@@ -1,8 +1,8 @@
 <div [ngClass]="setClasses()">
-  <div class="item-image-container" style="background-image: url('../../../assets/Images/placeholder-shirt.jpg')"></div>
+  <div class="item-image-container" [ngStyle]="{'background-image': tempItemImage}"></div>
   <div class="item-footer">
     <div class="user">
-      <img class="user-image" src="../../../assets/Images/profile-icon.png" alt="User image">
+      <img class="user-image" [src]="tempUserImage" alt="User image">
     </div>
     <div class="item-info">
       <div class="title">{{ item.title }}</div>
