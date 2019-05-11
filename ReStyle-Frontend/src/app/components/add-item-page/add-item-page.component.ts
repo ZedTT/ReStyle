@@ -50,11 +50,16 @@ export class AddItemPageComponent implements OnInit {
 
   onSubmit() {
     console.log('onSubmit ran');
-    const fd = new FormData();
-    fd.append('image', this.selectedFile);
-    fd.append('title', this.title);
-    fd.append('description', this.description);
-    console.log(fd);
+    // const fd = new FormData();
+    // fd.append('image', this.selectedFile);
+    // fd.append('title', this.title);
+    // fd.append('description', this.description);
+    // console.log(fd);
+    const fdimg = new FormData();
+    fdimg.append('image', this.selectedFile);
+    this.http.post('/api/images', fdimg);
+    console.log(fdimg);
+
 
     const anItem: TradeItemInterface = {
       ownerId : 'l15CGtMJ5bSnEkRPpYEgyvVWeLt2',
