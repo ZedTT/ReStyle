@@ -19,7 +19,12 @@ import { FooterComponent } from './components/footer/footer.component';
 import { TradePageComponent } from './components/trade-page/trade-page.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginCardComponent } from './components/login-card/login-card.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbdCarouselComponent } from './components/ngbd-carousel/ngbd-carousel.component';
+import { AddItemPageComponent } from './components/add-item-page/add-item-page.component';
 import { LoginComponent } from './components/login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatFormFieldModule, MatRadioModule, MatSelectModule, MatSliderModule, MatInputModule, MatButtonToggleModule } from '@angular/material';
 
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
@@ -30,23 +35,10 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInOptions: [
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
     {
-      scopes: [
-        'public_profile',
-        'email',
-        'user_likes',
-        'user_friends'
-      ],
-      customParameters: {
-        auth_type: 'reauthenticate'
-      },
-      provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID
-    },
-    {
       requireDisplayName: false,
       provider: firebase.auth.EmailAuthProvider.PROVIDER_ID
     },
-    firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-    firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
+    firebase.auth.PhoneAuthProvider.PROVIDER_ID
   ],
 
   // Terms of service url.
@@ -54,9 +46,8 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
   // Privacy policy url.
   privacyPolicyUrl: '/',
   credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM
-
-
 };
+
 /**
  * Initialize firebase globally, early.
  * ? https://stackoverflow.com/a/54706749
@@ -74,7 +65,9 @@ firebase.initializeApp(environment.firebase);
     LoginComponent,
     TradePageComponent,
     HomePageComponent,
-    LoginCardComponent
+    LoginCardComponent,
+    NgbdCarouselComponent,
+    AddItemPageComponent
   ],
   imports: [
     BrowserModule,
@@ -82,9 +75,19 @@ firebase.initializeApp(environment.firebase);
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
+    // Prateek, required for carousel
+    NgbModule.forRoot(),
+    // Firebase
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    FirebaseUIModule.forRoot(firebaseUiAuthConfig)
+    FirebaseUIModule.forRoot(firebaseUiAuthConfig),
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatSliderModule,
+    MatButtonToggleModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
