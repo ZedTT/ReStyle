@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { TradeItemInterface } from 'src/app/models/TradeItemInterface';
 
 export interface Category {
   value: string;
@@ -39,16 +40,12 @@ export class AddItemPageComponent implements OnInit {
 // tslint:disable-next-line: variable-name
     reader.onload = (_event) => {
       this.imgURL = reader.result;
-    }
+    };
   }
 
   onUpload() {
     const fd = new FormData();
     fd.append('image', this.selectedFile.name);
-    this.http.post('/api/items', fd)
-      .subscribe(res => {
-        console.log(res);
-      });
   }
 
   onSubmit() {
@@ -56,11 +53,23 @@ export class AddItemPageComponent implements OnInit {
     const fd = new FormData();
     fd.append('image', this.selectedFile);
     fd.append('title', this.title);
-    fd.append('description', this.title);
-    console.log(fd.getAll('image'));
-    // this.http.post('/api/new-item', fd).subscribe(res => {
-    //   console.log(res);
-    // });
+    fd.append('description', this.description);
+    console.log(fd);
+
+    const anItem: TradeItemInterface = {
+      ownerId : 'l15CGtMJ5bSnEkRPpYEgyvVWeLt2',
+      description: this.description,
+      gender : 'Female',
+      size: 1,
+      title : this.title,
+      category : 'category',
+      photos : ['www.image.com']
+    };
+
+    this.http.post('/api/items', anItem)
+      .subscribe(res => {
+      console.log(res);
+    });
   }
 
   ngOnInit() {
