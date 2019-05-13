@@ -1,36 +1,19 @@
-<div [ngClass]="setClasses()" class="card">
-  <div class="card-body">
-    <br> item id: {{ item.itemId }}
-    <br> user id: {{ item.userId }}
-    <br> user picture path: {{ item.userPicturePath }}
-    <br> user verified: {{ item.verified }}
-    <br> user rating: {{ item.rating }}
-    <br> title: {{ item.title }}
-    <br> size number: {{ item.size }}
-    <br> size name: {{ sizeArray[item.size] }}
-    <br> category: {{ item.category }}
-    <br> description: {{ item.description }}
-    <br> picturepaths: 
-    <ul>
-      <li *ngFor="let path of item.picturePath; let myIndex = index">
-        {{ item.picturePath[myIndex] }}
-      </li>
-    </ul>
-  </div>
-  <div class="item-card card-footer">
-    <div class="bookmark">Bookmark: t/f</div>
-    <div class="user-picture">
-      User Picture: {{ item.userPicturePath }}
-      </div>
+<div [ngClass]="setClasses()">
+  <div class="item-image-container" [ngStyle]="{'background-image': tempItemImage}"></div>
+  <div class="item-footer">
+    <div class="user">
+      <img class="user-image" [src]="tempUserImage" alt="User image">
+    </div>
     <div class="item-info">
-      <div class="title">title: {{ item.title }}</div>
-      <div class="size">size: {{ item.size }}</div>
-      <div class="description">description: {{ item.description }}</div>
-      <div class="buttons d-flex justify-content-around">
-          <button (click)="onPass(item)" class="pass-btn btn btn-danger">&lt; Pass</button>
-          <button (click)="onTrade(item)" class="trade-btn btn btn-success">Trade &gt;</button>
-      </div>
+      <div class="title">{{ item.title }}</div>
+      <div class="size">Size: {{ sizeArray[item.size] | uppercase }}</div>
+      <div class="description">{{ item.description }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis vitae ipsam ab quidem, inventore vel esse culpa, ipsa quasi impedit expedita recusandae architecto eaque dolores temporibus consequatur voluptates quia minus.</div>
+    </div>
+    <div class="buttons">
+        <button (click)="onPass(item)" class="btn-pass button">Pass</button>
+        <button (click)="onTrade(item)" class="btn-trade button">Trade</button>
     </div>
   </div>
-  <button (click)="retrieveJSON()">retrieve JSON from backend</button>
+  <!-- <button (click)="retrieveJSON()">retrieve JSON from backend</button> -->
+  <!-- <button (click)="sendUserId()">Send user ID to backend</button> -->
 </div>

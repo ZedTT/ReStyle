@@ -1,0 +1,9 @@
+<div>
+  <div class="card" style="display: flex">
+    <app-ngbd-carousel class="carousel"></app-ngbd-carousel>
+    <div class="card-footer buttons d-flex justify-content-around">
+      <button [ngClass]="setLoginHidden()" class="btn btn-success" [routerLink]="[ '/login']">Login</button>
+      <button class="btn btn-success" (click)="logOut()">Logout</button>
+    </div>  
+  </div>
+</div>

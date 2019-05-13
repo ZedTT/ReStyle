@@ -1,4 +1,9 @@
 /*
+	Author: Catreana Cunningham
+	Date: April 30, 2019
+*/
+
+/*
 
 	Drop table if the table exists,
 	if the table exists and there are 

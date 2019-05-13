@@ -1,4 +1,9 @@
 /*
+	Author: Catreana Cunningham
+	Date: April 30, 2019
+*/
+
+/*
 	Testing inserting data into restyle user table
 
 	Adding six users 
@@ -74,9 +79,9 @@ INSERT INTO dev.rating (userID, rating) VALUES
 	User1 wants to request a trade of their items 1,2,3 for user2 item 4
 */
 INSERT INTO dev.trade_request 
-(requester_userID1, notified_userID2, requester_itemArray1, notified_itemArray2) 
+(requester_userID1, notified_userID2, requester_itemArray1, notified_itemArray2, status) 
 VALUES 
-('l15CGtMJ5bSnEkRPpYEgyvVWeLt2', 'mD7ZT6d9P1bcrBsdQNRGqVaI30m2', '{1, 2, 3}', '{4}');
+('l15CGtMJ5bSnEkRPpYEgyvVWeLt2', 'mD7ZT6d9P1bcrBsdQNRGqVaI30m2', '{1, 2, 3}', '{4}', NULL);
 
 /*
 	Testing inserting data into contact details table
