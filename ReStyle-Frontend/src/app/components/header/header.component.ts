@@ -6,10 +6,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.sass']
 })
 export class HeaderComponent implements OnInit {
+  easterEggEnabled: boolean;
 
-  constructor() { }
+  constructor() {
+    this.easterEggEnabled = false;
+   }
 
   ngOnInit() {
+    this.setClasses();
+  }
+
+  setClasses() {
+    const classes = {
+      header: true,
+      navbar: true,
+      'navbar-dark': true,
+      'fixed-top': true,
+      'easter-egg': this.easterEggEnabled
+    };
+    return classes;
+  }
+
+  toggleEasterEgg() {
+    this.easterEggEnabled = !this.easterEggEnabled;
   }
 
 }
