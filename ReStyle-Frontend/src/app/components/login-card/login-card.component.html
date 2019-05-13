@@ -1,11 +1,9 @@
-<div [ngClass]="setClasses()">
+<div>
   <div class="card" style="display: flex">
-    <div style="height: 300px; border: 2px solid black; text-align: center; align-self: center">Please Log In</div>
+    <app-ngbd-carousel class="carousel"></app-ngbd-carousel>
     <div class="card-footer buttons d-flex justify-content-around">
-      <button class="btn btn-success" [routerLink]="[ '/login']">Login</button>
+      <button [ngClass]="setLoginHidden()" class="btn btn-success" [routerLink]="[ '/login']">Login</button>
       <button class="btn btn-success" (click)="logOut()">Logout</button>
-      <!-- <firebase-ui></firebase-ui> -->
-    </div>
+    </div>  
   </div>
 </div>
-<!--  -->

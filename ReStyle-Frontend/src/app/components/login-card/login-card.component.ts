@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { firebase } from 'firebaseui-angular';
+import { User } from '../../models/User';
 
 @Component({
   selector: 'app-login-card',
@@ -8,37 +9,42 @@ import { firebase } from 'firebaseui-angular';
 })
 export class LoginCardComponent implements OnInit {
   authenticated: boolean;
+  user: any;
 
   constructor() { }
 
   ngOnInit() {
-    this.authenticated = false; // TODO: Changed based on if user is logged in or not. Subscribe to an observable
+    // TODO: Make this an obserable so that we dont't need to run it in setClasses every time
+    this.authenticated = firebase.auth().currentUser !== null;
+    this.user = firebase.auth().currentUser;
   }
 
   /**
-   * Sets dynamic classes
+   * Sets dynamic classes for the login button
+   * Sets the button to either hidden or not
    * @returns the classes that need to be set by angular
-   * When the value of an attribute changes, the class is automatically set.
+   * When the value of an attribute changes, the class should be automatically set.
+   * ! This should be using an obserable to maximum reliability (Ask Zack or see TODO in ngOnInit())
    */
-   setClasses() {
+  setLoginHidden() {
+    this.authenticated = firebase.auth().currentUser !== null;
     const classes = {
       hidden: this.authenticated,
     };
-
     return classes;
   }
 
   logOut() {
     firebase.auth().signOut()
-    .then(function() {
-      console.log("User is signed out.")
-      // Sign-out successful.
-    })
-    .catch(function(error) {
-      console.log("An error is caught.")
+      .then(() => {
+        console.log('User is signed out.');
+        // Sign-out successful.
+      })
+      .catch((error) => {
+        console.log('An error is caught.');
 
-      // An error happened
-    });
+        // An error happened
+      });
   }
 
 }

@@ -18,6 +18,8 @@ export class ItemCardComponent implements OnInit {
   @Output() tradeItem: EventEmitter<ItemCard> = new EventEmitter();
 
   sizeArray: string[] = ['xs', 's', 'm', 'l', 'xl'];
+  tempItemImage = 'url(\'https://de9luwq5d40h2.cloudfront.net/catalog/product/large_image/05_407044.jpg\')';
+  tempUserImage = 'https://kempenfeltplayers.com/wp-content/uploads/2015/07/profile-icon-empty.png';
 
   /**
    * Creates an instance of an item card component.
@@ -40,7 +42,7 @@ export class ItemCardComponent implements OnInit {
   setClasses() {
     const classes = {
       item: true,
-      card: true,
+      card: false,
       size: this.sizeArray[this.item.size], // proof of concept, may not actually be useful.
       // Changes the class attribute (html class="") based on the size of the item.
       'slide-out-left': this.item.pass,
