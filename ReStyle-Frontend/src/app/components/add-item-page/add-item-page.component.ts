@@ -10,7 +10,7 @@ export interface Category {
 @Component({
   selector: 'app-add-item-page',
   templateUrl: './add-item-page.component.html',
-  styleUrls: ['./add-item-page.component.css']
+  styleUrls: ['./add-item-page.component.sass']
 })
 export class AddItemPageComponent implements OnInit {
   selectedFile: File;
