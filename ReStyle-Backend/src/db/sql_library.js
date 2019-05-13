@@ -303,7 +303,7 @@ export const new_trade_request_no_return =
 
 */
 export const status_update_trade_request =
-"UPDATE dev.trade_request SET status = $1" +
+"UPDATE dev.trade_request SET status = $1 " +
 "WHERE tradeRequestID = $2 "
 
 /*
