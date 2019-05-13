@@ -20,11 +20,13 @@ export class LoginCardComponent implements OnInit {
   }
 
   /**
-   * Sets dynamic classes
+   * Sets dynamic classes for the login button
+   * Sets the button to either hidden or not
    * @returns the classes that need to be set by angular
-   * When the value of an attribute changes, the class is automatically set.
+   * When the value of an attribute changes, the class should be automatically set.
+   * ! This should be using an obserable to maximum reliability (Ask Zack or see TODO in ngOnInit())
    */
-  setClasses() {
+  setLoginHidden() {
     this.authenticated = firebase.auth().currentUser !== null;
     const classes = {
       hidden: this.authenticated,
