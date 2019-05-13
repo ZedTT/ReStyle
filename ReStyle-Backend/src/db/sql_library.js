@@ -206,7 +206,7 @@ export const item_add_swapID =
 */
 export const new_user_hide =
 "INSERT INTO dev.hide (userID, items) " + 
-"VALUES ($1, {}) " 
+"VALUES ($1, '{}') " 
 
 /*
 	Get hide list for a specific user based on the userID
