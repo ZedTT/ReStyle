@@ -24,7 +24,9 @@ import { NgbdCarouselComponent } from './components/ngbd-carousel/ngbd-carousel.
 import { AddItemPageComponent } from './components/add-item-page/add-item-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatFormFieldModule, MatRadioModule, MatSelectModule, MatSliderModule, MatInputModule, MatButtonToggleModule } from '@angular/material';
+import {
+  MatFormFieldModule, MatRadioModule, MatSelectModule, MatSliderModule, MatInputModule, MatButtonToggleModule
+} from '@angular/material'; // tsLint max line 140
 
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {

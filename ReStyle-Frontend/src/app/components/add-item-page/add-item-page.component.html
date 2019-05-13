@@ -17,7 +17,7 @@
         <mat-form-field class="example-full-width">
           <textarea matInput placeholder="Description" value="" name="description" [(ngModel)]="description"></textarea>
         </mat-form-field>
-    </form>   
+    </form>
     
     <!-- Drop down selector for category -->
     <mat-form-field>
@@ -34,7 +34,7 @@
       <mat-button-toggle value="Female">Female</mat-button-toggle>
       <mat-button-toggle value="Unisex">Unisex</mat-button-toggle>
     </mat-button-toggle-group>
-      
+
     <div id="sizeSlider">
         <span class="text-small">XS</span>        
         <mat-slider
@@ -47,18 +47,8 @@
         <span class="text-small">XL</span>
     </div>
 
-    <!-- ! Remove this -->
-    <div style="height: 50px"></div>
-
     <input type="submit" value="Submit" class="btn btn-success btn-block">
     
     {{ title }} {{ description }} {{ selectedCategory }}
-
-    <!-- ! Remove this -->
-    <div style="height: 50px"></div>
-
-
-    <!-- ! Remove this -->
-    <div style="height: 50px"></div>
     
 </form>
