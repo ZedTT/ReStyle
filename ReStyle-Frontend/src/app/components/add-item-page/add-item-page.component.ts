@@ -43,11 +43,6 @@ export class AddItemPageComponent implements OnInit {
     };
   }
 
-  onUpload() {
-    const fd = new FormData();
-    fd.append('image', this.selectedFile.name);
-  }
-
   onSubmit() {
     console.log('onSubmit ran');
     const fd = new FormData();
