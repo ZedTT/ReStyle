@@ -1,3 +1,4 @@
+
 /*
 	Author: Catreana Cunningham
 	Date: May 6, 2019
@@ -169,6 +170,20 @@ export const display_items_paginated =
 "LIMIT $2 OFFSET $3 "
 
 /*
+	Update item(s) with swapID
+
+	swapID as an integer
+	itemID as an integer
+
+	Example:
+	[swapID, [itemID1, itemID2]
+	[1, [1, 2]]
+*/
+export const item_add_swapID =
+"UPDATE dev.item SET swapID = $1 " +
+"WHERE itemID = Any($2::INT[]) "
+
+/*
 --------------------------------------------------Hide Queries-------------------------------
 */
 
@@ -191,7 +206,7 @@ export const display_items_paginated =
 */
 export const new_user_hide =
 "INSERT INTO dev.hide (userID, items) " + 
-"VALUES ($1, $2) " 
+"VALUES ($1, '{}') " 
 
 /*
 	Get hide list for a specific user based on the userID
@@ -278,8 +293,53 @@ export const new_trade_request_no_return =
 "VALUES ($1, $2, $3::integer[], $4::integer[]) "
 
 /*
+	Update status for trade request
+
+	tradeRequestID integer
+
+	Example:
+	[status, tradeRequestID]
+	[Accept/Reject, 1]
+
+*/
+export const status_update_trade_request =
+"UPDATE dev.trade_request SET status = $1 " +
+"WHERE tradeRequestID = $2 "
+
+/*
 --------------------------------------------------Swap Queries-------------------------------
 */
+
+/*
+	Add swap to swap table after a trade request has been approved
+	with return
+
+	userID of requeter: character (28)
+	userID of requestee: character (28)
+
+	Example:
+	[userID1, userID2]
+	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2', 'mD7ZT6d9P1bcrBsdQNRGqVaI30m2']
+*/
+export const add_swap_with_return =
+"INSERT INTO dev.swap " +
+"VALUES ($1, $2) RETURNING * "
+
+/*
+	Add swap to swap table after a trade request has been approved
+	no return
+
+	userID of requeter: character (28)
+	userID of requestee: character (28)
+
+	Example:
+	[userID1, userID2]
+	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2', 'mD7ZT6d9P1bcrBsdQNRGqVaI30m2']
+*/
+export const add_swap_no_return =
+"INSERT INTO dev.swap " +
+"VALUES ($1, $2) "
+
 
 /*
 	Display items that have never been swapped

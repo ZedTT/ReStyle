@@ -24,7 +24,7 @@ export function insertNewUser(response: Response, uid: string, userName: string)
                 console.log("Inside insert_user_with_return", result)
                 if (result.rowCount === 1) {
                     console.log("New user added")
-                    client.query(new_user_hide, [uid, []], (error, result) => {
+                    client.query(new_user_hide, [uid], (error, result) => {
                         if (error) {
                             console.log("Query 'new_user_hide' error:", error)
                             done()
