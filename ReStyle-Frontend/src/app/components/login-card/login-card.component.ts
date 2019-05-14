@@ -51,6 +51,7 @@ export class LoginCardComponent implements OnInit {
        * so we only call it when the user is currently authenticated and (presumably) logging out.
        */
       if (this.authenticated) {
+        console.log('change detected');
         this.changeDetectorRef.detectChanges();
       }
     });
@@ -58,15 +59,15 @@ export class LoginCardComponent implements OnInit {
 
   logOut() {
     firebase.auth().signOut()
-      .then(() => {
-        console.log('User is signed out.');
-        console.log(`Does current user exist? ${firebase.auth().currentUser !== null}`);
-        // Sign-out successful.
-      })
-      .catch((error) => {
-        console.log('An error is caught.');
-        // An error happened
-      });
+    .then(() => {
+      console.log('User is signed out.');
+      console.log(`Does current user exist? ${firebase.auth().currentUser !== null}`);
+      this.changeDetectorRef.detectChanges();
+      // Sign-out successful.
+    }).catch((error) => {
+      console.log('An error is caught.');
+      // An error happened
+    });
   }
 
 }
