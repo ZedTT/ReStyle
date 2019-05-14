@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { TradeItemInterface } from 'src/app/models/TradeItemInterface';
+import { AddedItemInterface } from '../../models/AddedItemInterface';
 
 export interface Category {
   value: string;
@@ -51,14 +51,14 @@ export class AddItemPageComponent implements OnInit {
     fd.append('description', this.description);
     console.log(fd);
 
-    const anItem: TradeItemInterface = {
+    const anItem: AddedItemInterface = {
       ownerId : 'l15CGtMJ5bSnEkRPpYEgyvVWeLt2',
       description: this.description,
       gender : 'Female',
       size: 1,
       title : this.title,
       category : 'category',
-      photos : ['www.image.com']
+      photos : [this.selectedFile]
     };
 
     this.http.post('/api/items', anItem)
