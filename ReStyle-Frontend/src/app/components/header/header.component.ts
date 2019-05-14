@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   easterEggEnabled: boolean;
+  easterEggClickCount = 0;
 
   constructor() {
     this.easterEggEnabled = false;
@@ -28,7 +29,11 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleEasterEgg() {
-    this.easterEggEnabled = !this.easterEggEnabled;
+    this.easterEggClickCount++;
+    if (this.easterEggClickCount > 4) {
+      this.easterEggClickCount = 0;
+      this.easterEggEnabled = !this.easterEggEnabled;
+    }
   }
 
 }
