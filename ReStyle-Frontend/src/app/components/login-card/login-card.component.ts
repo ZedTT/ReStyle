@@ -12,6 +12,8 @@ export class LoginCardComponent implements OnInit {
   user: any;
 
   constructor(private userAccountService: UserAccountService) {
+    
+    // When user is logged in, this part is triggered automatically and post user data to the database.
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         const uid = user.uid;
