@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AddedItemInterface } from '../../models/AddedItemInterface';
+import { AddItemService } from '../../services/add-item.service';
 
 export interface Category {
   value: string;
@@ -27,7 +28,7 @@ export class AddItemPageComponent implements OnInit {
   imgURL: any;
   public message: string;
 
-  constructor(private http: HttpClient) {}
+  constructor(private addItemService: AddItemService) {}
 
   onFileSelected(fileEvent) {
 
@@ -37,7 +38,7 @@ export class AddItemPageComponent implements OnInit {
     // Displays a preview of the uploaded image
     const reader = new FileReader();
     reader.readAsDataURL(this.selectedFile);
-// tslint:disable-next-line: variable-name
+    // tslint:disable-next-line: variable-name
     reader.onload = (_event) => {
       this.imgURL = reader.result;
     };
@@ -45,26 +46,8 @@ export class AddItemPageComponent implements OnInit {
 
   onSubmit() {
     console.log('onSubmit ran');
-    const fd = new FormData();
-    fd.append('image', this.selectedFile);
-    fd.append('title', this.title);
-    fd.append('description', this.description);
-    console.log(fd);
 
-    const anItem: AddedItemInterface = {
-      ownerId : 'l15CGtMJ5bSnEkRPpYEgyvVWeLt2',
-      description: this.description,
-      gender : 'Female',
-      size: 1,
-      title : this.title,
-      category : 'category',
-      photos : [this.selectedFile]
-    };
-
-    this.http.post('/api/items', anItem)
-      .subscribe(res => {
-      console.log(res);
-    });
+    this.addItemService.submitNewItem(this.title, this.description, this.selectedFile);
   }
 
   ngOnInit() {

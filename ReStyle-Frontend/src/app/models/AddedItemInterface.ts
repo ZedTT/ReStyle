@@ -9,5 +9,5 @@
     size: number;
     title: string;
     category: string;
-    photos: File[];
+    photos: any[];
 }
