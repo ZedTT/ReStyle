@@ -1,32 +1,29 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-
+import { EventEmitter, NgModule, OnInit, Output } from '@angular/core';
 // Angular Firebase import section
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { FormsModule } from '@angular/forms';
+import { MatButtonToggleModule, MatFormFieldModule, MatInputModule,
+  MatRadioModule, MatSelectModule, MatSliderModule } from '@angular/material'; // tsLint max line 140
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { firebase, firebaseui, FirebaseUIModule } from 'firebaseui-angular';
 import { environment } from '../environments/environment';
-import { FirebaseUIModule, firebase, firebaseui } from 'firebaseui-angular';
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ItemCardComponent } from './components/item-card/item-card.component';
-import { ItemCardStackComponent } from './components/item-card-stack/item-card-stack.component';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { TradePageComponent } from './components/trade-page/trade-page.component';
-import { HomePageComponent } from './components/home-page/home-page.component';
-import { LoginCardComponent } from './components/login-card/login-card.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgbdCarouselComponent } from './components/ngbd-carousel/ngbd-carousel.component';
 import { AddItemPageComponent } from './components/add-item-page/add-item-page.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { ItemCardStackComponent } from './components/item-card-stack/item-card-stack.component';
+import { ItemCardComponent } from './components/item-card/item-card.component';
+import { LoginCardComponent } from './components/login-card/login-card.component';
 import { LoginComponent } from './components/login/login.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  MatFormFieldModule, MatRadioModule, MatSelectModule, MatSliderModule, MatInputModule, MatButtonToggleModule
-} from '@angular/material'; // tsLint max line 140
+import { NgbdCarouselComponent } from './components/ngbd-carousel/ngbd-carousel.component';
+import { TradePageComponent } from './components/trade-page/trade-page.component';
+import { app } from 'firebase';
 
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
@@ -56,6 +53,13 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
  * ? https://www.freakyjolly.com/ionic-4-firebase-login-registration-by-email-and-password/
  */
 firebase.initializeApp(environment.firebase);
+
+// public isLoggedIn: boolean;
+
+//   firebase.auth().onAuthStateChanged((response) => {
+//       console.log('Auth state has changed! ' + isLoggedIn);
+//       isLoggedIn = firebase.auth().currentUser === null;
+//     }
 
 @NgModule({
   declarations: [
@@ -89,7 +93,7 @@ firebase.initializeApp(environment.firebase);
     MatRadioModule,
     MatSelectModule,
     MatSliderModule,
-    MatButtonToggleModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
