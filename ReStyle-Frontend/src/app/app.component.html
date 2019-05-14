@@ -1,5 +1,5 @@
 <div>
-  <app-header></app-header>
+  <app-header (easterEggOutput)="easterEggOutput($event)"></app-header>
   <router-outlet></router-outlet>
-  <app-footer></app-footer>
+  <app-footer #footer></app-footer>
 </div>
