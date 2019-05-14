@@ -1,5 +1,6 @@
 <div>
-  <app-header></app-header>
+  <app-header (easterEggOutput)="easterEggOutput($event)"></app-header>
+  <canvas id="confetti"></canvas>
   <router-outlet></router-outlet>
-  <app-footer></app-footer>
+  <app-footer #footer></app-footer>
 </div>
