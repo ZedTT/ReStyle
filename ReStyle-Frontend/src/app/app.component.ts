@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import ConfettiGenerator from 'confetti-js';
 
 @Component({
   selector: 'app-root',
@@ -11,5 +12,8 @@ export class AppComponent {
 
   easterEggOutput() {
     this.footer.toggleEasterEgg();
+    const confettiSettings = { target: 'confetti' };
+    const confetti = new ConfettiGenerator(confettiSettings);
+    confetti.render();
   }
 }
