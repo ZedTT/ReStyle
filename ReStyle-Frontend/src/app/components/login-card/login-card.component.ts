@@ -12,7 +12,7 @@ export class LoginCardComponent implements OnInit {
   user: any;
 
   constructor(private userAccountService: UserAccountService) {
-    firebase.auth().onAuthStateChanged(function (user) {
+    firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         const uid = user.uid;
         const userName = user.displayName;
@@ -22,7 +22,7 @@ export class LoginCardComponent implements OnInit {
           console.log(res);
         });
         // });
-      } 
+      }
     });
   }
 
