@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, EventEmitter, OnInit, Output } from '@angular/core';
 import ConfettiGenerator from 'confetti-js';
 
 @Component({
