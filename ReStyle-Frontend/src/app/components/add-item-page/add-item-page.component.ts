@@ -26,7 +26,7 @@ export class AddItemPageComponent implements OnInit {
     { value: 'Pants', viewValue: '👖 Pants' },
     { value: 'Outerwear', viewValue: '🧥 Outerwear' },
     { value: 'Accessories', viewValue: '👜 Accessories' },
-    { value: 'Other', viewValue: '➕ Other' }
+    { value: 'Miscellaneous', viewValue: '➕ Miscellaneous' }
   ];
   fileName = 'No file selected';
 
