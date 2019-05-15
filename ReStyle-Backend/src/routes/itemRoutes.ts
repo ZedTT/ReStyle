@@ -7,6 +7,7 @@ import { ItemCardInterface } from '../models/ItemCardInterface';
 
 const DIR = './uploads/'; // contains images
 
+// TODO comments needed
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, DIR)
@@ -31,7 +32,7 @@ const itemRoutes = (app: Express) => {
         if (err) {
           // An error occurred when uploading
           console.log(err);
-          return response.status(422).send("an Error occured")
+          return response.status(422).send({"error" : "an Error occured"})
         }
         // No error occured.
         
