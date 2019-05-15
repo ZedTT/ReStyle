@@ -13,6 +13,7 @@ itemRoutes(app)
 
 // Path to the images
 app.use('/images', express.static('./uploads'));
+// app.use('/images/*', express.static('./uploads/default.jpeg')); // fallback image
 
 /** 
  * Fallback on routes other than '/' because otherwise we get "Cannot get /..." issues.

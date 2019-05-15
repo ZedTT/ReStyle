@@ -58,31 +58,6 @@ export class ItemCardComponent implements OnInit {
   }
 
   /**
-   * Retrieves json from the server
-   * ! This is an example and should not be kept long term
-   */
-  retrieveJSON() {
-    /**
-     * Logs the observable returned by the item card service's test server method without subscribing to it.
-     * This shows what we get if we don't subscribe.
-     */
-     console.log(this.itemCardServiceService.testServer());
-     /**
-      * * Logs the JSON returned from the back end.
-      * By subscribing to the observable,
-      * we should get updated whenever there is a change.
-      */
-     this.itemCardServiceService.testServer().subscribe(JSON => {
-       console.log(JSON);
-     });
-     console.log(firebase.auth().currentUser);
-     console.log(firebase.auth().currentUser.displayName);
-     console.log(firebase.auth().currentUser.email);
-     console.log(firebase.auth().currentUser.uid);
-  }
-
-
-  /**
    * Sends json to the server
    * ! This is an example and should not be kept long term
    */

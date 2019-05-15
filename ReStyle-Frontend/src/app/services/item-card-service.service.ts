@@ -11,22 +11,18 @@ export class ItemCardServiceService {
   constructor(private http: HttpClient) { }
 
   /**
-   * An example of retrieving json from the back end.
+   * * Gets item cards to display on the home page.
+   * The items are formatted like ItemCard objects but missing the pass and trade attributes.
+   * ? See item-card-stack.component.ts ngOnInit() for where the pass and trade attributes are added
+   * ? Should we add those attributes here instead?
+   * TODO: @param UID
    * Because this is an observable, it needs to be subscribed to.
    * Using the .subscribe() method.
    * * .subscribe(val => {console.log(val)});
-   * @returns an observable that, when subscribed to, returns json.
+   * @returns an observable that, when subscribed to, returns an array of ItemCard objects missing pass and trade attributes
    */
-  testServer(): Observable<any> {
-    // test response from server
-    return this.http.get<any>('/ajax');
-  }
-
-  // Get Items
-  // The items could be formatted from DB style to front end style in the front-end,
-  // but it would make more sense to do this in the back-end.
   getItems(): Observable<any> {
-    const res = this.http.get<any>('/api/items');
+    const res = this.http.get<any>('/api/items'); // TODO: Send UID
     return res;
   }
 }
