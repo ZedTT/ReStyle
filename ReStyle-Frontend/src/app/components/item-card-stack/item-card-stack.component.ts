@@ -14,12 +14,13 @@ export class ItemCardStackComponent implements OnInit {
   constructor(private itemCardServiceService: ItemCardServiceService, private router: Router) { }
 
   ngOnInit() {
-    const temp: any[] = this.itemCardServiceService.getItems(); // TODO: This should not use 'any', but another model
-    for (const card of temp) {
-      card.pass = false;
-      card.trade = false;
-    }
-    this.items = temp;
+    this.itemCardServiceService.getItems().subscribe(temp => {
+      for (const card of temp) {
+        card.pass = false;
+        card.trade = false;
+      }
+      this.items = temp;
+    });
   }
 
   /**

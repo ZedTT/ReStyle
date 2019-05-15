@@ -1,41 +1,91 @@
 import { Express } from "express";
 import { insertItemForUserWithId } from "../controllers/itemControllers";
 import { TradeItemModel } from "../models/tradeItemModel";
+// ? https://www.npmjs.com/package/multer
+import multer from 'multer';
+import { ItemCardInterface } from '../models/ItemCardInterface';
+
+const DIR = './uploads/'; // contains images
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, DIR)
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now() + '.jpeg')
+  }
+})
+
+//define the type of upload multer would be doing and pass in its destination, in our case, its a single file with the name photo
+const uploadImg = multer({ storage: storage }).single('photo');
 
 const itemRoutes = (app: Express) => {
   app
     .route("/api/items")
     // to add a new item to the db
     .post((request, response) => {
-      console.log("Inside adding new item route, request body: \n", request.body);
 
-      // request.body should be of type AddedItemInterface
-      let body = request.body
+      console.log("Inside adding new item route");
 
-      console.log("\n\nBody: \n");
-      console.log(body);
-      console.log("\n\nPhotos: \n");
-      console.log(body.photos);
+      uploadImg(request, response, function (err) {
+        if (err) {
+          // An error occurred when uploading
+          console.log(err);
+          return response.status(422).send("an Error occured")
+        }
+        // No error occured.
+        
+        // request.body should be of type AddedItemInterface
+        let body = request.body
 
-      // const photos: File[] = body.photos;
-      // log the first file in the photos array
-      // console.log("The file: ");
-      // console.log(photos[0]);
+        // replace the photos array which is currently of type File with an array of the paths
+        body.photos = [request.file.filename];
+        // change the size to a number instead of a string
+        body.size = parseInt(body.size);
 
-      // replace the photos array which is currently of type File with an empty array
-      // this empty array will be able to be used as an array of strings for the TradeItemModel
-      body.photos = [];
+        // create a new TradeItemModel object using the body
+        let item = new TradeItemModel(body);
 
-      // log the body after changing the array to empty
-      console.log("\n\nNew body: \n")
-      console.log(body);
-      console.log("\n\n ========== \n\n");
+        // insert the new user into the DB
+        insertItemForUserWithId(response, item);
 
-      let item = new TradeItemModel(body);
+      });
 
-      // insert the new user into the DB
-      insertItemForUserWithId(response, item);
+
+    })
+    .get((request, response) => {
+      const itemsToSend: ItemCardInterface[] = [
+        {
+          itemId: 'i',
+          itemPicturePath: ['photo-1557884635385.jpeg'],
+          bookmarked: false,
+          userId: 'u',
+          userName: 'test user1',
+          userPicturePath: '/path',
+          userVerified: true,
+          userRating: 5,
+          title: 'test shirt',
+          size: 3,
+          category: 'shirt',
+          description: 'The server worked! lorem ipsum dolor sit amet',
+        },
+        {
+          itemId: 'j',
+          itemPicturePath: ['photo-1557884635385.jpeg'],
+          bookmarked: true,
+          userId: 'v',
+          userName: 'test user2',
+          userPicturePath: '/path',
+          userVerified: false,
+          userRating: 4,
+          title: 'test pants',
+          size: 2,
+          category: 'pants',
+          description: 'lorem ipsum dolor sit amet',
+        }
+      ]
+      response.send(itemsToSend);
     });
-};
 
+}
 export default itemRoutes;

@@ -45,16 +45,25 @@ export class AddItemPageComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('onSubmit ran');
 
-    this.addItemService.submitNewItem(this.title, this.description, this.selectedFile);
+    const newItem: AddedItemInterface = {
+      ownerId : 'l15CGtMJ5bSnEkRPpYEgyvVWeLt2', // TODO: Make sure none of these are hard coded.
+      title: this.title,
+      description: this.description,
+      gender : 'Female',
+      size: 1,
+      category : 'category',
+      photos : [this.selectedFile]
+    };
+
+    this.addItemService.submitNewItem(newItem);
   }
 
   ngOnInit() {
   }
 
   // Formats the values on the size slider (0 = XS, 1 = S, 2 = M, 3 = L, 4 = XL)
-  formatLabel(value: number | null) {
+  formatLabel(value: number | null) { // TODO: use an array for this instead of if statements
     if (value === 0) {
       return 'XS';
     }

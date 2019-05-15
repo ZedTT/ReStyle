@@ -11,6 +11,9 @@ app.use(bodyParser.json());
 userRoutes(app)
 itemRoutes(app)
 
+// Path to the images
+app.use('/images', express.static('./uploads'));
+
 /** 
  * Fallback on routes other than '/' because otherwise we get "Cannot get /..." issues.
  * We need to let angular handle the routing

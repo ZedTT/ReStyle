@@ -18,8 +18,9 @@ export class ItemCardComponent implements OnInit {
   @Output() tradeItem: EventEmitter<ItemCard> = new EventEmitter();
 
   sizeArray: string[] = ['xs', 's', 'm', 'l', 'xl'];
-  tempItemImage = 'url(\'https://de9luwq5d40h2.cloudfront.net/catalog/product/large_image/05_407044.jpg\')';
-  tempUserImage = 'https://kempenfeltplayers.com/wp-content/uploads/2015/07/profile-icon-empty.png';
+  // tempItemImage = 'url(\'https://de9luwq5d40h2.cloudfront.net/catalog/product/large_image/05_407044.jpg\')'; // css background image
+  tempItemImage = 'url(/images/photo-1557884635385.jpeg)';
+  tempUserImage = 'https://kempenfeltplayers.com/wp-content/uploads/2015/07/profile-icon-empty.png'; // img tag
 
   /**
    * Creates an instance of an item card component.
@@ -50,6 +51,10 @@ export class ItemCardComponent implements OnInit {
     };
 
     return classes;
+  }
+
+  getImage() {
+    return {'background-image': `url(/images/${this.item.itemPicturePath[0]})`};
   }
 
   /**

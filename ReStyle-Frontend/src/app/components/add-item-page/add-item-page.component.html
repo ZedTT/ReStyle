@@ -3,7 +3,7 @@
 
     <!-- Button to upload image (with label) -->
     <div id="imgupload">
-      <input type="file" accept="image/*" id="filepick" (change)="onFileSelected($event)" style="display: none" #fileinput>
+      <input name="photo" type="file" accept="image/*" id="filepick" (change)="onFileSelected($event)" style="display: none" #fileinput>
       <div id ="uploadButton" class="btn btn-outline-primary" (click)="fileinput.click()">Choose Image</div>
     <br>{{ fileName }}
     <img [src]="imgURL" height="80" width="80" *ngIf="imgURL">
@@ -13,12 +13,12 @@
     <form class="example-form">
         <mat-form-field class="example-full-width">
           <input matInput placeholder="Title" value="" name="title" [(ngModel)]="title">
-        </mat-form-field>        
+        </mat-form-field>
         <mat-form-field class="example-full-width">
           <textarea matInput placeholder="Description" value="" name="description" [(ngModel)]="description"></textarea>
         </mat-form-field>
     </form>
-    
+
     <!-- Drop down selector for category -->
     <mat-form-field>
         <mat-select placeholder="Select Category" [(ngModel)]="sCat" name="item">
@@ -48,7 +48,7 @@
     </div>
 
     <input type="submit" value="Submit" class="btn btn-success btn-block">
-    
+
     {{ title }} {{ description }} {{ selectedCategory }}
-    
+
 </form>
