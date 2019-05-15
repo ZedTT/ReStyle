@@ -54,7 +54,7 @@ const itemRoutes = (app: Express) => {
 
 
     })
-    .get((request, response) => {
+    .get((request, response) => { // TODO: Replace with queries to the database
       const itemsToSend: ItemCardInterface[] = [
         {
           itemId: 'i',
