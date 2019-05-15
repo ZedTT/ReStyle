@@ -9,17 +9,27 @@ import { Router } from '@angular/router';
   styleUrls: ['./item-card-stack.component.sass']
 })
 export class ItemCardStackComponent implements OnInit {
-  items: ItemCard[];
+  items: ItemCard[]; // The array of item cards that will be displayed on the page
 
+  /**
+   * Constructor.
+   * @param itemCardServiceService Used for getting the item cards that will be displayed in ngOnInit()
+   * @param router Used to navigate to the trade page in tradeItem()
+   */
   constructor(private itemCardServiceService: ItemCardServiceService, private router: Router) { }
 
   ngOnInit() {
     this.itemCardServiceService.getItems().subscribe(temp => {
+      /**
+       * Add pass and trade attributes to each item in the array.
+       * * These attributes are only used for animations on the front end.
+       * ? See the documentation for models/ItemCard
+       */
       for (const card of temp) {
         card.pass = false;
         card.trade = false;
       }
-      this.items = temp;
+      this.items = temp; // assign the array to the items array
     });
   }
 
