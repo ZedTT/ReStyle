@@ -7,7 +7,10 @@ import { ItemCardInterface } from '../models/ItemCardInterface';
 
 const DIR = './uploads/'; // contains images
 
-// TODO comments needed
+/**
+ * Adding code to set the file names for multer
+ * ? See https://www.npmjs.com/package/multer#diskstorage
+ */
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, DIR)
