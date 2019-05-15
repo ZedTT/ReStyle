@@ -13,7 +13,8 @@ itemRoutes(app)
 
 // Path to the images
 app.use('/images', express.static('./uploads'));
-// app.use('/images/*', express.static('./uploads/default.jpeg')); // fallback image
+// ? https://dummyimage.com/800/c9c2ab/4a454a.png&text=ReStyle+Image+not+found
+app.use('/images/*', express.static('./uploads/default.jpeg')); // fallback image
 
 /** 
  * Fallback on routes other than '/' because otherwise we get "Cannot get /..." issues.
