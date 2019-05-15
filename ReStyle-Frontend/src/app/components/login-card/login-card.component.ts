@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { firebase } from 'firebaseui-angular';
+import { UserAccountService } from '../../services/user-account.service';
 
 @Component({
   selector: 'app-login-card',
@@ -12,7 +13,21 @@ export class LoginCardComponent implements OnInit {
 
   // ChangeDetector allows us to check if a variable has changed
   // Use in onAuthStateChanged in ngOnInit
-  constructor(private changeDetectorRef: ChangeDetectorRef) { }
+  constructor(private changeDetectorRef: ChangeDetectorRef, private userAccountService: UserAccountService) {
+    // When user is logged in, this part is triggered automatically and post user data to the database.
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        const uid = user.uid;
+        const userName = user.displayName;
+        console.log(uid, userName);
+        console.log(userAccountService.postUserData(uid, userName));
+        userAccountService.postUserData(uid, userName).subscribe(res => {
+          console.log(res);
+        });
+        // });
+      }
+    });
+   }
 
   ngOnInit() {
     // * For debugging

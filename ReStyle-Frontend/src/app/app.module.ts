@@ -34,11 +34,10 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInOptions: [
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
     {
-      requireDisplayName: false,
+      requireDisplayName: true,
       provider: firebase.auth.EmailAuthProvider.PROVIDER_ID
-    },
-    firebase.auth.PhoneAuthProvider.PROVIDER_ID
-  ],
+    }
+    ],
 
   // Terms of service url.
   tosUrl: '/',

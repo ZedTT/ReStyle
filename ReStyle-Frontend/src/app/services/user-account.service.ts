@@ -11,9 +11,9 @@ export class UserAccountService {
 
   postUserData(uid, userName): Observable<any> {
     // test sending data via post request body to the server
-    return this.http.post<any>('/api/users', 
+    return this.http.post<any>('/api/users',
     {
-      'uid': uid, 
+      'uid': uid,
       'userName': userName
     });
   }
