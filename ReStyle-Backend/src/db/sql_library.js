@@ -128,10 +128,10 @@ export const display_item =
 
 /*
 	Insert the item's photoPath array into the item table
-
+	itemID as an integer
+	
 	Example:
-	[[photoPath1, photoPath2],userID]
-	[[photoPath1, photoPath2],'l15CGtMJ5bSnEkRPpYEgyvVWeLt2']
+	[[photoPath1, photoPath2],itemID]
 */
 export const add_photoPath_to_item =
 "UPDATE dev.item SET photoPaths = array_cat(photoPaths, $1::text[]) " +
