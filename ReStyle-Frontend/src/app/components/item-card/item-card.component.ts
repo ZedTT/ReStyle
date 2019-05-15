@@ -18,8 +18,9 @@ export class ItemCardComponent implements OnInit {
   @Output() tradeItem: EventEmitter<ItemCard> = new EventEmitter();
 
   sizeArray: string[] = ['xs', 's', 'm', 'l', 'xl'];
-  tempItemImage = 'url(\'https://de9luwq5d40h2.cloudfront.net/catalog/product/large_image/05_407044.jpg\')';
-  tempUserImage = 'https://kempenfeltplayers.com/wp-content/uploads/2015/07/profile-icon-empty.png';
+  // tempItemImage = 'url(\'https://de9luwq5d40h2.cloudfront.net/catalog/product/large_image/05_407044.jpg\')'; // css background image
+  tempItemImage = 'url(/images/photo-1557884635385.jpeg)';
+  tempUserImage = 'https://kempenfeltplayers.com/wp-content/uploads/2015/07/profile-icon-empty.png'; // img tag
 
   /**
    * Creates an instance of an item card component.
@@ -52,30 +53,9 @@ export class ItemCardComponent implements OnInit {
     return classes;
   }
 
-  /**
-   * Retrieves json from the server
-   * ! This is an example and should not be kept long term
-   */
-  retrieveJSON() {
-    /**
-     * Logs the observable returned by the item card service's test server method without subscribing to it.
-     * This shows what we get if we don't subscribe.
-     */
-     console.log(this.itemCardServiceService.testServer());
-     /**
-      * * Logs the JSON returned from the back end.
-      * By subscribing to the observable,
-      * we should get updated whenever there is a change.
-      */
-     this.itemCardServiceService.testServer().subscribe(JSON => {
-       console.log(JSON);
-     });
-     console.log(firebase.auth().currentUser);
-     console.log(firebase.auth().currentUser.displayName);
-     console.log(firebase.auth().currentUser.email);
-     console.log(firebase.auth().currentUser.uid);
+  getImage() {
+    return {'background-image': `url(/images/${this.item.itemPicturePath[0]})`};
   }
-
 
   /**
    * Sends json to the server
