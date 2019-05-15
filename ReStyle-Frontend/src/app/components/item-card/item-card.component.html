@@ -1,5 +1,5 @@
 <div [ngClass]="setClasses()">
-  <div class="item-image-container" [ngStyle]="{'background-image': tempItemImage}"></div>
+  <div class="item-image-container" [ngStyle]="getImage()"></div>
   <div class="item-footer">
     <div class="user">
       <img class="user-image" [src]="tempUserImage" alt="User image">
@@ -14,6 +14,5 @@
         <button (click)="onTrade(item)" class="btn-trade button">Trade</button>
     </div>
   </div>
-  <!-- <button (click)="retrieveJSON()">retrieve JSON from backend</button> -->
   <!-- <button (click)="sendUserId()">Send user ID to backend</button> -->
 </div>

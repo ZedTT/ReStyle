@@ -41,7 +41,6 @@ export function insertItemForUserWithId(
       if (err) {
         console.log("Error:", err);
       } else {
-        console.log("Inside insert_item_with_return", res);
         response.send({ message: "New item was added" });
       }
     });

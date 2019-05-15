@@ -2,13 +2,7 @@ import { Express } from 'express';
 import { insertNewUser } from '../controllers/userAccountController';
 
 const userRoutes = (app: Express) => {
-
-    // this is an example used to test sending simple data to the front end
-    app.route("/ajax")
-        .get((req, res) => {
-            res.send({ 'text': 'hello angular' });
-        })
-
+    
     app.route('/api/users')
         // to add a new user to the db
         .post((request, response) => {

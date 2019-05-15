@@ -2,8 +2,9 @@
     <h5>Add Item</h5>
     <mat-divider></mat-divider>
     <!-- Button to upload image (with label) -->
-    <div id="imgupload" class="card">
-      <input type="file" accept="image/*" id="filepick" (change)="onFileSelected($event)"   max-size=32154 style="display: none" #fileinput>
+    <div id="imgupload">
+      <input name="photo" type="file" accept="image/*" id="filepick" (change)="onFileSelected($event)" 
+      max-size=32154 style="display: none" #fileinput>
       <div id ="uploadButton" class="btn btn-outline-primary" (click)="fileinput.click()">Choose Image</div>
       <br>{{ fileName }}
       <img [src]="imgURL" height="80" width="80" *ngIf="imgURL">

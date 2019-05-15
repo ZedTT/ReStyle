@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { TradeItemInterface } from 'src/app/models/TradeItemInterface';
-import {MenuItem} from 'primeng/api';                 // api
+import { AddedItemInterface } from '../../models/AddedItemInterface';
+import { AddItemService } from '../../services/add-item.service';
 
 export interface Category {
   value: string;
@@ -34,7 +33,7 @@ export class AddItemPageComponent implements OnInit {
   imgURL: any;
   public message: string;
 
-  constructor(private http: HttpClient) {}
+  constructor(private addItemService: AddItemService) {}
 
   onFileSelected(fileEvent) {
 
@@ -44,43 +43,32 @@ export class AddItemPageComponent implements OnInit {
     // Displays a preview of the uploaded image
     const reader = new FileReader();
     reader.readAsDataURL(this.selectedFile);
-// tslint:disable-next-line: variable-name
+    // tslint:disable-next-line: variable-name
     reader.onload = (_event) => {
       this.imgURL = reader.result;
     };
   }
 
   onSubmit() {
-    console.log('onSubmit ran');
-    const fd = new FormData();
-    fd.append('image', this.selectedFile);
-    fd.append('title', this.title);
-    fd.append('description', this.description);
-    console.log(fd);
 
-    const anItem: TradeItemInterface = {
-      ownerId : 'l15CGtMJ5bSnEkRPpYEgyvVWeLt2',
+    const newItem: AddedItemInterface = {
+      ownerId : 'l15CGtMJ5bSnEkRPpYEgyvVWeLt2', // TODO: Make sure none of these are hard coded.
+      title: this.title,
       description: this.description,
       gender : this.gender,
       size: this.size,
-      title : this.title,
       category : this.sCat,
-      photos : ['www.image.com']
+      photos : [this.selectedFile]
     };
 
-    console.log(anItem);
-
-    this.http.post('/api/items', anItem)
-      .subscribe(res => {
-      console.log(res);
-    });
+    this.addItemService.submitNewItem(newItem);
   }
 
   ngOnInit() {
   }
 
   // Formats the values on the size slider (0 = XS, 1 = S, 2 = M, 3 = L, 4 = XL)
-  formatLabel(value: number | null) {
+  formatLabel(value: number | null) { // TODO: use an array for this instead of if statements
     if (value === 0) {
       return 'XS';
     }
