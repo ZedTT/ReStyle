@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { TradeItemInterface } from 'src/app/models/TradeItemInterface';
+import {MenuItem} from 'primeng/api';                 // api
 
 export interface Category {
   value: string;
@@ -17,9 +18,15 @@ export class AddItemPageComponent implements OnInit {
   title: string;
   description: string;
   sCat: string;
+  size: number;
+  gender: string;
   cats: Category[] = [
-    { value: 'Shirt', viewValue: 'Shirt' },
-    { value: 'Pants', viewValue: 'Pants' }
+    // { value: '0', viewValue: '-----------------'},
+    { value: 'Shirt', viewValue: '👕 Shirts' },
+    { value: 'Pants', viewValue: '👖 Pants' },
+    { value: 'Outerwear', viewValue: '🧥 Outerwear' },
+    { value: 'Accessories', viewValue: '👜 Accessories' },
+    { value: 'Other', viewValue: '➕ Other' }
   ];
   fileName = 'No file selected';
 
@@ -54,12 +61,14 @@ export class AddItemPageComponent implements OnInit {
     const anItem: TradeItemInterface = {
       ownerId : 'l15CGtMJ5bSnEkRPpYEgyvVWeLt2',
       description: this.description,
-      gender : 'Female',
-      size: 1,
+      gender : this.gender,
+      size: this.size,
       title : this.title,
-      category : 'category',
+      category : this.sCat,
       photos : ['www.image.com']
     };
+
+    console.log(anItem);
 
     this.http.post('/api/items', anItem)
       .subscribe(res => {

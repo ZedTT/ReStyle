@@ -1,28 +1,58 @@
 #addItemContainer
   margin: 65px 0
+  height: 100vh
 
-.btn-outline-primary
-  width: 250px
-
-#imgupload
-  border: 2px dashed black
-  padding: 10px
-  height: 130px
+#uploadButton
+  width: 100%
 
 h5
   text-align: center
   margin: 20px 0
 
-#imgupload, mat-form-field, mat-radio-group, #sizeSlider
-  display: table
+#imgupload, mat-form-field
+  display: flex
   margin: 0 auto
-  width: 250px
+  width: 80%
+
+.mat-form-field
+  width: 80%
+
+.mat-form-field-wrapper
+  position: relative
+  display: flex
+  margin: 0 auto
+
+.mat-radio-group
+  width: 80%
+
+
+#sizeSlider
+  margin: 0 auto
+  width: 80%
+
+#sliderSpan
+  margin: 0 auto
+  width: 80%
+
+mat-slider
+  margin: 0 auto
+  width: 80%
 
 #genderToggles
   display: flex
   justify-content: space-evenly
   margin: 0 auto
-  width: 250px
+  width: 80%
 
 .btn-block
   width: 80%
+
+.card
+  width: 80%
+  max-width: 400px
+  margin: 10px auto
+  padding: 10px
+
+
+.required input:after
+  content: "*"

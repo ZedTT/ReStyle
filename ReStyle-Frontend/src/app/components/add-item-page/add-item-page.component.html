@@ -1,54 +1,62 @@
-<form id="addItemContainer" class="form" (submit)="onSubmit()">
+<form id="addItemContainer" class="form" (submit)="onSubmit()" data-spy="scroll" data-target="h5" data-offset="100">
     <h5>Add Item</h5>
-
+    <mat-divider></mat-divider>
     <!-- Button to upload image (with label) -->
-    <div id="imgupload">
+    <div id="imgupload" class="card">
       <input type="file" accept="image/*" id="filepick" (change)="onFileSelected($event)" style="display: none" #fileinput>
       <div id ="uploadButton" class="btn btn-outline-primary" (click)="fileinput.click()">Choose Image</div>
-    <br>{{ fileName }}
-    <img [src]="imgURL" height="80" width="80" *ngIf="imgURL">
+      <br>{{ fileName }}
+      <img [src]="imgURL" height="80" width="80" *ngIf="imgURL">
     </div>
 
     <!-- Form group for adding the title and description -->
-    <form class="example-form">
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Title" value="" name="title" [(ngModel)]="title">
-        </mat-form-field>        
-        <mat-form-field class="example-full-width">
-          <textarea matInput placeholder="Description" value="" name="description" [(ngModel)]="description"></textarea>
-        </mat-form-field>
-    </form>
+    
+    <div class="card">
+      <form class="example-form">
+          <mat-form-field class="example-full-width">
+            <input matInput id="title" placeholder="Title" value="" name="title" [(ngModel)]="title" required>
+          </mat-form-field>        
+          <mat-form-field class="example-full-width">
+            <textarea matInput id="description" placeholder="Description" value="" name="description" [(ngModel)]="description" required></textarea>
+          </mat-form-field>
+      </form>
+    </div>
     
     <!-- Drop down selector for category -->
-    <mat-form-field>
-        <mat-select placeholder="Select Category" [(ngModel)]="sCat" name="item">
-            <mat-option *ngFor="let cat of cats" [value]="cat.value">
-                {{ cat.viewValue }}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
-
-    <!-- Radio buttons for gender of clothing -->
-    <mat-button-toggle-group id="genderToggles" name="fontStyle" aria-label="Font Style">
-      <mat-button-toggle value="Male">Male</mat-button-toggle>
-      <mat-button-toggle value="Female">Female</mat-button-toggle>
-      <mat-button-toggle value="Unisex">Unisex</mat-button-toggle>
-    </mat-button-toggle-group>
-
-    <div id="sizeSlider">
-        <span class="text-small">XS</span>        
-        <mat-slider
-            thumbLabel
-            [displayWith]="formatLabel"
-            tickInterval="1"
-            min="0"
-            max="4">
-        </mat-slider>
-        <span class="text-small">XL</span>
+    <div class="card">
+      <mat-form-field>
+          <mat-select placeholder="Select Category" [(ngModel)]="sCat" name="item" required>
+              <mat-option *ngFor="let cat of cats" [value]="cat.value">
+                  {{ cat.viewValue }}
+              </mat-option>
+          </mat-select>
+      </mat-form-field>
     </div>
 
-    <input type="submit" value="Submit" class="btn btn-success btn-block">
-    
-    {{ title }} {{ description }} {{ selectedCategory }}
+    <!-- Radio buttons for gender of clothing -->
+    <div class="card">
+      <mat-button-toggle-group [(ngModel)]="gender" id="genderToggles" name="fontStyle" aria-label="Font Style">
+        <mat-button-toggle value="Male">Male</mat-button-toggle>
+        <mat-button-toggle value="Female">Female</mat-button-toggle>
+        <mat-button-toggle value="Unisex">Unisex</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+
+    <div id="sizeSlider" class="card">
+      <span id="sliderSpan">
+          XS <mat-slider
+              aria-label="Select a Size"
+              thumbLabel
+              [displayWith]="formatLabel"
+              tickInterval="1"
+              min="0"
+              max="4">
+          </mat-slider> XL
+      </span>
+    </div>
+
+    <div class="card">
+      <input type="submit" value="Submit" class="btn btn-success btn-block">
+    </div>
     
 </form>

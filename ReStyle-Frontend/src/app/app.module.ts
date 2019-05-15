@@ -24,10 +24,8 @@ import { NgbdCarouselComponent } from './components/ngbd-carousel/ngbd-carousel.
 import { AddItemPageComponent } from './components/add-item-page/add-item-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  MatFormFieldModule, MatRadioModule, MatSelectModule, MatSliderModule, MatInputModule, MatButtonToggleModule
-} from '@angular/material'; // tsLint max line 140
-
+import { MatFormFieldModule, MatRadioModule, MatSelectModule, MatSliderModule, MatInputModule, MatButtonToggleModule, MatDividerModule } from '@angular/material'; // tsLint max line 140
+import {FileUploadModule} from 'primeng/fileupload';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -90,6 +88,8 @@ firebase.initializeApp(environment.firebase);
     MatSelectModule,
     MatSliderModule,
     MatButtonToggleModule,
+    FileUploadModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
