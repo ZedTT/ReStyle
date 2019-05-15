@@ -128,10 +128,10 @@ export const display_item =
 
 /*
 	Insert the item's photoPath array into the item table
-
+	itemID as an integer
+	
 	Example:
-	[[photoPath1, photoPath2],userID]
-	[[photoPath1, photoPath2],'l15CGtMJ5bSnEkRPpYEgyvVWeLt2']
+	[[photoPath1, photoPath2],itemID]
 */
 export const add_photoPath_to_item =
 "UPDATE dev.item SET photoPaths = array_cat(photoPaths, $1::text[]) " +
@@ -341,15 +341,5 @@ export const add_swap_no_return =
 "VALUES ($1, $2) "
 
 
-/*
-	Display items that have never been swapped
 
-	userID character(28)
-
-	Example:
-	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2']
-*/
-export const display_neverbeen_swapped_items =
-"SELECT * FROM dev.item " + 
-"WHERE userID =$1 AND swapID IS NULL "
 
