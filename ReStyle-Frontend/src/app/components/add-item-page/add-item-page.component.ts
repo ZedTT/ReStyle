@@ -20,7 +20,7 @@ export class AddItemPageComponent implements OnInit {
   size: number;
   gender: string;
   cats: Category[] = [
-    // { value: '0', viewValue: '-----------------'},
+    // { value: '0', viewValue: '-😃--------------'},
     { value: 'Shirt', viewValue: '👕 Shirts' },
     { value: 'Pants', viewValue: '👖 Pants' },
     { value: 'Outerwear', viewValue: '🧥 Outerwear' },
