@@ -13,5 +13,5 @@
     size: number; // The size as a number, 0: XS, 1: S, 2: M, 3: L, 4: XL
     title: string; // The title of the item
     category: string; // The category that the item belongs to (e.g. shirts)
-    photos: any[]; // An array of images
+    photos: any[]; // An array of images form data
 }
