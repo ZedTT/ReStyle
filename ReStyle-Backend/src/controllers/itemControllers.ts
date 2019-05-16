@@ -74,7 +74,7 @@ export function getItemsToDisplayForUserWithId(response: Response, userId: strin
       for (let itemRecord of res.rows) {
         itemsToSend.push({
           itemId: itemRecord.itemID,
-          itemPicturePath: itemRecord.photoPaths,
+          itemPicturePath: itemRecord.photopaths,
           bookmarked: false, //hardcoded for now, needs another query. Not implemented yet
           userId: itemRecord.userID,
           userName: 'test user1', //hardcoded for now, needs another query

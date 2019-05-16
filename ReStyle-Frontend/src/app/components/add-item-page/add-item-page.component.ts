@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AddedItemInterface } from '../../models/AddedItemInterface';
 import { AddItemService } from '../../services/add-item.service';
+import { firebase } from 'firebaseui-angular';
 
 export interface Category {
   value: string;
@@ -51,12 +52,16 @@ export class AddItemPageComponent implements OnInit {
 
   onSubmit() {
 
+    const uid = firebase.auth().currentUser.uid;
+
+    if (!uid) { return null; }
+
     const newItem: AddedItemInterface = {
-      ownerId : 'l15CGtMJ5bSnEkRPpYEgyvVWeLt2', // TODO: Make sure none of these are hard coded.
+      ownerId : uid,
       title: this.title,
       description: this.description,
       gender : this.gender,
-      size: this.size,
+      size: 1, // TODO not hardcoded
       category : this.sCat,
       photos : [this.selectedFile]
     };
