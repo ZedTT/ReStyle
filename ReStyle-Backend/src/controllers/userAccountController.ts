@@ -14,7 +14,7 @@ export function getUser(response: Response, uid: string) {
         } else {
             if (res.rows.length == 1) {
                 const userRecord = res.rows[0];
-                response.send({ swapScore: userRecord.swapScore, userName: userRecord.userName, userPhotoPath: userRecord.userPhotoPath })
+                response.send({ swapScore: userRecord.swapscore, userName: userRecord.username, userPhotoPath: userRecord.userphotopath })
             } else (
                 response.send({ error: `User with uid: ${uid} not found` })
             )
