@@ -12,15 +12,21 @@ export class FooterComponent implements OnInit {
 
   constructor(private userAccountService: UserAccountService) {
     this.easterEggEnabled = false;
-    
-    firebase.auth().onAuthStateChanged( user => {
-      const userObject = this.userAccountService.getCurrentUserData();
-    })
+
+
   }
 
   ngOnInit() {
     this.setClasses();
   }
+
+  // getProfileImage() {
+  //   firebase.auth().onAuthStateChanged( (updatedUser) => {
+  //     const userObject = this.userAccountService.getUserData(updatedUser);
+  //    })
+  //   return userObject.userPhotoPath;
+
+  // }
 
   setClasses() {
     const classes = {

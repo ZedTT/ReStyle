@@ -20,9 +20,9 @@ export class UserAccountService {
   }
 
   // TODO: backend response should be added for the get request (Kate)
-  getCurrentUserData(): Observable<any> {
+  getUserData(user): Observable<any> {
     // getting all the user's database using current user's uid
-    return this.http.get<any>(`/api/users?uid=${firebase.auth().currentUser.uid}}`);
+    return this.http.get<any>(`/api/users?uid=${user.uid}}`);
   }
 
 }

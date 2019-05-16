@@ -2,7 +2,7 @@ import { Express } from 'express';
 import { insertNewUser, getUser } from '../controllers/userAccountController';
 
 const userRoutes = (app: Express) => {
-    
+
     app.route('/api/users')
         // to add a new user to the db
         .post((request, response) => {

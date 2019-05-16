@@ -4,7 +4,7 @@ import { Response } from 'express';
 
 // Initial swap score is hard coded to five
 const initialSwapScore = 5;
-const defaultProfilePhotoPath = 'defaultAvatar.jpeg'
+const defaultProfilePhotoPath = 'defaultAvatar.png'
 
 export function getUser(response: Response, uid: string){
     query(get_user, [uid], (err, res) => {
