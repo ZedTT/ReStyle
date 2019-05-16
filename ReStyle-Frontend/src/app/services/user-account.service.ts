@@ -22,7 +22,7 @@ export class UserAccountService {
   // TODO: backend response should be added for the get request (Kate)
   getUserData(user): Observable<any> {
     // getting all the user's database using current user's uid
-    return this.http.get<any>(`/api/users?uid=${user.uid}}`);
+    return this.http.get<any>(`/api/users?uid=${user.uid}`);
   }
 
 }
