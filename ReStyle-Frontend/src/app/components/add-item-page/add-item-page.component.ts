@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AddedItemInterface } from '../../models/AddedItemInterface';
 import { AddItemService } from '../../services/add-item.service';
-import { Options } from 'ng5-slider';
+// import { Options } from 'ng5-slider';
 import { firebase } from 'firebaseui-angular';
 
 export interface Category {
