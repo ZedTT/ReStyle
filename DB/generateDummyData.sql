@@ -11,12 +11,12 @@
 
 */
 INSERT INTO dev.restyle_user VALUES 
-('l15CGtMJ5bSnEkRPpYEgyvVWeLt2', 4.8, 'testUser1', NULL),
-('mD7ZT6d9P1bcrBsdQNRGqVaI30m2', 4.2, 'testUser2', NULL),
-('Vc8UfAPEQkXR7ebwsAqAlaocWCC2', 2.2, 'testUser3', NULL),
-('ieUNOnM2bFWrQBDanavf5ea6rJm1', 1.2, 'testUser4', NULL),
-('tSMvjt39LyYI8eHHyz8UQ7iVsK32', 3.2, 'testUser5', NULL),
-('fXz3AWKGPIVpDF8s8FsIr4WC9Vl1', 3.5, 'testUser6', NULL);
+('QqJVsgMeiVcF1bW0x9b28sHK9fh2', 5.0, 'Zack', 'zack_avatar.jpg'),
+('nsisodvqeNOTDCitaseopWjovEJ2', 5.0, 'Haejoon', 'haejoon_avatar.jpg'),
+('fBzo9P6FJYQRbPq5CZFEsPWqtU23', 5.0, 'Mary Lamb', 'marylamb_avatar.png'),
+('IDrpipjIpYOtcpGAaMT8ZWGT0J32', 4.0, 'Amy Brown', 'amybrown_avatar.png'),
+('4WiXU5rgqRWrGZSJXxSkQl3Kpdz1', 3.5, 'John Doe', 'johndoe_avatar.jpg'),
+('rCjzKDG6rjUwjj6I5BepsLbvgPr1', 5.0, 'Nathan Green', 'nathangreen_avatar.jpg');
 
 
 
@@ -25,28 +25,28 @@ INSERT INTO dev.restyle_user VALUES
 
 	Items assigned to all six users
 */
-INSERT INTO dev.item (userID, swapID , description, gender, size, title, category) 
+INSERT INTO dev.item (userID, swapID , description, gender, size, title, category, photoPaths) 
 VALUES  
-('l15CGtMJ5bSnEkRPpYEgyvVWeLt2',NULL, 'testDescription', 'Female', 1, 'testTitle', 'shirt'),
-('l15CGtMJ5bSnEkRPpYEgyvVWeLt2', NULL ,'testDescription', 'Male', 2, 'testTitle', 'jeans'),
-('l15CGtMJ5bSnEkRPpYEgyvVWeLt2', NULL ,'testDescription', 'Unisex', 3, 'testTitle', 'dress'),
-('mD7ZT6d9P1bcrBsdQNRGqVaI30m2', NULL ,'testDescription', 'Female', 4, 'testTitle', 'skirt'),
-('mD7ZT6d9P1bcrBsdQNRGqVaI30m2', NULL ,'testDescription', 'Male', 1, 'testTitle', 'sweater'),
-('mD7ZT6d9P1bcrBsdQNRGqVaI30m2', NULL ,'testDescription', 'Unisex', 2, 'testTitle', 'shirt'),
-('Vc8UfAPEQkXR7ebwsAqAlaocWCC2', NULL ,'testDescription', 'Female', 3, 'testTitle', 'jeans'),
-('Vc8UfAPEQkXR7ebwsAqAlaocWCC2', NULL ,'testDescription', 'Male', 4, 'testTitle', 'dress'),
-('Vc8UfAPEQkXR7ebwsAqAlaocWCC2', NULL ,'testDescription', 'Unisex', 1, 'testTitle', 'skirt'),
-('ieUNOnM2bFWrQBDanavf5ea6rJm1', NULL ,'testDescription', 'Female', 1, 'testTitle', 'sweater'),
-('ieUNOnM2bFWrQBDanavf5ea6rJm1', NULL ,'testDescription', 'Male', 1, 'testTitle', 'shirt'),
-('ieUNOnM2bFWrQBDanavf5ea6rJm1', NULL ,'testDescription', 'Unisex', 4, 'testTitle', 'jeans'),
-('tSMvjt39LyYI8eHHyz8UQ7iVsK32', NULL ,'testDescription', 'Female', 1, 'testTitle', 'dress'),
-('tSMvjt39LyYI8eHHyz8UQ7iVsK32', NULL ,'testDescription', 'Male', 1, 'testTitle', 'skirt'),
-('tSMvjt39LyYI8eHHyz8UQ7iVsK32', NULL ,'testDescription', 'Unisex', 1, 'testTitle', 'sweater'),
-('fXz3AWKGPIVpDF8s8FsIr4WC9Vl1', NULL ,'testDescription', 'Female', 4, 'testTitle', 'shirt'),
-('fXz3AWKGPIVpDF8s8FsIr4WC9Vl1', NULL ,'testDescription', 'Male', 1, 'testTitle', 'jeans'),
-('fXz3AWKGPIVpDF8s8FsIr4WC9Vl1', NULL ,'testDescription', 'Unisex', 2, 'testTitle', 'dress'),
-('fXz3AWKGPIVpDF8s8FsIr4WC9Vl1', NULL ,'testDescription', 'Female', 3, 'testTitle', 'skirt'),
-('fXz3AWKGPIVpDF8s8FsIr4WC9Vl1', NULL ,'testDescription', 'Male', 4, 'testTitle', 'sweater');
+('QqJVsgMeiVcF1bW0x9b28sHK9fh2',NULL, 'Female Dress lightly used', 'Female', 1, 'Female Dress', 'Dress','{dress_female_03.jpg}'),
+('QqJVsgMeiVcF1bW0x9b28sHK9fh2', NULL ,'Female Dress brand new', 'Female', 2, 'Female Dress', 'Dress', '{dress_female_04.jpg}'),
+('QqJVsgMeiVcF1bW0x9b28sHK9fh2', NULL ,'Dress Male lightly used', 'Male', 3, 'Dress Male', 'Dress', '{dress_male_01.jpg}'),
+('nsisodvqeNOTDCitaseopWjovEJ2', NULL ,'Dress Male brand new', 'Male', 4, 'Dress Male', 'Dress', '{dress_male_02.jpg}'),
+('nsisodvqeNOTDCitaseopWjovEJ2', NULL ,'Sweater male lightly used', 'Male', 1, 'Sweater Male', 'Sweater', '{sweater_male_05.jpg}'),
+('nsisodvqeNOTDCitaseopWjovEJ2', NULL ,'Female Jeans brand new', 'Female', 2, 'Female Jeans', 'Pants', '{jeans_female_03.jpg}'),
+('fBzo9P6FJYQRbPq5CZFEsPWqtU23', NULL ,'Female Jeans lightly used', 'Female', 3, 'Female Jeans', 'Pants', '{jeans_female_04.jpg}'),
+('fBzo9P6FJYQRbPq5CZFEsPWqtU23', NULL ,'Male Jeans brand new', 'Male', 4, 'Male Jeans', 'Pants', '{jeans_male_01.jpg}'),
+('fBzo9P6FJYQRbPq5CZFEsPWqtU23', NULL ,'Male Jeans lightly used', 'Male', 1, 'Male Jeans', 'Pants', '{jeans_male_02.jpg}'),
+('IDrpipjIpYOtcpGAaMT8ZWGT0J32', NULL ,'Unisex Jeans brand new', 'Unisex', 1, 'Unisex Jeans', 'Pants', '{jeans_unisex_05.jpg}'),
+('IDrpipjIpYOtcpGAaMT8ZWGT0J32', NULL ,'Shirt Female lightly used', 'Female', 1, 'Shirt Female', 'Shirts', '{shirt_female_03.jpg}'),
+('IDrpipjIpYOtcpGAaMT8ZWGT0J32', NULL ,'Shirt Female brand new', 'Female', 4, 'Shirt Female', 'Shirts', '{shirt_female_04.jpg}'),
+('4WiXU5rgqRWrGZSJXxSkQl3Kpdz1', NULL ,'Shirt Male lightly used', 'Male', 1, 'Shirt Male', 'Shirts', '{shirt_male_01.jpg}'),
+('4WiXU5rgqRWrGZSJXxSkQl3Kpdz1', NULL ,'Shirt Male brand new', 'Male', 1, 'Shirt Male', 'Shirt', '{shirt_male_02.jpg}'),
+('4WiXU5rgqRWrGZSJXxSkQl3Kpdz1', NULL ,'Dress Unisex lightly used', 'Unisex', 1, 'Dress Unisex', 'Dress', '{dress_unisex_05.jpg}'),
+('rCjzKDG6rjUwjj6I5BepsLbvgPr1', NULL ,'Skirt Female brand new', 'Female', 4, 'Skirt Female', 'Skirt', '{skirt_female_03.jpg}'),
+('rCjzKDG6rjUwjj6I5BepsLbvgPr1', NULL ,'Skirt Female lightly used', 'Female', 1, 'Skirt Female', 'Skirt', '{skirt_female_04.jpg}'),
+('rCjzKDG6rjUwjj6I5BepsLbvgPr1', NULL ,'Unisex Skirt brand new', 'Unisex', 2, 'Unisex Skirt', 'Skirt', '{skirt_unisex_05.jpg}'),
+('rCjzKDG6rjUwjj6I5BepsLbvgPr1', NULL ,'Female Sweater lightly used', 'Female', 3, 'Female Sweater', 'Outerwear', '{sweater_female_04.jpg}'),
+('rCjzKDG6rjUwjj6I5BepsLbvgPr1', NULL ,'Female Sweater brand new', 'Female', 4, 'Female Sweater', 'Outerwear', '{sweater_female_05.jpg}');
 
 /*
 	Testing inserting data into rating table
@@ -54,24 +54,24 @@ VALUES
 	Three ratings per user
 */
 INSERT INTO dev.rating (userID, rating) VALUES 
-('l15CGtMJ5bSnEkRPpYEgyvVWeLt2', 2.0),
-('l15CGtMJ5bSnEkRPpYEgyvVWeLt2', 3.0),
-('l15CGtMJ5bSnEkRPpYEgyvVWeLt2', 4.0),
-('mD7ZT6d9P1bcrBsdQNRGqVaI30m2', 4.5),
-('mD7ZT6d9P1bcrBsdQNRGqVaI30m2', 3.5),
-('mD7ZT6d9P1bcrBsdQNRGqVaI30m2', 1.5),
-('Vc8UfAPEQkXR7ebwsAqAlaocWCC2', 4.2),
-('Vc8UfAPEQkXR7ebwsAqAlaocWCC2', 4.2),
-('Vc8UfAPEQkXR7ebwsAqAlaocWCC2', 4.2),
-('ieUNOnM2bFWrQBDanavf5ea6rJm1', 4.8),
-('ieUNOnM2bFWrQBDanavf5ea6rJm1', 4.8),
-('ieUNOnM2bFWrQBDanavf5ea6rJm1', 4.8),
-('tSMvjt39LyYI8eHHyz8UQ7iVsK32', 1.5),
-('tSMvjt39LyYI8eHHyz8UQ7iVsK32', 1.5),
-('tSMvjt39LyYI8eHHyz8UQ7iVsK32', 1.5),
-('fXz3AWKGPIVpDF8s8FsIr4WC9Vl1', 2.5),
-('fXz3AWKGPIVpDF8s8FsIr4WC9Vl1', 2.5),
-('fXz3AWKGPIVpDF8s8FsIr4WC9Vl1', 2.5);
+('QqJVsgMeiVcF1bW0x9b28sHK9fh2', 2.0),
+('QqJVsgMeiVcF1bW0x9b28sHK9fh2', 3.0),
+('QqJVsgMeiVcF1bW0x9b28sHK9fh2', 4.0),
+('nsisodvqeNOTDCitaseopWjovEJ2', 4.5),
+('nsisodvqeNOTDCitaseopWjovEJ2', 3.5),
+('nsisodvqeNOTDCitaseopWjovEJ2', 1.5),
+('fBzo9P6FJYQRbPq5CZFEsPWqtU23', 4.2),
+('fBzo9P6FJYQRbPq5CZFEsPWqtU23', 4.2),
+('fBzo9P6FJYQRbPq5CZFEsPWqtU23', 4.2),
+('IDrpipjIpYOtcpGAaMT8ZWGT0J32', 4.8),
+('IDrpipjIpYOtcpGAaMT8ZWGT0J32', 4.8),
+('IDrpipjIpYOtcpGAaMT8ZWGT0J32', 4.8),
+('4WiXU5rgqRWrGZSJXxSkQl3Kpdz1', 1.5),
+('4WiXU5rgqRWrGZSJXxSkQl3Kpdz1', 1.5),
+('4WiXU5rgqRWrGZSJXxSkQl3Kpdz1', 1.5),
+('rCjzKDG6rjUwjj6I5BepsLbvgPr1', 2.5),
+('rCjzKDG6rjUwjj6I5BepsLbvgPr1', 2.5),
+('rCjzKDG6rjUwjj6I5BepsLbvgPr1', 2.5);
 
 /*
 	Testing inserting data into trade request table
@@ -81,7 +81,7 @@ INSERT INTO dev.rating (userID, rating) VALUES
 INSERT INTO dev.trade_request 
 (requester_userID1, notified_userID2, requester_itemArray1, notified_itemArray2, status) 
 VALUES 
-('l15CGtMJ5bSnEkRPpYEgyvVWeLt2', 'mD7ZT6d9P1bcrBsdQNRGqVaI30m2', '{1, 2, 3}', '{4}', NULL);
+('QqJVsgMeiVcF1bW0x9b28sHK9fh2', 'nsisodvqeNOTDCitaseopWjovEJ2', '{1, 2, 3}', '{4}', NULL);
 
 /*
 	Testing inserting data into contact details table
@@ -89,12 +89,12 @@ VALUES
 	Contact details added to all six users
 */
 INSERT INTO dev.contact_details (userID, email, phoneNumber, preferredMethodOfContact) VALUES 
-('l15CGtMJ5bSnEkRPpYEgyvVWeLt2', 'testuser1@test.aa', '6041234567', NULL),
-('mD7ZT6d9P1bcrBsdQNRGqVaI30m2', 'testuser2@test.aa', '6041234567', NULL),
-('Vc8UfAPEQkXR7ebwsAqAlaocWCC2', 'testuser3@test.aa', '6041234567', NULL),
-('ieUNOnM2bFWrQBDanavf5ea6rJm1', 'testuser4@test.aa', '6041234567', NULL),
-('tSMvjt39LyYI8eHHyz8UQ7iVsK32', 'testuser5@test.aa', '6041234567', NULL),
-('fXz3AWKGPIVpDF8s8FsIr4WC9Vl1', 'testuser6@test.aa', '6041234567', NULL);
+('QqJVsgMeiVcF1bW0x9b28sHK9fh2', 'testuser1@test.aa', '6041234567', NULL),
+('nsisodvqeNOTDCitaseopWjovEJ2', 'testuser2@test.aa', '6041234567', NULL),
+('fBzo9P6FJYQRbPq5CZFEsPWqtU23', 'testuser3@test.aa', '6041234567', NULL),
+('IDrpipjIpYOtcpGAaMT8ZWGT0J32', 'testuser4@test.aa', '6041234567', NULL),
+('4WiXU5rgqRWrGZSJXxSkQl3Kpdz1', 'testuser5@test.aa', '6041234567', NULL),
+('rCjzKDG6rjUwjj6I5BepsLbvgPr1', 'testuser6@test.aa', '6041234567', NULL);
 
 /*
 	Testing inserting data into address table
@@ -102,12 +102,12 @@ INSERT INTO dev.contact_details (userID, email, phoneNumber, preferredMethodOfCo
 	Addresses for all six dummy users
 */
 INSERT INTO dev.address (userID, unit, street, city, postalCode) VALUES 
-('l15CGtMJ5bSnEkRPpYEgyvVWeLt2', 'testUnit', 'testStreet', 'Vancouver', 'testPostalCode'),
-('mD7ZT6d9P1bcrBsdQNRGqVaI30m2', 'testUnit', 'testStreet', 'Vancouver', 'testPostalCode'),
-('Vc8UfAPEQkXR7ebwsAqAlaocWCC2', 'testUnit', 'testStreet', 'Vancouver', 'testPostalCode'),
-('ieUNOnM2bFWrQBDanavf5ea6rJm1', 'testUnit', 'testStreet', 'Vancouver', 'testPostalCode'),
-('tSMvjt39LyYI8eHHyz8UQ7iVsK32', 'testUnit', 'testStreet', 'Vancouver', 'testPostalCode'),
-('fXz3AWKGPIVpDF8s8FsIr4WC9Vl1', 'testUnit', 'testStreet', 'Vancouver', 'testPostalCode');
+('QqJVsgMeiVcF1bW0x9b28sHK9fh2', 'testUnit', 'testStreet', 'Vancouver', 'testPostalCode'),
+('nsisodvqeNOTDCitaseopWjovEJ2', 'testUnit', 'testStreet', 'Vancouver', 'testPostalCode'),
+('fBzo9P6FJYQRbPq5CZFEsPWqtU23', 'testUnit', 'testStreet', 'Vancouver', 'testPostalCode'),
+('IDrpipjIpYOtcpGAaMT8ZWGT0J32', 'testUnit', 'testStreet', 'Vancouver', 'testPostalCode'),
+('4WiXU5rgqRWrGZSJXxSkQl3Kpdz1', 'testUnit', 'testStreet', 'Vancouver', 'testPostalCode'),
+('rCjzKDG6rjUwjj6I5BepsLbvgPr1', 'testUnit', 'testStreet', 'Vancouver', 'testPostalCode');
 
 
 
@@ -117,7 +117,7 @@ INSERT INTO dev.address (userID, unit, street, city, postalCode) VALUES
 	User1 and user2
 */
 INSERT INTO dev.swap  (userID1, userID2)
-VALUES  ('l15CGtMJ5bSnEkRPpYEgyvVWeLt2','mD7ZT6d9P1bcrBsdQNRGqVaI30m2');
+VALUES  ('QqJVsgMeiVcF1bW0x9b28sHK9fh2','nsisodvqeNOTDCitaseopWjovEJ2');
 
 /*
 	Testing inserting data into hide table
@@ -128,7 +128,7 @@ VALUES  ('l15CGtMJ5bSnEkRPpYEgyvVWeLt2','mD7ZT6d9P1bcrBsdQNRGqVaI30m2');
 INSERT INTO dev.hide 
 (userID, items) 
 VALUES 
-('l15CGtMJ5bSnEkRPpYEgyvVWeLt2', '{4, 14, 17}'),
-('mD7ZT6d9P1bcrBsdQNRGqVaI30m2', '{10, 11, 12}');
+('QqJVsgMeiVcF1bW0x9b28sHK9fh2', '{4, 14, 17}'),
+('nsisodvqeNOTDCitaseopWjovEJ2', '{10, 11, 12}');
 
 
