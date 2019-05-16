@@ -1,5 +1,5 @@
 import { query } from "../db/dbInit";
-import { insert_item_with_return, get_user_item, display_item } from "../db/sql_library";
+import { insert_item_with_return, get_user_item, get_user_item_data } from "../db/sql_library";
 import { Response } from "express";
 import { TradeItemModel } from "../models/tradeItemModel";
 import { ItemCardInterface } from '../models/ItemCardInterface';
@@ -63,11 +63,12 @@ export function getItemsForUserWithId(response: Response, userId: string) {
 // get items to display on home page for a user with a specific id who is signed in at the current moment
 // if no user is logged in, userId is expected to be null and all items that exist in the database will be returned
 export function getItemsToDisplayForUserWithId(response: Response, userId: string) {
-  query(display_item, [userId], (err, res) => {
+  query(get_user_item_data, [userId], (err, res) => {
     if (err) {
       console.log("Error inside getItemsToDisplayForUserWithId:", err);
       response.send({ error: err.message });
     } else {
+      console.log('\nDatabase response: ', res.rows)
       let itemsToSend: ItemCardInterface[] = [];
       for (let itemRecord of res.rows) {
         itemsToSend.push({
@@ -75,16 +76,17 @@ export function getItemsToDisplayForUserWithId(response: Response, userId: strin
           itemPicturePath: itemRecord.photopaths,
           bookmarked: false, //hardcoded for now, needs another query. Not implemented yet
           userId: itemRecord.userid,
-          userName: 'test user1', //hardcoded for now, needs another query
-          userPicturePath: '/path', //hardcoded for now, needs another query
+          userName: itemRecord.username,
+          userPicturePath: itemRecord.userphotopath,
           userVerified: true, //hardcoded, doesn't exist in db for now. Not implemented yet
-          userRating: 5, //rating of the owner of the item
+          userRating: itemRecord.swapscore,
           title: itemRecord.title,
           size: itemRecord.size,
           category: itemRecord.category,
           description: itemRecord.description
         })
       }
+      console.log('\nitemsToSend: ', itemsToSend)
       response.send(itemsToSend);
     }
   })
