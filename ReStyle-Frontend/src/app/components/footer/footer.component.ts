@@ -26,9 +26,15 @@ export class FooterComponent implements OnInit {
     this.authenticated = (user !== null);
     if (this.authenticated) {
     const userObject = this.userAccountService.getUserData(user);
+    console.log('_______inside of updateAuth_______')
     userObject.subscribe( object => {
       console.log('Inside of userObject.subscribe() the userObject is retrieved.');
       this.userImagePath = `/images/${object.userPhotoPath}`;
+
+      console.log(object)
+      console.log(object.userName)
+      console.log(object.swapScore)
+      console.log(object.userPhotoPath)
     });
     } else {
       this.userImagePath = '/images/defaultAvatar.png';
