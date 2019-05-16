@@ -173,7 +173,7 @@ CREATE TABLE dev.item(
 	gender TEXT
 		CHECK (gender = 'Female' OR gender = 'Male' OR gender = 'Unisex'),
 	size INTEGER
-		CHECK (size > 0 AND size <= 4),
+		CHECK (size >= 0 AND size <= 4),
 	title TEXT,
 	category TEXT,
 	photoPaths TEXT[]
