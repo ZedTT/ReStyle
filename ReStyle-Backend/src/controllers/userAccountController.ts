@@ -1,12 +1,26 @@
 import { query, connect } from '../db/dbInit'
-import { insert_user_with_return, new_user_hide } from '../db/sql_library'
+import { insert_user_with_return, new_user_hide, get_user } from '../db/sql_library'
 import { Response } from 'express';
 
 // Initial swap score is hard coded to five
 const initialSwapScore = 5;
+const defaultProfilePhotoPath = 'defaultAvatar.jpeg'
+
+export function getUser(response: Response, uid: string){
+    query(get_user, [uid], (err, res) => {
+        if (err) {
+            console.log("Error inside get_user query: ", err)
+            response.send({error: err.message})
+        } else {
+            console.log(res)
+            const userRecord = res.rows[0];
+            response.send({swapScore: userRecord.swapScore, userName: userRecord.userName, userPhotoPath: userRecord.userPhotoPath})
+        }
+    })
+}
 
 // insert the new user into db
-// ? Piture path is hardcoded to null for now
+// ? Picture path is hardcoded to defaultProfilePhotoPath until user changes it in Edit Profile (to be implemented later)
 export function insertNewUser(response: Response, uid: string, userName: string) {
 
     connect((err, client, done) => {
@@ -15,7 +29,7 @@ export function insertNewUser(response: Response, uid: string, userName: string)
             done()
             return
         }
-        client.query(insert_user_with_return, [uid, initialSwapScore, userName, null], (error, result) => {
+        client.query(insert_user_with_return, [uid, initialSwapScore, userName, defaultProfilePhotoPath], (error, result) => {
             if (error) {
                 console.log("Query 'insert_user_with_return' error:", error)
                 response.send({ 'error': `User with id: ${uid} already exists.` })
