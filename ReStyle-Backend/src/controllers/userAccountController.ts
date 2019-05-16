@@ -6,15 +6,19 @@ import { Response } from 'express';
 const initialSwapScore = 5;
 const defaultProfilePhotoPath = 'defaultAvatar.png'
 
-export function getUser(response: Response, uid: string){
+export function getUser(response: Response, uid: string) {
     query(get_user, [uid], (err, res) => {
         if (err) {
             console.log("Error inside get_user query: ", err)
-            response.send({error: err.message})
+            response.send({ error: err.message })
         } else {
             console.log(res)
-            const userRecord = res.rows[0];
-            response.send({swapScore: userRecord.swapScore, userName: userRecord.userName, userPhotoPath: userRecord.userPhotoPath})
+            if (res.rows.length == 1) {
+                const userRecord = res.rows[0];
+                response.send({ swapScore: userRecord.swapScore, userName: userRecord.userName, userPhotoPath: userRecord.userPhotoPath })
+            } else (
+                response.send({ error: `User with uid: ${uid} not found` })
+            )
         }
     })
 }
