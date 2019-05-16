@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AddedItemInterface } from '../../models/AddedItemInterface';
 import { AddItemService } from '../../services/add-item.service';
+import { Options } from 'ng5-slider';
 import { firebase } from 'firebaseui-angular';
 
 export interface Category {
@@ -20,6 +21,42 @@ export class AddItemPageComponent implements OnInit {
   sCat: string;
   size: number;
   gender: string;
+  value = 2;
+  options: Options = {
+    showTicksValues: true,
+    stepsArray: [
+      {value: 0, legend: 'XS'},
+      {value: 1, legend: 'S'},
+      {value: 2, legend: 'M'},
+      {value: 3, legend: 'L'},
+      {value: 4, legend: 'XL'},
+    ],
+    showSelectionBar: true,
+    getSelectionBarColor: (value: number): string => {
+      if (value <= 1) {
+          return 'red';
+      }
+      if (value <= 2) {
+          return 'orange';
+      }
+      if (value <= 3) {
+          return 'yellow';
+      }
+      return '#2AE02A';
+    },
+    getPointerColor: (value: number): string => {
+      if (value <= 1) {
+          return 'red';
+      }
+      if (value <= 2) {
+          return 'orange';
+      }
+      if (value <= 3) {
+          return 'yellow';
+      }
+      return '#2AE02A';
+  }
+  };
   cats: Category[] = [
     // { value: '0', viewValue: '-😃--------------'},
     { value: 'Shirt', viewValue: '👕 Shirts' },
@@ -73,8 +110,8 @@ export class AddItemPageComponent implements OnInit {
   }
 
   // Formats the values on the size slider (0 = XS, 1 = S, 2 = M, 3 = L, 4 = XL)
-  formatLabel(value: number | null) { // TODO: use an array for this instead of if statements
-    const sizeArray: string[] = ['XS', 'S', 'M', 'L', 'XL'];
-    return sizeArray[value];
-  }
+  // formatLabel(value: number | null) { // TODO: use an array for this instead of if statements
+  //   const sizeArray: string[] = ['XS', 'S', 'M', 'L', 'XL'];
+  //   return sizeArray[value];
+  // }
 }
