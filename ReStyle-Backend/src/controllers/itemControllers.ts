@@ -75,11 +75,11 @@ export function getItemsToDisplayForUserWithId(response: Response, userId: strin
         itemsToSend.push({
           itemId: itemRecord.itemID,
           itemPicturePath: itemRecord.photoPaths,
-          bookmarked: false, //hardcoded for now, needs another query
+          bookmarked: false, //hardcoded for now, needs another query. Not implemented yet
           userId: itemRecord.userID,
           userName: 'test user1', //hardcoded for now, needs another query
           userPicturePath: '/path', //hardcoded for now, needs another query
-          userVerified: true, //hardcoded, doesn't exist in db for now
+          userVerified: true, //hardcoded, doesn't exist in db for now. Not implemented yet
           userRating: 5, //rating of the owner of the item
           title: itemRecord.title,
           size: itemRecord.size,
