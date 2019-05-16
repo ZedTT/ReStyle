@@ -107,8 +107,8 @@ export class AddItemPageComponent implements OnInit {
 
     const newItem: AddedItemInterface = {
       ownerId : uid,
-      title: this.title,
-      description: this.description,
+      title: this.title.trim(),
+      description: this.description.trim(),
       gender : this.gender,
       size: this.sSize,
       category : this.sCat,

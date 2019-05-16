@@ -21,10 +21,12 @@
         <div class="card">
           <form class="example-form">
               <mat-form-field class="example-full-width">
-                <input matInput id="title" placeholder="Title" value="" name="title" [(ngModel)]="title" maxlength="50" required>
+                <input matInput id="title" placeholder="Title" value="" name="title" [(ngModel)]="title" pattern="[A-Za-z0-9]{3,40}"
+                required>
               </mat-form-field>        
               <mat-form-field class="example-full-width">
-                <textarea matInput id="description" placeholder="Description" value="" name="description" [(ngModel)]="description" maxlength="150" required></textarea>
+                <textarea matInput id="description" placeholder="Description" value="" name="description" [(ngModel)]="description" pattern="[A-Za-z0-9]{12,140}"
+                required></textarea>
               </mat-form-field>
           </form>
         </div>
@@ -80,13 +82,12 @@
             <div>
               test
             </div>
-          </div> -->
-    
-        <div class="card">
-          <input type="submit" value="Submit" class="button submit">
-        </div>
-        
+          </div> -->      
     </form>
+
+    <div class="card">
+      <input type="submit" form="addItemContainer" value="Submit" class="button submit">
+    </div>
     
   </div>
 </div>

@@ -9,6 +9,8 @@ import { firebase } from 'firebaseui-angular';
 })
 export class FooterComponent implements OnInit {
   easterEggEnabled: boolean;
+  authenticated: boolean;
+  userImagePath: string;
 
   constructor(private userAccountService: UserAccountService) {
     this.easterEggEnabled = false;
@@ -20,13 +22,24 @@ export class FooterComponent implements OnInit {
     this.setClasses();
   }
 
-  // getProfileImage() {
-  //   firebase.auth().onAuthStateChanged( (updatedUser) => {
-  //     const userObject = this.userAccountService.getUserData(updatedUser);
-  //    })
-  //   return userObject.userPhotoPath;
+  updateAuth(user) {
+    this.authenticated = (user !== null);
+    if (this.authenticated) {
+    const userObject = this.userAccountService.getUserData(user);
+    console.log('_______inside of updateAuth_______')
+    userObject.subscribe( object => {
+      console.log('Inside of userObject.subscribe() the userObject is retrieved.');
+      this.userImagePath = `/images/${object.userPhotoPath}`;
 
-  // }
+      console.log(object)
+      console.log(object.userName)
+      console.log(object.swapScore)
+      console.log(object.userPhotoPath)
+    });
+    } else {
+      this.userImagePath = '/images/defaultAvatar.png';
+    }
+  }
 
   setClasses() {
     const classes = {
