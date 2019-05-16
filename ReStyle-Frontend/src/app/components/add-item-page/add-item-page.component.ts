@@ -69,19 +69,7 @@ export class AddItemPageComponent implements OnInit {
 
   // Formats the values on the size slider (0 = XS, 1 = S, 2 = M, 3 = L, 4 = XL)
   formatLabel(value: number | null) { // TODO: use an array for this instead of if statements
-    if (value === 0) {
-      return 'XS';
-    }
-    if (value === 1) {
-      return 'S';
-    }
-    if (value === 2) {
-      return 'M';
-    }
-    if (value === 3) {
-      return 'L';
-    } else {
-      return 'XL';
-    }
+    const sizeArray: string[] = ['XS', 'S', 'M', 'L', 'XL'];
+    return sizeArray[value];
   }
 }

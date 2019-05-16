@@ -1,13 +1,18 @@
-#addItemContainer
-  margin: 65px 0
-  height: 100vh
+.pageTitle
+  margin: 50px 0
+  width: 100%
+
+.parentDiv
+  margin: 110px 0
+  height: 70vh
+  overflow: auto
 
 #uploadButton
   width: 100%
 
 h5
   text-align: center
-  margin: 20px 0
+  margin: 10px 0
 
 #imgupload, mat-form-field
   display: flex
@@ -56,3 +61,14 @@ mat-slider
 
 .required input:after
   content: "*"
+
+::ng-deep
+  .mat-slider-thumb-label
+    transform: rotate(45deg) !important
+    border-radius: 50% 50% 0 !important
+
+  .mat-slider-thumb
+    transform: scale(0) !important
+
+  .mat-slider-thumb-label-text
+    opacity: 1 !important
