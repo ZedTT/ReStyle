@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserAccountService } from '../../services/user-account.service';
+import { firebase } from 'firebaseui-angular';
 
 @Component({
   selector: 'app-footer',
@@ -8,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 export class FooterComponent implements OnInit {
   easterEggEnabled: boolean;
 
-  constructor() {
+  constructor(private userAccountService: UserAccountService) {
     this.easterEggEnabled = false;
-   }
+    
+    firebase.auth().onAuthStateChanged( user => {
+      const userObject = this.userAccountService.getCurrentUserData();
+    })
+  }
 
   ngOnInit() {
     this.setClasses();
@@ -31,3 +37,4 @@ export class FooterComponent implements OnInit {
   }
 
 }
+

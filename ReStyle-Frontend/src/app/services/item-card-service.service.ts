@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { firebase } from 'firebaseui-angular';
+
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +23,10 @@ export class ItemCardServiceService {
    * * .subscribe(val => {console.log(val)});
    * @returns an observable that, when subscribed to, returns an array of ItemCard objects missing pass and trade attributes
    */
-  getItems(): Observable<any> {
-    const res = this.http.get<any>('/api/items'); // TODO: Send UID
+  getItems(user): Observable<any> {
+    // const user = firebase.auth().currentUser;
+    console.log('getItems() is called with user object: ', user);
+    const res = this.http.get<any>(`/api/items?uid=${(user) ? user.uid : null}`); // TODO: Send UID
     return res;
   }
 }

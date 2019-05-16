@@ -13,6 +13,9 @@ const userRoutes = (app: Express) => {
             // insert the new user into the DB
             insertNewUser(response, uid, userName)
         })
+        .get((request, response) => {
+            request.query.uid
+        })
 }
 
 export default userRoutes

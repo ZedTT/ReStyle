@@ -1,5 +1,5 @@
 import { Express } from "express";
-import { insertItemForUserWithId } from "../controllers/itemControllers";
+import { insertItemForUserWithId, getItemsToDisplay } from "../controllers/itemControllers";
 import { TradeItemModel } from "../models/tradeItemModel";
 // ? https://www.npmjs.com/package/multer
 import multer from 'multer';
@@ -58,6 +58,8 @@ const itemRoutes = (app: Express) => {
 
     })
     .get((request, response) => { // TODO: Replace with queries to the database
+      console.log("UID parameter sent from frontend: ", request.query.uid)
+      getItemsToDisplay(response, request.query.uid)
       const itemsToSend: ItemCardInterface[] = [
         {
           itemId: 'i',

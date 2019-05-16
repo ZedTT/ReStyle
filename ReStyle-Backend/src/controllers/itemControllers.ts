@@ -1,5 +1,5 @@
 import { query } from "../db/dbInit";
-import { insert_item_with_return, get_user_item } from "../db/sql_library";
+import { insert_item_with_return, get_user_item, display_item } from "../db/sql_library";
 import { Response } from "express";
 import { TradeItemModel } from "../models/tradeItemModel";
 
@@ -57,4 +57,15 @@ export function getItemsForUserWithId(response: Response, userId: string) {
       response.send({ result: res.rows });
     }
   });
+}
+
+export function getItemsToDisplay(response: Response, userId: string){
+  query(display_item, [userId], (err, res) => {
+    if (err) {
+      console.log("Error:", err);
+    } else {
+      console.log("Inside getItemsToDisplay", res.rows);
+      response.send({ result: res.rows });
+    }
+  })
 }
