@@ -73,6 +73,7 @@ export const get_user_rating =
 	userID character(28)
 
 	Example:
+	[userID]
 	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2']
 */
 export const get_user_item_data =
@@ -80,7 +81,7 @@ export const get_user_item_data =
 "FROM dev.item AS i " +
 "INNER JOIN dev.restyle_user AS u " +
 "ON i.userID = u.userID " +
-"WHERE i.userID != QqJVsgMeiVcF1bW0x9b28sHK9fh2 " +
+"WHERE i.userID != $1 " +
 "AND i.swapID IS NULL "
 
 /*
