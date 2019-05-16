@@ -54,7 +54,7 @@ export class ItemCardComponent implements OnInit {
   }
 
   getImage() {
-    return {'background-image': `url(/images/${this.item.itemPicturePath[0]})`};
+    return { 'background-image': `url(/images/${this.item.itemPicturePath[0]})` };
   }
 
   /**
@@ -73,8 +73,8 @@ export class ItemCardComponent implements OnInit {
     console.log(this.userAccountService.postUserData(uid, userName));
 
     this.userAccountService.postUserData(uid, userName).subscribe(res => {
-       console.log(res);
-     });
+      console.log(res);
+    });
   }
 
   /**

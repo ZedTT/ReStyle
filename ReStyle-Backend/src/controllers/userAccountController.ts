@@ -12,9 +12,10 @@ export function getUser(response: Response, uid: string){
             console.log("Error inside get_user query: ", err)
             response.send({error: err.message})
         } else {
-            console.log(res)
+            console.log("userAccountController.ts line 15")
+            console.log(res.rows[0]);
             const userRecord = res.rows[0];
-            response.send({swapScore: userRecord.swapScore, userName: userRecord.userName, userPhotoPath: userRecord.userPhotoPath})
+            response.send({swapScore: userRecord.swapScore, userName: userRecord.userName, userPhotoPath: userRecord.userphotopath})
         }
     })
 }
