@@ -68,7 +68,6 @@ export function getItemsToDisplayForUserWithId(response: Response, userId: strin
       console.log("Error inside getItemsToDisplayForUserWithId:", err);
       response.send({ error: err.message });
     } else {
-      console.log("Inside getItemsToDisplayForUserWithId", res.rows);
 
       let itemsToSend: ItemCardInterface[] = [];
       for (let itemRecord of res.rows) {

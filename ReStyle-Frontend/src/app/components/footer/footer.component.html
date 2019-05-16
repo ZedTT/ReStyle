@@ -3,13 +3,13 @@
     <a href="./">🏠</a>
   </div>
   <div>
-    <a href="./additem">➕</a>
+    <a *ngIf="authenticated" href="./additem">➕</a>
   </div>
   <div>
     <a href="#filter">🔻</a>
   </div>
   <div>
-    <a href="./profile">🙍🏻</a>
-    <!-- <img [src]="getProfileImage()"> -->
+    <!-- <a href="./profile">🙍🏻</a> -->
+    <img src="{{ userImagePath }}">
   </div>
 </div>
