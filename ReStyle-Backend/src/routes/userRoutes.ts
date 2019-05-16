@@ -1,5 +1,5 @@
 import { Express } from 'express';
-import { insertNewUser } from '../controllers/userAccountController';
+import { insertNewUser, getUser } from '../controllers/userAccountController';
 
 const userRoutes = (app: Express) => {
     
@@ -12,6 +12,9 @@ const userRoutes = (app: Express) => {
 
             // insert the new user into the DB
             insertNewUser(response, uid, userName)
+        })
+        .get((request, response) => {
+            getUser(response, request.query.uid)
         })
 }
 
