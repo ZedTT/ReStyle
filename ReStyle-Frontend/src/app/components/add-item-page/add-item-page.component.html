@@ -32,7 +32,7 @@
         <!-- Drop down selector for category -->
         <div class="card">
           <mat-form-field>
-              <mat-select placeholder="Select Category" [(ngModel)]="sCat" name="item" required>
+              <mat-select placeholder="Select Category" [(ngModel)]="sCat" name="category" required>
                   <mat-option *ngFor="let cat of cats" [value]="cat.value">
                       {{ cat.viewValue }}
                   </mat-option>
@@ -49,8 +49,18 @@
           </mat-button-toggle-group>
         </div>
     
-        <div id="sizeSlider" class="card">
-          <ng5-slider [(value)]="value" [options]="options" style="margin-bottom: 2.5rem;"></ng5-slider>
+        <!-- Drop down selector for item size -->
+        <div id="sizeDropdown" class="card">
+          <mat-form-field>
+            <mat-select placeholder="Select a Size" [(ngModel)]="sSize" name="itemSize" required>
+              <mat-option *ngFor="let size of sizes" [value]="size.value">
+                  {{ size.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+          <!-- <ng5-slider [(value)]="value" [options]="options" style="margin-bottom: 2.5rem;"></ng5-slider> -->
           <!-- <div id="sliderSpan">
             <div id="sliderLabels">
               <span class="labeltxt">XS</span>
@@ -71,7 +81,6 @@
               test
             </div>
           </div> -->
-        </div>
     
         <div class="card">
           <input type="submit" value="Submit" class="button submit">

@@ -8,6 +8,10 @@ export interface Category {
   value: string;
   viewValue: string;
 }
+export interface Sizes {
+  value: number;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-add-item-page',
@@ -19,51 +23,59 @@ export class AddItemPageComponent implements OnInit {
   title: string;
   description: string;
   sCat: string;
-  size: number;
+  sSize: number;
   gender: string;
-  value = 2;
-  options: Options = {
-    showTicksValues: true,
-    stepsArray: [
-      {value: 0, legend: 'XS'},
-      {value: 1, legend: 'S'},
-      {value: 2, legend: 'M'},
-      {value: 3, legend: 'L'},
-      {value: 4, legend: 'XL'},
-    ],
-    showSelectionBar: true,
-    getSelectionBarColor: (value: number): string => {
-      if (value <= 1) {
-          return 'red';
-      }
-      if (value <= 2) {
-          return 'orange';
-      }
-      if (value <= 3) {
-          return 'yellow';
-      }
-      return '#2AE02A';
-    },
-    getPointerColor: (value: number): string => {
-      if (value <= 1) {
-          return 'red';
-      }
-      if (value <= 2) {
-          return 'orange';
-      }
-      if (value <= 3) {
-          return 'yellow';
-      }
-      return '#2AE02A';
-  }
-  };
+  // value = 2;
+  // options: Options = {
+  //   showTicksValues: true,
+  //   stepsArray: [
+  //     {value: 0, legend: 'XS'},
+  //     {value: 1, legend: 'S'},
+  //     {value: 2, legend: 'M'},
+  //     {value: 3, legend: 'L'},
+  //     {value: 4, legend: 'XL'},
+  //   ],
+  //   showSelectionBar: true,
+  //   getSelectionBarColor: (value: number): string => {
+  //     if (value <= 1) {
+  //         return 'red';
+  //     }
+  //     if (value <= 2) {
+  //         return 'orange';
+  //     }
+  //     if (value <= 3) {
+  //         return 'yellow';
+  //     }
+  //     return '#2AE02A';
+  //   },
+  //   getPointerColor: (value: number): string => {
+  //     if (value <= 1) {
+  //         return 'red';
+  //     }
+  //     if (value <= 2) {
+  //         return 'orange';
+  //     }
+  //     if (value <= 3) {
+  //         return 'yellow';
+  //     }
+  //     return '#2AE02A';
+  // }
+  // };
   cats: Category[] = [
-    // { value: '0', viewValue: '-😃--------------'},
     { value: 'Shirt', viewValue: '👕 Shirts' },
     { value: 'Pants', viewValue: '👖 Pants' },
+    { value: 'Dresses', viewValue: '👗 Dress' },
+    { value: 'Skirts', viewValue: '🩳 Skirt' },
     { value: 'Outerwear', viewValue: '🧥 Outerwear' },
     { value: 'Accessories', viewValue: '👜 Accessories' },
     { value: 'Miscellaneous', viewValue: '➕ Miscellaneous' }
+  ];
+  sizes: Sizes[] = [
+    { value: 0, viewValue: 'XS' },
+    { value: 1, viewValue: 'S' },
+    { value: 2, viewValue: 'M' },
+    { value: 3, viewValue: 'L' },
+    { value: 4, viewValue: 'XL' }
   ];
   fileName = 'No file selected';
 
@@ -98,7 +110,7 @@ export class AddItemPageComponent implements OnInit {
       title: this.title,
       description: this.description,
       gender : this.gender,
-      size: 1, // TODO not hardcoded
+      size: this.sSize,
       category : this.sCat,
       photos : [this.selectedFile]
     };
