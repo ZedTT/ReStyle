@@ -68,14 +68,13 @@ export function getItemsToDisplayForUserWithId(response: Response, userId: strin
       console.log("Error inside getItemsToDisplayForUserWithId:", err);
       response.send({ error: err.message });
     } else {
-
       let itemsToSend: ItemCardInterface[] = [];
       for (let itemRecord of res.rows) {
         itemsToSend.push({
-          itemId: itemRecord.itemID,
+          itemId: itemRecord.itemid,
           itemPicturePath: itemRecord.photopaths,
           bookmarked: false, //hardcoded for now, needs another query. Not implemented yet
-          userId: itemRecord.userID,
+          userId: itemRecord.userid,
           userName: 'test user1', //hardcoded for now, needs another query
           userPicturePath: '/path', //hardcoded for now, needs another query
           userVerified: true, //hardcoded, doesn't exist in db for now. Not implemented yet
