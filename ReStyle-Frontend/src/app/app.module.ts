@@ -25,6 +25,7 @@ import {FileUploadModule} from 'primeng/fileupload';
 import { NgbdCarouselComponent } from './components/ngbd-carousel/ngbd-carousel.component';
 import { TradePageComponent } from './components/trade-page/trade-page.component';
 import { ContainerComponent } from './components/container/container.component';
+import { Ng5SliderModule } from 'ng5-slider';
 
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
@@ -96,7 +97,8 @@ firebase.initializeApp(environment.firebase);
     MatSliderModule,
     MatButtonToggleModule,
     FileUploadModule,
-    MatDividerModule
+    MatDividerModule,
+    Ng5SliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
