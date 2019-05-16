@@ -12,7 +12,6 @@ export function getUser(response: Response, uid: string) {
             console.log("Error inside get_user query: ", err)
             response.send({ error: err.message })
         } else {
-            console.log(res)
             if (res.rows.length == 1) {
                 const userRecord = res.rows[0];
                 response.send({ swapScore: userRecord.swapScore, userName: userRecord.userName, userPhotoPath: userRecord.userPhotoPath })
