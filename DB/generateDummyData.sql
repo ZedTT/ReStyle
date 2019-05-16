@@ -11,12 +11,12 @@
 
 */
 INSERT INTO dev.restyle_user VALUES 
-('l15CGtMJ5bSnEkRPpYEgyvVWeLt2', 4.8, 'testUser1', NULL),
-('mD7ZT6d9P1bcrBsdQNRGqVaI30m2', 4.2, 'testUser2', NULL),
-('Vc8UfAPEQkXR7ebwsAqAlaocWCC2', 2.2, 'testUser3', NULL),
-('ieUNOnM2bFWrQBDanavf5ea6rJm1', 1.2, 'testUser4', NULL),
-('tSMvjt39LyYI8eHHyz8UQ7iVsK32', 3.2, 'testUser5', NULL),
-('fXz3AWKGPIVpDF8s8FsIr4WC9Vl1', 3.5, 'testUser6', NULL);
+('l15CGtMJ5bSnEkRPpYEgyvVWeLt2', 5.0, 'testUser1', NULL),
+('mD7ZT6d9P1bcrBsdQNRGqVaI30m2', 5.0, 'testUser2', NULL),
+('Vc8UfAPEQkXR7ebwsAqAlaocWCC2', 5.0, 'testUser3', NULL),
+('ieUNOnM2bFWrQBDanavf5ea6rJm1', 5.0, 'testUser4', NULL),
+('tSMvjt39LyYI8eHHyz8UQ7iVsK32', 5.0, 'testUser5', NULL),
+('fXz3AWKGPIVpDF8s8FsIr4WC9Vl1', 5.0, 'testUser6', NULL);
 
 
 
@@ -25,28 +25,28 @@ INSERT INTO dev.restyle_user VALUES
 
 	Items assigned to all six users
 */
-INSERT INTO dev.item (userID, swapID , description, gender, size, title, category) 
+INSERT INTO dev.item (userID, swapID , description, gender, size, title, category, photoPaths) 
 VALUES  
-('l15CGtMJ5bSnEkRPpYEgyvVWeLt2',NULL, 'testDescription', 'Female', 1, 'testTitle', 'shirt'),
-('l15CGtMJ5bSnEkRPpYEgyvVWeLt2', NULL ,'testDescription', 'Male', 2, 'testTitle', 'jeans'),
-('l15CGtMJ5bSnEkRPpYEgyvVWeLt2', NULL ,'testDescription', 'Unisex', 3, 'testTitle', 'dress'),
-('mD7ZT6d9P1bcrBsdQNRGqVaI30m2', NULL ,'testDescription', 'Female', 4, 'testTitle', 'skirt'),
-('mD7ZT6d9P1bcrBsdQNRGqVaI30m2', NULL ,'testDescription', 'Male', 1, 'testTitle', 'sweater'),
-('mD7ZT6d9P1bcrBsdQNRGqVaI30m2', NULL ,'testDescription', 'Unisex', 2, 'testTitle', 'shirt'),
-('Vc8UfAPEQkXR7ebwsAqAlaocWCC2', NULL ,'testDescription', 'Female', 3, 'testTitle', 'jeans'),
-('Vc8UfAPEQkXR7ebwsAqAlaocWCC2', NULL ,'testDescription', 'Male', 4, 'testTitle', 'dress'),
-('Vc8UfAPEQkXR7ebwsAqAlaocWCC2', NULL ,'testDescription', 'Unisex', 1, 'testTitle', 'skirt'),
-('ieUNOnM2bFWrQBDanavf5ea6rJm1', NULL ,'testDescription', 'Female', 1, 'testTitle', 'sweater'),
-('ieUNOnM2bFWrQBDanavf5ea6rJm1', NULL ,'testDescription', 'Male', 1, 'testTitle', 'shirt'),
-('ieUNOnM2bFWrQBDanavf5ea6rJm1', NULL ,'testDescription', 'Unisex', 4, 'testTitle', 'jeans'),
-('tSMvjt39LyYI8eHHyz8UQ7iVsK32', NULL ,'testDescription', 'Female', 1, 'testTitle', 'dress'),
-('tSMvjt39LyYI8eHHyz8UQ7iVsK32', NULL ,'testDescription', 'Male', 1, 'testTitle', 'skirt'),
-('tSMvjt39LyYI8eHHyz8UQ7iVsK32', NULL ,'testDescription', 'Unisex', 1, 'testTitle', 'sweater'),
-('fXz3AWKGPIVpDF8s8FsIr4WC9Vl1', NULL ,'testDescription', 'Female', 4, 'testTitle', 'shirt'),
-('fXz3AWKGPIVpDF8s8FsIr4WC9Vl1', NULL ,'testDescription', 'Male', 1, 'testTitle', 'jeans'),
-('fXz3AWKGPIVpDF8s8FsIr4WC9Vl1', NULL ,'testDescription', 'Unisex', 2, 'testTitle', 'dress'),
-('fXz3AWKGPIVpDF8s8FsIr4WC9Vl1', NULL ,'testDescription', 'Female', 3, 'testTitle', 'skirt'),
-('fXz3AWKGPIVpDF8s8FsIr4WC9Vl1', NULL ,'testDescription', 'Male', 4, 'testTitle', 'sweater');
+('l15CGtMJ5bSnEkRPpYEgyvVWeLt2',NULL, 'Female Dress', 'Female', 1, 'Female Dress', 'Dress','{dress_female_03.jpg}'),
+('l15CGtMJ5bSnEkRPpYEgyvVWeLt2', NULL ,'Female Dress', 'Female', 2, 'Female Dress', 'Dress', '{dress_female_04.jpg}'),
+('l15CGtMJ5bSnEkRPpYEgyvVWeLt2', NULL ,'Dress Male', 'Male', 3, 'Dress Male', 'Dress', '{dress_male_01.jpg}'),
+('mD7ZT6d9P1bcrBsdQNRGqVaI30m2', NULL ,'Dress Male', 'Male', 4, 'Dress Male', 'Dress', '{dress_male_02.jpg}'),
+('mD7ZT6d9P1bcrBsdQNRGqVaI30m2', NULL ,'Dress Unisex', 'Unisex', 1, 'Dress Unisex', 'Dress', '{dress_unisex_05.jpg}'),
+('mD7ZT6d9P1bcrBsdQNRGqVaI30m2', NULL ,'Female Jeans', 'Female', 2, 'Female Jeans', 'Pants', '{jeans_female_03.jpg}'),
+('Vc8UfAPEQkXR7ebwsAqAlaocWCC2', NULL ,'Female Jeans', 'Female', 3, 'Female Jeans', 'Pants', '{jeans_female_04.jpg}'),
+('Vc8UfAPEQkXR7ebwsAqAlaocWCC2', NULL ,'Male Jeans', 'Male', 4, 'Male Jeans', 'Pants', '{jeans_male_01jpg}'),
+('Vc8UfAPEQkXR7ebwsAqAlaocWCC2', NULL ,'Male Jeans', 'Male', 1, 'Male Jeans', 'Pants', '{jeans_male_02.jpg}'),
+('ieUNOnM2bFWrQBDanavf5ea6rJm1', NULL ,'Unisex Jeans', 'Unisex', 1, 'Unisex Jeans', 'Pants', '{jeans_unisex_05.jpg}'),
+('ieUNOnM2bFWrQBDanavf5ea6rJm1', NULL ,'Shirt Female', 'Female', 1, 'Shirt Female', 'Shirts', '{shirt_female_03.jpg}'),
+('ieUNOnM2bFWrQBDanavf5ea6rJm1', NULL ,'Shirt Female', 'Female', 4, 'Shirt Female', 'Shirts', '{shirt_female_04.jpg}'),
+('tSMvjt39LyYI8eHHyz8UQ7iVsK32', NULL ,'Shirt Male', 'Male', 1, 'Shirt Male', 'Shirts', '{shirt_male_01.jpg}'),
+('tSMvjt39LyYI8eHHyz8UQ7iVsK32', NULL ,'Shirt Male', 'Male', 1, 'Shirt Male', 'Shirts', '{shirt_male_02.jpg}'),
+('tSMvjt39LyYI8eHHyz8UQ7iVsK32', NULL ,'Dress Unisex', 'Unisex', 1, 'Dress Unisex', 'Dress', '{dress_unisex_05.jpg}'),
+('fXz3AWKGPIVpDF8s8FsIr4WC9Vl1', NULL ,'Skirt Female', 'Female', 4, 'Skirt Female', 'Skirt', '{skirt_female_03.jpg}'),
+('fXz3AWKGPIVpDF8s8FsIr4WC9Vl1', NULL ,'Skirt Female', 'Female', 1, 'Skirt Female', 'Skirt', '{skirt_female_04.jpg}'),
+('fXz3AWKGPIVpDF8s8FsIr4WC9Vl1', NULL ,'Unisex Skirt', 'Unisex', 2, 'Unisex Skirt', 'Skirt', '{skirt_unisex_05.jpg}'),
+('fXz3AWKGPIVpDF8s8FsIr4WC9Vl1', NULL ,'Female Sweater', 'Female', 3, 'Female Sweater', 'Outerwear', '{sweater_female_04.jpg}'),
+('fXz3AWKGPIVpDF8s8FsIr4WC9Vl1', NULL ,'Female Sweater', 'Female', 4, 'Female Sweater', 'Outerwear', '{sweater_female_05.jpg}');
 
 /*
 	Testing inserting data into rating table
