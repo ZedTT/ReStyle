@@ -66,6 +66,25 @@ export const get_user_rating =
 "WHERE userID = $1"
 
 /*
+
+	Get the the data from both the item table 
+	and the user table
+
+	userID character(28)
+
+	Example:
+	[userID]
+	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2']
+*/
+export const get_user_item_data =
+"SELECT i.*, u.swapScore, u.userName, u.userPhotoPath " +
+"FROM dev.item AS i " +
+"INNER JOIN dev.restyle_user AS u " +
+"ON i.userID = u.userID " +
+"WHERE i.userID != $1 " +
+"AND i.swapID IS NULL "
+
+/*
 --------------------------------------------------Item Queries----------------------------------
 */
 
