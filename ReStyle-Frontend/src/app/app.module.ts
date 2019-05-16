@@ -24,6 +24,7 @@ import { MatFormFieldModule, MatRadioModule, MatSelectModule, MatSliderModule,
 import {FileUploadModule} from 'primeng/fileupload';
 import { NgbdCarouselComponent } from './components/ngbd-carousel/ngbd-carousel.component';
 import { TradePageComponent } from './components/trade-page/trade-page.component';
+import { ContainerComponent } from './components/container/container.component';
 
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
@@ -72,7 +73,8 @@ firebase.initializeApp(environment.firebase);
     HomePageComponent,
     LoginCardComponent,
     NgbdCarouselComponent,
-    AddItemPageComponent
+    AddItemPageComponent,
+    ContainerComponent
   ],
   imports: [
     BrowserModule,

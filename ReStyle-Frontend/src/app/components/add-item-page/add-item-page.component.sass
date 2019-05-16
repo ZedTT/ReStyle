@@ -1,11 +1,17 @@
+@import '../../../styles.sass'
+
 .pageTitle
-  margin: 50px 0
+  margin-top: 0 - $after-header-margin
+  position: fixed
   width: 100%
+  z-index: 1
+  height: $sub-header-height
+  background-color: $card-background-color
+  color: white
+  border-bottom: 1px solid white
 
 .parentDiv
-  margin: 110px 0
-  height: 70vh
-  overflow: auto
+  padding-top: $sub-header-height
 
 #uploadButton
   width: 100%
@@ -39,9 +45,19 @@ h5
   margin: 0 auto
   width: 80%
 
+#sliderLabels
+  display: flex
+  justify-content: space-between
+  width: 100%
+
+.labeltxt
+  margin-top: 10px
+  margin-bottom: -10px
+  font-size: 0.7rem
+
 mat-slider
-  margin: 0 auto
-  width: 80%
+  margin: 0 auto 0 auto
+  width: 100%
 
 #genderToggles
   display: flex
@@ -49,8 +65,9 @@ mat-slider
   margin: 0 auto
   width: 80%
 
-.btn-block
-  width: 80%
+.submit
+  border-radius: 10px
+  width: 100%
 
 .card
   width: 80%
@@ -58,14 +75,12 @@ mat-slider
   margin: 10px auto
   padding: 10px
 
-
-.required input:after
-  content: "*"
-
 ::ng-deep
   .mat-slider-thumb-label
     transform: rotate(45deg) !important
     border-radius: 50% 50% 0 !important
+    background-color: $red-color !important
+    
 
   .mat-slider-thumb
     transform: scale(0) !important
