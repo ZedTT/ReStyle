@@ -16,6 +16,10 @@ app.use('/images', express.static('./uploads'));
 // ? https://dummyimage.com/800/c9c2ab/4a454a.png&text=ReStyle+Image+not+found
 app.use('/images/*', express.static('./uploads/default.jpeg')); // fallback image
 
+// Path to the fonts
+app.use('/fonts', express.static('./fonts'));
+
+
 /** 
  * Fallback on routes other than '/' because otherwise we get "Cannot get /..." issues.
  * We need to let angular handle the routing
