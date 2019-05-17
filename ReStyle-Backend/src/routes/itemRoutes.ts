@@ -1,6 +1,6 @@
 import { Express } from "express";
 import { insertItemForUserWithId, getItemsToDisplayForUserWithId } from '../controllers/itemControllers';
-import { TradeItemModel } from "../models/tradeItemModel";
+import { AddItemModel } from "../models/AddItemModel";
 // ? https://www.npmjs.com/package/multer
 import multer from 'multer';
 
@@ -46,8 +46,8 @@ const itemRoutes = (app: Express) => {
         // change the size to a number instead of a string
         body.size = parseInt(body.size);
 
-        // create a new TradeItemModel object using the body
-        let item = new TradeItemModel(body);
+        // create a new AddItemModel object using the body
+        let item = new AddItemModel(body);
 
         // insert the new user into the DB
         insertItemForUserWithId(response, item);
