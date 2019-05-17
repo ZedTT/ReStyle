@@ -6,7 +6,8 @@
     "license": "MIT",
     "author": "Team3",
     "scripts": {
-        "start": "node ./ReStyle-Backend/build/server"
+        "start": "node ./ReStyle-Backend/build/server",
+        "startall": "cd ./ReStyle-Frontend/ && ng build && cd ../ReStyle-Backend/ && npm start"
     },
     "dependencies": {
         "@types/pg": "^7.4.14",

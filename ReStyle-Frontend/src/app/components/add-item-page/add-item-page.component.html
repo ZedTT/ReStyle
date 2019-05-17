@@ -1,54 +1,91 @@
-<form id="addItemContainer" class="form" (submit)="onSubmit()">
+<div>
+  <!-- Div containing the page title -->
+  <div class="pageTitle">
     <h5>Add Item</h5>
+  </div>
+  
+  <div class="parentDiv">
+    <form id="addItemContainer" class="form" (submit)="onSubmit()">    
+    
+        <!-- Button to upload image (with label) -->
+        <div id="imgupload" class="card">
+          <input name="photo" type="file" accept="image/*" id="filepick" (change)="onFileSelected($event)" 
+          max-size=32154 style="display: none" #fileinput>
+          <div id ="uploadButton" class="btn btn-outline-primary" (click)="fileinput.click()">Choose Image</div>
+          <br>{{ fileName }}
+          <img [src]="imgURL" height="80" width="80" *ngIf="imgURL">
+        </div>
+    
+        <!-- Form group for adding the title and description -->
+        
+        <div class="card">
+          <mat-form-field class="titleField">
+            <input matInput id="title" placeholder="Title" value="" name="title" [(ngModel)]="title" pattern="[A-Za-z0-9]{3,40}"
+            required>
+          </mat-form-field>        
+          <mat-form-field class="descriptionField">
+            <textarea matInput id="description" placeholder="Description" value="" name="description" [(ngModel)]="description" pattern="[A-Za-z0-9]{12,140}"
+            required></textarea>
+          </mat-form-field>
+        </div>
+        
+        <!-- Drop down selector for category -->
+        <div class="card">
+          <mat-form-field>
+              <mat-select placeholder="Select Category" [(ngModel)]="sCat" name="category" required>
+                  <mat-option *ngFor="let cat of cats" [value]="cat.value">
+                      {{ cat.viewValue }}
+                  </mat-option>
+              </mat-select>
+          </mat-form-field>
+        </div>
+    
+        <!-- Radio buttons for gender of clothing -->
+        <div class="card">
+          <mat-button-toggle-group [(ngModel)]="gender" id="genderToggles" name="fontStyle" aria-label="Font Style">
+            <mat-button-toggle value="Male">Male</mat-button-toggle>
+            <mat-button-toggle value="Female">Female</mat-button-toggle>
+            <mat-button-toggle value="Unisex">Unisex</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+    
+        <!-- Drop down selector for item size -->
+        <div id="sizeDropdown" class="card">
+          <mat-form-field>
+            <mat-select placeholder="Select a Size" [(ngModel)]="sSize" name="itemSize" required>
+              <mat-option *ngFor="let size of sizes" [value]="size.value">
+                  {{ size.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
 
-    <!-- Button to upload image (with label) -->
-    <div id="imgupload">
-      <input name="photo" type="file" accept="image/*" id="filepick" (change)="onFileSelected($event)" style="display: none" #fileinput>
-      <div id ="uploadButton" class="btn btn-outline-primary" (click)="fileinput.click()">Choose Image</div>
-    <br>{{ fileName }}
-    <img [src]="imgURL" height="80" width="80" *ngIf="imgURL">
-    </div>
-
-    <!-- Form group for adding the title and description -->
-    <form class="example-form">
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Title" value="" name="title" [(ngModel)]="title">
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <textarea matInput placeholder="Description" value="" name="description" [(ngModel)]="description"></textarea>
-        </mat-form-field>
+          <!-- <ng5-slider [(value)]="value" [options]="options" style="margin-bottom: 2.5rem;"></ng5-slider> -->
+          <!-- <div id="sliderSpan">
+            <div id="sliderLabels">
+              <span class="labeltxt">XS</span>
+              <span class="labeltxt">S</span>
+              <span class="labeltxt">M</span>
+              <span class="labeltxt">L</span>
+              <span class="labeltxt">XL</span>
+            </div>
+            <mat-slider
+                aria-label="Select a Size"
+                thumbLabel
+                [displayWith]="formatLabel"
+                tickInterval="1"
+                min="0"
+                max="4">
+            </mat-slider>
+            <div>
+              test
+            </div>
+          </div> -->      
     </form>
 
-    <!-- Drop down selector for category -->
-    <mat-form-field>
-        <mat-select placeholder="Select Category" [(ngModel)]="sCat" name="item">
-            <mat-option *ngFor="let cat of cats" [value]="cat.value">
-                {{ cat.viewValue }}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
-
-    <!-- Radio buttons for gender of clothing -->
-    <mat-button-toggle-group id="genderToggles" name="fontStyle" aria-label="Font Style">
-      <mat-button-toggle value="Male">Male</mat-button-toggle>
-      <mat-button-toggle value="Female">Female</mat-button-toggle>
-      <mat-button-toggle value="Unisex">Unisex</mat-button-toggle>
-    </mat-button-toggle-group>
-
-    <div id="sizeSlider">
-        <span class="text-small">XS</span>        
-        <mat-slider
-            thumbLabel
-            [displayWith]="formatLabel"
-            tickInterval="1"
-            min="0"
-            max="4">
-        </mat-slider>
-        <span class="text-small">XL</span>
+    <div class="card">
+      <input type="submit" form="addItemContainer" value="Submit" class="button submit">
     </div>
-
-    <input type="submit" value="Submit" class="btn btn-success btn-block">
-
-    {{ title }} {{ description }} {{ selectedCategory }}
-
-</form>
+    
+  </div>
+</div>

@@ -4,10 +4,7 @@ import { EventEmitter, NgModule, OnInit, Output } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FormsModule } from '@angular/forms';
-import { MatButtonToggleModule, MatFormFieldModule, MatInputModule,
-  MatRadioModule, MatSelectModule, MatSliderModule } from '@angular/material'; // tsLint max line 140
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { firebase, firebaseui, FirebaseUIModule } from 'firebaseui-angular';
 import { environment } from '../environments/environment';
@@ -21,9 +18,14 @@ import { ItemCardStackComponent } from './components/item-card-stack/item-card-s
 import { ItemCardComponent } from './components/item-card/item-card.component';
 import { LoginCardComponent } from './components/login-card/login-card.component';
 import { LoginComponent } from './components/login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatFormFieldModule, MatRadioModule, MatSelectModule, MatSliderModule,
+  MatInputModule, MatButtonToggleModule, MatDividerModule } from '@angular/material'; // tsLint max line 140
+import {FileUploadModule} from 'primeng/fileupload';
 import { NgbdCarouselComponent } from './components/ngbd-carousel/ngbd-carousel.component';
 import { TradePageComponent } from './components/trade-page/trade-page.component';
-import { app } from 'firebase';
+import { ContainerComponent } from './components/container/container.component';
+import { Ng5SliderModule } from 'ng5-slider';
 
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
@@ -72,7 +74,8 @@ firebase.initializeApp(environment.firebase);
     HomePageComponent,
     LoginCardComponent,
     NgbdCarouselComponent,
-    AddItemPageComponent
+    AddItemPageComponent,
+    ContainerComponent
   ],
   imports: [
     BrowserModule,
@@ -92,7 +95,10 @@ firebase.initializeApp(environment.firebase);
     MatRadioModule,
     MatSelectModule,
     MatSliderModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    FileUploadModule,
+    MatDividerModule,
+    Ng5SliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

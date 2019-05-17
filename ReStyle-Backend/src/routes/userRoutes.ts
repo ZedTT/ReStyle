@@ -1,8 +1,8 @@
 import { Express } from 'express';
-import { insertNewUser } from '../controllers/userAccountController';
+import { insertNewUser, getUser } from '../controllers/userAccountController';
 
 const userRoutes = (app: Express) => {
-    
+
     app.route('/api/users')
         // to add a new user to the db
         .post((request, response) => {
@@ -12,6 +12,9 @@ const userRoutes = (app: Express) => {
 
             // insert the new user into the DB
             insertNewUser(response, uid, userName)
+        })
+        .get((request, response) => {
+            getUser(response, request.query.uid)
         })
 }
 

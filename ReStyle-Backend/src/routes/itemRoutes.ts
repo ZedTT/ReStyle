@@ -1,9 +1,8 @@
 import { Express } from "express";
-import { insertItemForUserWithId } from "../controllers/itemControllers";
+import { insertItemForUserWithId, getItemsToDisplayForUserWithId } from '../controllers/itemControllers';
 import { TradeItemModel } from "../models/tradeItemModel";
 // ? https://www.npmjs.com/package/multer
 import multer from 'multer';
-import { ItemCardInterface } from '../models/ItemCardInterface';
 
 const DIR = './uploads/'; // contains images
 
@@ -35,10 +34,10 @@ const itemRoutes = (app: Express) => {
         if (err) {
           // An error occurred when uploading
           console.log(err);
-          return response.status(422).send({"error" : "an Error occured"})
+          return response.status(422).send({ "error": "an Error occured" })
         }
         // No error occured.
-        
+
         // request.body should be of type AddedItemInterface
         let body = request.body
 
@@ -57,38 +56,8 @@ const itemRoutes = (app: Express) => {
 
 
     })
-    .get((request, response) => { // TODO: Replace with queries to the database
-      const itemsToSend: ItemCardInterface[] = [
-        {
-          itemId: 'i',
-          itemPicturePath: ['photo-1557884635385.jpeg'],
-          bookmarked: false,
-          userId: 'u',
-          userName: 'test user1',
-          userPicturePath: '/path',
-          userVerified: true,
-          userRating: 5,
-          title: 'test shirt',
-          size: 3,
-          category: 'shirt',
-          description: 'The server worked! lorem ipsum dolor sit amet',
-        },
-        {
-          itemId: 'j',
-          itemPicturePath: ['photo-1557884635385.jpeg'],
-          bookmarked: true,
-          userId: 'v',
-          userName: 'test user2',
-          userPicturePath: '/path',
-          userVerified: false,
-          userRating: 4,
-          title: 'test pants',
-          size: 2,
-          category: 'pants',
-          description: 'lorem ipsum dolor sit amet',
-        }
-      ]
-      response.send(itemsToSend);
+    .get((request, response) => {
+      getItemsToDisplayForUserWithId(response, request.query.uid);
     });
 
 }

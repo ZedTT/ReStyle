@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ItemCard } from '../../models/ItemCard';
 import { ItemCardServiceService } from '../../services/item-card-service.service';
 import { Router } from '@angular/router';
+import { firebase } from 'firebaseui-angular';
 
 @Component({
   selector: 'app-item-card-stack',
@@ -19,7 +20,17 @@ export class ItemCardStackComponent implements OnInit {
   constructor(private itemCardServiceService: ItemCardServiceService, private router: Router) { }
 
   ngOnInit() {
-    this.itemCardServiceService.getItems().subscribe(temp => {
+    // Call grabItemsFromService once on page load
+    this.grabItemsFromService(null);
+
+    // Set up a listener to call grabItemsFromService again with a new user whenever auth state changes
+    firebase.auth().onAuthStateChanged(updatedUser => { // TODO: Refactor to use onAuthStateChanged from app component
+      this.grabItemsFromService(updatedUser);
+    });
+  }
+
+  grabItemsFromService(user) {
+    this.itemCardServiceService.getItems(user).subscribe(temp => {
       /**
        * Add pass and trade attributes to each item in the array.
        * * These attributes are only used for animations on the front end.

@@ -1,12 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face 
+  font-family: Futura
+  src: url('/images/futura') format(ttf)
+  
+
+
 $red-color: #dc565c;
 $green-color: #009688;
-$header-footer-color: #dc565c;
+$header-footer-color: white;
 $card-background-color: #3c444d;
 $button-active-color: #525d6a;
-$easter-egg-color: #009688;
+$easter-egg-color: #E1E8ED;
+$header-footer-height: 60px;
+$sub-header-height: 40px;
+$after-header-margin: 15px
 
-button
+.button
   display: inline-block
   border: none
   padding: 1rem 2rem
@@ -27,8 +36,6 @@ button
     background: $button-active-color
   &:focus
     background: $button-active-color
-    // outline: 1px solid #fff
-    // outline-offset: -4px
     outline: 1px solid #fff
     outline-offset: -1px
   &:active
@@ -42,8 +49,8 @@ button
     width: 100px
     height: 100px
     /* center the ripple */
-    top: -40%
-    left: 30%
+    top: 50%
+    left: 50%
     animation: ripple 1s
     opacity: 0
   &:focus:not(:active)::after

@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { AddedItemInterface } from '../../models/AddedItemInterface';
 import { AddItemService } from '../../services/add-item.service';
+// import { Options } from 'ng5-slider';
+import { firebase } from 'firebaseui-angular';
 
 export interface Category {
   value: string;
+  viewValue: string;
+}
+export interface Sizes {
+  value: number;
   viewValue: string;
 }
 
@@ -18,9 +23,59 @@ export class AddItemPageComponent implements OnInit {
   title: string;
   description: string;
   sCat: string;
+  sSize: number;
+  gender: string;
+  // value = 2;
+  // options: Options = {
+  //   showTicksValues: true,
+  //   stepsArray: [
+  //     {value: 0, legend: 'XS'},
+  //     {value: 1, legend: 'S'},
+  //     {value: 2, legend: 'M'},
+  //     {value: 3, legend: 'L'},
+  //     {value: 4, legend: 'XL'},
+  //   ],
+  //   showSelectionBar: true,
+  //   getSelectionBarColor: (value: number): string => {
+  //     if (value <= 1) {
+  //         return 'red';
+  //     }
+  //     if (value <= 2) {
+  //         return 'orange';
+  //     }
+  //     if (value <= 3) {
+  //         return 'yellow';
+  //     }
+  //     return '#2AE02A';
+  //   },
+  //   getPointerColor: (value: number): string => {
+  //     if (value <= 1) {
+  //         return 'red';
+  //     }
+  //     if (value <= 2) {
+  //         return 'orange';
+  //     }
+  //     if (value <= 3) {
+  //         return 'yellow';
+  //     }
+  //     return '#2AE02A';
+  // }
+  // };
   cats: Category[] = [
-    { value: 'Shirt', viewValue: 'Shirt' },
-    { value: 'Pants', viewValue: 'Pants' }
+    { value: 'Shirt', viewValue: '👕 Shirts' },
+    { value: 'Pants', viewValue: '👖 Pants' },
+    { value: 'Dresses', viewValue: '👗 Dress' },
+    { value: 'Skirts', viewValue: '🩳 Skirt' },
+    { value: 'Outerwear', viewValue: '🧥 Outerwear' },
+    { value: 'Accessories', viewValue: '👜 Accessories' },
+    { value: 'Miscellaneous', viewValue: '➕ Miscellaneous' }
+  ];
+  sizes: Sizes[] = [
+    { value: 0, viewValue: 'XS' },
+    { value: 1, viewValue: 'S' },
+    { value: 2, viewValue: 'M' },
+    { value: 3, viewValue: 'L' },
+    { value: 4, viewValue: 'XL' }
   ];
   fileName = 'No file selected';
 
@@ -46,13 +101,17 @@ export class AddItemPageComponent implements OnInit {
 
   onSubmit() {
 
+    const uid = firebase.auth().currentUser.uid;
+
+    if (!uid) { return null; }
+
     const newItem: AddedItemInterface = {
-      ownerId : 'l15CGtMJ5bSnEkRPpYEgyvVWeLt2', // TODO: Make sure none of these are hard coded.
-      title: this.title,
-      description: this.description,
-      gender : 'Female',
-      size: 1,
-      category : 'category',
+      ownerId : uid,
+      title: this.title.trim(),
+      description: this.description.trim(),
+      gender : this.gender,
+      size: this.sSize,
+      category : this.sCat,
       photos : [this.selectedFile]
     };
 
@@ -63,20 +122,8 @@ export class AddItemPageComponent implements OnInit {
   }
 
   // Formats the values on the size slider (0 = XS, 1 = S, 2 = M, 3 = L, 4 = XL)
-  formatLabel(value: number | null) { // TODO: use an array for this instead of if statements
-    if (value === 0) {
-      return 'XS';
-    }
-    if (value === 1) {
-      return 'S';
-    }
-    if (value === 2) {
-      return 'M';
-    }
-    if (value === 3) {
-      return 'L';
-    } else {
-      return 'XL';
-    }
-  }
+  // formatLabel(value: number | null) { // TODO: use an array for this instead of if statements
+  //   const sizeArray: string[] = ['XS', 'S', 'M', 'L', 'XL'];
+  //   return sizeArray[value];
+  // }
 }

@@ -1,4 +1,5 @@
 import { Component, ViewChild, EventEmitter, OnInit, Output } from '@angular/core';
+import { firebase } from 'firebaseui-angular'
 import ConfettiGenerator from 'confetti-js';
 
 @Component({
@@ -6,9 +7,18 @@ import ConfettiGenerator from 'confetti-js';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   @ViewChild('footer') footer;
   title = 'ReStyle';
+
+  constructor() {
+  }
+
+  ngOnInit() {
+    firebase.auth().onAuthStateChanged(user => {
+      this.footer.updateAuth(user);
+    });
+  }
 
   easterEggOutput() {
     this.footer.toggleEasterEgg();

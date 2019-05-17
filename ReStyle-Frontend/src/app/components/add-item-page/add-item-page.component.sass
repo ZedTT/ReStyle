@@ -1,28 +1,76 @@
-#addItemContainer
-  margin: 65px 0
+@import '../../../styles.sass'
 
-.btn-outline-primary
-  width: 250px
+.pageTitle
+  margin-top: 0 - $after-header-margin
+  position: fixed
+  width: 100%
+  z-index: 1
+  height: $sub-header-height
+  background-color: $card-background-color
+  color: white
+  border-bottom: 1px solid white
 
-#imgupload
-  border: 2px dashed black
-  padding: 10px
-  height: 130px
+.parentDiv
+  padding-top: $sub-header-height
+
+#uploadButton
+  width: 100%
 
 h5
   text-align: center
-  margin: 20px 0
+  margin: 10px 0
 
-#imgupload, mat-form-field, mat-radio-group, #sizeSlider
-  display: table
+#imgupload, mat-form-field
+  display: flex
   margin: 0 auto
-  width: 250px
+  width: 80%
+
+.mat-form-field
+  width: 80%
+
+.mat-form-field-wrapper
+  position: relative
+  display: flex
+  margin: 0 auto
+
+.mat-radio-group
+  width: 80%
+
+
+#sizeSlider
+  margin: 0 auto
+  width: 80%
+
+#sliderSpan
+  margin: 0 auto
+  width: 80%
+
+#sliderLabels
+  display: flex
+  justify-content: space-between
+  width: 100%
+
+.labeltxt
+  margin-top: 10px
+  margin-bottom: -10px
+  font-size: 0.7rem
+
+mat-slider
+  margin: 0 auto 0 auto
+  width: 100%
 
 #genderToggles
   display: flex
   justify-content: space-evenly
   margin: 0 auto
-  width: 250px
-
-.btn-block
   width: 80%
+
+.submit
+  border-radius: 10px
+  width: 100%
+
+.card
+  width: 80%
+  max-width: 400px
+  margin: 10px auto
+  padding: 10px
