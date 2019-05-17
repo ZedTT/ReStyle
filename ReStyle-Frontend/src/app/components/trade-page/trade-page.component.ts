@@ -9,9 +9,9 @@ import { TradeService } from '../../services/trade.service';
   styleUrls: ['./trade-page.component.sass']
 })
 export class TradePageComponent implements OnInit {
-  queryParams: { you: string, item: string };
+  queryParams: { them: string, item: string };
   itemId: string;
-  youId: string;
+  themId: string;
   thumbnailsMe: TradeItem[];
   thumbnailsThem: TradeItem[];
   columnMe: TradeItem[];
@@ -24,9 +24,9 @@ export class TradePageComponent implements OnInit {
     // We will parse out the query params from the url
     // This will give us { you: "QqJVsgMeiVcF1bW0x9b28sHK9fh2", item: "1" }
     const qParams = this.router.parseUrl(this.router.url).queryParams;
-    this.queryParams = { you: qParams.you, item: qParams.item };
+    this.queryParams = { them: qParams.you, item: qParams.item };
     this.itemId = this.queryParams.item;
-    this.youId = this.queryParams.you;
+    this.themId = this.queryParams.them;
 
     // this.getColumnThem();
   }
@@ -36,7 +36,7 @@ export class TradePageComponent implements OnInit {
   }
 
   getColumnThem() {
-    this.tradeService.getItemsByUser(this.youId).subscribe(temp => {
+    this.tradeService.getItemsByUser(this.themId).subscribe(temp => {
       for (const item of temp) {
         item.selected = false;
       }
