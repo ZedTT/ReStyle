@@ -450,9 +450,9 @@ export const insert_email_contact_details =
 */
 export const user_details =
 "SELECT u.userName, u.userPhotoPath, c.phone, " +
-"c.email, a.postalCode, a.city, c.preferredMethodOfContact" +
+"c.email, a.postalCode, a.city, c.preferredMethodOfContact " +
 "FROM dev.restyle_user AS u " +
-"INNER JOIN dev.contact_deatils AS c " +
+"INNER JOIN dev.contact_details AS c " +
 "ON u.userID = c.userID " +
 "INNER JOIN dev.address AS a " +
 "ON a.userID = u.userID " +
