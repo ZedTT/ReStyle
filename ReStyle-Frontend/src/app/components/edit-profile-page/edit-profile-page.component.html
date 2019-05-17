@@ -1,3 +1,108 @@
-<p>
-  edit-profile-page works!
-</p>
+<div>
+  <!-- Div containing the page title -->
+  <div class="pageTitle">
+    <h5>Edit Profile</h5>
+  </div>
+
+    <div class="parentDiv">
+      <form id="editProfileContainer" class="form" (submit)="onSubmit()">    
+    
+        <!-- Button to upload image (with label) -->
+        <div id="imgreplace" class="card">
+          <input name="photo" type="file" accept="image/*" id="filepick" (change)="onFileSelected($event)" 
+          max-size=32154 style="display: none" #fileinput>
+          <div id ="uploadButton" class="btn btn-outline-primary" (click)="fileinput.click()">Choose Image</div>
+          <br>{{ fileName }}
+          <img [src]="imgURL" height="80" width="80" *ngIf="imgURL">
+        </div>
+    
+        <!-- Form group for adding the title and description -->
+        
+        <div class="card">
+          <div>
+            <form class="contactInfo">
+              <mat-form-field class="">
+                <input matInput id="username" placeholder="User Name" value="" name="User Name" [(ngModel)]="username" pattern="[A-Za-z0-9]{3,20} "
+                required>
+              </mat-form-field>        
+              <mat-form-field class="">
+                <input matInput id="phone" placeholder="Phone Number" value="" name="phone" [(ngModel)]="phone" pattern="[0-9]{10}"
+                required>
+              </mat-form-field>
+              <mat-form-field class="">
+                <input matInput id="city" placeholder="City" value="" name="city" [(ngModel)]="city" pattern="[A-Za-z]{3,20}"
+                required>
+              </mat-form-field>
+          
+                <div class="card">
+                  <mat-button-toggle-group [(ngModel)]="gender" id="genderSelect" name="genderSelect" aria-label="Font Style">
+                    <mat-button-toggle value="Male">Male</mat-button-toggle>
+                    <mat-button-toggle value="Female">Female</mat-button-toggle>
+                    <mat-button-toggle value="Unisex">Other</mat-button-toggle>
+                  </mat-button-toggle-group>
+                </div>
+ 
+            </form>
+          </div>
+        </div>
+        
+        <!-- Drop down selector for category -->
+        <!-- <div class="card">
+          <mat-form-field>
+              <mat-select placeholder="Select Category" [(ngModel)]="sCat" name="category" required>
+                  <mat-option *ngFor="let cat of cats" [value]="cat.value">
+                      {{ cat.viewValue }}
+                  </mat-option>
+              </mat-select>
+          </mat-form-field>
+        </div>
+     -->
+        <!-- Radio buttons for gender of clothing -->
+        <!-- <div class="card">
+          <mat-button-toggle-group [(ngModel)]="gender" id="genderToggles" name="fontStyle" aria-label="Font Style">
+            <mat-button-toggle value="Male">Male</mat-button-toggle>
+            <mat-button-toggle value="Female">Female</mat-button-toggle>
+            <mat-button-toggle value="Unisex">Unisex</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div> -->
+    
+        <!-- Drop down selector for item size -->
+        <!-- <div id="sizeDropdown" class="card">
+          <mat-form-field>
+            <mat-select placeholder="Select a Size" [(ngModel)]="sSize" name="itemSize" required>
+              <mat-option *ngFor="let size of sizes" [value]="size.value">
+                  {{ size.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div> -->
+
+          <!-- <ng5-slider [(value)]="value" [options]="options" style="margin-bottom: 2.5rem;"></ng5-slider> -->
+          <!-- <div id="sliderSpan">
+            <div id="sliderLabels">
+              <span class="labeltxt">XS</span>
+              <span class="labeltxt">S</span>
+              <span class="labeltxt">M</span>
+              <span class="labeltxt">L</span>
+              <span class="labeltxt">XL</span>
+            </div>
+            <mat-slider
+                aria-label="Select a Size"
+                thumbLabel
+                [displayWith]="formatLabel"
+                tickInterval="1"
+                min="0"
+                max="4">
+            </mat-slider>
+            <div>
+              test
+            </div>
+          </div> -->      
+      </form>
+
+    <div class="card">
+      <input type="submit" form="editProfileContainer" value="Submit" class="button submit">
+    </div>
+    
+  </div>
+</div>
