@@ -110,7 +110,7 @@ export const update_user_profile_pic =
 	['newUserName', 'rCjzKDG6rjUwjj6I5BepsLbvgPr1']
 */
 export const update_user_name = 
-"UPDATE dev.restyle_user AS u" +
+"UPDATE dev.restyle_user AS u " +
 "SET u.userName = $1 " +
 "WHERE u.userName = $2 "
 
@@ -408,7 +408,7 @@ export const add_swap_no_return =
 
 */
 export const new_contact_details_no_return =
-"INSERT INTO dev.contact_details  (userID, email, phoneNumber, preferredMethodOfContact)" +
+"INSERT INTO dev.contact_details  (userID, email, phoneNumber, preferredMethodOfContact) " +
 "VALUES ($1, $2, $3, $4) "
 
 /*
@@ -418,8 +418,8 @@ export const new_contact_details_no_return =
 	preferredMethodOfContact text
 	
 	Example:
-	[userID, email, phoneNumber, preferredMethodOfContact]
-	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2', email, phoneNumber, 'Phone'/'Email']
+	[email, phoneNumber, preferredMethodOfContact, userID]
+	[email, phoneNumber, 'Phone'/'Email','l15CGtMJ5bSnEkRPpYEgyvVWeLt2']
 
 */
 export const update_contact_details_with_return =
@@ -438,7 +438,7 @@ export const update_contact_details_with_return =
 	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2', 'email']
 */
 export const insert_email_contact_details = 
-"INSERT INTO dev.contact_details (userID, email)" +
+"INSERT INTO dev.contact_details (userID, email) " +
 "VALUES ($1, $2) "
 
 
