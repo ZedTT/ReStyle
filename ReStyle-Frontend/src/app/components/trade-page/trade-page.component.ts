@@ -10,12 +10,12 @@ import { TradeService } from '../../services/trade.service';
 })
 export class TradePageComponent implements OnInit {
   queryParams: { them: string, item: string };
-  itemId: string;
-  themId: string;
-  thumbnailsMe: TradeItem[];
-  thumbnailsThem: TradeItem[];
-  columnMe: TradeItem[];
-  columnThem: TradeItem[];
+  itemId: string; // the id of the item whose 'trade' button was clicked
+  themId: string; // the id of the user with whom a trade was initialized
+  thumbnailsMe: TradeItem[]; // the list of items that belong to the requester that are currently selected for trading
+  thumbnailsThem: TradeItem[]; // the list of items that belong to the notified user that are currently selected for trading
+  columnMe: TradeItem[]; // the list of items that belong to the user who initialized a trade
+  columnThem: TradeItem[]; // the list of items that belong to the user with whom a trade was initialized
 
   constructor(private router: Router, private tradeService: TradeService) { }
 
