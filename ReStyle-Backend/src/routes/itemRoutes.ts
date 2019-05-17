@@ -1,5 +1,5 @@
 import { Express } from "express";
-import { insertItemForUserWithId, getItemsToDisplayForUserWithId } from '../controllers/itemControllers';
+import { insertItemForUserWithId, getItemsToDisplayForUserWithId, getTradeItemsForTheUserWithId } from '../controllers/itemControllers';
 import { AddItemModel } from "../models/AddItemModel";
 // ? https://www.npmjs.com/package/multer
 import multer from 'multer';
@@ -54,11 +54,15 @@ const itemRoutes = (app: Express) => {
 
       });
 
-
     })
     .get((request, response) => {
       getItemsToDisplayForUserWithId(response, request.query.uid);
     });
 
+  app.route('/api/tradeitems')
+    // to get all items that are owned by a specific user
+    .get((request, response) => {
+      getTradeItemsForTheUserWithId(response, request.query.uid)
+    })
 }
 export default itemRoutes;
