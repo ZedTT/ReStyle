@@ -20,6 +20,7 @@ import { LoginCardComponent } from './components/login-card/login-card.component
 import { LoginComponent } from './components/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule, MatRadioModule, MatSelectModule, MatSliderModule,
+// tslint:disable-next-line: max-line-length
   MatInputModule, MatButtonToggleModule, MatDividerModule, MatSlideToggleModule } from '@angular/material'; // tsLint max line 140
 import {FileUploadModule} from 'primeng/fileupload';
 import { NgbdCarouselComponent } from './components/ngbd-carousel/ngbd-carousel.component';
@@ -103,7 +104,7 @@ firebase.initializeApp(environment.firebase);
     MatDividerModule,
     MatSlideToggleModule,
     Ng5SliderModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
