@@ -93,7 +93,7 @@ export function getItemsToDisplayForUserWithId(response: Response, userId: strin
 }
 
 // to get all items that are owned by a specific user and are eligible for trading
-export function getTradeItemsForTheUserWithId(response: Response, userId: string){
+export function getTradeItemsForTheUserWithId(response: Response, userId: string) {
   query(get_user_items_to_trade, [userId], (err, res) => {
     if (err) {
       console.log("Error inside getTradeItemsForTheUserWithId:", err);

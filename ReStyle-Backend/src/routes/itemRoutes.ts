@@ -54,13 +54,12 @@ const itemRoutes = (app: Express) => {
 
       });
 
-
     })
     .get((request, response) => {
       getItemsToDisplayForUserWithId(response, request.query.uid);
     });
 
-    app.route('/api/tradeitems')
+  app.route('/api/tradeitems')
     // to get all items that are owned by a specific user
     .get((request, response) => {
       getTradeItemsForTheUserWithId(response, request.query.uid)
