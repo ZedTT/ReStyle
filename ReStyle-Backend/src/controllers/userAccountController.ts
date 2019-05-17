@@ -1,6 +1,7 @@
 import { query, connect } from '../db/dbInit'
-import { insert_user_with_return, new_user_hide, get_user } from '../db/sql_library'
+import { insert_user_with_return, new_user_hide, get_user, insert_email_contact_details, user_details } from '../db/sql_library'
 import { Response } from 'express';
+import { UserDetailsInterface } from '../models/UserDetailsInterface';
 
 // Initial swap score is hard coded to five
 const initialSwapScore = 5;
@@ -24,7 +25,7 @@ export function getUser(response: Response, uid: string) {
 
 // insert the new user into db
 // ? Picture path is hardcoded to defaultProfilePhotoPath until user changes it in Edit Profile (to be implemented later)
-export function insertNewUser(response: Response, uid: string, userName: string) {
+export function insertNewUser(response: Response, uid: string, userName: string, email: string) {
 
     connect((err, client, done) => {
         if (err) {
@@ -42,12 +43,18 @@ export function insertNewUser(response: Response, uid: string, userName: string)
                         if (error) {
                             done()
                         } else {
-                            response.send(
-                                {
-                                    'message':
-                                        `New user with id: ${uid} and empty hide array for that user were added.`
-                                })
-                            done()
+                            client.query(insert_email_contact_details, [uid, email], (error, result) => { // add user email
+                                if (error) {
+                                    done();
+                                } else {
+                                    response.send(
+                                        {
+                                            'message':
+                                                `New user with id: ${uid} and empty hide array for that user were added.`
+                                        })
+                                    done()
+                                }
+                            })
                         }
                     })
                 } else {
@@ -55,5 +62,34 @@ export function insertNewUser(response: Response, uid: string, userName: string)
                 }
             }
         })
+    })
+}
+
+export function updateUserDetails(response: Response, userDetails:UserDetailsInterface) {
+
+}
+
+export function getUserDetails(response: Response, uid: string) {
+    query(user_details, [uid], (error, result) => {
+        if (error) {
+            console.log("Error inside getUserDetails query: ", error)
+            response.send({ error: error.message })
+        } else {
+            if (result.rows.length == 1) {
+                const userRecord = result.rows[0];
+                const userDetailsToSend: UserDetailsInterface = {
+                    displayname: userRecord.username,
+                    phone: userRecord.phonenumber,
+                    email: userRecord.email,
+                    postalcode: userRecord.postalcode,
+                    city: userRecord.city,
+                    preferredContact: userRecord.preferredmethodofcontact,
+                    profilePic: userRecord.userphotopath
+                }
+                response.send(userDetailsToSend)
+            } else (
+                response.send({ error: `User with uid: ${uid} not found` })
+            )
+        }
     })
 }
