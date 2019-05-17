@@ -99,7 +99,7 @@ export function getTradeItemsForTheUserWithId(response: Response, userId: string
       console.log("Error inside getTradeItemsForTheUserWithId:", err);
       response.send({ error: err.message });
     } else {
-      let itemsToSend: any[] = [];
+      let itemsToSend: any[] = []; //TODO: use TradeItemInterface when it is finalized on frontend
       for (let itemRecord of res.rows) {
         itemsToSend.push({
           itemId: itemRecord.itemid,
