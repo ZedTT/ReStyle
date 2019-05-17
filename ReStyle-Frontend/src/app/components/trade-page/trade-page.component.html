@@ -4,7 +4,7 @@
   </p>
   <app-trade-preview #previewMe [thumbnails]="thumbnailsMe"></app-trade-preview>
   <app-trade-preview #previewThem [thumbnails]="thumbnailsThem"></app-trade-preview>
-  <app-trade-column #columnMe [items]="itemsMe"></app-trade-column>
-  <app-trade-column #columnThem [items]="itemsThem"></app-trade-column>
-  <button (click)="getColumnThem()">Get items</button>
+  <app-trade-column #columnMe [items]="columnMeArray"></app-trade-column>
+  <app-trade-column #columnThem [items]="columnThemArray"></app-trade-column>
+  <button (click)="getColumnThem()">Get items</button> <!-- Temporary button -->
 </div>

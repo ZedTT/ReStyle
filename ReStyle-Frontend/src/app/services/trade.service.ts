@@ -15,7 +15,7 @@ export class TradeService {
    * @param user the userID of the user.
    * @returns an observable that, when subscribed to, returns an array of tradeItems
    */
-  getItemsByUser(user: string): Observable<any> {
+  getItemsByUser(user: string): Observable<any> { // TODO: please rename 'user' to 'userId'
     if (!user) { return null; }
     return this.http.get<any>(`/api/tradeitems?uid=${user}`);
   }

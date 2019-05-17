@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { TradeItem } from '../../models/TradeItem';
 import { TradeService } from '../../services/trade.service';
+import { firebase } from 'firebaseui-angular';
 
 @Component({
   selector: 'app-trade-page',
@@ -14,8 +15,8 @@ export class TradePageComponent implements OnInit {
   themId: string; // the id of the user with whom a trade was initialized
   thumbnailsMe: TradeItem[]; // the list of items that belong to the requester that are currently selected for trading
   thumbnailsThem: TradeItem[]; // the list of items that belong to the notified user that are currently selected for trading
-  columnMe: TradeItem[]; // the list of items that belong to the user who initialized a trade
-  columnThem: TradeItem[]; // the list of items that belong to the user with whom a trade was initialized
+  columnMeArray: TradeItem[]; // the list of items that belong to the user who initialized a trade
+  columnThemArray: TradeItem[]; // the list of items that belong to the user with whom a trade was initialized
 
   /**
    * Creates an instance of trade page component.
@@ -34,11 +35,28 @@ export class TradePageComponent implements OnInit {
     this.itemId = this.queryParams.item;
     this.themId = this.queryParams.them;
 
-    // this.getColumnThem();
+    /**
+     * Use firebase to detect uid
+     */
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.getColumnMe(user.uid);
+      }
+    });
+
+    this.getColumnThem();
   }
 
-  getColumnMe() {
-
+  getColumnMe(user) {
+    this.tradeService.getItemsByUser(user).subscribe(temp => {
+      for (const item of temp) {
+        item.selected = false;
+      }
+      this.columnMeArray = temp;
+      console.log('getColumnMe');
+      console.log(user);
+      console.log(this.columnMeArray);
+    });
   }
 
   /**
@@ -50,8 +68,8 @@ export class TradePageComponent implements OnInit {
       for (const item of temp) {
         item.selected = false;
       }
-      this.columnThem = temp;
-      console.log(this.columnThem);
+      this.columnThemArray = temp;
+      console.log(this.columnThemArray);
     });
   }
 
