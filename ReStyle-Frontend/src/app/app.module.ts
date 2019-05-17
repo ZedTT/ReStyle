@@ -28,6 +28,8 @@ import { ContainerComponent } from './components/container/container.component';
 import { Ng5SliderModule } from 'ng5-slider';
 import { TradeColumnComponent } from './components/trade-column/trade-column.component';
 import { TradeItemComponent } from './components/trade-item/trade-item.component';
+import { TradePreviewComponent } from './components/trade-preview/trade-preview.component';
+import { TradePreviewThumbnailComponent } from './components/trade-preview-thumbnail/trade-preview-thumbnail.component';
 
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
@@ -79,7 +81,9 @@ firebase.initializeApp(environment.firebase);
     AddItemPageComponent,
     ContainerComponent,
     TradeColumnComponent,
-    TradeItemComponent
+    TradeItemComponent,
+    TradePreviewComponent,
+    TradePreviewThumbnailComponent
   ],
   imports: [
     BrowserModule,
