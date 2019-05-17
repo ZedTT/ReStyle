@@ -125,6 +125,9 @@ export const insert_item_no_return =
 /*
 	Get item(s) for a specific user based on userID
 	This is for the user viewing their inventory
+	Do not want the user to see items they have already
+	swapped 
+	
 	Example:
 	[userID]
 	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2']
