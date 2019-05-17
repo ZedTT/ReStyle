@@ -1,15 +1,14 @@
 <div [ngClass]="setClasses()">
-  <div>
-    <a href="./">🏠</a>
+  <div [routerLink]="[ '/' ]">
+    <img class="footer-icons" src="assets/icons/home.png">
   </div>
-  <div>
-    <a *ngIf="authenticated" href="./additem">➕</a>
+  <div [routerLink]="[ '/additem' ]" *ngIf="authenticated" >
+    <img class="footer-icons" src="assets/icons/addcircle.png">
   </div>
-  <div>
-    <a href="#filter">🔻</a>
+  <div [routerLink]="[ '/filter' ]">
+    <img class="footer-icons" src="assets/icons/filter.png">
   </div>
-  <div>
-    <!-- <a href="./profile">🙍🏻</a> -->
-    <img src="{{ userImagePath }}">
+  <div [routerLink]="[ '/user' ]">
+    <img class="user-image" src="{{ userImagePath }}">
   </div>
 </div>
