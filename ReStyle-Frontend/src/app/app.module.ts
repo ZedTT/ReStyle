@@ -28,6 +28,7 @@ import { ContainerComponent } from './components/container/container.component';
 import { Ng5SliderModule } from 'ng5-slider';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { TradeRequestsPageComponent } from './components/trade-requests-page/trade-requests-page.component';
+import { AboutUsPageComponent } from './components/about-us-page/about-us-page.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -78,7 +79,8 @@ firebase.initializeApp(environment.firebase);
     AddItemPageComponent,
     ContainerComponent,
     UserProfileComponent,
-    TradeRequestsPageComponent
+    TradeRequestsPageComponent,
+    AboutUsPageComponent
   ],
   imports: [
     BrowserModule,
