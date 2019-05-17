@@ -7,8 +7,7 @@ import { TradeItem } from 'src/app/models/TradeItem';
   styleUrls: ['./trade-column.component.sass']
 })
 export class TradeColumnComponent implements OnInit {
-  @Input() inputItems: TradeItem[]; // for getting the items
-  items: TradeItem[];
+  @Input() items: TradeItem[]; // for getting the items
 
   constructor() { }
 

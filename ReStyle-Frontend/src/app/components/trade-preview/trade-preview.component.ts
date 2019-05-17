@@ -7,8 +7,7 @@ import { TradeItem } from '../../models/TradeItem';
   styleUrls: ['./trade-preview.component.sass']
 })
 export class TradePreviewComponent implements OnInit {
-  @Input() inputThumbnails: TradeItem[]; // for getting the items
-  thumbnails: TradeItem[];
+  @Input() thumbnails: TradeItem[]; // for getting the items
 
   constructor() { }
 

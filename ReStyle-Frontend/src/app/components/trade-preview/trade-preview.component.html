@@ -1,3 +1,9 @@
-<p>
-  trade-preview works!
-</p>
+<div>
+  <p>
+    trade-preview works!
+  </p>
+  <div>
+    User image goes here
+  </div>
+  <app-trade-preview-thumbnail *ngFor="let thumbnail of thumbails" [thumbnail]="thumbnail"></app-trade-preview-thumbnail>
+</div>
