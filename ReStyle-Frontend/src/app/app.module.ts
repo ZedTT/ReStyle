@@ -26,6 +26,7 @@ import { NgbdCarouselComponent } from './components/ngbd-carousel/ngbd-carousel.
 import { TradePageComponent } from './components/trade-page/trade-page.component';
 import { ContainerComponent } from './components/container/container.component';
 import { Ng5SliderModule } from 'ng5-slider';
+import { TradeRequestsPageComponent } from './components/trade-requests-page/trade-requests-page.component';
 
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
@@ -75,7 +76,8 @@ firebase.initializeApp(environment.firebase);
     LoginCardComponent,
     NgbdCarouselComponent,
     AddItemPageComponent,
-    ContainerComponent
+    ContainerComponent,
+    TradeRequestsPageComponent
   ],
   imports: [
     BrowserModule,
