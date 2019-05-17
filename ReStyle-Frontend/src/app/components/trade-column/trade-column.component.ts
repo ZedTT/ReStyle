@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { TradeItem } from 'src/app/models/TradeItem';
 
 @Component({
   selector: 'app-trade-column',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./trade-column.component.sass']
 })
 export class TradeColumnComponent implements OnInit {
+  @Input() inputItems: TradeItem[]; // for getting the items
+  items: TradeItem[];
 
   constructor() { }
 

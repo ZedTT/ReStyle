@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { TradeItem } from '../../models/TradeItem';
 
 @Component({
   selector: 'app-trade-preview',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./trade-preview.component.sass']
 })
 export class TradePreviewComponent implements OnInit {
+  @Input() inputThumbnails: TradeItem[]; // for getting the items
+  thumbnails: TradeItem[];
 
   constructor() { }
 
