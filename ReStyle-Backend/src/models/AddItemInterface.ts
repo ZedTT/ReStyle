@@ -2,7 +2,7 @@
  *
  */
 
-export interface TradeItemInterface {
+export interface AddItemInterface {
     ownerId: string;
     description: string;
     gender: string;

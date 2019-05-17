@@ -1,7 +1,7 @@
 import { query } from "../db/dbInit";
 import { insert_item_with_return, get_user_item, get_user_item_data } from "../db/sql_library";
 import { Response } from "express";
-import { TradeItemModel } from "../models/tradeItemModel";
+import { AddItemModel } from "../models/AddItemModel";
 import { ItemCardInterface } from '../models/ItemCardInterface';
 
 // insert dummy item to the db
@@ -30,7 +30,7 @@ export function dummy_insertItemForUserWithId() {
 // insert an item to the db using the user uid
 export function insertItemForUserWithId(
   response: Response,
-  item: TradeItemModel
+  item: AddItemModel
 ) {
   if (item.getSize() < 0 || item.getSize() > 4) {
     response.send({

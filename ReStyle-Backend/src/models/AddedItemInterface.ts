@@ -1,7 +1,7 @@
 /**
  * An Item that was just added on the front end.
- * Very similar to TradeItemInterface except that the photos array is an array of type any (Used for form data)
- * In TradeItemInterface, the photos array is an array of strings that represent the url to the images
+ * Very similar to AddItemInterface except that the photos array is an array of type any (Used for form data)
+ * In AddItemInterface, the photos array is an array of strings that represent the url to the images
  * ? Used in itemRoutes.ts when getting items from the front end.
  * * There is another model in the front end that is identical to this with the same name
  */
