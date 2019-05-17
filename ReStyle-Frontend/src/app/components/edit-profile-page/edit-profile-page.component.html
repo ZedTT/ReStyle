@@ -26,7 +26,7 @@
                 required>
               </mat-form-field>        
               <mat-form-field class="">
-                <input matInput id="phone" placeholder="Phone Number" value="" name="phone" [(ngModel)]="phone" pattern="[0-9]{10}"
+                <input matInput id="phone" placeholder="Phone Number" value="" name="phone" [(ngModel)]="phone" pattern="[0-9]{10}" mask="(000) 000 - 0000" prefix="+1 " [showMaskTyped] = "false"
                 required>
               </mat-form-field>
               <mat-form-field class="">
@@ -35,7 +35,7 @@
               </mat-form-field>
           
                 <div class="card">
-                  <mat-button-toggle-group [(ngModel)]="gender" id="genderSelect" name="genderSelect" aria-label="Font Style">
+                  <mat-button-toggle-group [(ngModel)]="gender" id="genderSelect" name="genderSelect">
                     <mat-button-toggle value="Male">Male</mat-button-toggle>
                     <mat-button-toggle value="Female">Female</mat-button-toggle>
                     <mat-button-toggle value="Unisex">Other</mat-button-toggle>

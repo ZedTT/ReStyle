@@ -27,6 +27,7 @@ import { TradePageComponent } from './components/trade-page/trade-page.component
 import { ContainerComponent } from './components/container/container.component';
 import { Ng5SliderModule } from 'ng5-slider';
 import { EditProfilePageComponent } from './components/edit-profile-page/edit-profile-page.component';
+import {NgxMaskModule} from 'ngx-mask';
 
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
@@ -101,7 +102,8 @@ firebase.initializeApp(environment.firebase);
     FileUploadModule,
     MatDividerModule,
     MatSlideToggleModule,
-    Ng5SliderModule
+    Ng5SliderModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

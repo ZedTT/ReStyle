@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'trade', component: TradePageComponent },
   { path: 'additem', component: AddItemPageComponent },
   { path: 'login', component: LoginComponent },
-  { path:'editprofile', component: EditProfilePageComponent}
+  { path: 'editprofile', component: EditProfilePageComponent}
 ];
 
 @NgModule({
