@@ -24,7 +24,7 @@ export class ItemCardStackComponent implements OnInit {
     this.grabItemsFromService(null);
 
     // Set up a listener to call grabItemsFromService again with a new user whenever auth state changes
-    firebase.auth().onAuthStateChanged(updatedUser => {
+    firebase.auth().onAuthStateChanged(updatedUser => { // TODO: Refactor to use onAuthStateChanged from app component
       this.grabItemsFromService(updatedUser);
     });
   }

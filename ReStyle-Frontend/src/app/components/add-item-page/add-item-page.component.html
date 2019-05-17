@@ -19,16 +19,14 @@
         <!-- Form group for adding the title and description -->
         
         <div class="card">
-          <form class="example-form">
-              <mat-form-field class="example-full-width">
-                <input matInput id="title" placeholder="Title" value="" name="title" [(ngModel)]="title" pattern="[A-Za-z0-9]{3,40}"
-                required>
-              </mat-form-field>        
-              <mat-form-field class="example-full-width">
-                <textarea matInput id="description" placeholder="Description" value="" name="description" [(ngModel)]="description" pattern="[A-Za-z0-9]{12,140}"
-                required></textarea>
-              </mat-form-field>
-          </form>
+          <mat-form-field class="titleField">
+            <input matInput id="title" placeholder="Title" value="" name="title" [(ngModel)]="title" pattern="[A-Za-z0-9 ]{3,40}"
+            required>
+          </mat-form-field>        
+          <mat-form-field class="descriptionField">
+            <textarea matInput id="description" placeholder="Description" value="" name="description" [(ngModel)]="description" pattern="[A-Za-z0-9 ]{12,140}"
+            required></textarea>
+          </mat-form-field>
         </div>
         
         <!-- Drop down selector for category -->

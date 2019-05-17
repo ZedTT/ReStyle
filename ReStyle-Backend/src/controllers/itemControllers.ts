@@ -68,7 +68,7 @@ export function getItemsToDisplayForUserWithId(response: Response, userId: strin
       console.log("Error inside getItemsToDisplayForUserWithId:", err);
       response.send({ error: err.message });
     } else {
-      console.log('\nDatabase response: ', res.rows)
+      // console.log('\nDatabase response: ', res.rows)
       let itemsToSend: ItemCardInterface[] = [];
       for (let itemRecord of res.rows) {
         itemsToSend.push({
@@ -86,7 +86,7 @@ export function getItemsToDisplayForUserWithId(response: Response, userId: strin
           description: itemRecord.description
         })
       }
-      console.log('\nitemsToSend: ', itemsToSend)
+      // console.log('\nitemsToSend: ', itemsToSend)
       response.send(itemsToSend);
     }
   })

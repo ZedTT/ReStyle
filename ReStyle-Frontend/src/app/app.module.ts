@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { EventEmitter, NgModule, OnInit, Output } from '@angular/core';
+import { NgModule } from '@angular/core';
 // Angular Firebase import section
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -29,7 +29,8 @@ import { ContainerComponent } from './components/container/container.component';
 import { Ng5SliderModule } from 'ng5-slider';
 import { EditProfilePageComponent } from './components/edit-profile-page/edit-profile-page.component';
 import {NgxMaskModule} from 'ngx-mask';
-
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { TradeRequestsPageComponent } from './components/trade-requests-page/trade-requests-page.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -79,7 +80,9 @@ firebase.initializeApp(environment.firebase);
     NgbdCarouselComponent,
     AddItemPageComponent,
     ContainerComponent,
-    EditProfilePageComponent
+    EditProfilePageComponent,
+    UserProfileComponent,
+    TradeRequestsPageComponent
   ],
   imports: [
     BrowserModule,
