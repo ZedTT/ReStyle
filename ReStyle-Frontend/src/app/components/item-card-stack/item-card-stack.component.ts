@@ -67,7 +67,7 @@ export class ItemCardStackComponent implements OnInit {
     console.log(item);
     item.trade = true;
     setTimeout(() => {
-      this.router.navigate(['/trade'], { queryParams: { user: item.userId, item: item.itemId } });
+      this.router.navigate(['/trade'], { queryParams: { you: item.userId, item: item.itemId } });
     }, 1000);
   }
 
