@@ -1,5 +1,5 @@
 import { query, connect } from '../db/dbInit'
-import { insert_user_with_return, new_user_hide, get_user, insert_email_contact_details } from '../db/sql_library'
+import { insert_user_with_return, new_user_hide, get_user, insert_email_contact_details, user_details } from '../db/sql_library'
 import { Response } from 'express';
 import { UserDetailsInterface } from '../models/UserDetailsInterface';
 
@@ -70,7 +70,7 @@ export function updateUserDetails(response: Response, userDetails:UserDetailsInt
 }
 
 export function getUserDetails(response: Response, uid: string) {
-    query(bbb, [uid], (error, result) => {
+    query(user_details, [uid], (error, result) => {
         if (error) {
             console.log("Error inside getUserDetails query: ", error)
             response.send({ error: error.message })
