@@ -4,13 +4,15 @@ import { LoginComponent } from './components/login/login.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { TradePageComponent } from './components/trade-page/trade-page.component';
 import { AddItemPageComponent } from './components/add-item-page/add-item-page.component';
+import { TradeRequestsPageComponent } from './components/trade-requests-page/trade-requests-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   // { path: '**', redirectTo: '', pathMatch: 'full' },
   { path: 'trade', component: TradePageComponent },
   { path: 'additem', component: AddItemPageComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'traderequests', component: TradeRequestsPageComponent }
 ];
 
 @NgModule({
