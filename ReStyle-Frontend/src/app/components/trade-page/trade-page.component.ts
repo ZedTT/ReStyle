@@ -17,6 +17,12 @@ export class TradePageComponent implements OnInit {
   columnMe: TradeItem[]; // the list of items that belong to the user who initialized a trade
   columnThem: TradeItem[]; // the list of items that belong to the user with whom a trade was initialized
 
+  /**
+   * Creates an instance of trade page component.
+   * Initializes a router and tradeService to be used on the page
+   * @param router used to grab the query params from the url
+   * @param tradeService used to get the items to display
+   */
   constructor(private router: Router, private tradeService: TradeService) { }
 
   ngOnInit() {
@@ -35,6 +41,10 @@ export class TradePageComponent implements OnInit {
 
   }
 
+  /**
+   * Gets the items that belong to the user with whom a trade was initialized
+   * and adds these items to the columnThem array of TradeItems
+   */
   getColumnThem() {
     this.tradeService.getItemsByUser(this.themId).subscribe(temp => {
       for (const item of temp) {
