@@ -3,7 +3,7 @@
  * Used for the items on the trade screen.
  */
 export class TradeItem {
-    itemId: string; // a unique id to identify this item
+    itemId: number; // a unique id to identify this item
     picturePath: string[]; // an array of paths to the pictures that are displayed for this item
     title: string; // the name of the item
     description: string; // the description of the item
