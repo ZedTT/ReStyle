@@ -85,6 +85,36 @@ export const get_user_item_data =
 "AND i.swapID IS NULL "
 
 /*
+	Update the user's profile picture 
+	
+	userID character(28)
+	userPhotoPath text
+
+	Example:
+	[profilePicPhotoPath, userID]
+	['nathangreen_avatar.jpg', 'rCjzKDG6rjUwjj6I5BepsLbvgPr1']
+*/
+
+export const update_user_profile_pic =
+"UPDATE dev.restyle_user AS u " +
+"SET u.userPhotoPath = $1 "
+"WHERE userID = $2 "
+
+/*
+	Update user name 
+
+	userID character(28)
+
+	Example:
+	[userName, userID]
+	['newUserName', 'rCjzKDG6rjUwjj6I5BepsLbvgPr1']
+*/
+export const update_user_name = 
+"UPDATE dev.restyle_user AS u" +
+"SET u.userName = $1 " +
+"WHERE u.userName = $2 "
+
+/*
 --------------------------------------------------Item Queries----------------------------------
 */
 
@@ -362,6 +392,68 @@ export const add_swap_no_return =
 "INSERT INTO dev.swap " +
 "VALUES ($1, $2) "
 
+/*
+--------------------------------------------------Contact Details Queries-------------------------------
+*/
+
+/*
+	Insert contact details into contact details table without return 
+	userID character(28)
+	email text
+	preferredMethodOfContact text
+	
+	Example:
+	[userID, email, phoneNumber, preferredMethodOfContact]
+	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2', email, phoneNumber, 'Phone'/'Email']
+
+*/
+export const new_contact_details_no_return =
+"INSERT INTO dev.contact_details  (userID, email, phoneNumber, preferredMethodOfContact)" +
+"VALUES ($1, $2, $3, $4) "
+
+/*
+	Insert contact details into contact details table with return 
+	userID character(28)
+	email text
+	preferredMethodOfContact text
+	
+	Example:
+	[userID, email, phoneNumber, preferredMethodOfContact]
+	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2', email, phoneNumber, 'Phone'/'Email']
+
+*/
+export const update_contact_details_with_return =
+"UPDATE dev.contact_details AS c " +
+"SET c.email = $1, c.phoneNumber = $2, c.preferredMethodOfContact = $3 " +
+"WHERE userID = $4 RETURNING * "
+
+/*
+	Insert email into the contact details table
+
+	userID character(28)
+	email text
+
+	Example:
+	[userID, email]
+	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2', 'email']
+*/
+export const insert_email_contact_details = 
+"INSERT INTO dev.contact_details (userID, email)" +
+"VALUES ($1, $2) "
 
 
+/*
+--------------------------------------------------Address Queries-------------------------------
+*/
 
+/*
+	Insert address details into address table
+	NOTE: not inserting full address details with this query
+	Example:
+	[userID, city, postalCode]
+	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2', email]
+
+*/
+export const new_address_details = 
+"INSERT INTO dev.address (userID, city, postalCode) " +
+"VALUES ($1, $2 , $3) "
