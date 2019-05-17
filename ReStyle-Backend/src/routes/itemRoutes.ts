@@ -3,6 +3,7 @@ import { insertItemForUserWithId, getItemsToDisplayForUserWithId, getTradeItemsF
 import { AddItemModel } from "../models/AddItemModel";
 // ? https://www.npmjs.com/package/multer
 import multer from 'multer';
+import { createNewTradeRequest } from "../controllers/tradeControllers";
 
 const DIR = './uploads/'; // contains images
 
@@ -63,6 +64,15 @@ const itemRoutes = (app: Express) => {
     // to get all items that are owned by a specific user
     .get((request, response) => {
       getTradeItemsForTheUserWithId(response, request.query.uid)
+    })
+    .post((request, response) => {
+      const tradeRequest = {
+        requesterId: request.body.requesterId,
+        notifiedUserId: request.body.notifiedUserId,
+        requesterTradeItems: request.body.requesterTradeItems,
+        notifiedUserTradeItems: request.body.notifiedUserTradeItems
+      };
+      createNewTradeRequest(response, tradeRequest)
     })
 }
 export default itemRoutes;
