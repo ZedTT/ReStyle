@@ -20,7 +20,7 @@ const storage = multer.diskStorage({
 })
 
 //define the type of upload multer would be doing and pass in its destination, in our case, its a single file with the name photo
-const uploadImg = multer({ storage: storage }).single('avatar');
+const uploadImg = multer({ storage: storage }).single('profilePic');
 
 const userRoutes = (app: Express) => {
 
