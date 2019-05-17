@@ -441,6 +441,23 @@ export const insert_email_contact_details =
 "INSERT INTO dev.contact_details (userID, email) " +
 "VALUES ($1, $2) "
 
+/*
+	Retrieve data needed for user details interface
+
+	Example:
+	[userID]
+	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2']
+*/
+export const user_details =
+"SELECT u.userName, u.userPhotoPath, c.phone, " +
+"c.email, a.postalCode, a.city, c.preferredMethodOfContact" +
+"FROM dev.restyle_user AS u " +
+"INNER JOIN dev.contact_deatils AS c " +
+"ON u.userID = c.userID " +
+"INNER JOIN dev.address AS a " +
+"ON a.userID = u.userID " +
+"WHERE userID = $1 "
+
 
 /*
 --------------------------------------------------Address Queries-------------------------------
