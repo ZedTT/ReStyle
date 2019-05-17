@@ -10,10 +10,21 @@
         <!-- Button to upload image (with label) -->
         <div id="imgreplace" class="card">
           <div id="profileImg">
-            <img [src]="imgURL" height="80" width="80" *ngIf="imgURL">
+            <img 
+              [src]="imgURL" 
+              height="80" 
+              width="80" 
+              *ngIf="imgURL">
           </div>
-          <input name="photo" type="file" accept="image/*" id="filepick" (change)="onFileSelected($event)" 
-          max-size=32154 style="display: none" #fileinput>
+          <input 
+            name="photo" 
+            type="file" 
+            accept="image/*" 
+            id="filepick" 
+            (change)="onFileSelected($event)" 
+            max-size=32154 
+            style="display: none" 
+            #fileinput>
           <div id ="replaceButton" class="btn btn-outline-primary" (click)="fileinput.click()">Replace</div>
           
         </div>
@@ -64,10 +75,15 @@
               <!-- Form for City -->
               <div class="cityCard">
                 <mat-form-field class="">
-                  <input matInput id="city" placeholder="City" value="" name="city" [(ngModel)]="city" pattern="[A-Za-z]{3,20}"
+                  <input matInput 
+                    id="city" 
+                    placeholder="City" 
+                    value="" 
+                    name="city" 
+                    [(ngModel)]="city" 
+                    pattern="[A-Za-z]{3,20}"
                   required>
                   <mat-hint>E.g., Vancouver</mat-hint>
-
                 </mat-form-field>
                 <!-- <div class="editButton"><button>Edit</button></div>
                 <div class="saveButton"><button>Save</button></div>   -->
