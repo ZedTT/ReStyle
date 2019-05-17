@@ -9,11 +9,13 @@
     
         <!-- Button to upload image (with label) -->
         <div id="imgreplace" class="card">
+          <div id="profileImg">
+            <img [src]="imgURL" height="80" width="80" *ngIf="imgURL">
+          </div>
           <input name="photo" type="file" accept="image/*" id="filepick" (change)="onFileSelected($event)" 
           max-size=32154 style="display: none" #fileinput>
-          <div id ="uploadButton" class="btn btn-outline-primary" (click)="fileinput.click()">Choose Image</div>
-          <br>{{ fileName }}
-          <img [src]="imgURL" height="80" width="80" *ngIf="imgURL">
+          <div id ="replaceButton" class="btn btn-outline-primary" (click)="fileinput.click()">Replace</div>
+          
         </div>
     
         <!-- Form group for adding the title and description -->
@@ -33,22 +35,30 @@
                     value="" 
                     name="User Name" 
                     [(ngModel)]="usernameText" 
-                    pattern="[A-Za-z0-9]{3,20}"
+                    pattern="[A-Za-z0-9]{3,20}" 
                     required>
                   <mat-hint>{{username.value?.length || 0}}/10 (Max 10 Characters)</mat-hint>
                 </mat-form-field>
-                <div class="editButton"><button>Edit</button></div>
-                <div class="saveButton"><button>Save</button></div>     
+                <!-- <div class="editButton"><button>Edit</button></div>
+                <div class="saveButton"><button>Save</button></div> -->
               </div>
               
               <!-- Form for phone number -->
               <div class="phoneCard">
                 <mat-form-field class="formfield phone">
-                  <input matInput id="phone" placeholder="Phone Number" value="" name="phone" [(ngModel)]="phone" pattern="[0-9]{10}" mask="(000) 000 - 0000" prefix="+1 " [showMaskTyped] = "false"
+                  <input matInput
+                    id="phone" 
+                    placeholder="Phone Number" 
+                    value="" 
+                    name="phone" 
+                    [(ngModel)]="phone" 
+                    pattern="[0-9]{10}" 
+                    mask="(000) 000 - 0000" 
+                    [showMaskTyped] = "false"
                   required>
                 </mat-form-field>
-                <div class="editButton"><button>Edit</button></div>
-                <div class="saveButton"><button>Save</button></div>
+                <!-- <div class="editButton"><button>Edit</button></div>
+                <div class="saveButton"><button>Save</button></div> -->
               </div>
 
               <!-- Form for City -->
@@ -56,19 +66,31 @@
                 <mat-form-field class="">
                   <input matInput id="city" placeholder="City" value="" name="city" [(ngModel)]="city" pattern="[A-Za-z]{3,20}"
                   required>
+                  <mat-hint>E.g., Vancouver</mat-hint>
+
                 </mat-form-field>
-                <div class="editButton"><button>Edit</button></div>
-                <div class="saveButton"><button>Save</button></div>  
+                <!-- <div class="editButton"><button>Edit</button></div>
+                <div class="saveButton"><button>Save</button></div>   -->
               </div>
               
-              <!-- TODO: Form for Postal Code -->
+              <!-- Form for Postal Code -->
               <div class="postalCodeCard">
                 <mat-form-field class="">
-                  <input matInput id="postalcode" placeholder="Postal Code" value="" name="postalcode" [(ngModel)]="postalcode" pattern="[A-Z0-9]{6}"
+                  <input 
+                    matInput 
+                    id="postalcode" 
+                    placeholder="Postal Code" 
+                    value="" 
+                    name="postalcode" 
+                    [(ngModel)]="postalcode" 
+                    pattern="[A-Z0-9]{6}" 
+                    mask="A 0 A  0 A 0" 
+                    [showMaskTyped] = "false"
                   required>
+                  <mat-hint>Format: A1A 1A1</mat-hint>
                 </mat-form-field>
-                <div class="editButton"><button>Edit</button></div>
-                <div class="saveButton"><button>Save</button></div>  
+                <!-- <div class="editButton"><button>Edit</button></div>
+                <div class="saveButton"><button>Save</button></div>   -->
               </div>
 
               
@@ -79,65 +101,10 @@
                   <mat-button-toggle value="Female">Female</mat-button-toggle>
                   <mat-button-toggle value="Unisex">Other</mat-button-toggle>
                 </mat-button-toggle-group>
-
-              </div>
- 
+              </div> 
             </form>
           </div>
-        </div>
-        
-        <!-- Drop down selector for category -->
-        <!-- <div class="card">
-          <mat-form-field>
-              <mat-select placeholder="Select Category" [(ngModel)]="sCat" name="category" required>
-                  <mat-option *ngFor="let cat of cats" [value]="cat.value">
-                      {{ cat.viewValue }}
-                  </mat-option>
-              </mat-select>
-          </mat-form-field>
-        </div>
-     -->
-        <!-- Radio buttons for gender of clothing -->
-        <!-- <div class="card">
-          <mat-button-toggle-group [(ngModel)]="gender" id="genderToggles" name="fontStyle" aria-label="Font Style">
-            <mat-button-toggle value="Male">Male</mat-button-toggle>
-            <mat-button-toggle value="Female">Female</mat-button-toggle>
-            <mat-button-toggle value="Unisex">Unisex</mat-button-toggle>
-          </mat-button-toggle-group>
-        </div> -->
-    
-        <!-- Drop down selector for item size -->
-        <!-- <div id="sizeDropdown" class="card">
-          <mat-form-field>
-            <mat-select placeholder="Select a Size" [(ngModel)]="sSize" name="itemSize" required>
-              <mat-option *ngFor="let size of sizes" [value]="size.value">
-                  {{ size.viewValue }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div> -->
-
-          <!-- <ng5-slider [(value)]="value" [options]="options" style="margin-bottom: 2.5rem;"></ng5-slider> -->
-          <!-- <div id="sliderSpan">
-            <div id="sliderLabels">
-              <span class="labeltxt">XS</span>
-              <span class="labeltxt">S</span>
-              <span class="labeltxt">M</span>
-              <span class="labeltxt">L</span>
-              <span class="labeltxt">XL</span>
-            </div>
-            <mat-slider
-                aria-label="Select a Size"
-                thumbLabel
-                [displayWith]="formatLabel"
-                tickInterval="1"
-                min="0"
-                max="4">
-            </mat-slider>
-            <div>
-              test
-            </div>
-          </div> -->      
+        </div>    
       </form>
 
     <div class="card buttonPair">
