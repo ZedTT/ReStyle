@@ -125,13 +125,16 @@ export const insert_item_no_return =
 /*
 	Get item(s) for a specific user based on userID
 	This is for the user viewing their inventory
+	Do not want the user to see items they have already
+	swapped 
+
 	Example:
 	[userID]
 	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2']
 */
 export const get_user_item =
 "SELECT * FROM dev.item " +
-"WHERE userID = $1 "
+"WHERE userID = $1 AND swapID IS NULL "
 
 /**
  * Get all the items owned by a user that are eligible for trading, i.e. don't have swapID
@@ -293,7 +296,7 @@ export const remove_hide =
 	notified_itemArray2 an array of integers
 	
 	Example:
-	[userID, userID, [item1, item2], [item1,item2]]
+	[userID, userID, [itemID1, itemID2], [itemID1,itemID2]]
 
 */
 export const new_trade_request_with_return =
