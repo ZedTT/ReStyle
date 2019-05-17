@@ -131,7 +131,7 @@ export const insert_item_no_return =
 */
 export const get_user_item =
 "SELECT * FROM dev.item " +
-"WHERE userID = $1 "
+"WHERE userID = $1 AND swapID IS NULL "
 
 /*
 	Get item(s) to display for a user that does not 
