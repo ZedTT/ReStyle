@@ -1,16 +1,12 @@
 /**
- * A class for TradeItem objects.
- * Used for the items on the trade screen.
+ * An interface for TradeItem objects.
+ * Used to send the items to frontend to display on the trade screen.
  */
-export class TradeItem {
+export interface TradeItemInterface {
     itemId: number; // a unique id to identify this item
     picturePath: string[]; // an array of paths to the pictures that are displayed for this item
     title: string; // the name of the item
     description: string; // the description of the item
     size: number; // the size, 0: XS, 1: S, 2: M, 3: L, 4: XL
     category: string; // the category of the item
-    /**
-     * The back end will not need to send selected
-     */
-    selected: boolean; // keeps track of if the item is selected for trading or not
 }

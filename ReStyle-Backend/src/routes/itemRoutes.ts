@@ -63,7 +63,12 @@ const itemRoutes = (app: Express) => {
   app.route('/api/tradeitems')
     // to get all items that are owned by a specific user
     .get((request, response) => {
-      getTradeItemsForTheUserWithId(response, request.query.uid)
+      const userId = request.query.uid
+      if (userId !== null) {
+        getTradeItemsForTheUserWithId(response, userId)
+      } else {
+        response.send({error : `User id is: ${userId} , cannot be null`})
+      }
     })
     .post((request, response) => {
       const tradeRequest = {
