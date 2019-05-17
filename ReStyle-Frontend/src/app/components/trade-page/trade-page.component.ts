@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { TradeItem } from '../../models/TradeItem';
+import { TradeService } from '../../services/trade.service';
 
 @Component({
   selector: 'app-trade-page',
@@ -8,24 +9,40 @@ import { TradeItem } from '../../models/TradeItem';
   styleUrls: ['./trade-page.component.sass']
 })
 export class TradePageComponent implements OnInit {
-  queryParams: { you: string, item: string };
-  itemId: string;
-  youId: string;
-  thumbnailsMe: TradeItem[];
-  thumbnailsThem: TradeItem[];
-  columnMe: TradeItem[];
-  columnThem: TradeItem[];
+  queryParams: { them: string, item: string };
+  itemId: string; // the id of the item whose 'trade' button was clicked
+  themId: string; // the id of the user with whom a trade was initialized
+  thumbnailsMe: TradeItem[]; // the list of items that belong to the requester that are currently selected for trading
+  thumbnailsThem: TradeItem[]; // the list of items that belong to the notified user that are currently selected for trading
+  columnMe: TradeItem[]; // the list of items that belong to the user who initialized a trade
+  columnThem: TradeItem[]; // the list of items that belong to the user with whom a trade was initialized
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private tradeService: TradeService) { }
 
   ngOnInit() {
     // Url will look like /trade?you=QqJVsgMeiVcF1bW0x9b28sHK9fh2&item=1
     // We will parse out the query params from the url
     // This will give us { you: "QqJVsgMeiVcF1bW0x9b28sHK9fh2", item: "1" }
     const qParams = this.router.parseUrl(this.router.url).queryParams;
-    this.queryParams = { you: qParams.you, item: qParams.item };
+    this.queryParams = { them: qParams.you, item: qParams.item };
     this.itemId = this.queryParams.item;
-    this.youId = this.queryParams.you;
+    this.themId = this.queryParams.them;
+
+    // this.getColumnThem();
+  }
+
+  getColumnMe() {
+
+  }
+
+  getColumnThem() {
+    this.tradeService.getItemsByUser(this.themId).subscribe(temp => {
+      for (const item of temp) {
+        item.selected = false;
+      }
+      this.columnThem = temp;
+      console.log(this.columnThem);
+    });
   }
 
 }
