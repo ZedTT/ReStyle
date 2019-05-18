@@ -12,6 +12,7 @@ export class EditProfileService {
 
   submitEditedProfile(newItem: UserDetailsInterface) {
     const fd = new FormData();
+    fd.append('userId', newItem.userId);
     fd.append('displayname', newItem.displayname);
     fd.append('phone', newItem.phone);
     fd.append('email', newItem.email);
