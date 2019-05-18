@@ -3,6 +3,10 @@ import { firebase } from 'firebaseui-angular';
 import { UserDetailsInterface } from '../../models/UserDetailsInterface';
 import { EditProfileService } from '../../services/edit-profile.service';
 
+export interface PreferredContact {
+  value: string;
+  viewValue: string;
+}
 @Component({
   selector: 'app-edit-profile-page',
   templateUrl: './edit-profile-page.component.html',
@@ -13,12 +17,18 @@ export class EditProfilePageComponent implements OnInit {
 
   imgURL: any = 'https://i.imgur.com/H9hqFVV.jpg';
   selectedFile: File;
+  sPref: string;
   displayname: string;
   phone: string;
   email: string;
   city: string;
   postalcode: string;
   preferredContact: string;
+
+  prefs: PreferredContact[] = [
+    { value: 'email', viewValue: 'Email' },
+    { value: 'phone', viewValue: 'Phone' }
+  ];
 
   onFileSelected(fileEvent) {
 
@@ -40,6 +50,8 @@ export class EditProfilePageComponent implements OnInit {
 
   onSubmit() {
 
+    console.log('onSubmit ran');
+
     const uid = firebase.auth().currentUser.uid;
 
     if (!uid) { return null; }
@@ -50,7 +62,7 @@ export class EditProfilePageComponent implements OnInit {
       email : this.email,
       postalcode : this.postalcode,
       city : this.city,
-      preferredContact : this.preferredContact,
+      preferredContact : this.sPref,
       profilePic : this.selectedFile
     };
 
