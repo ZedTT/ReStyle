@@ -28,7 +28,7 @@ export class TradeItemComponent implements OnInit {
   setClasses() {
     const classes = {
       selected: this.item.selected,
-      tradeItem: true
+      'trade-item': true
     };
     return classes;
   }
