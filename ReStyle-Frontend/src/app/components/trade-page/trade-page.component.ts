@@ -140,7 +140,6 @@ export class TradePageComponent implements OnInit {
       // Find the item in the array and remove it
       // Check each item in the array and keep it only if it is not equal to the passed item argument
       this.thumbnailsThem = this.thumbnailsThem.filter(temp => temp !== item);
-      console.log('else');
     }
 
     // * Log some debug stuff
