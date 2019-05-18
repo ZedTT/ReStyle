@@ -101,23 +101,49 @@ export class TradePageComponent implements OnInit {
     });
   }
 
+  /**
+   * Called when an item is toggled in the 'me' column.
+   * If the item is being selected, adds the item to the thumbnailsMe array.
+   * If the item is being unselected, removes the item from the thumbnailsMe array.
+   * * Used to add or remove the item from the thumbnails preview
+   * @param item The item that was toggled. A TradeItem
+   */
   toggleItemMe(item) {
+    // check the boolean if the item is selected or not.
     if (item.selected) {
+      // Add the item to the end of the array
       this.thumbnailsMe.push(item);
     } else {
+      // Find the item in the array and remove it
+      // Check each item in the array and keep it only if it is not equal to the passed item argument
       this.thumbnailsMe = this.thumbnailsMe.filter(temp => temp !== item);
     }
+
+    // * Log some debug stuff
     // console.log('Me', item);
     console.log(this.thumbnailsMe);
   }
 
+  /**
+   * Called when an item is toggled in the 'me' column.
+   * If the item is being selected, adds the item to the thumbnailsThem array.
+   * If the item is being unselected, removes the item from the thumbnailsThem array.
+   * * Used to add or remove the item from the thumbnails preview
+   * @param item The item that was toggled. A TradeItem
+   */
   toggleItemThem(item) {
+    // check the boolean if the item is selected or not.
     if (item.selected) {
+      // Add the item to the end of the array
       this.thumbnailsThem.push(item);
     } else {
+      // Find the item in the array and remove it
+      // Check each item in the array and keep it only if it is not equal to the passed item argument
       this.thumbnailsThem = this.thumbnailsThem.filter(temp => temp !== item);
       console.log('else');
     }
+
+    // * Log some debug stuff
     // console.log('Them', item);
     console.log(this.thumbnailsThem);
   }
