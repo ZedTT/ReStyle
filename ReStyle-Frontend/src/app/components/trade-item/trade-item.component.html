@@ -1,4 +1,4 @@
-<div>
+<div [ngClass]="setClasses()" (click)="toggleSelected()">
   <img src="/images/{{ this.item.picturePath[0] }}" alt="">
   <div>{{ item.title }}</div>
 </div>

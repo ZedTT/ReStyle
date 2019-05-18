@@ -54,6 +54,8 @@ export class TradePageComponent implements OnInit {
         this.meId = user.uid;
         console.log(this.meId);
         this.getColumnMe(this.meId);
+      } else {
+        console.log('else');
       }
     });
     // get the column for the user with whom a trade was initialized
@@ -79,6 +81,8 @@ export class TradePageComponent implements OnInit {
         console.log(this.columnMeArray);
         // We need this to remind angular that we changed things
         // Specifically because onAuthStateChanged causes this to be called twice in rapid succession
+        // This is only needed on refresh
+        // This makes us need another detection in trade item component
         this.changeDetectorRef.detectChanges();
       });
     }
