@@ -55,12 +55,13 @@ const userRoutes = (app: Express) => {
                 const textFields = request.body;
 
                 const userDetails: UserDetailsInterface = {
-                    displayname: textFields.username,
-                    phone: textFields.phonenumber,
+                    userId: textFields.userId,
+                    displayname: textFields.displayname,
+                    phone: textFields.phone,
                     email: textFields.email,
                     postalcode: textFields.postalcode,
                     city: textFields.city,
-                    preferredContact: textFields.preferredmethodofcontact,
+                    preferredContact: textFields.preferredContact,
                     profilePic: request.file.filename
                 }
                 updateUserDetails(response, userDetails)

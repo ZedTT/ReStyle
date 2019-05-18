@@ -112,7 +112,15 @@ export const update_user_profile_pic =
 export const update_user_name = 
 "UPDATE dev.restyle_user AS u " +
 "SET u.userName = $1 " +
-"WHERE u.userName = $2 "
+"WHERE u.userID = $2 " // fixed typo, was userName, needed to be userID
+
+/**
+ * A query to update both user name and user profile picture at one go.
+ */
+export const update_user_name_and_user_profile_pic = 
+"UPDATE dev.restyle_user AS u " +
+"SET u.userName = $1, u.userPhotoPath = $2 " +
+"WHERE u.userID = $3 "
 
 /*
 --------------------------------------------------Item Queries----------------------------------
@@ -474,3 +482,11 @@ export const user_details =
 export const new_address_details = 
 "INSERT INTO dev.address (userID, city, postalCode) " +
 "VALUES ($1, $2 , $3) "
+
+/**
+ * A query to update user address details when user is editing their profile.
+ */
+export const update_address_details_with_return =
+"UPDATE dev.address AS a " +
+"SET a.city = $1, a.postalCode = $2 " +
+"WHERE userID = $3 RETURNING * "
