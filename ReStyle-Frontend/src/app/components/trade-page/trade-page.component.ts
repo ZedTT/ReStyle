@@ -44,9 +44,9 @@ export class TradePageComponent implements OnInit {
     const currentUser = firebase.auth().currentUser;
     if (currentUser) {
       this.meId = firebase.auth().currentUser.uid;
+      // Call getColumnMe once with current user
+      this.getColumnMe(this.meId);
     }
-    // Call getColumnMe once with current user
-    this.getColumnMe(this.meId);
     // Use firebase to detect uid changes and run getColumnMe again incase uid starts as null on a refresh or something
     firebase.auth().onAuthStateChanged(user => {
       console.log('auth state change', (user) ? user.uid : null);

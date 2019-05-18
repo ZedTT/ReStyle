@@ -1,11 +1,7 @@
-<div>
-  <p>
-    trade-page works!
-  </p>
-  <app-trade-preview #previewMe [thumbnails]="thumbnailsMe"></app-trade-preview>
-  <app-trade-preview #previewThem [thumbnails]="thumbnailsThem"></app-trade-preview>
-  <app-trade-column #columnMe [items]="columnMeArray">Hello</app-trade-column>
-  <app-trade-column #columnThem [items]="columnThemArray"></app-trade-column>
-  <button (click)="getColumnThem()">Get them items</button> <!-- Temporary button -->
-  <button (click)="getColumnMe(meId)">Get me items</button> <!-- Temporary button -->
+
+<div id="trade-container">
+  <app-trade-preview class="preview" id="preview-me" #previewMe [thumbnails]="thumbnailsMe"></app-trade-preview>
+  <app-trade-preview class="preview" id="preview-them" #previewThem [thumbnails]="thumbnailsThem"></app-trade-preview>
+  <app-trade-column class="column" id="column-me" #columnMe [items]="columnMeArray"></app-trade-column>
+  <app-trade-column class="column" id="column-them" #columnThem [items]="columnThemArray"></app-trade-column>
 </div>
