@@ -8,7 +8,7 @@ import { TradeItem } from 'src/app/models/TradeItem';
 })
 export class TradeColumnComponent implements OnInit {
   @Input() items: TradeItem[]; // for getting the items
-  @Output() toggleItemOutput: EventEmitter<TradeItem> = new EventEmitter();
+  @Output() toggleItemOutput: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
