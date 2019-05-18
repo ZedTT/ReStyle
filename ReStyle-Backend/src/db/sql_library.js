@@ -118,9 +118,9 @@ export const update_user_name =
  * A query to update both user name and user profile picture at one go.
  */
 export const update_user_name_and_user_profile_pic = 
-"UPDATE dev.restyle_user AS u " +
-"SET u.userName = $1, u.userPhotoPath = $2 " +
-"WHERE u.userID = $3 "
+"UPDATE dev.restyle_user " +
+"SET userName = $1, userPhotoPath = $2 " +
+"WHERE userID = $3 "
 
 /*
 --------------------------------------------------Item Queries----------------------------------
@@ -431,8 +431,8 @@ export const new_contact_details_no_return =
 
 */
 export const update_contact_details_with_return =
-"UPDATE dev.contact_details AS c " +
-"SET c.email = $1, c.phoneNumber = $2, c.preferredMethodOfContact = $3 " +
+"UPDATE dev.contact_details " +
+"SET email = $1, phoneNumber = $2, preferredMethodOfContact = $3 " +
 "WHERE userID = $4 RETURNING * "
 
 /*
@@ -487,6 +487,6 @@ export const new_address_details =
  * A query to update user address details when user is editing their profile.
  */
 export const update_address_details_with_return =
-"UPDATE dev.address AS a " +
-"SET a.city = $1, a.postalCode = $2 " +
+"UPDATE dev.address " +
+"SET city = $1, postalCode = $2 " +
 "WHERE userID = $3 RETURNING * "
