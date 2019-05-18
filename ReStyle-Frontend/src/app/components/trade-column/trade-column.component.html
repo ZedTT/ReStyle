@@ -1,3 +1,3 @@
 <div>
-  <app-trade-item *ngFor="let item of items" [item]="item"></app-trade-item>
+  <app-trade-item *ngFor="let item of items" [item]="item" (toggleItemOutput)="toggleItem($event)"></app-trade-item>
 </div>

@@ -101,4 +101,12 @@ export class TradePageComponent implements OnInit {
     });
   }
 
+  toggleItemMe(item) {
+    console.log('Me', item);
+  }
+
+  toggleItemThem(item) {
+    console.log('Them', item);
+  }
+
 }

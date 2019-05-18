@@ -1,6 +1,6 @@
 <div id="trade-container">
   <app-trade-preview class="preview" id="preview-me" #previewMe [thumbnails]="thumbnailsMe"></app-trade-preview>
   <app-trade-preview class="preview" id="preview-them" #previewThem [thumbnails]="thumbnailsThem"></app-trade-preview>
-  <app-trade-column class="column" id="column-me" #columnMe [items]="columnMeArray"></app-trade-column>
-  <app-trade-column class="column" id="column-them" #columnThem [items]="columnThemArray"></app-trade-column>
+  <app-trade-column class="column" id="column-me" #columnMe [items]="columnMeArray" (toggleItemOutput)="toggleItemMe($event)"></app-trade-column>
+  <app-trade-column class="column" id="column-them" #columnThem [items]="columnThemArray" (toggleItemOutput)="toggleItemThem($event)"></app-trade-column>
 </div>
