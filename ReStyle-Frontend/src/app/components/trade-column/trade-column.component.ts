@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { TradeItem } from 'src/app/models/TradeItem';
 
 @Component({
@@ -12,8 +12,6 @@ export class TradeColumnComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('this items:');
-    console.log(this.items);
   }
 
 }
