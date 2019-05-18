@@ -18,7 +18,7 @@ export class TradeColumnComponent implements OnInit {
   toggleItem(item) {
     // take the item that was passed from the trade item component and relay it up to the trade page
     this.toggleItemOutput.emit(item);
-    console.log('Column', item);
+    // console.log('Column', item);
   }
 
 }

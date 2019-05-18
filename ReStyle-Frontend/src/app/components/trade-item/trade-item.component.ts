@@ -31,7 +31,7 @@ export class TradeItemComponent implements OnInit {
     this.changeDetectorRef.detectChanges();
     // Pass the item that was just toggled so that we can add it to or remove it from the preview thumbnails
     this.toggleItemOutput.emit(this.item);
-    console.log('Item', this.item);
+    // console.log('Item', this.item);
   }
 
 }

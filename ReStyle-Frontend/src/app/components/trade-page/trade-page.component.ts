@@ -18,8 +18,8 @@ export class TradePageComponent implements OnInit {
   itemId: string; // the id of the item whose 'trade' button was clicked
   meId: string = null; // the user id of the current user
   themId: string; // the id of the user with whom a trade was initialized
-  thumbnailsMe: TradeItem[]; // the list of items that belong to the requester that are currently selected for trading
-  thumbnailsThem: TradeItem[]; // the list of items that belong to the notified user that are currently selected for trading
+  thumbnailsMe: TradeItem[] = []; // the list of items that belong to the requester that are currently selected for trading
+  thumbnailsThem: TradeItem[] = []; // the list of items that belong to the notified user that are currently selected for trading
   columnMeArray: TradeItem[]; // the list of items that belong to the user who initialized a trade
   columnThemArray: TradeItem[]; // the list of items that belong to the user with whom a trade was initialized
 
@@ -102,11 +102,24 @@ export class TradePageComponent implements OnInit {
   }
 
   toggleItemMe(item) {
-    console.log('Me', item);
+    if (item.selected) {
+      this.thumbnailsMe.push(item);
+    } else {
+      this.thumbnailsMe = this.thumbnailsMe.filter(temp => temp !== item);
+    }
+    // console.log('Me', item);
+    console.log(this.thumbnailsMe);
   }
 
   toggleItemThem(item) {
-    console.log('Them', item);
+    if (item.selected) {
+      this.thumbnailsThem.push(item);
+    } else {
+      this.thumbnailsThem = this.thumbnailsThem.filter(temp => temp !== item);
+      console.log('else');
+    }
+    // console.log('Them', item);
+    console.log(this.thumbnailsThem);
   }
 
 }
