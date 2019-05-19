@@ -65,7 +65,7 @@ export class TradePageComponent implements OnInit {
           this.meId = user.uid;
           // console.log(this.meId);
           this.getColumnMe(this.meId);
-          this.userAccountService.getUserData(user).subscribe(u => {
+          this.userAccountService.getUserData(user.uid).subscribe(u => {
             this.userImageMe = u.userPhotoPath;
           });
         });

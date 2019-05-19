@@ -18,13 +18,13 @@ export class UserAccountService {
     }); // ? Does this still work if we fix the tsLint issues?
   }
 
-  getUserData(user: any): Observable<any> {
-    // handle both uid and user object inputs
-    if (user.uid) {
-      user = user.uid;
-    }
+  getUserData(uid: string): Observable<any> {
+    // // handle both uid and user object inputs
+    // if (uid.uid) {
+    //   uid = uid.uid;
+    // }
     // get a specific user's data given current uid
-    return this.http.get<any>(`/api/users?uid=${user}`);
+    return this.http.get<any>(`/api/users?uid=${uid}`);
   }
 
 
