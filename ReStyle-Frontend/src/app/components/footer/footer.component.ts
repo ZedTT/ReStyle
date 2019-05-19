@@ -10,7 +10,7 @@ import { firebase } from 'firebaseui-angular';
 export class FooterComponent implements OnInit {
   easterEggEnabled: boolean;
   authenticated: boolean;
-  userImagePath: string;
+  userImagePath = '/images/defaultAvatar.png';
 
   constructor(private userAccountService: UserAccountService) {
     this.easterEggEnabled = false;
