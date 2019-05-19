@@ -36,7 +36,7 @@ export class TradePageComponent implements OnInit {
   constructor(
     private router: Router,
     private tradeService: TradeService,
-    private changeDetectorRef: ChangeDetectorRef,
+    private changeDetectorRef: ChangeDetectorRef, // ! seems like it's not needed anymore
     private ngZone: NgZone, // ? See https://stackoverflow.com/questions/40054416/detect-changes-made-by-firebase-sdk-in-angular-2
     // We need to force firebase to run inside of the angular zone to avoid using changeDetectorRef
     private userAccountService: UserAccountService
@@ -51,7 +51,7 @@ export class TradePageComponent implements OnInit {
     this.itemId = parseInt(this.queryParams.item, 10);
     this.themId = this.queryParams.them;
     // store the uid of the currently logged in user, who initilized the trade
-    const currentUser = firebase.auth().currentUser;
+    const currentUser = firebase.auth().currentUser; 
     if (currentUser) {
       this.meId = firebase.auth().currentUser.uid;
       // Call getColumnMe once with current user
@@ -155,7 +155,7 @@ export class TradePageComponent implements OnInit {
       this.thumbnailsMe.push(item);
     } else {
       // Find the item in the array and remove it
-      // Check each item in the array and keep it only if it is not equal to the passed item argument
+      // Check each item in the array axnd keep it only if it is not equal to the passed item argument
       this.thumbnailsMe = this.thumbnailsMe.filter(temp => temp !== item);
     }
 
