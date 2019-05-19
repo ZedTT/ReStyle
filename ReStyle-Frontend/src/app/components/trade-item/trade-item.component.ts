@@ -33,6 +33,16 @@ export class TradeItemComponent implements OnInit {
     return classes;
   }
 
+  /**
+   * Used by ngStyle in the html for this component
+   * Returns an object that is set as inline style for the image
+   * Includes a background image whose url points to the image for the trade item
+   * @returns an object to be used by ngStyle including a background image
+   */
+  getImage() {
+    return { 'background-image': `url(/images/${this.item.picturePath[0]})` };
+  }
+
   toggleSelected() {
     // Invert the value of boolean item.selected.
     this.item.selected = !this.item.selected;
