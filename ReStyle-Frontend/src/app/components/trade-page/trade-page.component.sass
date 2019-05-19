@@ -1,6 +1,7 @@
 @import '../../../styles.sass'
 
 $preview-height: 44px
+$request-height: 56px
 
 #trade-container
     // style
@@ -19,10 +20,12 @@ $preview-height: 44px
 
 .column
     // style
-    margin-top: $preview-height * 2
-    display: inline-block
     width: 50%
-    padding-bottom: $header-footer-height
+    position: absolute
+    top: $header-footer-height + ($preview-height * 2)
+    bottom: $header-footer-height + $request-height
+    overflow-y: scroll
+    overflow-x: hidden
 
 #preview-me
     // style
@@ -36,6 +39,7 @@ $preview-height: 44px
 
 #column-them
     // style
+    right: 0
 
 #request
     position: fixed
@@ -43,4 +47,4 @@ $preview-height: 44px
     border-top: 1px solid white
     z-index: 1
     width: 100%
-    height: 56px
+    height: $request-height
