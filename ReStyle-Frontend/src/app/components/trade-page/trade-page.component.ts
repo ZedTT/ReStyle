@@ -51,7 +51,7 @@ export class TradePageComponent implements OnInit {
     this.itemId = parseInt(this.queryParams.item, 10);
     this.themId = this.queryParams.them;
     // store the uid of the currently logged in user, who initilized the trade
-    const currentUser = firebase.auth().currentUser; 
+    const currentUser = firebase.auth().currentUser;
     if (currentUser) {
       this.meId = firebase.auth().currentUser.uid;
       // Call getColumnMe once with current user
