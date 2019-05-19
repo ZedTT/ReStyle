@@ -16,7 +16,7 @@ export class TradePageComponent implements OnInit {
   @ViewChild('columnThem') columnThem;
   @ViewChild('columnMe') columnMe;
   queryParams: { them: string, item: string };
-  itemId: string; // the id of the item whose 'trade' button was clicked
+  itemId: number; // the id of the item whose 'trade' button was clicked
   meId: string = null; // the user id of the current user
   themId: string; // the id of the user with whom a trade was initialized
   thumbnailsMe: TradeItem[] = []; // the list of items that belong to the requester that are currently selected for trading
@@ -48,7 +48,7 @@ export class TradePageComponent implements OnInit {
     // This will give us { you: "QqJVsgMeiVcF1bW0x9b28sHK9fh2", item: "1" }
     const qParams = this.router.parseUrl(this.router.url).queryParams;
     this.queryParams = { them: qParams.you, item: qParams.item };
-    this.itemId = this.queryParams.item;
+    this.itemId = parseInt(this.queryParams.item, 10);
     this.themId = this.queryParams.them;
     // store the uid of the currently logged in user, who initilized the trade
     const currentUser = firebase.auth().currentUser;
@@ -81,6 +81,7 @@ export class TradePageComponent implements OnInit {
         this.userImageThem = u.userPhotoPath;
       }
     });
+
   }
 
   /**
@@ -116,10 +117,27 @@ export class TradePageComponent implements OnInit {
    */
   getColumnThem() {
     this.tradeService.getItemsByUser(this.themId).subscribe(temp => {
+      let item0;
       for (const item of temp) {
         item.selected = false;
       }
       this.columnThemArray = temp;
+      // Sort the item to the beginning of the array
+      // ? See https://stackoverflow.com/a/23921775
+      // setTimeout makes it async
+      setTimeout(() => {
+        temp.sort((item1, item2) => {
+          return item1.itemId === item0.itemId ? -1 : item2.itemId === item0.itemId ? 1 : 0;
+        });
+      }, 0);
+      // Make the item that was selected for trade start out as selected
+      for (const item of this.columnThemArray) {
+        if (item.itemId === this.itemId) {
+          item.selected = true;
+          this.toggleItemThem(item);
+          item0 = item;
+        }
+      }
     });
   }
 
@@ -167,6 +185,31 @@ export class TradePageComponent implements OnInit {
     // * Log some debug stuff
     // console.log('Them', item);
     // console.log(this.thumbnailsThem);
+  }
+
+  requestTrade() {
+    const requesterTradeItems: number[] = [];
+    const notifiedUserTradeItems: number[] = [];
+    // fill the requesterTradeItems array with item ids
+    this.thumbnailsMe.forEach(item => {
+      requesterTradeItems.push(item.itemId);
+    });
+    // fill the notifiedUserTradeItems array with item ids
+    this.thumbnailsThem.forEach(item => {
+      notifiedUserTradeItems.push(item.itemId);
+    });
+    if (requesterTradeItems.length > 0 && notifiedUserTradeItems.length > 0) {
+      // post the trade request to the server
+      this.tradeService.requestTrade(
+        this.meId, this.themId,
+        requesterTradeItems,
+        notifiedUserTradeItems
+        );
+      // navigate the user back to the home page (or maybe the trade inbox page?)
+      this.router.navigate(['/']);
+    } else {
+      alert('Each user must trade at least one item');
+    }
   }
 
 }

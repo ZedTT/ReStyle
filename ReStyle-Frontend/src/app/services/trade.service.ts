@@ -20,4 +20,28 @@ export class TradeService {
     return this.http.get<any>(`/api/tradeitems?uid=${userID}`);
   }
 
+  requestTrade(
+    requesterId, notifiedUserId,
+    requesterTradeItems, notifiedUserTradeItems
+    ): Observable<any> {
+    return this.http.post<any>(`/api/tradeitems`, {
+      requesterId,
+      notifiedUserId,
+      requesterTradeItems,
+      notifiedUserTradeItems
+    });
+    // {
+    //   "requesterId": "nsisodvqeNOTDCitaseopWjovEJ2",
+    //   "notifiedUserId": "rCjzKDG6rjUwjj6I5BepsLbvgPr1",
+    //   "requesterTradeItems": [
+    //       4,
+    //       6
+    //   ],
+    //   "notifiedUserTradeItems": [
+    //       20,
+    //       19
+    //   ]
+    // }
+  }
+
 }
