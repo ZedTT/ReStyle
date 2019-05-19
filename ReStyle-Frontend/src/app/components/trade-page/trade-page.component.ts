@@ -187,6 +187,13 @@ export class TradePageComponent implements OnInit {
     // console.log(this.thumbnailsThem);
   }
 
+  /**
+   * Makes a post request to the server when the user clicks Request Trade button
+   * Creates arrays of item ids based on the thumbnails arrays
+   * If the user tries to request the trade while one or both of the users
+   * have no items in the thumbnails array, it will throw an alert
+   * and will not make the post request.
+   */
   requestTrade() {
     const requesterTradeItems: number[] = [];
     const notifiedUserTradeItems: number[] = [];
@@ -198,6 +205,7 @@ export class TradePageComponent implements OnInit {
     this.thumbnailsThem.forEach(item => {
       notifiedUserTradeItems.push(item.itemId);
     });
+    // check that both users are trading at least one item
     if (requesterTradeItems.length > 0 && notifiedUserTradeItems.length > 0) {
       // post the trade request to the server
       this.tradeService.requestTrade(
