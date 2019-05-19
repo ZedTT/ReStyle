@@ -36,9 +36,10 @@ export class TradeItemComponent implements OnInit {
   toggleSelected() {
     // Invert the value of boolean item.selected.
     this.item.selected = !this.item.selected;
-    // A bandaid. If we remove changeDetectorRef from trade page we don't need this anymore
-    // But if we remove it from trade page then columnMeArray breaks when we refresh
-    this.changeDetectorRef.detectChanges();
+    // A bandaid. Only needed on the 'me' column inexplicably
+    // without it, the classes do not properly update in the dom
+    // May no longer be needed due to use of ngZone in tradePage
+    // * this.changeDetectorRef.detectChanges();
     // Pass the item that was just toggled so that we can add it to or remove it from the preview thumbnails
     this.toggleItemOutput.emit(this.item);
 

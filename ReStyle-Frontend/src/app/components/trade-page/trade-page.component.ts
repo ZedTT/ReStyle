@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ChangeDetectorRef, NgZone } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { TradeItem } from '../../models/TradeItem';
 import { TradeService } from '../../services/trade.service';
@@ -22,6 +22,12 @@ export class TradePageComponent implements OnInit {
   thumbnailsThem: TradeItem[] = []; // the list of items that belong to the notified user that are currently selected for trading
   columnMeArray: TradeItem[]; // the list of items that belong to the user who initialized a trade
   columnThemArray: TradeItem[]; // the list of items that belong to the user with whom a trade was initialized
+  thumbnailsMeTest: TradeItem[] = [{
+    itemId: 1, description: 'a',
+    category: 'shirt', size: 1,
+    picturePath: ['default'],
+    title: 'test thumbnail', selected: false
+  }];
 
   /**
    * Creates an instance of trade page component.
@@ -30,7 +36,13 @@ export class TradePageComponent implements OnInit {
    * @param tradeService used to get the items to display
    * @param changeDetectorRef used to fix a bug with columnMeArray not updating fast enough
    */
-  constructor(private router: Router, private tradeService: TradeService, private changeDetectorRef: ChangeDetectorRef) { }
+  constructor(
+    private router: Router,
+    private tradeService: TradeService,
+    private changeDetectorRef: ChangeDetectorRef,
+    private ngZone: NgZone // ? See https://stackoverflow.com/questions/40054416/detect-changes-made-by-firebase-sdk-in-angular-2
+    // We need to force firebase to run inside of the angular zone to avoid using changeDetectorRef
+    ) { }
 
   ngOnInit() {
     // Url will look like /trade?you=QqJVsgMeiVcF1bW0x9b28sHK9fh2&item=1
@@ -51,11 +63,11 @@ export class TradePageComponent implements OnInit {
     firebase.auth().onAuthStateChanged(user => {
       console.log('auth state change', (user) ? user.uid : null);
       if (user) {
-        this.meId = user.uid;
-        console.log(this.meId);
-        this.getColumnMe(this.meId);
-      } else {
-        console.log('else');
+        this.ngZone.run(() => {
+          this.meId = user.uid;
+          console.log(this.meId);
+          this.getColumnMe(this.meId);
+        });
       }
     });
     // get the column for the user with whom a trade was initialized
@@ -82,8 +94,8 @@ export class TradePageComponent implements OnInit {
         // We need this to remind angular that we changed things
         // Specifically because onAuthStateChanged causes this to be called twice in rapid succession
         // This is only needed on refresh
-        // This makes us need another detection in trade item component
-        this.changeDetectorRef.detectChanges();
+        // ? May no longer be needed because NgZone is a better fix
+        // * this.changeDetectorRef.markForCheck();
       });
     }
   }
@@ -121,7 +133,7 @@ export class TradePageComponent implements OnInit {
 
     // * Log some debug stuff
     // console.log('Me', item);
-    console.log(this.thumbnailsMe);
+    // console.log(this.thumbnailsMe);
   }
 
   /**
@@ -144,7 +156,7 @@ export class TradePageComponent implements OnInit {
 
     // * Log some debug stuff
     // console.log('Them', item);
-    console.log(this.thumbnailsThem);
+    // console.log(this.thumbnailsThem);
   }
 
 }

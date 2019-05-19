@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { TradeItem } from '../../models/TradeItem';
 
 @Component({
@@ -7,11 +7,21 @@ import { TradeItem } from '../../models/TradeItem';
   styleUrls: ['./trade-preview.component.sass']
 })
 export class TradePreviewComponent implements OnInit {
-  @Input() thumbnails: TradeItem[]; // for getting the items
+  @Input() thumbnails: TradeItem[] = []; // for getting the items
+  testThumbnails: TradeItem[] = [];
 
-  constructor() { }
+  constructor(private changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit() {
+    this.log();
+  }
+
+  log() {
+    console.log('test', this.thumbnails);
+  }
+
+  updateNgFor() {
+    // this.changeDetectorRef.detectChanges();
   }
 
 }
