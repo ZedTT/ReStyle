@@ -23,12 +23,20 @@ export class TradeService {
   requestTrade(
     requesterId, notifiedUserId,
     requesterTradeItems, notifiedUserTradeItems
-    ): Observable<any> {
-    return this.http.post<any>(`/api/tradeitems`, {
+    ) {
+    // console.log('TRADE REQUEST', {
+    //   requesterId,
+    //   notifiedUserId,
+    //   requesterTradeItems,
+    //   notifiedUserTradeItems
+    // });
+    this.http.post<any>('/api/tradeitems', {
       requesterId,
       notifiedUserId,
       requesterTradeItems,
       notifiedUserTradeItems
+    }).subscribe(res => {
+      console.log(res);
     });
     // {
     //   "requesterId": "nsisodvqeNOTDCitaseopWjovEJ2",
