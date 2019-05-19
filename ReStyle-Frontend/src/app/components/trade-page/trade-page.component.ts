@@ -83,6 +83,8 @@ export class TradePageComponent implements OnInit {
    */
   getColumnMe(uid) {
     if (uid !== null) {
+      // ! If you are getting `.subsribe is not a function` error. Get latest backend.
+      // The problem is that older backend versions used hardcoded data that was not an observable
       this.tradeService.getItemsByUser(uid).subscribe(temp => {
         for (const item of temp) {
           item.selected = false;
