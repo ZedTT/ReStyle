@@ -74,8 +74,6 @@ export class TradePageComponent implements OnInit {
     // get the column for the user with whom a trade was initialized
     this.getColumnThem();
     // get the picture for the other user
-    // ! Right now, getUserData takes a user object. It should probably take a string. So this doesn't work
-    // * I could also try to use a hack where I pass the user picture path as part of the query params by grabbing it from the item card.
     this.userAccountService.getUserData(this.themId).subscribe(u => {
       console.log('them', this.themId);
       console.log(u);
