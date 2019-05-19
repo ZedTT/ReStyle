@@ -1,5 +1,7 @@
 @import '../../../styles.sass'
 
+$preview-height: 44px
+
 #trade-container
     // style
 
@@ -8,9 +10,16 @@
 
 .preview
     // style
+    position: fixed
+    background-color: $card-background-color
+    width: 100%
+    border: 1px solid white
+    margin-top: -$after-header-margin
+    height: $preview-height
 
 .column
     // style
+    margin-top: $preview-height * 2
     display: inline-block
     width: 50%
 
@@ -19,6 +28,7 @@
 
 #preview-them
     // style
+    margin-top: -$after-header-margin + $preview-height
 
 #column-me
     // style
