@@ -8,20 +8,11 @@ import { TradeItem } from '../../models/TradeItem';
 })
 export class TradePreviewComponent implements OnInit {
   @Input() thumbnails: TradeItem[] = []; // for getting the items
-  testThumbnails: TradeItem[] = [];
+  @Input() userImage = 'defaultAvatar.png'; // for getting the user image
 
   constructor(private changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit() {
-    this.log();
-  }
-
-  log() {
-    console.log('test', this.thumbnails);
-  }
-
-  updateNgFor() {
-    // this.changeDetectorRef.detectChanges();
   }
 
 }

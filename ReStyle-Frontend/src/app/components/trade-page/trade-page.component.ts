@@ -3,6 +3,7 @@ import { Router, NavigationStart } from '@angular/router';
 import { TradeItem } from '../../models/TradeItem';
 import { TradeService } from '../../services/trade.service';
 import { firebase } from 'firebaseui-angular';
+import { UserAccountService } from '../../services/user-account.service';
 
 @Component({
   selector: 'app-trade-page',
@@ -22,12 +23,8 @@ export class TradePageComponent implements OnInit {
   thumbnailsThem: TradeItem[] = []; // the list of items that belong to the notified user that are currently selected for trading
   columnMeArray: TradeItem[]; // the list of items that belong to the user who initialized a trade
   columnThemArray: TradeItem[]; // the list of items that belong to the user with whom a trade was initialized
-  thumbnailsMeTest: TradeItem[] = [{
-    itemId: 1, description: 'a',
-    category: 'shirt', size: 1,
-    picturePath: ['default'],
-    title: 'test thumbnail', selected: false
-  }];
+  userImageMe = 'defaultAvatar.png';
+  userImageThem = 'defaultAvatar.png';
 
   /**
    * Creates an instance of trade page component.
@@ -40,8 +37,9 @@ export class TradePageComponent implements OnInit {
     private router: Router,
     private tradeService: TradeService,
     private changeDetectorRef: ChangeDetectorRef,
-    private ngZone: NgZone // ? See https://stackoverflow.com/questions/40054416/detect-changes-made-by-firebase-sdk-in-angular-2
+    private ngZone: NgZone, // ? See https://stackoverflow.com/questions/40054416/detect-changes-made-by-firebase-sdk-in-angular-2
     // We need to force firebase to run inside of the angular zone to avoid using changeDetectorRef
+    private userAccountService: UserAccountService
     ) { }
 
   ngOnInit() {
@@ -61,18 +59,29 @@ export class TradePageComponent implements OnInit {
     }
     // Use firebase to detect uid changes and run getColumnMe again incase uid starts as null on a refresh or something
     firebase.auth().onAuthStateChanged(user => {
-      console.log('auth state change', (user) ? user.uid : null);
+      // console.log('auth state change', (user) ? user.uid : null);
       if (user) {
         this.ngZone.run(() => {
           this.meId = user.uid;
-          console.log(this.meId);
+          // console.log(this.meId);
           this.getColumnMe(this.meId);
+          this.userAccountService.getUserData(user).subscribe(u => {
+            this.userImageMe = u.userPhotoPath;
+          });
         });
       }
     });
     // get the column for the user with whom a trade was initialized
     this.getColumnThem();
-    console.log(this.meId);
+    // get the picture for the other user
+    // ! Right now, getUserData takes a user object. It should probably take a string. So this doesn't work
+    this.userAccountService.getUserData(this.themId).subscribe(u => {
+      console.log('them', this.themId);
+      console.log(u);
+      if (u.userPhotoPath) {
+        this.userImageThem = u.userPhotoPath;
+      }
+    });
   }
 
   /**

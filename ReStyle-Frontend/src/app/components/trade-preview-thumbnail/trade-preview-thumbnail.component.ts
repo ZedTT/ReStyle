@@ -12,7 +12,6 @@ export class TradePreviewThumbnailComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('Thumbnail init', this.thumbnail);
   }
 
 }
