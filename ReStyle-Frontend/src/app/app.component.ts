@@ -1,4 +1,4 @@
-import { Component, ViewChild, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, ViewChild, EventEmitter, OnInit, Output, NgZone } from '@angular/core';
 import { firebase } from 'firebaseui-angular'
 import ConfettiGenerator from 'confetti-js';
 
@@ -11,12 +11,14 @@ export class AppComponent implements OnInit {
   @ViewChild('footer') footer;
   title = 'ReStyle';
 
-  constructor() {
+  constructor(private ngZone: NgZone) {
   }
 
   ngOnInit() {
     firebase.auth().onAuthStateChanged(user => {
-      this.footer.updateAuth(user);
+      this.ngZone.run(() => {
+        this.footer.updateAuth(user);
+      });
     });
   }
 
