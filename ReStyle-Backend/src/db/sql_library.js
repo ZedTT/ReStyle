@@ -166,6 +166,13 @@ export const get_user_item =
 "SELECT * FROM dev.item " +
 "WHERE userID = $1 AND swapID IS NULL "
 
+/**
+ * Get all the items owned by a user that are eligible for trading, i.e. don't have swapID
+ */
+export const get_user_items_to_trade =
+"SELECT * FROM dev.item " +
+"WHERE userID = $1 AND swapID IS NULL "
+
 /*
 	Get item(s) to display for a user that does not 
 	include their own items

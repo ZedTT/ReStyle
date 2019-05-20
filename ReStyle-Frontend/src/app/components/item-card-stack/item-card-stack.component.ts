@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { ItemCard } from '../../models/ItemCard';
 import { ItemCardServiceService } from '../../services/item-card-service.service';
 import { Router } from '@angular/router';
@@ -11,21 +11,26 @@ import { firebase } from 'firebaseui-angular';
 })
 export class ItemCardStackComponent implements OnInit {
   items: ItemCard[]; // The array of item cards that will be displayed on the page
+  authenticated: boolean;
 
   /**
    * Constructor.
    * @param itemCardServiceService Used for getting the item cards that will be displayed in ngOnInit()
    * @param router Used to navigate to the trade page in tradeItem()
    */
-  constructor(private itemCardServiceService: ItemCardServiceService, private router: Router) { }
+  constructor(private itemCardServiceService: ItemCardServiceService, private router: Router, private ngZone: NgZone) { }
 
   ngOnInit() {
     // Call grabItemsFromService once on page load
     this.grabItemsFromService(null);
 
     // Set up a listener to call grabItemsFromService again with a new user whenever auth state changes
-    firebase.auth().onAuthStateChanged(updatedUser => { // TODO: Refactor to use onAuthStateChanged from app component
-      this.grabItemsFromService(updatedUser);
+    // TODO: refactor to be part of homepage along with the itemcards firebase
+    firebase.auth().onAuthStateChanged(updatedUser => {
+      this.ngZone.run(() => {
+        this.grabItemsFromService(updatedUser);
+        this.authenticated = !!updatedUser;
+      });
     });
   }
 
@@ -67,7 +72,11 @@ export class ItemCardStackComponent implements OnInit {
     console.log(item);
     item.trade = true;
     setTimeout(() => {
-      this.router.navigate(['/trade'], { queryParams: { user: item.userId, item: item.itemId } });
+      if (this.authenticated) {
+        this.router.navigate(['/trade'], { queryParams: { you: item.userId, item: item.itemId } });
+      } else {
+        this.router.navigate(['/login']); // TODO: save where the user was
+      }
     }, 1000);
   }
 

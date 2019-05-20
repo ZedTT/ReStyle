@@ -1,8 +1,9 @@
 import { Express } from "express";
-import { insertItemForUserWithId, getItemsToDisplayForUserWithId } from '../controllers/itemControllers';
-import { TradeItemModel } from "../models/tradeItemModel";
+import { insertItemForUserWithId, getItemsToDisplayForUserWithId, getTradeItemsForTheUserWithId } from '../controllers/itemControllers';
+import { AddItemModel } from "../models/AddItemModel";
 // ? https://www.npmjs.com/package/multer
 import multer from 'multer';
+import { createNewTradeRequest } from "../controllers/tradeControllers";
 
 const DIR = './uploads/'; // contains images
 
@@ -46,19 +47,37 @@ const itemRoutes = (app: Express) => {
         // change the size to a number instead of a string
         body.size = parseInt(body.size);
 
-        // create a new TradeItemModel object using the body
-        let item = new TradeItemModel(body);
+        // create a new AddItemModel object using the body
+        let item = new AddItemModel(body);
 
         // insert the new user into the DB
         insertItemForUserWithId(response, item);
 
       });
 
-
     })
     .get((request, response) => {
       getItemsToDisplayForUserWithId(response, request.query.uid);
     });
 
+  app.route('/api/tradeitems')
+    // to get all items that are owned by a specific user
+    .get((request, response) => {
+      const userId = request.query.uid
+      if (userId !== null) {
+        getTradeItemsForTheUserWithId(response, userId)
+      } else {
+        response.send({error : `User id is: ${userId} , cannot be null`})
+      }
+    })
+    .post((request, response) => {
+      const tradeRequest = {
+        requesterId: request.body.requesterId,
+        notifiedUserId: request.body.notifiedUserId,
+        requesterTradeItems: request.body.requesterTradeItems,
+        notifiedUserTradeItems: request.body.notifiedUserTradeItems
+      };
+      createNewTradeRequest(response, tradeRequest)
+    })
 }
 export default itemRoutes;
