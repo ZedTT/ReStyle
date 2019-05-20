@@ -1,7 +1,20 @@
-<div>{{ meName }}</div>
-<div>{{ meSwapScore }}</div>
-<div>{{ userImageMe }}</div>
-<div>
-  <app-trade-item *ngFor="let item of myItemsArray" [item]="item"></app-trade-item>
+<div id="user-page-container">
+  <div id='profile-container'>
+    <div id='user-picture' [ngStyle]="{'background-image': 'url(/images/' + this.userImageMe + ')'}"></div>
+    <div id='profile-text-container'> 
+      <p>User Name: {{ meName }}</p>
+      <p>Phone Number: {{ mePhone }}</p>
+      <p>email: {{ meEmail }}</p>
+      <p>City: {{ meCity }}</p>
+      <p>Postal Code: {{ mePostalCode }}</p>
+      <p>Preferred Contact: {{ mePreferredContact }}</p>
+    </div>
+    <div id='button-container'>
+      <button class="button" [routerLink]="[ '/editprofile' ]"> edit profile </button>
+    </div>
+  </div>
+  
+  <div id='inventory-container'>
+    <app-trade-item class='item-picture' *ngFor="let item of myItemsArray" [item]="item"></app-trade-item>
+  </div>
 </div>
-

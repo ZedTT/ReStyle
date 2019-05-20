@@ -19,6 +19,10 @@ export class UserProfileComponent implements OnInit {
   meSwapScore: number;
   meEmail: string;
   userImageMe = 'defaultAvatar.png';
+  meCity: string;
+  mePhone: string;
+  mePostalCode: string;
+  mePreferredContact: string;
   myItemsArray: TradeItem[]; // the list of items that belong to the user who initialized a trade
 
   constructor(
@@ -47,12 +51,16 @@ export class UserProfileComponent implements OnInit {
           this.meId = user.uid;
           // console.log(this.meId);
           this.getMyInventory(this.meId);
-          this.userAccountService.getUserData(user.uid).subscribe(u => {
-            console.log('getUserData functin is working');
-            this.userImageMe = u.userPhotoPath;
-            this.meEmail = 'default@goo.gle';
-            this.meName = u.userName;
-            this.meSwapScore = u.swapScore;
+          this.userAccountService.getUserDetail(user.uid).subscribe(u => {
+            console.log('getUserDetail function is working');
+            console.log(u);
+            this.meName = u.displayname;
+            this.mePhone = u.phone;
+            this.meEmail = u.email;
+            this.mePostalCode = u.postalcode;
+            this.meCity = u.city;
+            this.mePreferredContact = u.preferredContact;
+            this.userImageMe = u.profilePic;
           });
         });
       }
