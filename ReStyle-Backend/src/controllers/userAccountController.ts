@@ -107,7 +107,11 @@ export function updateUserDetails(response: Response, userDetails: UserDetailsIn
                                             response.send({ 'error': err.message })
                                             done()
                                         } else {
-                                            response.send({ 'message': "User details were updated successfully." })
+                                            if (res.rows.length === 1) {
+                                                response.send({ 'message': "User details were updated successfully." })
+                                            } else {
+                                                response.send({ 'error': `Something went wrong. UID: ${userDetails.userId}` })
+                                            }
                                             done()
                                         }
                                     })

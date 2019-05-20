@@ -24,10 +24,11 @@ export class EditProfilePageComponent implements OnInit {
   city: string;
   postalcode: string;
   preferredContact: string;
+  uid: string;
 
   prefs: PreferredContact[] = [
-    { value: 'email', viewValue: 'Email' },
-    { value: 'phone', viewValue: 'Phone' }
+    { value: 'Email', viewValue: 'Email' },
+    { value: 'Phone', viewValue: 'Phone' }
   ];
   onFileSelected(fileEvent) {
 
@@ -49,20 +50,20 @@ export class EditProfilePageComponent implements OnInit {
 
   onSubmit() {
 
-    console.log('onSubmit ran');
+    this.uid = firebase.auth().currentUser.uid;
+    this.email = firebase.auth().currentUser.email;
 
-    const uid = firebase.auth().currentUser.uid;
-
-    if (!uid) { return null; }
+    if (!this.uid) {return null;}
 
     const newItem: UserDetailsInterface = {
-      displayname : this.displayname,
-      phone : this.phone,
-      email : this.email,
-      postalcode : this.postalcode,
-      city : this.city,
-      preferredContact : this.sPref,
-      profilePic : this.selectedFile
+      userId: this.uid,
+      displayname: this.displayname,
+      phone: this.phone,
+      email: this.email,
+      postalcode: this.postalcode,
+      city: this.city,
+      preferredContact: this.sPref,
+      profilePic: this.selectedFile
     };
 
     this.editProfileService.submitEditedProfile(newItem);

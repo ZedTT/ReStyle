@@ -1,4 +1,5 @@
 export interface UserDetailsInterface {
+  userId: string;
   displayname: string;
   phone: string;
   email: string;
