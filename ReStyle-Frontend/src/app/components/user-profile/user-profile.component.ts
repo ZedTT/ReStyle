@@ -21,6 +21,7 @@ export class UserProfileComponent implements OnInit {
   userImageMe = 'defaultAvatar.png';
   meCity: string;
   mePhone: string;
+  mePhoneFormatted: string;
   mePostalCode: string;
   mePreferredContact: string;
   myItemsArray: TradeItem[]; // the list of items that belong to the user who initialized a trade
@@ -61,6 +62,8 @@ export class UserProfileComponent implements OnInit {
             this.meCity = u.city;
             this.mePreferredContact = u.preferredContact;
             this.userImageMe = u.profilePic;
+
+            this.mePhoneFormatted = `(${this.mePhone.substring(0, 3)})-${this.mePhone.substring(3, 6)}-${this.mePhone.substring(6)}`;
           });
         });
       }

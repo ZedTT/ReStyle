@@ -13,6 +13,23 @@ $header-footer-height: 60px
 $sub-header-height: 40px
 $after-header-margin: 15px
 $futura-fallback: Futura, Futura_local, "Century Gothic", Avenir, "Trebuchet MS", Arial, sans-serif
+$mobile-media: 450px
+
+.page-title
+  margin-top: -$after-header-margin
+  position: fixed
+  width: 100%
+  z-index: 1
+  height: $sub-header-height
+  background-color: $card-background-color
+  color: white
+  border-bottom: 1px solid white
+  h5
+    text-align: center
+    margin: 10px 0
+
+.after-page-title
+  padding-top: $sub-header-height
 
 .button
   display: inline-block
