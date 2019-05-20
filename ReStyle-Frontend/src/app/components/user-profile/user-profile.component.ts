@@ -45,7 +45,8 @@ export class UserProfileComponent implements OnInit {
           this.meId = user.uid;
           // console.log(this.meId);
           this.getMyInventory(this.meId);
-          this.userAccountService.getUserData(user.uid).subscribe(u => {
+          this.userAccountService.getUserData(user).subscribe(u => {
+            console.log('getUserData functin is working');
             this.userImageMe = u.userPhotoPath;
             this.meEmail = 'default@goo.gle';
             this.meName = u.userName;
