@@ -20,12 +20,13 @@ import { LoginCardComponent } from './components/login-card/login-card.component
 import { LoginComponent } from './components/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule, MatRadioModule, MatSelectModule, MatSliderModule,
-  MatInputModule, MatButtonToggleModule, MatDividerModule } from '@angular/material'; // tsLint max line 140
+  MatInputModule, MatButtonToggleModule, MatDividerModule, MatSlideToggleModule, MatExpansionModule } from '@angular/material'; // tsLint max line 140
 import {FileUploadModule} from 'primeng/fileupload';
 import { NgbdCarouselComponent } from './components/ngbd-carousel/ngbd-carousel.component';
 import { TradePageComponent } from './components/trade-page/trade-page.component';
 import { ContainerComponent } from './components/container/container.component';
 import { Ng5SliderModule } from 'ng5-slider';
+import {NgxMaskModule} from 'ngx-mask';
 import { TradeColumnComponent } from './components/trade-column/trade-column.component';
 import { TradeItemComponent } from './components/trade-item/trade-item.component';
 import { TradePreviewComponent } from './components/trade-preview/trade-preview.component';
@@ -111,7 +112,10 @@ firebase.initializeApp(environment.firebase);
     MatButtonToggleModule,
     FileUploadModule,
     MatDividerModule,
-    Ng5SliderModule
+    MatSlideToggleModule,
+    Ng5SliderModule,
+    NgxMaskModule.forRoot(),
+    MatExpansionModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
