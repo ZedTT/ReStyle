@@ -40,20 +40,24 @@ export function insertNewUser(response: Response, uid: string, userName: string,
         }
         client.query(insert_user_with_return, [uid, initialSwapScore, userName, defaultProfilePhotoPath], (error, result) => {
             if (error) {
-                response.send({ 'error': `User with id: ${uid} already exists.` })
+                response.send({ 'error': `User with id: ${uid} already exists.` });
+                console.log("Error inside insert_user_with_return query: ", error.message);
                 done()
             } else {
                 if (result.rowCount === 1) {
                     client.query(new_user_hide, [uid], (error, result) => {
                         if (error) {
+                            console.log("Error inside new_user_hide query: ", error.message);
                             done()
                         } else {
                             client.query(insert_email_contact_details, [uid, email], (error, result) => { // add user email
                                 if (error) {
+                                    console.log("Error inside insert_email_contact_details query: ", error.message);
                                     done();
                                 } else {
                                     client.query(new_address_details, [uid, null, null], (error, result) => {
                                         if (error) {
+                                            console.log("Error inside new_address_details query: ", error.message);
                                             done();
                                         } else {
                                             response.send(
