@@ -11,6 +11,8 @@ import { getBootstrapListener } from '@angular/router/src/router_module';
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.sass']
 })
+
+
 export class UserProfileComponent implements OnInit {
   meId: string = null; // the user id of the current user
   meName: string;
@@ -45,7 +47,7 @@ export class UserProfileComponent implements OnInit {
           this.meId = user.uid;
           // console.log(this.meId);
           this.getMyInventory(this.meId);
-          this.userAccountService.getUserData(user).subscribe(u => {
+          this.userAccountService.getUserData(user.uid).subscribe(u => {
             console.log('getUserData functin is working');
             this.userImageMe = u.userPhotoPath;
             this.meEmail = 'default@goo.gle';
