@@ -23,8 +23,12 @@ export class TradePageComponent implements OnInit {
   thumbnailsThem: TradeItem[] = []; // the list of items that belong to the notified user that are currently selected for trading
   columnMeArray: TradeItem[]; // the list of items that belong to the user who initialized a trade
   columnThemArray: TradeItem[]; // the list of items that belong to the user with whom a trade was initialized
-  userImageMe = 'defaultAvatar.png';
-  userImageThem = 'defaultAvatar.png';
+  userImageMe = 'defaultAvatar.png'; // the user image of the user who initialized the trade.
+  // Defaults to the defaultAvatar in case of error.
+  userImageThem = 'defaultAvatar.png'; // the user image of the user with whome the trade was initialized.
+  // Defaults to the defaultAvatar in case of error.
+  userNameMe = 'Your items'; // the user name of the user who initialized the trade
+  userNameThem = 'Their items'; // the user name of the user with whome a trade was initialized
 
   /**
    * Creates an instance of trade page component.
@@ -66,6 +70,7 @@ export class TradePageComponent implements OnInit {
           this.getColumnMe(this.meId);
           this.userAccountService.getUserData(user.uid).subscribe(u => {
             this.userImageMe = u.userPhotoPath;
+            this.userNameMe = u.userName;
           });
         });
       }
@@ -78,6 +83,7 @@ export class TradePageComponent implements OnInit {
       console.log(u);
       if (u.userPhotoPath) {
         this.userImageThem = u.userPhotoPath;
+        this.userNameThem = u.userName;
       }
     });
 
