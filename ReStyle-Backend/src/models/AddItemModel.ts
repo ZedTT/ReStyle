@@ -1,10 +1,10 @@
-import { TradeItemInterface } from "./TradeItemInterface";
+import { AddItemInterface } from "./AddItemInterface";
 
-export class TradeItemModel {
+export class AddItemModel {
 
-    item: TradeItemInterface
+    item: AddItemInterface
 
-    constructor(item: TradeItemInterface){
+    constructor(item: AddItemInterface){
         this.item = item
     }
 
@@ -13,7 +13,7 @@ export class TradeItemModel {
         this.item.size, this.item.title, this.item.category, this.item.photos]
     }
 
-    getJSON(): TradeItemInterface{
+    getJSON(): AddItemInterface{
         return this.item
     }
 

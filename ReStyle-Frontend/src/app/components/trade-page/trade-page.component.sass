@@ -1,0 +1,54 @@
+@import '../../../styles.sass'
+
+$preview-height: 44px
+$request-height: 56px
+
+#trade-container
+    // style
+    background-color: $card-background-color
+    height: 100%
+    width: 100vw
+
+.preview, .column
+    // style
+
+.preview
+    // style
+    position: fixed
+    background-color: $card-background-color
+    width: 100%
+    border: 1px solid white
+    margin-top: -$after-header-margin
+    height: $preview-height
+
+.column
+    // style
+    width: 50%
+    position: absolute
+    top: $header-footer-height + ($preview-height * 2)
+    bottom: $header-footer-height + $request-height
+    overflow-y: scroll
+    overflow-x: hidden
+    background-color: $card-background-color
+
+#preview-me
+    // style
+
+#preview-them
+    // style
+    margin-top: -$after-header-margin + $preview-height
+
+#column-me
+    // style
+
+#column-them
+    // style
+    right: 0
+
+#request
+    position: fixed
+    bottom: $header-footer-height
+    border-top: 2px solid white
+    z-index: 1
+    width: 100%
+    height: $request-height
