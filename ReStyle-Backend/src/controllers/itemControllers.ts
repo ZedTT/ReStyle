@@ -1,5 +1,5 @@
 import { query } from "../db/dbInit";
-import { insert_item_with_return, get_user_item, get_user_item_data, get_user_items_to_trade } from "../db/sql_library";
+import { insert_item_with_return, get_user_item, get_user_item_data, get_user_items_to_trade, add_hide } from "../db/sql_library";
 import { Response } from "express";
 import { AddItemModel } from "../models/AddItemModel";
 import { ItemCardInterface } from '../models/ItemCardInterface';
@@ -114,5 +114,11 @@ export function getTradeItemsForTheUserWithId(response: Response, userId: string
       // console.log('\nitemsToSend: ', itemsToSend)
       response.send(itemsToSend);
     }
+  })
+}
+
+export function addHiddenItem(response: Response, userId: string, itemId: number) {
+  query(add_hide, [itemId, userId], (err, res) => {
+
   })
 }

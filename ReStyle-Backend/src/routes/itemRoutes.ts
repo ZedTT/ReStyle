@@ -1,5 +1,5 @@
 import { Express } from "express";
-import { insertItemForUserWithId, getItemsToDisplayForUserWithId, getTradeItemsForTheUserWithId } from '../controllers/itemControllers';
+import { insertItemForUserWithId, getItemsToDisplayForUserWithId, getTradeItemsForTheUserWithId, addHiddenItem } from '../controllers/itemControllers';
 import { AddItemModel } from "../models/AddItemModel";
 // ? https://www.npmjs.com/package/multer
 import multer from 'multer';
@@ -67,7 +67,7 @@ const itemRoutes = (app: Express) => {
       if (userId !== null) {
         getTradeItemsForTheUserWithId(response, userId)
       } else {
-        response.send({error : `User id is: ${userId} , cannot be null`})
+        response.send({ error: `User id is: ${userId} , cannot be null` })
       }
     })
     .post((request, response) => {
@@ -78,6 +78,14 @@ const itemRoutes = (app: Express) => {
         notifiedUserTradeItems: request.body.notifiedUserTradeItems
       };
       createNewTradeRequest(response, tradeRequest)
+    })
+
+  app.route('/api/hideitems')
+    // sends hidden item id to the db
+    .post((request, response) => {
+      // console.log(request.body.userId);
+      // console.log(request.body.itemId);
+      addHiddenItem(response, request.body.userId, request.body.itemId)
     })
 }
 export default itemRoutes;
