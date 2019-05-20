@@ -1,3 +1,10 @@
+@import "../../../styles.sass"
+
+$check-size: 30px
+$half-check-size: 15px
+$check-color: white
+$selected-background-darken-amount: 20%
+
 .trade-item
     text-align: center
     
@@ -14,5 +21,25 @@ img
     background-repeat: none
     background-size: cover
 
+.check-parent
+    position: absolute
+
+.check
+    position: relative
+    top: calc(25vw - 15px) // $ values don't seem to work in calc
+    left: calc(25vw - 15px) // should be half check size
+    height: $check-size
+    width: $check-size
+    background-color: $check-color
+    border-radius: 50%
+
+.title
+    background-color: $card-background-color
+    color: white
+    padding: 10px
+    font-family: Futura_local, Futura, sans-serif
+    font-weight: bold
+
 .selected
-    background-color: grey
+    filter: saturate(0.8) opacity(0.8)
+    background-color: darken($check-color, $selected-background-darken-amount)
