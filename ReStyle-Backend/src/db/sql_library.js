@@ -494,6 +494,6 @@ export const new_address_details =
 
 */
 export const update_address_details_with_return = 
-"UPDATE dev.address (city, postalCode) " +
+"UPDATE dev.address " +
 "SET city = $1, postalCode = $2 " +
 "WHERE userID = $3 RETURNING * "
