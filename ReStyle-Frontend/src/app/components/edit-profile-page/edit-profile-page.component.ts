@@ -29,7 +29,6 @@ export class EditProfilePageComponent implements OnInit {
     { value: 'email', viewValue: 'Email' },
     { value: 'phone', viewValue: 'Phone' }
   ];
-
   onFileSelected(fileEvent) {
 
     this.selectedFile = fileEvent.target.files[0] as File;
