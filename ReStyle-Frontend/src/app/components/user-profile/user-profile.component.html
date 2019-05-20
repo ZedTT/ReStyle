@@ -1,3 +1,10 @@
 <p>
-  user-profile works!
-</p>
+    user-profile works!
+  </p>
+  <div>{{ meName }}</div>
+  <div>{{ meSwapScore }}</div>
+  <div>{{ userImageMe }}</div>
+  <div>
+    <app-trade-item *ngFor="let item of items" [item]="item" (toggleItemOutput)="toggleItem(item)"></app-trade-item>
+  </div>
+  
