@@ -131,19 +131,14 @@
                   <mat-hint>Choose Email or Phone</mat-hint>
                 </mat-form-field>
               </div>
-              <button type="submit" form="editProfileContainer" value="Submit" class="btn-success editSave" (click)="onSubmit()">Submit</button> 
             </form>
           </div>
         </div>    
       </form>
 
-    <div class="card buttonPair">
-      <div class="buttonContainer cancelContainer">
-        <div class="btn-danger editCancel">Cancel</div>
-      </div>
-      <div class="buttonContainer">
-        <div type="submit" form="editProfileContainer" value="Submit" class="btn-success editSave">Submit</div>
-      </div>
+    <div class="buttonPair btn-group">
+      <button class="btn buttons btn-secondary editCancel">Cancel</button>
+      <button type="submit" form="editProfileContainer" value="Submit" (click)="onSubmit()" class="btn buttons btn-primary editSave">Submit</button>
     </div>
     
   </div>

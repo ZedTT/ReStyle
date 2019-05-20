@@ -53,7 +53,7 @@ export class EditProfilePageComponent implements OnInit {
     this.uid = firebase.auth().currentUser.uid;
     this.email = firebase.auth().currentUser.email;
 
-    if (!this.uid) {return null;}
+    if (!this.uid) {return null; }
 
     const newItem: UserDetailsInterface = {
       userId: this.uid,
