@@ -73,19 +73,17 @@ export const get_user_rating =
 	userID character(28)
 
 	Example:
-	[userID, itemID]
-	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2', 4]
+	[userID]
+	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2']
 */
 export const get_user_item_data =
 "SELECT i.*, u.swapScore, u.userName, u.userPhotoPath " +
 "FROM dev.item AS i " +
 "INNER JOIN dev.restyle_user AS u " +
 "ON i.userID = u.userID " +
-"INNER JOIN dev.hide AS h " +
-"ON h.userID = u.userID " +
 "WHERE i.userID != $1 " +
 "AND i.swapID IS NULL " +
-"AND i.itemID NOT IN ($2 = ANY(h.items)) "
+"AND i.itemID != ALL(SELECT UNNEST(h.items) FROM dev.hide AS h WHERE h.userID = $1) "
 
 /*
 	Update the user's profile picture 
