@@ -485,14 +485,15 @@ export const new_address_details =
 "VALUES ($1, $2 , $3) "
 
 /*
-	Update address details in address table
+	Update address details in address table with return
 	NOTE: not inserting full address details with this query
 
 	Example:
-	[userID, city, postalCode]
-	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2', city, postalCode]
+	[city, postalCode, userID]
+	[city, postalCode ,'l15CGtMJ5bSnEkRPpYEgyvVWeLt2']
 
 */
-export const update_address_details = 
+export const update_address_details_with_return = 
 "UPDATE dev.address (city, postalCode) " +
-"VALUES ($1, $2 ) "
+"SET city = $1, postalCode = $2 " +
+"WHERE userID = $3 RETURNING * "
