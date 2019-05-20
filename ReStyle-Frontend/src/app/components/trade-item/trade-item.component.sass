@@ -6,12 +6,6 @@ $selected-background-darken-amount: 20%
 
 .trade-item
     text-align: center
-    
-img
-    width: 150px
-    height: 150px
-    object-fit: cover
-    object-position: 50%
 
 .item-image
     height: 0
@@ -19,13 +13,12 @@ img
     padding-bottom: 100%
     background-repeat: none
     background-size: cover
+    background-position: 50%
 
 .check-parent
     position: absolute
     height: 0
     width: 100%
-    // padding-bottom: 100%
-    // background-color: #fff
     top: 50% // This is still slightly wrong
     left: 50%
 
@@ -48,7 +41,7 @@ img
     font-weight: bold
 
 .selected
-    filter: saturate(0.9) contrast(0.9) brightness(1.1)
+    filter: saturate(0.4) contrast(1.1)  // brightness(1)
     outline:  solid 5px $card-background-color
     outline-offset: -5px
 
