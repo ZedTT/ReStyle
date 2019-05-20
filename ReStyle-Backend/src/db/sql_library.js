@@ -292,9 +292,9 @@ export const get_hide_list =
 	[itemID, userID]
 	[23,'15CGtMJ5bSnEkRPpYEgyvVWeLt2']
 */
-export const add_hide =
+export const add_hide_with_return =
 "UPDATE dev.hide SET items = array_append(items, $1) " +
-"WHERE userID = $2 "
+"WHERE userID = $2 RETURNING * "
 
 
 /*

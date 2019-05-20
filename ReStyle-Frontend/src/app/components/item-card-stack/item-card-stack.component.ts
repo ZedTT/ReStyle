@@ -12,6 +12,7 @@ import { firebase } from 'firebaseui-angular';
 export class ItemCardStackComponent implements OnInit {
   items: ItemCard[]; // The array of item cards that will be displayed on the page
   authenticated: boolean;
+  userId: string; // The id of currently logged in user
 
   /**
    * Constructor.
@@ -28,6 +29,7 @@ export class ItemCardStackComponent implements OnInit {
     // TODO: refactor to be part of homepage along with the itemcards firebase
     firebase.auth().onAuthStateChanged(updatedUser => {
       this.ngZone.run(() => {
+        this.userId = updatedUser ? updatedUser.uid : null;
         this.grabItemsFromService(updatedUser);
         this.authenticated = !!updatedUser;
       });
@@ -61,6 +63,16 @@ export class ItemCardStackComponent implements OnInit {
     setTimeout(() => {
       this.items = this.items.filter(i => i.itemId !== item.itemId);
     }, 1000);
+    // Post an item to the hidden items list into db.
+    if (this.authenticated && this.userId) {
+      this.itemCardServiceService.postHiddenItem(this.userId, item.itemId).subscribe(temp => {
+        console.log(temp)
+      })
+    } else {
+      setTimeout(() => {
+        this.router.navigate(['/login']); // TODO: save where the user was
+      }, 1000);
+    }
   }
 
   /**
