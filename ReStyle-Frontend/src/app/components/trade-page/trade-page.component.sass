@@ -3,6 +3,7 @@
 $preview-height: 44px
 $double-preview-height: $preview-height * 2
 $request-height: 56px
+$request-height-inner: $request-height * 0.95
 $user-name-height: 32px
 
 #trade-container
@@ -63,10 +64,17 @@ $user-name-height: 32px
     // style
     right: 0
 
-#request
+#request-container
     position: fixed
     bottom: $header-footer-height
     border-top: 2px solid white
     z-index: 1
     width: 100%
     height: $request-height
+    display: flex
+    align-items: center
+    justify-content: center
+    #request
+        height: $request-height-inner
+        width: 95%
+        border-radius: $request-height-inner / 2

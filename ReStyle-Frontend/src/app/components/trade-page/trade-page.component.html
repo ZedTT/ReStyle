@@ -1,7 +1,9 @@
 <div id="trade-container">
   <app-trade-preview class="preview" id="preview-me" #previewMe [thumbnails]="thumbnailsMe" [userImage]="userImageMe"></app-trade-preview>
   <app-trade-preview class="preview" id="preview-them" #previewThem [thumbnails]="thumbnailsThem" [userImage]="userImageThem"></app-trade-preview>
-  <button class="button" id='request' (click)="requestTrade()">Request Trade</button>
+  <div id="request-container">
+    <button class="button" id='request' (click)="requestTrade()">Request Trade</button>
+  </div>
   <div class="user-name">{{ userNameMe }}</div>
   <div class="user-name user-name-them">{{ userNameThem }}</div>
   <app-trade-column class="column" id="column-me" #columnMe [items]="columnMeArray" (toggleItemOutput)="toggleItemMe($event)"></app-trade-column>
