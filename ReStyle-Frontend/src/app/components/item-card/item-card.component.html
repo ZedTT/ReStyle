@@ -2,7 +2,7 @@
   <div class="item-image-container" [ngStyle]="getImage()"></div>
   <div class="item-footer">
     <div class="user">
-      <img class="user-image" [src]="tempUserImage" alt="User image">
+      <img class="user-image" [src]="'/images/' + item.userPicturePath" alt="User image">
     </div>
     <div class="item-info">
       <div class="title">{{ item.title }}</div>

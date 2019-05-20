@@ -1,7 +1,10 @@
 @import '../../../styles.sass'
 
 $preview-height: 44px
+$double-preview-height: $preview-height * 2
 $request-height: 56px
+$request-height-inner: $request-height * 0.95
+$user-name-height: 32px
 
 #trade-container
     // style
@@ -21,11 +24,27 @@ $request-height: 56px
     margin-top: -$after-header-margin
     height: $preview-height
 
+.user-name
+    width: 50%
+    height: $user-name-height
+    line-height: $user-name-height / 1.1
+    background-color: #fff
+    color: $card-background-color
+    border-bottom: 2px solid $card-background-color
+    text-align: center
+    font-size: 150%
+    font-weight: bold
+    position: fixed
+    margin-top: $double-preview-height + -$after-header-margin
+    z-index: 2
+    &.user-name-them
+        right: 0
+
 .column
     // style
     width: 50%
     position: absolute
-    top: $header-footer-height + ($preview-height * 2)
+    top: $header-footer-height + ($preview-height * 2) + $user-name-height
     bottom: $header-footer-height + $request-height
     overflow-y: scroll
     overflow-x: hidden
@@ -45,10 +64,17 @@ $request-height: 56px
     // style
     right: 0
 
-#request
+#request-container
     position: fixed
     bottom: $header-footer-height
     border-top: 2px solid white
     z-index: 1
     width: 100%
     height: $request-height
+    display: flex
+    align-items: center
+    justify-content: center
+    #request
+        height: $request-height-inner
+        width: 95%
+        border-radius: $request-height-inner / 2
