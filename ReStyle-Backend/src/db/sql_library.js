@@ -73,16 +73,19 @@ export const get_user_rating =
 	userID character(28)
 
 	Example:
-	[userID]
-	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2']
+	[userID, itemID]
+	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2', 4]
 */
 export const get_user_item_data =
 "SELECT i.*, u.swapScore, u.userName, u.userPhotoPath " +
 "FROM dev.item AS i " +
 "INNER JOIN dev.restyle_user AS u " +
 "ON i.userID = u.userID " +
+"INNER JOIN dev.hide AS h " +
+"ON h.userID = u.userID " +
 "WHERE i.userID != $1 " +
-"AND i.swapID IS NULL "
+"AND i.swapID IS NULL " +
+"AND i.itemID NOT IN ($2 = ANY(h.items)) "
 
 /*
 	Update the user's profile picture 
@@ -112,7 +115,7 @@ export const update_user_profile_pic =
 export const update_user_name = 
 "UPDATE dev.restyle_user AS u " +
 "SET u.userName = $1 " +
-"WHERE u.userName = $2 "
+"WHERE u.userID = $2 "
 
 /*
 --------------------------------------------------Item Queries----------------------------------
@@ -430,8 +433,8 @@ export const new_contact_details_no_return =
 
 */
 export const update_contact_details_with_return =
-"UPDATE dev.contact_details AS c " +
-"SET c.email = $1, c.phoneNumber = $2, c.preferredMethodOfContact = $3 " +
+"UPDATE dev.contact_details " +
+"SET email = $1, phoneNumber = $2, preferredMethodOfContact = $3 " +
 "WHERE userID = $4 RETURNING * "
 
 /*
@@ -473,6 +476,7 @@ export const user_details =
 /*
 	Insert address details into address table
 	NOTE: not inserting full address details with this query
+
 	Example:
 	[userID, city, postalCode]
 	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2', email]
@@ -481,3 +485,16 @@ export const user_details =
 export const new_address_details = 
 "INSERT INTO dev.address (userID, city, postalCode) " +
 "VALUES ($1, $2 , $3) "
+
+/*
+	Update address details in address table
+	NOTE: not inserting full address details with this query
+
+	Example:
+	[userID, city, postalCode]
+	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2', city, postalCode]
+
+*/
+export const update_address_details = 
+"UPDATE dev.address (city, postalCode) " +
+"VALUES ($1, $2 ) "
