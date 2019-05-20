@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TradeItem } from '../../models/TradeItem';
 
 @Component({
@@ -10,7 +10,7 @@ export class TradeItemComponent implements OnInit {
   @Input() item: TradeItem; // for getting the item
   @Output() toggleItemOutput: EventEmitter<TradeItem> = new EventEmitter(); // for passing the item to column component when toggled
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) { }
+  constructor() { }
 
   ngOnInit() {
     this.setClasses();
@@ -21,7 +21,7 @@ export class TradeItemComponent implements OnInit {
    * See the HTML [ngClasses]="setClasses()"
    *
    * Selected: if the item is currently selected or not.
-   * tradeItem: unused.
+   * tradeItem: used for styling.
    *
    * @returns An object representing what classes should be set by angular.
    */
@@ -46,10 +46,7 @@ export class TradeItemComponent implements OnInit {
   toggleSelected() {
     // Invert the value of boolean item.selected.
     this.item.selected = !this.item.selected;
-    // A bandaid. Only needed on the 'me' column inexplicably
-    // without it, the classes do not properly update in the dom
-    // May no longer be needed due to use of ngZone in tradePage
-    // * this.changeDetectorRef.detectChanges();
+
     // Pass the item that was just toggled so that we can add it to or remove it from the preview thumbnails
     this.toggleItemOutput.emit(this.item);
 

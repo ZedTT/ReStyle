@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, ViewChild, ChangeDetectorRef, NgZone } from '@angular/core';
-import { Router, NavigationStart } from '@angular/router';
+import { Component, OnInit, Input, ViewChild, NgZone } from '@angular/core';
+import { Router } from '@angular/router';
 import { TradeItem } from '../../models/TradeItem';
 import { TradeService } from '../../services/trade.service';
 import { firebase } from 'firebaseui-angular';
@@ -36,7 +36,6 @@ export class TradePageComponent implements OnInit {
   constructor(
     private router: Router,
     private tradeService: TradeService,
-    private changeDetectorRef: ChangeDetectorRef, // ! seems like it's not needed anymore
     private ngZone: NgZone, // ? See https://stackoverflow.com/questions/40054416/detect-changes-made-by-firebase-sdk-in-angular-2
     // We need to force firebase to run inside of the angular zone to avoid using changeDetectorRef
     private userAccountService: UserAccountService
@@ -98,15 +97,7 @@ export class TradePageComponent implements OnInit {
         for (const item of temp) {
           item.selected = false;
         }
-        console.log(uid);
-        console.log(temp);
         this.columnMeArray = temp;
-        console.log(this.columnMeArray);
-        // We need this to remind angular that we changed things
-        // Specifically because onAuthStateChanged causes this to be called twice in rapid succession
-        // This is only needed on refresh
-        // ? May no longer be needed because NgZone is a better fix
-        // * this.changeDetectorRef.markForCheck();
       });
     }
   }
@@ -132,7 +123,11 @@ export class TradePageComponent implements OnInit {
       }, 0);
       // Make the item that was selected for trade start out as selected
       for (const item of this.columnThemArray) {
+        // tsLint sometimes says this will always return false, but it is wrong. This works.
+        // to get tsLint to calm down, try opening the TradeItem model.
+        // ItemID used to be a string in the TradeItem model, and it gets confused
         if (item.itemId === this.itemId) {
+          console.log('true');
           item.selected = true;
           this.toggleItemThem(item);
           item0 = item;
