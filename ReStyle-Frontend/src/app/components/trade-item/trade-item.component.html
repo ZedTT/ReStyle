@@ -1,0 +1,8 @@
+<div [ngClass]="setClasses()" (click)="toggleSelected()">
+  <!-- <img src="/images/{{ this.item.picturePath[0] }}" alt=""> -->
+  <div class="check-parent" *ngIf="item.selected">
+    <div class="check">✔</div>
+  </div>
+  <div class="item-image" [ngStyle]="getImage()"></div>
+  <div class="title">{{ item.title }}</div>
+</div>

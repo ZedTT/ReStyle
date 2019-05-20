@@ -1,44 +1,55 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { TradeItem } from '../models/TradeItem';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TradeService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   /**
-   * Returns tradeItem objects that represent the items owned by the user.
-   * ! This currently returns static data only
-   * ! If you want to use this to get the currently signed in users items,
-   * ! Be very careful to grab that userID from a secure source, so people can't
-   * ! use arbitrary userID's
-   * TODO: make this not return static data.
-   * @param user the userID of the user.
+   * For getting tradeItem objects that represent the items owned by the user.
+   * @param userID the userID of the user.
+   * @returns an observable that, when subscribed to, returns an array of tradeItems
    */
-  getItemsByUser(user: string) {
-    return [
-      {
-        itemId: 'i',
-        picturePath: ['/path1', '/path2', '/path3'],
-        title: 'test shirt',
-        size: 3,
-        description: 'lorem ipsum dolor sit amet',
-      },
-      {
-        itemId: 'k',
-        picturePath: ['/path1', '/path2', '/path3'],
-        title: 'test pants',
-        size: 2,
-        description: 'lorem ipsum dolor sit amet',
-      }
-    ];
+  getItemsByUser(userID: string): Observable<any> { // TODO: please rename 'user' to 'userId'
+    // if (!user) { return null; }
+    return this.http.get<any>(`/api/tradeitems?uid=${userID}`);
   }
-  // ! for reference during development, can be removed.
-  // itemId: string; // a unique id to identify this item
-  // picturePath: string[]; // an array of paths to the pictures that are displayed for this item
-  // selected: boolean; // keeps track of if the item is selected for trading or not
-  // title: string; // the name of the item
-  // size: number; // the size, 0: XS, 1: S, 2: M, 3: L, 4: XL
-  // description: string; // the description of the item
+
+  requestTrade(
+    requesterId, notifiedUserId,
+    requesterTradeItems, notifiedUserTradeItems
+    ) {
+    // console.log('TRADE REQUEST', {
+    //   requesterId,
+    //   notifiedUserId,
+    //   requesterTradeItems,
+    //   notifiedUserTradeItems
+    // });
+    this.http.post<any>('/api/tradeitems', {
+      requesterId,
+      notifiedUserId,
+      requesterTradeItems,
+      notifiedUserTradeItems
+    }).subscribe(res => {
+      console.log(res);
+    });
+    // {
+    //   "requesterId": "nsisodvqeNOTDCitaseopWjovEJ2",
+    //   "notifiedUserId": "rCjzKDG6rjUwjj6I5BepsLbvgPr1",
+    //   "requesterTradeItems": [
+    //       4,
+    //       6
+    //   ],
+    //   "notifiedUserTradeItems": [
+    //       20,
+    //       19
+    //   ]
+    // }
+  }
+
 }

@@ -10,7 +10,7 @@ import { firebase } from 'firebaseui-angular';
 export class FooterComponent implements OnInit {
   easterEggEnabled: boolean;
   authenticated: boolean;
-  userImagePath: string;
+  userImagePath = '/images/defaultAvatar.png';
 
   constructor(private userAccountService: UserAccountService) {
     this.easterEggEnabled = false;
@@ -25,7 +25,7 @@ export class FooterComponent implements OnInit {
   updateAuth(user) {
     this.authenticated = (user !== null);
     if (this.authenticated) {
-    const userObject = this.userAccountService.getUserData(user);
+    const userObject = this.userAccountService.getUserData(user.uid);
     userObject.subscribe( object => {
       this.userImagePath = `/images/${object.userPhotoPath}`;
     });

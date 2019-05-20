@@ -1,8 +1,9 @@
 import { query } from "../db/dbInit";
-import { insert_item_with_return, get_user_item, get_user_item_data } from "../db/sql_library";
+import { insert_item_with_return, get_user_item, get_user_item_data, get_user_items_to_trade } from "../db/sql_library";
 import { Response } from "express";
-import { TradeItemModel } from "../models/tradeItemModel";
+import { AddItemModel } from "../models/AddItemModel";
 import { ItemCardInterface } from '../models/ItemCardInterface';
+import { TradeItemInterface } from '../models/TradeItemInterface';
 
 // insert dummy item to the db
 export function dummy_insertItemForUserWithId() {
@@ -30,7 +31,7 @@ export function dummy_insertItemForUserWithId() {
 // insert an item to the db using the user uid
 export function insertItemForUserWithId(
   response: Response,
-  item: TradeItemModel
+  item: AddItemModel
 ) {
   if (item.getSize() < 0 || item.getSize() > 4) {
     response.send({
@@ -84,6 +85,30 @@ export function getItemsToDisplayForUserWithId(response: Response, userId: strin
           size: itemRecord.size,
           category: itemRecord.category,
           description: itemRecord.description
+        })
+      }
+      // console.log('\nitemsToSend: ', itemsToSend)
+      response.send(itemsToSend);
+    }
+  })
+}
+
+// to get all items that are owned by a specific user and are eligible for trading
+export function getTradeItemsForTheUserWithId(response: Response, userId: string) {
+  query(get_user_item, [userId], (err, res) => {
+    if (err) {
+      console.log("Error inside getTradeItemsForTheUserWithId:", err);
+      response.send({ error: err.message });
+    } else {
+      let itemsToSend: TradeItemInterface[] = [];
+      for (let itemRecord of res.rows) {
+        itemsToSend.push({
+          itemId: itemRecord.itemid,
+          picturePath: itemRecord.photopaths,
+          title: itemRecord.title,
+          description: itemRecord.description,
+          size: itemRecord.size,
+          category: itemRecord.category
         })
       }
       // console.log('\nitemsToSend: ', itemsToSend)

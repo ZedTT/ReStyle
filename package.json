@@ -10,8 +10,5 @@
         "startall": "cd ./ReStyle-Frontend/ && ng build && cd ../ReStyle-Backend/ && npm start"
     },
     "dependencies": {
-        "@types/pg": "^7.4.14",
-        "express": "^4.16.4",
-        "pg": "^7.11.0"
     }
 }

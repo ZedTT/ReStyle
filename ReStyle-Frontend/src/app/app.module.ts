@@ -29,6 +29,10 @@ import { ContainerComponent } from './components/container/container.component';
 import { Ng5SliderModule } from 'ng5-slider';
 import { EditProfilePageComponent } from './components/edit-profile-page/edit-profile-page.component';
 import {NgxMaskModule} from 'ngx-mask';
+import { TradeColumnComponent } from './components/trade-column/trade-column.component';
+import { TradeItemComponent } from './components/trade-item/trade-item.component';
+import { TradePreviewComponent } from './components/trade-preview/trade-preview.component';
+import { TradePreviewThumbnailComponent } from './components/trade-preview-thumbnail/trade-preview-thumbnail.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { TradeRequestsPageComponent } from './components/trade-requests-page/trade-requests-page.component';
 
@@ -81,6 +85,10 @@ firebase.initializeApp(environment.firebase);
     AddItemPageComponent,
     ContainerComponent,
     EditProfilePageComponent,
+    TradeColumnComponent,
+    TradeItemComponent,
+    TradePreviewComponent,
+    TradePreviewThumbnailComponent,
     UserProfileComponent,
     TradeRequestsPageComponent
   ],
