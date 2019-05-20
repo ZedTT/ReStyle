@@ -1,7 +1,9 @@
 @import '../../../styles.sass'
 
 $preview-height: 44px
+$double-preview-height: $preview-height * 2
 $request-height: 56px
+$user-name-height: 32px
 
 #trade-container
     // style
@@ -21,11 +23,27 @@ $request-height: 56px
     margin-top: -$after-header-margin
     height: $preview-height
 
+.user-name
+    width: 50%
+    height: $user-name-height
+    line-height: $user-name-height / 1.1
+    background-color: #fff
+    color: $card-background-color
+    border-bottom: 2px solid $card-background-color
+    text-align: center
+    font-size: 150%
+    font-weight: bold
+    position: fixed
+    margin-top: $double-preview-height + -$after-header-margin
+    z-index: 2
+    &.user-name-them
+        right: 0
+
 .column
     // style
     width: 50%
     position: absolute
-    top: $header-footer-height + ($preview-height * 2)
+    top: $header-footer-height + ($preview-height * 2) + $user-name-height
     bottom: $header-footer-height + $request-height
     overflow-y: scroll
     overflow-x: hidden
