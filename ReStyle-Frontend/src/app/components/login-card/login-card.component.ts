@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, NgZone } from '@angular/core';
 import { firebase } from 'firebaseui-angular';
 import { UserAccountService } from '../../services/user-account.service';
 
@@ -13,7 +13,7 @@ export class LoginCardComponent implements OnInit {
 
   // ChangeDetector allows us to check if a variable has changed
   // Use in onAuthStateChanged in ngOnInit
-  constructor(private changeDetectorRef: ChangeDetectorRef, private userAccountService: UserAccountService) {
+  constructor(private changeDetectorRef: ChangeDetectorRef, private userAccountService: UserAccountService, private ngZone: NgZone) {
     // When user is logged in, this part is triggered automatically and post user data to the database.
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -42,7 +42,13 @@ export class LoginCardComponent implements OnInit {
      * When this.authenticated is false, login button shows
      */
     firebase.auth().onAuthStateChanged((response) => {
-      this.authenticated = firebase.auth().currentUser !== null;
+      /**
+       * NgZone forces the code to run as part of angular, rather than outside angular
+       * This makes it so that the code uses angulars change detection automatically
+       */
+      this.ngZone.run(() => {
+        this.authenticated = firebase.auth().currentUser !== null;
+      });
 
       // * For debugging
       // console.log('Auth state has changed! Current user is: ' + firebase.auth().currentUser);
@@ -64,11 +70,13 @@ export class LoginCardComponent implements OnInit {
        *
        * detectChanges() hinders the routing to /login page,
        * so we only call it when the user is currently authenticated and (presumably) logging out.
+       *
+       * ! NgZone removes the need for changeDetectorRef
        */
-      if (this.authenticated) {
-        console.log('change detected');
-        this.changeDetectorRef.detectChanges();
-      }
+      // if (this.authenticated) {
+      //   console.log('change detected');
+      //   this.changeDetectorRef.detectChanges();
+      // }
     });
   }
 

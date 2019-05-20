@@ -11,6 +11,14 @@ app.use(bodyParser.json());
 userRoutes(app)
 itemRoutes(app)
 
+/** 
+ * ! <<<DEPLOYMENT COMMENT>>>
+ * /ReStyle-Backend/ should be added on the express.static() url for deployment 
+ * ex) #20 express.static('./ReStyle-Backend/uploads');
+ * ! There is a bug that fonts are not working on the deployed version. 
+ * ! Should be addressed later.
+ */ 
+
 // Path to the images
 app.use('/images', express.static('./uploads'));
 // ? https://dummyimage.com/800/c9c2ab/4a454a.png&text=ReStyle+Image+not+found
@@ -28,6 +36,10 @@ app.use('/fonts', express.static('./fonts'));
  * ? See https://asknodejs.blogspot.com/2017/06/express-fallback-route-also-used-for.html
  * ! This must be after every other more specific routing (get and post requests)
  * ! '*' refers to any url that was not already specified above.
+ */
+/** 
+ * ! <<<DEPLOYMENT COMMENT>>>
+ * ../ should be replaced with ./ in a deployment version
  */
 app.use('/', express.static('../ReStyle-Frontend/dist/ReStyle'));
 app.use('*', express.static('../ReStyle-Frontend/dist/ReStyle')); // fallback

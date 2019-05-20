@@ -26,6 +26,10 @@ import { NgbdCarouselComponent } from './components/ngbd-carousel/ngbd-carousel.
 import { TradePageComponent } from './components/trade-page/trade-page.component';
 import { ContainerComponent } from './components/container/container.component';
 import { Ng5SliderModule } from 'ng5-slider';
+import { TradeColumnComponent } from './components/trade-column/trade-column.component';
+import { TradeItemComponent } from './components/trade-item/trade-item.component';
+import { TradePreviewComponent } from './components/trade-preview/trade-preview.component';
+import { TradePreviewThumbnailComponent } from './components/trade-preview-thumbnail/trade-preview-thumbnail.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { TradeRequestsPageComponent } from './components/trade-requests-page/trade-requests-page.component';
 import { AboutUsPageComponent } from './components/about-us-page/about-us-page.component';
@@ -78,6 +82,10 @@ firebase.initializeApp(environment.firebase);
     NgbdCarouselComponent,
     AddItemPageComponent,
     ContainerComponent,
+    TradeColumnComponent,
+    TradeItemComponent,
+    TradePreviewComponent,
+    TradePreviewThumbnailComponent,
     UserProfileComponent,
     TradeRequestsPageComponent,
     AboutUsPageComponent
