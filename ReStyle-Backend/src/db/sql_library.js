@@ -469,7 +469,6 @@ export const user_details =
 /*
 	Insert address details into address table
 	NOTE: not inserting full address details with this query
-
 	Example:
 	[userID, city, postalCode]
 	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2', email]

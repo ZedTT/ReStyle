@@ -27,5 +27,9 @@ export class UserAccountService {
     return this.http.get<any>(`/api/users?uid=${uid}`);
   }
 
+  getUserDetail(uid: string): Observable<any> {
+    // get a specific user's detailed information given current uid
+    return this.http.get<any>(`/api/userdetails?uid=${uid}`);
+  }
 
 }
