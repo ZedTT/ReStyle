@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import userRoutes from './routes/userRoutes';
 import itemRoutes from './routes/itemRoutes';
+import tradeRequestRoutes from './routes/tradeRequestRoutes';
 
 const app = express();
 // parse JSON from request
@@ -10,6 +11,7 @@ app.use(bodyParser.json());
 
 userRoutes(app)
 itemRoutes(app)
+tradeRequestRoutes(app)
 
 /** 
  * ! <<<DEPLOYMENT COMMENT>>>

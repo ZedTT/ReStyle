@@ -364,7 +364,7 @@ export const new_trade_request_no_return =
 */
 export const status_update_trade_request =
 "UPDATE dev.trade_request SET status = $1 " +
-"WHERE tradeRequestID = $2 "
+"WHERE trade_requestID = $2 RETURNING * "
 
 /*
 	To get the trade request inbox details:
@@ -401,8 +401,8 @@ export const get_trade_request_inbox_details =
 
 "LEFT JOIN dev.item as i2 " +
 "ON t.notified_userID2  = i2.userid " +
-"WHERE t.notified_userID2 = $1 AND t.status != Reject " +
-"GROUP BY t.trade_requestID, t.requester_userID1,u1.userPhotoPath,u1.userName  "
+"WHERE t.notified_userID2 = $1 AND t.status IS NULL " +
+"GROUP BY t.trade_requestID, t.requester_userID1, u1.userPhotoPath, u1.userName  "
 
 /*
 --------------------------------------------------Swap Queries-------------------------------
