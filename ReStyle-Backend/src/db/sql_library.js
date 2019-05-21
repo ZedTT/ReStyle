@@ -72,7 +72,12 @@ export const get_user_item_data =
 	"INNER JOIN dev.restyle_user AS u " +
 	"ON i.userID = u.userID " +
 	"WHERE i.userID != $1 " +
+<<<<<<< HEAD
 	"AND i.swapID IS NULL "
+=======
+	"AND i.swapID IS NULL " +
+	"AND i.itemID != ALL(SELECT UNNEST(h.items) FROM dev.hide AS h WHERE h.userID = $1) "
+>>>>>>> 359fec48529a4599dc23935c6940bcbcc692369b
 
 /*
 	Update the user's profile picture 
@@ -103,6 +108,11 @@ export const update_user_name =
 
 /**
  * A query to update both user name and user profile picture at one go.
+ * userID character(28)
+	Example:
+	[userName, userPhotoPath, userID]
+	['newUserName', 'default.jpg', 'rCjzKDG6rjUwjj6I5BepsLbvgPr1']
+ * 
  */
 export const update_user_name_and_user_profile_pic =
 	"UPDATE dev.restyle_user " +
@@ -471,9 +481,21 @@ export const new_address_details =
 	"INSERT INTO dev.address (userID, city, postalCode) " +
 	"VALUES ($1, $2 , $3) "
 
+<<<<<<< HEAD
 /**
  * A query to update user address details when user is editing their profile.
  */
+=======
+/*
+	Update address details in address table with return
+	NOTE: not inserting full address details with this query
+
+	Example:
+	[city, postalCode, userID]
+	[city, postalCode ,'l15CGtMJ5bSnEkRPpYEgyvVWeLt2']
+
+*/
+>>>>>>> 359fec48529a4599dc23935c6940bcbcc692369b
 export const update_address_details_with_return =
 	"UPDATE dev.address " +
 	"SET city = $1, postalCode = $2 " +
