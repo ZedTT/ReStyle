@@ -3,7 +3,7 @@
  */
 
 import { query } from "../db/dbInit";
-import { insert_item_with_return, get_user_item, get_user_item_data, get_user_items_to_trade } from "../db/sql_library";
+import { insert_item_with_return, get_user_item, get_user_item_data } from "../db/sql_library";
 import { Response } from "express";
 import { AddItemModel } from "../models/AddItemModel";
 import { ItemCardInterface } from '../models/ItemCardInterface';
