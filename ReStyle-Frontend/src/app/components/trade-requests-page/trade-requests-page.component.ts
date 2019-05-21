@@ -61,6 +61,7 @@ export class TradeRequestsPageComponent implements OnInit {
     // console.log(tradeRequest)
     this.tradeRequestService.postTradeRequestStatus(tradeRequest.trade_requestid, this.acceptStatus).subscribe(temp => {
       console.log(temp)
+      this.requests = this.requests.filter(r => r.trade_requestid !== tradeRequest.trade_requestid);
     })
   }
 
@@ -73,6 +74,7 @@ export class TradeRequestsPageComponent implements OnInit {
     // console.log(tradeRequest)
     this.tradeRequestService.postTradeRequestStatus(tradeRequest.trade_requestid, this.rejectStatus).subscribe(temp => {
       console.log(temp)
+      this.requests = this.requests.filter(r => r.trade_requestid !== tradeRequest.trade_requestid);
     })
   }
 
