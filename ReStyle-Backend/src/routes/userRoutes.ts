@@ -89,35 +89,6 @@ const userRoutes = (app: Express) => {
                 updateUserDetails(response, userDetails)
             })
         })
-
-    app.route('/api/userdetails')
-        .get((request, response) => {
-            getUserDetails(response, request.query.uid)
-        })
-        .post((request, response) => {
-            // photopath, displayName, postalcode, phonenumber, preferredmethodofcontact, email
-            uploadImg(request, response, (err) => {
-                if (err) {
-                    // An error occurred when uploading
-                    console.log(err);
-                    return response.status(422).send({ error: err.message })
-                  }
-
-                const textFields = request.body;
-
-                const userDetails: UserDetailsInterface = {
-                    userId: textFields.userId,
-                    displayname: textFields.displayname,
-                    phone: textFields.phone,
-                    email: textFields.email,
-                    postalcode: textFields.postalcode,
-                    city: textFields.city,
-                    preferredContact: textFields.preferredContact,
-                    profilePic: request.file.filename
-                }
-                updateUserDetails(response, userDetails)
-            })
-        })
 }
 
 export default userRoutes

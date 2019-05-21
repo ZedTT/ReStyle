@@ -26,5 +26,14 @@ export class ItemCardServiceService {
     const res = this.http.get<any>(`/api/items?uid=${(user) ? user.uid : null}`);
     return res;
   }
-}
 
+  /**
+   * Posts an item to the user's hidden items array to the database.
+   * 
+   * @param userId the id of the user currently logged in, who clicked on 'Hide' button/ swiped left on an item
+   * @param itemId the id of an item that should be hidden for currently logged in user
+   */
+  postHiddenItem(userId: string, itemId: number): Observable<any> {
+    return this.http.post<any>(`/api/hideitems`, {userId: userId, itemId: itemId});
+  }
+}

@@ -3,7 +3,7 @@
  */
 
 import { query } from "../db/dbInit";
-import { insert_item_with_return, get_user_item, get_user_item_data } from "../db/sql_library";
+import { insert_item_with_return, get_user_item, get_user_item_data, add_hide_with_return } from "../db/sql_library";
 import { Response } from "express";
 import { AddItemModel } from "../models/AddItemModel";
 import { ItemCardInterface } from '../models/ItemCardInterface';
@@ -119,6 +119,20 @@ export function getTradeItemsForTheUserWithId(response: Response, userId: string
       }
       // console.log('\nitemsToSend: ', itemsToSend)
       response.send(itemsToSend);
+    }
+  })
+}
+
+export function addHiddenItem(response: Response, userId: string, itemId: number) {
+  query(add_hide_with_return, [itemId, userId], (err, res) => {
+    if (err) {
+      response.send({ error: err.message });
+    } else {
+      if (res.rows.length === 1) {
+        response.send({ message: `Item ${itemId} was added to hidden items collection for the user with uid ${userId}` });
+      } else {
+        response.send({ error: `Item ${itemId} was NOT added to hidden items collection for the user with uid ${userId}` });
+      }
     }
   })
 }

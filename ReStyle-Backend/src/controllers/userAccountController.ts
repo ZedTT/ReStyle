@@ -68,8 +68,8 @@ export function insertNewUser(response: Response, uid: string, userName: string,
         }
         client.query(insert_user_with_return, [uid, initialSwapScore, userName, defaultProfilePhotoPath], (error, result) => {
             if (error) {
-                response.send({ 'error': `User with id: ${uid} already exists.` });
-                console.log("Error inside insert_user_with_return query: ", error.message);
+                response.send({ 'error': `User with id: ${uid} already exists.` })
+                // console.log("Error inside insert_user_with_return query: ", error.message);
                 done()
             } else {
                 if (result.rowCount === 1) {
