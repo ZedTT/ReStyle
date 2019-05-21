@@ -1,3 +1,6 @@
+/**
+ * A module that contains all the routes that are related to the users.
+ */
 import { Express } from 'express';
 import { insertNewUser, getUser, updateUserDetails, getUserDetails } from '../controllers/userAccountController';
 import { UserDetailsInterface } from '../models/UserDetailsInterface';
@@ -22,10 +25,23 @@ const storage = multer.diskStorage({
 //define the type of upload multer would be doing and pass in its destination, in our case, its a single file with the name photo
 const uploadImg = multer({ storage: storage }).single('profilePic');
 
+/**
+ * All the user routes to export.
+ * 
+ * @param app an instance of express module initialized in server.ts file.
+ */
 const userRoutes = (app: Express) => {
 
     app.route('/api/users')
-        // to add a new user to the db
+        /**
+         * A get request to get the data for a specific user.
+         */
+        .get((request, response) => {
+            getUser(response, request.query.uid)
+        })
+        /**
+         * A post request to add a new user to the database.
+         */
         .post((request, response) => {
             // get a user from the frontend
             const uid = request.body.uid;
@@ -34,23 +50,29 @@ const userRoutes = (app: Express) => {
 
             // insert the new user into the DB
             insertNewUser(response, uid, userName, email)
-        })
-        .get((request, response) => {
-            getUser(response, request.query.uid)
-        })
+        });
 
     app.route('/api/userdetails')
+        /**
+         * A get request to retreive the user contact details. 
+         * Anticipates a user id passed as a url parameter. 
+         * '/api/userdetails?uid=someuid'
+         */
         .get((request, response) => {
             getUserDetails(response, request.query.uid)
         })
+        /**
+         * A post request to store the entered by a user contact details and changed profile photo path.
+         * Used on Edit Profile page.
+         * 
+         * Uses UserDetailsInterface as a format for data exchange.
+         */
         .post((request, response) => {
-            // photopath, displayName, postalcode, phonenumber, preferredmethodofcontact, email
             uploadImg(request, response, (err) => {
                 if (err) {
-                    // An error occurred when uploading
                     console.log(err);
                     return response.status(422).send({ error: err.message })
-                  }
+                }
 
                 const textFields = request.body;
 

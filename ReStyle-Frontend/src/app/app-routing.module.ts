@@ -9,6 +9,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { TradeRequestsPageComponent } from './components/trade-requests-page/trade-requests-page.component';
 import { AboutUsPageComponent } from './components/about-us-page/about-us-page.component';
 
+
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   // { path: '**', redirectTo: '', pathMatch: 'full' },
@@ -18,7 +19,7 @@ const routes: Routes = [
   { path: 'editprofile', component: EditProfilePageComponent},
   { path: 'userprofile', component: UserProfileComponent },
   { path: 'traderequests', component: TradeRequestsPageComponent },
-  { path: 'aboutus', component: AboutUsPageComponent}
+  { path: 'aboutus', component: AboutUsPageComponent}	
 ];
 
 @NgModule({

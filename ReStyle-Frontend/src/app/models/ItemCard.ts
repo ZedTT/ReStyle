@@ -3,7 +3,7 @@
  * Used for the cards on the scrolling page
  */
 export class ItemCard {
-    itemId: string; // a unique id to identify this item
+    itemId: number; // a unique id to identify this item
     itemPicturePath: string[]; // an array of paths to the pictures that are displayed for this item
     bookmarked: boolean; // true if the currently signed in user has bookmarked this trade item
     userId: string; // the id of the user that owns this item
