@@ -9,7 +9,7 @@ export class TradeRequestService {
 
   constructor(private http:HttpClient) { }
 
-    /**
+  /**
    * For getting trade requests array that represent the trade reqeusts sent to the user.
    * @param userID the userID of the user.
    * @returns an observable that, when subscribed to, returns an array of trade requests
@@ -18,4 +18,5 @@ export class TradeRequestService {
     // if (!user) { return null; }
     return this.http.get<any>(`/api/traderequests?uid=${userID}`);
   }
+
 }

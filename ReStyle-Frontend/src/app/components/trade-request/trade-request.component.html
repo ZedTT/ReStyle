@@ -1,14 +1,18 @@
 <div class="request">
-  <div class="userImg">
-    <img src="https://dummyimage.com/60/60/fff&text=USER" alt="">
+  <div class="user-image-container">
+    <img class="user-image" [src]="'/images/' + request.requesterUserPicturePath" alt="">
   </div>
   <div class="swapImg">
     <div class="itemStack">
-      <img src="https://dummyimage.com/40/ad0e43/000000&text=ITEM" alt="">
+      <app-trade-request-thumbnail 
+      *ngFor="let picture of request.notifiedItemsPicturePath" [picture]="picture">
+      </app-trade-request-thumbnail>
     </div>
     <mat-icon>swap_horiz</mat-icon>
     <div class="itemStack">
-      <img src="https://dummyimage.com/40/ad0e43/000000&text=ITEM" alt="">
+      <app-trade-request-thumbnail 
+      *ngFor="let picture of request.requesterItemsPicturePath" [picture]="picture">
+      </app-trade-request-thumbnail>
     </div>
   </div>
   <button><mat-icon>check_circle_outline</mat-icon></button>

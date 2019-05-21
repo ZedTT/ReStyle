@@ -8,7 +8,7 @@ export class TradeRequest {
 
     // * Requester's info
     requesterId: string; // the uid of the user who initialized the trade.
-    requesterUserPicturePath: string; // a string of the path of the profile photo of the user who initialized the trade. 
+    requesterUserPicturePath: string; // a string of the path of the profile photo of the user who initialized the trade.
     requesterName: string; // a string representing the name of the user who initialized the trade.
 
     // * Arrays of picture pahts to the items pictures

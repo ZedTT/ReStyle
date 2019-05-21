@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-trade-request-thumbnail',
@@ -6,8 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./trade-request-thumbnail.component.sass']
 })
 export class TradeRequestThumbnailComponent implements OnInit {
+  @Input() picture: string;
 
-  constructor() { }
+  constructors() { }
 
   ngOnInit() {
   }
