@@ -1,6 +1,6 @@
 <div class="request">
   <div class="user-image-container">
-    <img class="user-image" [src]="'/images/' + request.requesterUserPicturePath" alt="">
+    <div class="user-image responsiveSquareImage" [ngStyle]="{'background-image': '/images/' + request.requesterUserPicturePath}"></div>
   </div>
   <div class="swapImg">
     <div class="itemStack">

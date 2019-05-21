@@ -1,18 +1,20 @@
 @import '../../../styles.sass'
 
-img
-  width: 40px
-  height: 40px
-  object-fit: cover
-  object-position: 50%
+.user-image-container
+  height: 100px
+  width: 100px
+
+.user-image
+  border-radius: 50%
 
 .request
   display: flex
   align-content: space-between
-  width: 80%
+  width: 100%
   min-width: 340px
   margin: 10px auto
-  border: 2px solid black
+  padding-bottom: 10px
+  border-bottom: 1px solid lighten($card-background-color, 50%)
 
 .user-image-container
   width: 70px
