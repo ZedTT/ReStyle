@@ -1,8 +1,8 @@
 ## BCIT CST Program COMP 2930 Project 
 
-about BCIT : https://www.bcit.ca/
+About BCIT : https://www.bcit.ca/
 
-about BCIT CST: https://www.bcit.ca/study/programs/5500dipma
+About BCIT CST: https://www.bcit.ca/study/programs/5500dipma
 
 
 
@@ -84,13 +84,13 @@ Our application solves the problem that arises when people wish to refresh their
 
 ### Install dependencies
 
-We recommend you to install [npm-install-missing](https://www.npmjs.com/package/npm-install-missing) module from node package manager for installing dependencies. In order to use the command `npm-install-missing`, you have to install "npm-install-missing" module globally.
+We recommend you install [npm-install-missing](https://www.npmjs.com/package/npm-install-missing) module from node package manager for installing dependencies. In order to use the command `npm-install-missing`, you have to install "npm-install-missing" module globally. This can be done from the command line.
 
 ```shell
 $ npm install --global npm-install-missing
 ```
 
-if you encounter authorization problem in Mac, you can use sudo command.
+If you encounter authorization problems in macOS, you can use sudo command.
 
 ```shell
 $ sudo npm install --global npm-install-missing
@@ -98,7 +98,7 @@ $ sudo npm install --global npm-install-missing
 
 
 
-We have "ReStyle-Frontend" and "ReStyle-Backend" directories and you need to install all the dependencies for both of the directories seperately. 
+We have both "ReStyle-Frontend" and "ReStyle-Backend" directories and you will need to install all the dependencies for both of the directories seperately. 
 
 ##### Back-end 
 
@@ -118,7 +118,7 @@ $ npm-install-missing
 
 ### Run the server using node
 
-Then, you can build front-end and back-end consecutively, and start the server!
+Finally, you can consecutively build front-end and back-end, and start the server!
 
 ##### Terminal / Command Prompt
 
@@ -126,4 +126,4 @@ Then, you can build front-end and back-end consecutively, and start the server!
 $ npm run startall
 ```
 
-The `startall` script is written in `package.json` file to make the whole process convenient.
+The `startall` script is written in `package.json` file for convenience.
