@@ -128,7 +128,11 @@ VALUES  ('QqJVsgMeiVcF1bW0x9b28sHK9fh2','nsisodvqeNOTDCitaseopWjovEJ2');
 INSERT INTO dev.hide 
 (userID, items) 
 VALUES 
-('QqJVsgMeiVcF1bW0x9b28sHK9fh2', '{4, 14, 17}'),
-('nsisodvqeNOTDCitaseopWjovEJ2', '{10, 11, 12}');
+('QqJVsgMeiVcF1bW0x9b28sHK9fh2', '{}'),
+('nsisodvqeNOTDCitaseopWjovEJ2', '{}'),
+('fBzo9P6FJYQRbPq5CZFEsPWqtU23', '{}'),	
+('IDrpipjIpYOtcpGAaMT8ZWGT0J32', '{}'),	
+('4WiXU5rgqRWrGZSJXxSkQl3Kpdz1', '{}'),	
+('rCjzKDG6rjUwjj6I5BepsLbvgPr1', '{}');
 
 
