@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserAccountService } from '../../services/user-account.service';
 import { firebase } from 'firebaseui-angular';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
@@ -10,12 +11,12 @@ import { firebase } from 'firebaseui-angular';
 export class FooterComponent implements OnInit {
   easterEggEnabled: boolean;
   authenticated: boolean;
+  homeDisabled: boolean;
+  addDisabled: boolean;
   userImagePath = '/images/defaultAvatar.png';
 
   constructor(private userAccountService: UserAccountService) {
     this.easterEggEnabled = false;
-
-
   }
 
   ngOnInit() {
