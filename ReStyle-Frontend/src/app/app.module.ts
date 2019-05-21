@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { EventEmitter, NgModule, OnInit, Output } from '@angular/core';
+import { NgModule } from '@angular/core';
 // Angular Firebase import section
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -26,6 +26,7 @@ import { NgbdCarouselComponent } from './components/ngbd-carousel/ngbd-carousel.
 import { TradePageComponent } from './components/trade-page/trade-page.component';
 import { ContainerComponent } from './components/container/container.component';
 import { Ng5SliderModule } from 'ng5-slider';
+import { EditProfilePageComponent } from './components/edit-profile-page/edit-profile-page.component';
 import {NgxMaskModule} from 'ngx-mask';
 import { TradeColumnComponent } from './components/trade-column/trade-column.component';
 import { TradeItemComponent } from './components/trade-item/trade-item.component';
@@ -85,6 +86,7 @@ firebase.initializeApp(environment.firebase);
     NgbdCarouselComponent,
     AddItemPageComponent,
     ContainerComponent,
+    EditProfilePageComponent,
     TradeColumnComponent,
     TradeItemComponent,
     TradePreviewComponent,

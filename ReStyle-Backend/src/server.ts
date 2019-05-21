@@ -19,7 +19,7 @@ tradeRequestRoutes(app)
  * ex) #20 express.static('./ReStyle-Backend/uploads');
  * ! There is a bug that fonts are not working on the deployed version. 
  * ! Should be addressed later.
- */ 
+ */
 
 // Path to the images
 app.use('/images', express.static('./uploads'));
