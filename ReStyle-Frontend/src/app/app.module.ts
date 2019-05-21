@@ -37,6 +37,7 @@ import { TradePreviewThumbnailComponent } from './components/trade-preview-thumb
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { TradeRequestsPageComponent } from './components/trade-requests-page/trade-requests-page.component';
 import { AboutUsPageComponent } from './components/about-us-page/about-us-page.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -93,7 +94,8 @@ firebase.initializeApp(environment.firebase);
     TradePreviewThumbnailComponent,
     UserProfileComponent,
     TradeRequestsPageComponent,
-    AboutUsPageComponent
+    AboutUsPageComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
