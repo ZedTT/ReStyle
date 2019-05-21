@@ -1,7 +1,5 @@
 @import '../../../styles.sass'
 
-$image-height: 20px
-
 .request
   display: grid
   grid-template-areas: "user-image swap buttons"
@@ -26,8 +24,9 @@ $image-height: 20px
 
 .swap
   display: grid
-  grid-template-areas: "mat l1" "mat thumbnails1" "mat l2" "mat thumbnails2"
-  grid-template-columns: 1fr 4fr
+  grid-template-areas: "l1 mat l2" "thumbnails1 mat thumbnails2"
+  grid-template-columns: 2fr 1fr 2fr
+  grid-template-rows: 24pt 1fr
 
 .swap-icon
   grid-area: mat
@@ -35,17 +34,15 @@ $image-height: 20px
   justify-self: center
 
 .thumbnails
-  height: $image-height
   display: flex
-  // alight-items: center
-  // justify-content: flex-start
-  border-bottom: 1px solid $card-background-color
-
+  flex-direction: row
+  flex-wrap: wrap
+  align-items: center
 
 .thumbnail
   // display: none
-  width: 100%
-  margin-right: $image-height / 2 
+  width: 20%
+  margin-left: 5%
 
 .thumbnails1
   grid-area: thumbnails1
