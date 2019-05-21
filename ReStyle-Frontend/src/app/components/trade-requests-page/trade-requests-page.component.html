@@ -3,6 +3,8 @@
     <h5>Trade Requests</h5>
   </div>
   <div class="parentDiv">
-    <app-trade-request *ngFor="let request of requests" [request]="request"></app-trade-request>
+    <app-trade-request *ngFor="let request of requests" [request]="request" (acceptRequest)="acceptTradeRequest($event)"
+      (rejectRequest)="rejectTradeRequest($event)">
+    </app-trade-request>
   </div>
 </div>
