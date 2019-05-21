@@ -329,8 +329,8 @@ export const new_trade_request_no_return =
 	[Accept/Reject, 1]
 */
 export const status_update_trade_request =
-"UPDATE dev.trade_request SET status = $1 " +
-"WHERE trade_requestID = $2 RETURNING * "
+	"UPDATE dev.trade_request SET status = $1 " +
+	"WHERE tradeRequestID = $2 "
 
 /*
 	To get the trade request inbox details:
