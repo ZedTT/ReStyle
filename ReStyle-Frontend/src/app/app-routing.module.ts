@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'traderequests', component: TradeRequestsPageComponent },
   { path: 'aboutus', component: AboutUsPageComponent},
   { path: '404', component: NotFoundComponent },
-  { path: '**', redirectTo: '/404', pathMatch: 'full' },
+  { path: '**', redirectTo: '/404', pathMatch: 'full' }
 ];
 
 @NgModule({
