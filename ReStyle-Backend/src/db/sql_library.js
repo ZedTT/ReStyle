@@ -354,20 +354,15 @@ export const get_trade_request_inbox_details =
 "t.requester_userID1 AS requesterId, " +
 "u1.userPhotoPath AS requesterPicturePath, " +				
 "u1.userName AS requesterUserName, " +			
-
-"ARRAY_AGG(DISTINCT i1.photoPaths) AS requesterItemPhotos, " +
-				
+"ARRAY_AGG(DISTINCT i1.photoPaths) AS requesterItemPhotos, " +				
 "ARRAY_AGG(DISTINCT i2.photoPaths) AS requesteeItemPhotos " + 					
 "FROM dev.trade_request AS t " +
 "LEFT JOIN dev.restyle_user AS u1 " +
 "ON t.requester_userID1 = u1.userID " +
-
 "LEFT JOIN dev.item AS i1 " +
 "ON t.requester_userID1 = i1.userid " +
-
 "LEFT JOIN dev.item as i2 " +
 "ON t.notified_userID2  = i2.userid " +
-
 "WHERE i1.itemid = ANY (t.requester_itemarray1) " +
 "AND i2.itemid = ANY(t.notified_itemArray2) " +
 "AND t.notified_userID2 = $1 AND t.status != Reject " +
