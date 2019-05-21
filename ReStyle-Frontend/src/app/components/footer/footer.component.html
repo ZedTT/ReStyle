@@ -4,7 +4,7 @@
       <mat-icon>home</mat-icon>
     </button>
   </div>
-  <button [routerLink]="[ '/additem' ]" [disabled]="!authenticated" >
+  <button [routerLink]="[ '/additem' ]" [disabled]="!authenticated || addDisabled" >
     <mat-icon>add_circle_outline</mat-icon>
   </button>
   <button [routerLink]="[ '/filter' ]" disabled>
