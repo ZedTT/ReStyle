@@ -23,7 +23,7 @@ export class TradeRequestComponent implements OnInit {
 
   setArraySizeClass(len) {
     const classes = {
-      'len-one': (len < 2 && len >= 4),
+      'len-one': (len < 2),
       'len-four': (len < 5 && len >= 2),
       'len-nine': (len >= 5),
     };
