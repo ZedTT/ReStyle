@@ -9,6 +9,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { TradeRequestsPageComponent } from './components/trade-requests-page/trade-requests-page.component';
 import { AboutUsPageComponent } from './components/about-us-page/about-us-page.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'editprofile', component: EditProfilePageComponent},
   { path: 'userprofile', component: UserProfileComponent },
   { path: 'traderequests', component: TradeRequestsPageComponent },
+  { path: 'privacypolicy', component: PrivacyPolicyComponent},
   { path: 'aboutus', component: AboutUsPageComponent},
   { path: '404', component: NotFoundComponent },
   { path: '**', redirectTo: '/404', pathMatch: 'full' }

@@ -57,11 +57,11 @@ export class EditProfilePageComponent implements OnInit {
 
     const newItem: UserDetailsInterface = {
       userId: this.uid,
-      displayname: this.displayname,
+      displayname: this.displayname.trim(),
       phone: this.phone,
-      email: this.email,
+      email: this.email.trim(),
       postalcode: this.postalcode,
-      city: this.city,
+      city: this.city.trim(),
       preferredContact: this.sPref,
       profilePic: this.selectedFile
     };

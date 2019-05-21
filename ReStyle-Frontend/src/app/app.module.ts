@@ -40,6 +40,7 @@ import { AboutUsPageComponent } from './components/about-us-page/about-us-page.c
 import { TradeRequestComponent } from './components/trade-request/trade-request.component';
 import { TradeRequestThumbnailComponent } from './components/trade-request-thumbnail/trade-request-thumbnail.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -57,7 +58,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
   // Terms of service url.
   tosUrl: '/',
   // Privacy policy url.
-  privacyPolicyUrl: '/',
+  privacyPolicyUrl: '/privacypolicy',
   credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM
 };
 
@@ -99,7 +100,8 @@ firebase.initializeApp(environment.firebase);
     AboutUsPageComponent,
     TradeRequestComponent,
     TradeRequestThumbnailComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    PrivacyPolicyComponent
   ],
   imports: [
     BrowserModule,
