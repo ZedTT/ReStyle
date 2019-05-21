@@ -365,7 +365,7 @@ export const get_trade_request_inbox_details =
 "ON t.notified_userID2  = i2.userid " +
 "WHERE i1.itemid = ANY (t.requester_itemarray1) " +
 "AND i2.itemid = ANY(t.notified_itemArray2) " +
-"AND t.notified_userID2 = $1 AND t.status != Reject " +
+"AND t.notified_userID2 = $1 AND t.status IS NULL " +
 "GROUP BY t.trade_requestID, t.requester_userID1,u1.userPhotoPath,u1.userName  "
 
 /*
