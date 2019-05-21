@@ -29,6 +29,7 @@ export class TradePageComponent implements OnInit {
   // Defaults to the defaultAvatar in case of error.
   userNameMe = 'Your items'; // the user name of the user who initialized the trade
   userNameThem = 'Their items'; // the user name of the user with whome a trade was initialized
+  hasItemsMe: boolean; // a boolean that is true when the length of columnMeArray is greater than zero
 
   /**
    * Creates an instance of trade page component.
@@ -68,6 +69,7 @@ export class TradePageComponent implements OnInit {
           this.meId = user.uid;
           // console.log(this.meId);
           this.getColumnMe(this.meId);
+          this.hasItemsMe = (this.columnMe > 0); // used to show or hide the add item button
           this.userAccountService.getUserData(user.uid).subscribe(u => {
             this.userImageMe = u.userPhotoPath;
             this.userNameMe = u.userName;
