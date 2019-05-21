@@ -35,6 +35,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { TradeRequestsPageComponent } from './components/trade-requests-page/trade-requests-page.component';
 import { AboutUsPageComponent } from './components/about-us-page/about-us-page.component';
 import { TradeRequestComponent } from './components/trade-request/trade-request.component';
+import { TradeRequestThumbnailComponent } from './components/trade-request-thumbnail/trade-request-thumbnail.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -91,7 +92,8 @@ firebase.initializeApp(environment.firebase);
     UserProfileComponent,
     TradeRequestsPageComponent,
     AboutUsPageComponent,
-    TradeRequestComponent
+    TradeRequestComponent,
+    TradeRequestThumbnailComponent
   ],
   imports: [
     BrowserModule,
