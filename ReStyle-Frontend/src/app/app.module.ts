@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { EventEmitter, NgModule, OnInit, Output } from '@angular/core';
+import { NgModule } from '@angular/core';
 // Angular Firebase import section
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -21,11 +21,13 @@ import { LoginComponent } from './components/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule, MatRadioModule, MatSelectModule, MatSliderModule,
   MatInputModule, MatButtonToggleModule, MatDividerModule } from '@angular/material'; // tsLint max line 140
-import {FileUploadModule} from 'primeng/fileupload';
+import { FileUploadModule } from 'primeng/fileupload';
 import { NgbdCarouselComponent } from './components/ngbd-carousel/ngbd-carousel.component';
 import { TradePageComponent } from './components/trade-page/trade-page.component';
 import { ContainerComponent } from './components/container/container.component';
 import { Ng5SliderModule } from 'ng5-slider';
+import { EditProfilePageComponent } from './components/edit-profile-page/edit-profile-page.component';
+import {NgxMaskModule} from 'ngx-mask';
 import { TradeColumnComponent } from './components/trade-column/trade-column.component';
 import { TradeItemComponent } from './components/trade-item/trade-item.component';
 import { TradePreviewComponent } from './components/trade-preview/trade-preview.component';
@@ -83,6 +85,7 @@ firebase.initializeApp(environment.firebase);
     NgbdCarouselComponent,
     AddItemPageComponent,
     ContainerComponent,
+    EditProfilePageComponent,
     TradeColumnComponent,
     TradeItemComponent,
     TradePreviewComponent,
@@ -113,7 +116,8 @@ firebase.initializeApp(environment.firebase);
     MatButtonToggleModule,
     FileUploadModule,
     MatDividerModule,
-    Ng5SliderModule
+    Ng5SliderModule,
+    NgxMaskModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
