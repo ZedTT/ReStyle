@@ -1,13 +1,15 @@
 <div [ngClass]="setClasses()">
-  <div [routerLink]="[ '/' ]">
-    <img class="footer-icons" src="assets/icons/home.png">
+  <div>
+    <button [routerLink]="[ '/' ]" [disabled]="homeDisabled">
+      <mat-icon>home</mat-icon>
+    </button>
   </div>
-  <div [routerLink]="[ '/additem' ]" *ngIf="authenticated" >
-    <img class="footer-icons" src="assets/icons/addcircle.png">
-  </div>
-  <div [routerLink]="[ '/filter' ]">
-    <img class="footer-icons" src="assets/icons/filter.png">
-  </div>
+  <button [routerLink]="[ '/additem' ]" [disabled]="!authenticated || addDisabled" >
+    <mat-icon>add_circle_outline</mat-icon>
+  </button>
+  <button [routerLink]="[ '/filter' ]" disabled>
+    <mat-icon>filter_list</mat-icon>
+  </button>
   <div [routerLink]="[ '/userprofile' ]">
     <img class="user-image" src="{{ userImagePath }}">
   </div>
