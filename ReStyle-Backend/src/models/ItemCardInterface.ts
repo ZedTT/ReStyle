@@ -1,8 +1,8 @@
 /**
- * A class for ItemCard objects
- * Used for the cards on the scrolling page
+ * A class for ItemCard objects.
+ * Used for the cards on the scrolling page.
  */
- export interface ItemCardInterface {
+export interface ItemCardInterface {
     itemId: string; // a unique id to identify this item
     itemPicturePath: string[]; // an array of paths to the pictures that are displayed for this item
     bookmarked: boolean; // true if the currently signed in user has bookmarked this trade item
