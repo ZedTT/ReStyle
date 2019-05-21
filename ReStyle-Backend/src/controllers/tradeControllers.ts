@@ -46,7 +46,7 @@ export function getIncomingTradeRequestsForUser(response: Response, notifiedUser
             console.log("Error inside get_trade_request_inbox_details query: ", err.message);
             response.send({ error: err.message });
         } else {
-            console.log(res.rows);
+            // console.log(res.rows);
             response.send(res.rows);
         }
     });
