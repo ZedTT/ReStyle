@@ -20,7 +20,7 @@ import { LoginCardComponent } from './components/login-card/login-card.component
 import { LoginComponent } from './components/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule, MatRadioModule, MatSelectModule, MatSliderModule,
-  MatInputModule, MatButtonToggleModule, MatDividerModule, MatSlideToggleModule, MatExpansionModule } from '@angular/material'; // tsLint max line 140
+  MatInputModule, MatButtonToggleModule, MatDividerModule, MatSlideToggleModule, MatExpansionModule, MatIconModule } from '@angular/material'; // tsLint max line 140
 import {FileUploadModule} from 'primeng/fileupload';
 import { NgbdCarouselComponent } from './components/ngbd-carousel/ngbd-carousel.component';
 import { TradePageComponent } from './components/trade-page/trade-page.component';
@@ -116,6 +116,7 @@ firebase.initializeApp(environment.firebase);
     Ng5SliderModule,
     NgxMaskModule.forRoot(),
     MatExpansionModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
