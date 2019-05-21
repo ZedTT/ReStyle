@@ -367,16 +367,17 @@ export const status_update_trade_request =
 "WHERE tradeRequestID = $2 "
 
 /*
-	To get the trade request details:
-	TradeRequestId
-	requesterId
-	requesterPicturePath
-	requesterUserName
-	array of picturePaths (strings) for the requester items
-	array of picturePaths (strings) for the notified user items
+	To get the trade request inbox details:
+	TradeRequestId text
+	requesterId text
+	requesterPicturePath text
+	requesterUserName text
+	array of picturePaths (text) for the requester items
+	array of picturePaths (text) for the notified user items
 
 	Example:
 	[notified_userID2]
+	[requesteeUserID]
 	
 */
 
