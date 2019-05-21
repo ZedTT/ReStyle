@@ -62,14 +62,18 @@
 
 @media only screen and (min-width: $mobile-media)
     #inventory-container
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
+
+@media only screen and (min-width: $mobile-plus)
+    #inventory-container
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr))
 
 .add-new-item-card
     text-align: center
     border: 10px dashed lighten($card-background-color, 50%)
     color: lighten($card-background-color, 50%)
-    height: 100%
-    display: flex
-    justify-content: center
-    align-items: center
-    font-size: 150pt
+    height: 0
+    padding-bottom: calc(100% + 24px)
+    background-image: url(/assets/icons/addcircle.png)
+    background-size: cover
+    background-position: 50%
