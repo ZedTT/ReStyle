@@ -1,10 +1,10 @@
 <div>
   <!-- Div containing the page title -->
-  <div class="pageTitle">
+  <div class="page-title">
     <h5>Add Item</h5>
   </div>
   
-  <div class="parentDiv">
+  <div class="parent-div after-page-title">
     <form id="addItemContainer" class="form" (submit)="onSubmit()">    
     
         <!-- Button to upload image (with label) -->
@@ -93,7 +93,7 @@
     </form>
 
     <div class="card">
-      <input type="submit" form="addItemContainer" value="Submit" class="button submit">
+      <input type="submit" form="addItemContainer" value="Submit" class="button submit" [routerLink]="[ '/additem' ]">
     </div>
     
   </div>

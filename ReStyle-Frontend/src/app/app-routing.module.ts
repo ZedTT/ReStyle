@@ -9,6 +9,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { TradeRequestsPageComponent } from './components/trade-requests-page/trade-requests-page.component';
 import { AboutUsPageComponent } from './components/about-us-page/about-us-page.component';
 
+
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   // { path: '**', redirectTo: '', pathMatch: 'full' },

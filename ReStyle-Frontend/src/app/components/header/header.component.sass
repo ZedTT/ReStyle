@@ -10,9 +10,9 @@
   font-weight: bolder
   display: grid
   grid-template-columns: 1fr 3fr 1fr
-  grid-template-areas: "info-button title trade-button"
+  grid-template-areas: "info title trades"
   justify-content: center
-  border-bottom: 0.5px solid grey
+  border-bottom: 1px solid $card-background-color
   background-color: $header-footer-color
   height: $header-footer-height
 
@@ -26,16 +26,17 @@
   background-color: $easter-egg-color
 
 .info-icon
-  width: $header-footer-height * 0.5
-  grid-area: info-button
-  display: inline
+  width: $header-footer-height * 0.5	
+  grid-area: info	
+  display: inline	
   justify-self: left
 
 .trade-icon
-  width: $header-footer-height * 0.6
-  grid-area: trade-button
+  grid-area: trades
   display: inline
   justify-self: right
 
-
-
+mat-icon
+  margin-right: 5px
+  transform: scale(1.35)
+  opacity: 0.4

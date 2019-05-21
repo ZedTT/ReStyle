@@ -132,7 +132,7 @@ export class TradePageComponent implements OnInit {
         // tsLint sometimes says this will always return false, but it is wrong. This works.
         // to get tsLint to calm down, try opening the TradeItem model.
         // ItemID used to be a string in the TradeItem model, and it gets confused
-        if (item.itemId === this.itemId) {
+        if (typeof item.itemId === 'number' && item.itemId === this.itemId) {
           console.log('true');
           item.selected = true;
           this.toggleItemThem(item);
