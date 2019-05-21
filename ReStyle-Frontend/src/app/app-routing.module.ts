@@ -7,6 +7,7 @@ import { AddItemPageComponent } from './components/add-item-page/add-item-page.c
 import { EditProfilePageComponent } from './components/edit-profile-page/edit-profile-page.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { TradeRequestsPageComponent } from './components/trade-requests-page/trade-requests-page.component';
+import { AboutUsPageComponent } from './components/about-us-page/about-us-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'editprofile', component: EditProfilePageComponent},
   { path: 'userprofile', component: UserProfileComponent },
-  { path: 'traderequests', component: TradeRequestsPageComponent }
+  { path: 'traderequests', component: TradeRequestsPageComponent },
+  { path: 'aboutus', component: AboutUsPageComponent}
 ];
 
 @NgModule({

@@ -82,7 +82,8 @@ export const get_user_item_data =
 "INNER JOIN dev.restyle_user AS u " +
 "ON i.userID = u.userID " +
 "WHERE i.userID != $1 " +
-"AND i.swapID IS NULL "
+"AND i.swapID IS NULL " +
+"AND i.itemID != ALL(SELECT UNNEST(h.items) FROM dev.hide AS h WHERE h.userID = $1) "
 
 /*
 	Update the user's profile picture 
@@ -112,15 +113,7 @@ export const update_user_profile_pic =
 export const update_user_name = 
 "UPDATE dev.restyle_user AS u " +
 "SET u.userName = $1 " +
-"WHERE u.userID = $2 " // fixed typo, was userName, needed to be userID
-
-/**
- * A query to update both user name and user profile picture at one go.
- */
-export const update_user_name_and_user_profile_pic = 
-"UPDATE dev.restyle_user " +
-"SET userName = $1, userPhotoPath = $2 " +
-"WHERE userID = $3 "
+"WHERE u.userID = $2 "
 
 /*
 --------------------------------------------------Item Queries----------------------------------
@@ -374,6 +367,44 @@ export const status_update_trade_request =
 "WHERE tradeRequestID = $2 "
 
 /*
+	To get the trade request inbox details:
+	TradeRequestId text
+	requesterId text
+	requesterPicturePath text
+	requesterUserName text
+	array of picturePaths (text) for the requester items
+	array of picturePaths (text) for the notified user items
+
+	Example:
+	[notified_userID2]
+	[requesteeUserID]
+	
+*/
+
+
+export const get_trade_request_inbox_details = 
+"SELECT " +
+"t.trade_requestID, " +
+"t.requester_userID1 AS requesterId, " +
+"u1.userPhotoPath AS requesterPicturePath, " +				
+"u1.userName AS requesterUserName, " +			
+
+"ARRAY_AGG(DISTINCT i1.photoPaths) AS requesterItemPhotos, " +
+				
+"ARRAY_AGG(DISTINCT i2.photoPaths) AS requesteeItemPhotos " + 					
+"FROM dev.trade_request AS t " +
+"LEFT JOIN dev.restyle_user AS u1 " +
+"ON t.requester_userID1 = u1.userID " +
+
+"LEFT JOIN dev.item AS i1 " +
+"ON t.requester_userID1 = i1.userid " +
+
+"LEFT JOIN dev.item as i2 " +
+"ON t.notified_userID2  = i2.userid " +
+"WHERE t.notified_userID2 = $1 AND t.status != Reject " +
+"GROUP BY t.trade_requestID, t.requester_userID1,u1.userPhotoPath,u1.userName  "
+
+/*
 --------------------------------------------------Swap Queries-------------------------------
 */
 
@@ -481,6 +512,7 @@ export const user_details =
 /*
 	Insert address details into address table
 	NOTE: not inserting full address details with this query
+
 	Example:
 	[userID, city, postalCode]
 	['l15CGtMJ5bSnEkRPpYEgyvVWeLt2', email]
@@ -490,10 +522,16 @@ export const new_address_details =
 "INSERT INTO dev.address (userID, city, postalCode) " +
 "VALUES ($1, $2 , $3) "
 
-/**
- * A query to update user address details when user is editing their profile.
- */
-export const update_address_details_with_return =
+/*
+	Update address details in address table with return
+	NOTE: not inserting full address details with this query
+
+	Example:
+	[city, postalCode, userID]
+	[city, postalCode ,'l15CGtMJ5bSnEkRPpYEgyvVWeLt2']
+
+*/
+export const update_address_details_with_return = 
 "UPDATE dev.address " +
 "SET city = $1, postalCode = $2 " +
 "WHERE userID = $3 RETURNING * "
