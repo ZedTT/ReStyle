@@ -15,7 +15,7 @@ export class TradeRequestComponent implements OnInit {
   }
 
   getUserImage() {
-    return { 'background-image': `url(/images/${this.request.requesterUserPicturePath})` };
-  }
+    return { 'background-image': `url(/images/${this.request.requesterpicturepath})` };
+  }x
 
 }

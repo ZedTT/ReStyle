@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class TradeRequestService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   /**
    * For getting trade requests array that represent the trade reqeusts sent to the user.
