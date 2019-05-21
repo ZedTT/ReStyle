@@ -367,6 +367,44 @@ export const status_update_trade_request =
 "WHERE tradeRequestID = $2 "
 
 /*
+	To get the trade request inbox details:
+	TradeRequestId text
+	requesterId text
+	requesterPicturePath text
+	requesterUserName text
+	array of picturePaths (text) for the requester items
+	array of picturePaths (text) for the notified user items
+
+	Example:
+	[notified_userID2]
+	[requesteeUserID]
+	
+*/
+
+
+export const get_trade_request_inbox_details = 
+"SELECT " +
+"t.trade_requestID, " +
+"t.requester_userID1 AS requesterId, " +
+"u1.userPhotoPath AS requesterPicturePath, " +				
+"u1.userName AS requesterUserName, " +			
+
+"ARRAY_AGG(DISTINCT i1.photoPaths) AS requesterItemPhotos, " +
+				
+"ARRAY_AGG(DISTINCT i2.photoPaths) AS requesteeItemPhotos " + 					
+"FROM dev.trade_request AS t " +
+"LEFT JOIN dev.restyle_user AS u1 " +
+"ON t.requester_userID1 = u1.userID " +
+
+"LEFT JOIN dev.item AS i1 " +
+"ON t.requester_userID1 = i1.userid " +
+
+"LEFT JOIN dev.item as i2 " +
+"ON t.notified_userID2  = i2.userid " +
+"WHERE t.notified_userID2 = $1 AND t.status != Reject " +
+"GROUP BY t.trade_requestID, t.requester_userID1,u1.userPhotoPath,u1.userName  "
+
+/*
 --------------------------------------------------Swap Queries-------------------------------
 */
 
