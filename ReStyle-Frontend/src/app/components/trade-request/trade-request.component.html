@@ -1,6 +1,6 @@
 <div class="request">
   <div class="user-image-container">
-    <img class="user-image" [src]="'/images/' + request.requesterUserPicturePath" alt="">
+    <div class="user-image responsiveSquareImage" [ngStyle]="{'background-image': '/images/' + request.requesterUserPicturePath}"></div>
   </div>
   <div class="swapImg">
     <div class="itemStack">
@@ -8,7 +8,7 @@
       *ngFor="let picture of request.notifiedItemsPicturePath" [picture]="picture">
       </app-trade-request-thumbnail>
     </div>
-    <mat-icon>swap_horiz</mat-icon>
+    <mat-icon>swap_horiz</mat-icon> 
     <div class="itemStack">
       <app-trade-request-thumbnail 
       *ngFor="let picture of request.requesterItemsPicturePath" [picture]="picture">
