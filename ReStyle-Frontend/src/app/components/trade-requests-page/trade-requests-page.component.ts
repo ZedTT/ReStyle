@@ -9,6 +9,7 @@ import { firebase } from 'firebaseui-angular';
   styleUrls: ['./trade-requests-page.component.sass']
 })
 export class TradeRequestsPageComponent implements OnInit {
+  // requests: TradeRequest[];
   requests: TradeRequest[] = [
     {
       tradeRequestId: 1,
@@ -39,13 +40,14 @@ export class TradeRequestsPageComponent implements OnInit {
   constructor(private tradeRequestService: TradeRequestService, private ngZone: NgZone) { }
 
   ngOnInit() {
-    // firebase.auth().onAuthStateChanged(user => {
-    //   this.ngZone.run(() => {
-    //     this.tradeRequestService.getTradeRequestsByUser(user.uid).subscribe(temp => {
-    //       this.requests = temp;
-    //     });
-    //   });
-    // });
+  //   firebase.auth().onAuthStateChanged(user => {
+  //     this.ngZone.run(() => {
+  //       this.tradeRequestService.getTradeRequestsByUser(user.uid).subscribe(temp => {
+  //         console.log(temp);
+  //         this.requests = temp;
+  //       });
+  //     });
+  //   });
   }
 
 }

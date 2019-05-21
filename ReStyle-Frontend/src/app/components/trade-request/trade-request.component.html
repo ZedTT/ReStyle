@@ -1,21 +1,24 @@
 <div class="request">
   <div class="user-image-container">
-    <div class="user-image responsiveSquareImage" [ngStyle]="{'background-image': '/images/' + request.requesterUserPicturePath}"></div>
+    <div class="user-image responsiveSquareImage" [ngStyle]="getUserImage()"></div>
+    <p class="user-name">{{ request.requesterName }}</p>
   </div>
-  <div class="swapImg">
-    <div class="itemStack">
-      <app-trade-request-thumbnail 
+  <div class="swap">
+    <mat-icon class="swap-icon">swap_calls</mat-icon> 
+    <div class="thumbnails thumbnails1">
+      <app-trade-request-thumbnail class="thumbnail"
       *ngFor="let picture of request.notifiedItemsPicturePath" [picture]="picture">
       </app-trade-request-thumbnail>
     </div>
-    <mat-icon>swap_horiz</mat-icon> 
-    <div class="itemStack">
-      <app-trade-request-thumbnail 
+    <div class="thumbnails thumbnails2">
+      <app-trade-request-thumbnail class="thumbnail"
       *ngFor="let picture of request.requesterItemsPicturePath" [picture]="picture">
       </app-trade-request-thumbnail>
     </div>
   </div>
-  <button><mat-icon>check_circle_outline</mat-icon></button>
-  <button><mat-icon>delete</mat-icon></button>
+  <div class="buttons">
+    <button><mat-icon>check_circle_outline</mat-icon></button>
+    <button><mat-icon>delete</mat-icon></button>
+  </div>
 </div>
 

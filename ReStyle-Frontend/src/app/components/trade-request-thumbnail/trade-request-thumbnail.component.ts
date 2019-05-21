@@ -13,4 +13,8 @@ export class TradeRequestThumbnailComponent implements OnInit {
   ngOnInit() {
   }
 
+  getImage() {
+    return { 'background-image': `url(/images/${this.picture})` };
+  }
+
 }
