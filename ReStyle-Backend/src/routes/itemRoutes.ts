@@ -1,3 +1,6 @@
+/**
+ * A module that contains all the routes that are related to the items.
+ */
 import { Express } from "express";
 import { insertItemForUserWithId, getItemsToDisplayForUserWithId, getTradeItemsForTheUserWithId } from '../controllers/itemControllers';
 import { AddItemModel } from "../models/AddItemModel";
@@ -5,10 +8,14 @@ import { AddItemModel } from "../models/AddItemModel";
 import multer from 'multer';
 import { createNewTradeRequest } from "../controllers/tradeControllers";
 
-const DIR = './uploads/'; // contains images
+/**
+ * A destination folder for uploaded images.
+ */
+const DIR = './uploads/';
 
 /**
- * Adding code to set the file names for multer
+ * Configuration for multer, module used for uploading binary files.
+ * Sets the destination directory and the file names for multer.
  * ? See https://www.npmjs.com/package/multer#diskstorage
  */
 const storage = multer.diskStorage({
@@ -20,56 +27,62 @@ const storage = multer.diskStorage({
   }
 })
 
-//define the type of upload multer would be doing and pass in its destination, in our case, its a single file with the name photo
+/**
+ * Defines the type of upload multer would be doing, in our case, its a single file with the name 'photo'.
+ */
 const uploadImg = multer({ storage: storage }).single('photo');
 
+/**
+ * All the item routes to export.
+ * 
+ * @param app an instance of express module initialized in server.ts file.
+ */
 const itemRoutes = (app: Express) => {
-  app
-    .route("/api/items")
-    // to add a new item to the db
+  app.route("/api/items")
+    /**
+     * A get request to get all the items that should be displayed for a user.
+     */
+    .get((request, response) => {
+      getItemsToDisplayForUserWithId(response, request.query.uid);
+    })
+    /**
+     * A post request to add a new item to the database.
+     */
     .post((request, response) => {
-
-      console.log("Inside adding new item route");
-
       uploadImg(request, response, function (err) {
         if (err) {
-          // An error occurred when uploading
-          console.log(err);
-          return response.status(422).send({ "error": "an Error occured" })
+          console.log("Error while uploading an image: ", err);
+          return response.status(422).send({ error: err.message })
         }
-        // No error occured.
-
         // request.body should be of type AddedItemInterface
         let body = request.body
-
         // replace the photos array which is currently of type File with an array of the paths
         body.photos = [request.file.filename];
         // change the size to a number instead of a string
         body.size = parseInt(body.size);
-
         // create a new AddItemModel object using the body
         let item = new AddItemModel(body);
 
         // insert the new user into the DB
         insertItemForUserWithId(response, item);
-
       });
-
-    })
-    .get((request, response) => {
-      getItemsToDisplayForUserWithId(response, request.query.uid);
     });
 
   app.route('/api/tradeitems')
-    // to get all items that are owned by a specific user
+    /**
+     * A get request to get all items that are owned by a specific user.
+     */
     .get((request, response) => {
       const userId = request.query.uid
       if (userId !== null) {
         getTradeItemsForTheUserWithId(response, userId)
       } else {
-        response.send({error : `User id is: ${userId} , cannot be null`})
+        response.send({ error: `User id is: ${userId} , cannot be null` })
       }
     })
+    /**
+     * A post request to create a trade request by adding the items proposed for trade to the trade_request table.
+     */
     .post((request, response) => {
       const tradeRequest = {
         requesterId: request.body.requesterId,
