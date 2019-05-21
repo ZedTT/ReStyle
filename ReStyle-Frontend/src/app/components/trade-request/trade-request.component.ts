@@ -23,27 +23,27 @@ export class TradeRequestComponent implements OnInit {
 
   setArraySizeClass(len) {
     const classes = {
-      'len-one': (len < 2),
-      'len-four': (len < 5),
+      'len-one': (len < 2 && len >= 4),
+      'len-four': (len < 5 && len >= 2),
       'len-nine': (len >= 5),
     };
     return classes;
   }
 
   /**
-   * Triggered when a user clicks 
+   * Triggered when a user clicks
    * Accept trade request button on a trade request card.
    */
   onAccept() {
-    this.acceptRequest.emit(this.request)
+    this.acceptRequest.emit(this.request);
   }
 
   /**
-   * Triggered when a user clicks 
+   * Triggered when a user clicks
    * Reject trade request button on a trade request card.
    */
   onReject() {
-    this.rejectRequest.emit(this.request)
+    this.rejectRequest.emit(this.request);
   }
 
 }
