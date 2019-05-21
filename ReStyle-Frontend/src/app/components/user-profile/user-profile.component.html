@@ -1,3 +1,24 @@
-<p>
-  user-profile works!
-</p>
+<div id="user-page-container">
+    <div class="page-title">
+        <h5>Your Account</h5>
+    </div>
+  <div id='profile-container' class="after-page-title">
+    <div id='user-picture' [ngStyle]="{'background-image': 'url(/images/' + this.userImageMe + ')'}"></div>
+    <div id='profile-text-container'> 
+      <p>{{ meName }}</p>
+      <p>{{ mePhoneFormatted }}</p>
+      <p>{{ meEmail }}</p>
+      <!-- <p>City: {{ meCity }}</p> -->
+      <!-- <p>Postal Code: {{ mePostalCode }}</p> -->
+      <!-- <p>Preferred Contact: {{ mePreferredContact }}</p> -->
+    </div>
+    <div id='button-container'>
+      <button class="button edit-profile-button" [routerLink]="[ '/editprofile' ]"> edit profile </button>
+    </div>
+  </div>
+  
+  <div id='inventory-container'>
+    <app-trade-item class='item-picture' *ngFor="let item of myItemsArray" [item]="item"></app-trade-item>
+    <div class="add-new-item-card" [routerLink]="[ '/additem' ]">+</div>
+  </div>
+</div>

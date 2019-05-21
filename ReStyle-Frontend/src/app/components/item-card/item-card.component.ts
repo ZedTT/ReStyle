@@ -58,26 +58,6 @@ export class ItemCardComponent implements OnInit {
   }
 
   /**
-   * Sends json to the server
-   * ! This is an example and should not be kept long term
-   */
-  sendUserId() {
-    /**
-     * * Logs response returned from the back end.
-     * Sends the current users uid and display name to the server
-     */
-    const currentUser = firebase.auth().currentUser;
-    const uid = currentUser.uid;
-    const userName = currentUser.displayName;
-
-    console.log(this.userAccountService.postUserData(uid, userName));
-
-    this.userAccountService.postUserData(uid, userName).subscribe(res => {
-      console.log(res);
-    });
-  }
-
-  /**
    * Is called when the trade button is clicked on a card.
    * See item-card.component.html for the code that causes this function to be called
    * Emits the ItemCard object that represents the item that was clicked.

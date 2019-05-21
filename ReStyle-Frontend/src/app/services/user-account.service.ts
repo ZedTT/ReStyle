@@ -9,7 +9,7 @@ export class UserAccountService {
 
   constructor(private http: HttpClient) { }
 
-  postUserData(uid, userName): Observable<any> {
+  postUserData(uid, userName, email): Observable<any> {
     // test sending data via post request body to the server
     return this.http.post<any>('/api/users',
     {
@@ -27,5 +27,9 @@ export class UserAccountService {
     return this.http.get<any>(`/api/users?uid=${uid}`);
   }
 
+  getUserDetail(uid: string): Observable<any> {
+    // get a specific user's detailed information given current uid
+    return this.http.get<any>(`/api/userdetails?uid=${uid}`);
+  }
 
 }
