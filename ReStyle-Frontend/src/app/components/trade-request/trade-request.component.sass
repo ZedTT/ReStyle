@@ -1,6 +1,6 @@
 @import '../../../styles.sass'
 
-$image-height: 50px
+$image-height: 20px
 
 .request
   display: grid
@@ -10,6 +10,7 @@ $image-height: 50px
   padding: 10px
   padding-right: 0
   border-bottom: 1px solid lighten($card-background-color, 50%)
+  align-content: space-around
 
 .user-image-container
   justify-items: center
@@ -25,7 +26,7 @@ $image-height: 50px
 
 .swap
   display: grid
-  grid-template-areas: "mat thumbnails1" "mat thumbnails2"
+  grid-template-areas: "mat l1" "mat thumbnails1" "mat l2" "mat thumbnails2"
   grid-template-columns: 1fr 4fr
 
 .swap-icon
@@ -34,19 +35,20 @@ $image-height: 50px
   justify-self: center
 
 .thumbnails
-  height: 50px
-  background-color: $card-background-color
+  height: $image-height
   display: flex
-  alight-items: center
-  justify-content: space-around
+  // alight-items: center
+  // justify-content: flex-start
+  border-bottom: 1px solid $card-background-color
+
 
 .thumbnail
   // display: none
   width: 100%
+  margin-right: $image-height / 2 
 
 .thumbnails1
   grid-area: thumbnails1
-  border-bottom: 1px solid white
 
 .thumbnails2
   grid-area: thumbnails2
