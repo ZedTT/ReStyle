@@ -66,7 +66,7 @@ export function updateTradeRequestStatus(response: Response, tradeRequestId: num
             console.log("Error inside status_update_trade_request query: ", err.message);
             response.send({ error: err.message });
         } else {
-            console.log(res.rows);
+            // console.log(res.rows);
             if (res.rows.length == 1) {
                 response.send({ message: `Trade request with id: ${tradeRequestId} was updated successfully to ${status}.` });
             } else {
