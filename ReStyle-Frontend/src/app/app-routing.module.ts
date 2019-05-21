@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'editprofile', component: EditProfilePageComponent},
   { path: 'userprofile', component: UserProfileComponent },
   { path: 'traderequests', component: TradeRequestsPageComponent },
-  { path: 'aboutus', component: AboutUsPageComponent}	
+  { path: 'aboutus', component: AboutUsPageComponent}
 ];
 
 @NgModule({
