@@ -20,14 +20,13 @@
         
         <div class="card">
           <mat-form-field class="titleField">
-            <input #ttl matInput id="title" placeholder="Title" value="" name="title" [(ngModel)]="title" pattern="[A-Za-z0-9 ]{3,40}"
-            required>
+            <input #ttl matInput id="title" placeholder="Title" value="" name="title" [(ngModel)]="title" pattern="[A-Za-z0-9 ]{8,40}" maxlength="40" minlength="8" required>
             <mat-hint>Max 40 characters</mat-hint>
             <mat-error [class.d-none]="ttl.valid || ttl.untouched">Title is required</mat-error>
           </mat-form-field>        
           <mat-form-field class="descriptionField">
             <textarea #desc matInput id="description" placeholder="Description" value="" name="description" [(ngModel)]="description" pattern="[A-Za-z0-9 ]{12,140}"
-            required></textarea>
+            required maxlength="140" minlength="12"></textarea>
             <mat-hint>Brand, specific size info, etc</mat-hint>
             <mat-error [class.d-none]="desc.valid || desc.untouched">Description is required</mat-error>
           </mat-form-field>
