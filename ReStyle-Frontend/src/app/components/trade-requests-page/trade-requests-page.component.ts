@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { TradeRequest } from '../../models/TradeRequest';
 import { TradeRequestService } from '../../services/trade-request.service';
-import { firebase } from 'firebaseui-angular'
+import { firebase } from 'firebaseui-angular';
 
 @Component({
   selector: 'app-trade-requests-page',
