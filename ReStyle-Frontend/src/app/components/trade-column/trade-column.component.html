@@ -1,3 +1,4 @@
 <div>
   <app-trade-item *ngFor="let item of items" [item]="item" (toggleItemOutput)="toggleItem(item)"></app-trade-item>
+  <div class="add-new-item-button" *ngIf="!hasItems" [routerLink]="[ '/additem' ]"></div>
 </div>
