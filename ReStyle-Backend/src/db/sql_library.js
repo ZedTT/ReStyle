@@ -381,7 +381,7 @@ export const status_update_trade_request =
 */
 
 
-export const get_trade_request_details = 
+export const get_trade_request_inbox_details = 
 "SELECT " +
 "t.trade_requestID, " +
 "t.requester_userID1 AS requesterId, " +
