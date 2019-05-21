@@ -18,4 +18,13 @@ export class TradeRequestComponent implements OnInit {
     return { 'background-image': `url(/images/${this.request.requesterpicturepath})` };
   }
 
+  setArraySizeClass(len) {
+    const classes = {
+      'len-one': (len < 2),
+      'len-four': (len < 5),
+      'len-nine': (len >= 5),
+    };
+    return classes;
+  }
+
 }
