@@ -9,7 +9,7 @@ export class UserAccountService {
 
   constructor(private http: HttpClient) { }
 
-  postUserData(uid, userName): Observable<any> {
+  postUserData(uid, userName, email): Observable<any> {
     // test sending data via post request body to the server
     return this.http.post<any>('/api/users',
     {

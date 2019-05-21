@@ -1,0 +1,145 @@
+<div>
+  <!-- Div containing the page title -->
+  <div class="pageTitle">
+    <h5>Edit Profile</h5>
+  </div>
+
+    <div class="parentDiv">
+      <form>    
+    
+        <!-- Button to upload image (with label) -->
+        <div id="imgreplace" class="card">
+          <div id="profileImg">
+            <img 
+              [src]="imgURL" 
+              height="80" 
+              width="80" 
+              *ngIf="imgURL">
+          </div>
+          <input 
+            name="photo" 
+            type="file" 
+            accept="image/*" 
+            id="filepick" 
+            (change)="onFileSelected($event)" 
+            max-size=32154 
+            style="display: none" 
+            #fileinput>
+          <div id ="replaceButton" class="btn btn-outline-primary" (click)="fileinput.click()">REPLACE</div>          
+        </div>
+    
+        <!-- Form group -->
+        
+        <div class="card">
+          <div>
+            <form class="contactInfo" id="editProfileContainer">
+
+              <!-- Form for user name -->
+              <div class="userCard">
+                <mat-form-field class="formfield user">
+                  <input 
+                    matInput 
+                    #username 
+                    id="username" 
+                    placeholder="User Name" 
+                    value="" 
+                    name="User Name"
+                    [(ngModel)]="displayname" 
+                    pattern="[A-Za-z0-9]{3,20}"
+                    maxlength="20"
+                    minlength="3"
+                    required>
+                  <mat-hint>{{username.value?.length || 0}}/20 (Max 20 Characters)</mat-hint>
+                  <mat-error [class.d-none]="username.valid || username.untouched">Username is required</mat-error>
+                </mat-form-field>
+                <!-- <div class="editButton"><button>Edit</button></div>
+                <div class="saveButton"><button>Save</button></div> -->
+              </div>
+              
+              <!-- Form for phone number -->
+              <div class="phoneCard">
+                <mat-form-field class="formfield phone">
+                  <input matInput
+                    id="phone"
+                    #phoneno
+                    placeholder="Phone Number" 
+                    value="" 
+                    name="phone" 
+                    [(ngModel)]="phone" 
+                    pattern="[0-9]{10}" 
+                    mask="(000) 000 - 0000" 
+                    [showMaskTyped] = "true"
+                  required>
+                <mat-hint>10-digit Mobile Number</mat-hint>
+                <mat-error [class.d-none]="phoneno.valid || phoneno.untouched">Phone number is required</mat-error>
+                </mat-form-field>
+                <!-- <div class="editButton"><button>Edit</button></div>
+                <div class="saveButton"><button>Save</button></div> -->
+              </div>
+
+              <!-- Form for City -->
+              <div class="cityCard">
+                <mat-form-field class="">
+                  <input matInput
+                    #cit
+                    id="city" 
+                    placeholder="City" 
+                    value="" 
+                    name="city" 
+                    [(ngModel)]="city" 
+                    pattern="[A-Za-z ]{3,20}"
+                    minlength="3"
+                    maxlength="20"
+                  required>
+                  <mat-hint>E.g., Vancouver</mat-hint>
+                  <mat-error [class.d-none]="cit.valid || cit.untouched">City is required</mat-error>
+                </mat-form-field>
+                <!-- <div class="editButton"><button>Edit</button></div>
+                <div class="saveButton"><button>Save</button></div>   -->
+              </div>
+              
+              <!-- Form for Postal Code -->
+              <div class="postalCodeCard">
+                <mat-form-field class="">
+                  <input 
+                    matInput
+                    #pcode
+                    id="postalcode" 
+                    placeholder="Postal Code" 
+                    value="" 
+                    name="postalcode" 
+                    [(ngModel)]="postalcode" 
+                    pattern="[A-Z0-9]{6}" 
+                    mask="A 0 A  0 A 0" 
+                    [showMaskTyped] = "true"
+                  >
+                  <mat-hint>Format: A1A 1A1</mat-hint>
+                </mat-form-field>
+                <!-- <div class="editButton"><button>Edit</button></div>
+                <div class="saveButton"><button>Save</button></div>   -->
+              </div>
+
+              
+              <!-- Dropdown selector for user's preferred contact method -->
+              <div class="preferredContactCard">
+                <mat-form-field>
+                  <mat-select placeholder="Contact Method" [(ngModel)]="sPref" name="preference" required>
+                      <mat-option *ngFor="let pref of prefs" [value]="pref.value">
+                          {{ pref.viewValue }}
+                      </mat-option>
+                  </mat-select>
+                  <mat-hint>Choose Email or Phone</mat-hint>
+                </mat-form-field>
+              </div>
+            </form>
+          </div>
+        </div>    
+      </form>
+
+    <div class="buttonPair btn-group">
+      <button class="btn buttons btn-secondary editCancel">Cancel</button>
+      <button type="submit" form="editProfileContainer" value="Submit" (click)="onSubmit()" class="btn buttons btn-primary editSave">Submit</button>
+    </div>
+    
+  </div>
+</div>

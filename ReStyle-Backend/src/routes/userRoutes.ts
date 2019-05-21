@@ -25,6 +25,24 @@ const storage = multer.diskStorage({
 //define the type of upload multer would be doing and pass in its destination, in our case, its a single file with the name photo
 const uploadImg = multer({ storage: storage }).single('profilePic');
 
+const DIR = './uploads/'; // contains images
+
+/**
+ * Adding code to set the file names for multer
+ * ? See https://www.npmjs.com/package/multer#diskstorage
+ */
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, DIR)
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + '.jpeg')
+    }
+})
+
+//define the type of upload multer would be doing and pass in its destination, in our case, its a single file with the name photo
+const uploadImg = multer({ storage: storage }).single('profilePic');
+
 /**
  * All the user routes to export.
  * 
@@ -73,6 +91,35 @@ const userRoutes = (app: Express) => {
                     console.log(err);
                     return response.status(422).send({ error: err.message })
                 }
+
+                const textFields = request.body;
+
+                const userDetails: UserDetailsInterface = {
+                    userId: textFields.userId,
+                    displayname: textFields.displayname,
+                    phone: textFields.phone,
+                    email: textFields.email,
+                    postalcode: textFields.postalcode,
+                    city: textFields.city,
+                    preferredContact: textFields.preferredContact,
+                    profilePic: request.file.filename
+                }
+                updateUserDetails(response, userDetails)
+            })
+        })
+
+    app.route('/api/userdetails')
+        .get((request, response) => {
+            getUserDetails(response, request.query.uid)
+        })
+        .post((request, response) => {
+            // photopath, displayName, postalcode, phonenumber, preferredmethodofcontact, email
+            uploadImg(request, response, (err) => {
+                if (err) {
+                    // An error occurred when uploading
+                    console.log(err);
+                    return response.status(422).send({ error: err.message })
+                  }
 
                 const textFields = request.body;
 

@@ -20,48 +20,57 @@
         
         <div class="card">
           <mat-form-field class="titleField">
-            <input matInput id="title" placeholder="Title" value="" name="title" [(ngModel)]="title" pattern="[A-Za-z0-9 ]{3,40}"
-            required>
+            <input #ttl matInput id="title" placeholder="Title" value="" name="title" [(ngModel)]="title" pattern="[A-Za-z0-9 ]{8,40}" maxlength="40" minlength="8" required>
+            <mat-hint>Max 40 characters</mat-hint>
+            <mat-error [class.d-none]="ttl.valid || ttl.untouched">Title is required</mat-error>
           </mat-form-field>        
           <mat-form-field class="descriptionField">
-            <textarea matInput id="description" placeholder="Description" value="" name="description" [(ngModel)]="description" pattern="[A-Za-z0-9 ]{12,140}"
-            required></textarea>
+            <textarea #desc matInput id="description" placeholder="Description" value="" name="description" [(ngModel)]="description" pattern="[A-Za-z0-9 ]{12,140}"
+            required maxlength="140" minlength="12"></textarea>
+            <mat-hint>Brand, specific size info, etc</mat-hint>
+            <mat-error [class.d-none]="desc.valid || desc.untouched">Description is required</mat-error>
           </mat-form-field>
         </div>
         
         <!-- Drop down selector for category -->
         <div class="card">
           <mat-form-field>
-              <mat-select placeholder="Select Category" [(ngModel)]="sCat" name="category" required>
+              <mat-select #cat placeholder="Select Category" [(ngModel)]="sCat" name="category" required>
                   <mat-option *ngFor="let cat of cats" [value]="cat.value">
                       {{ cat.viewValue }}
                   </mat-option>
               </mat-select>
+              <mat-hint>What kind of item is it?</mat-hint>
+              <mat-error [class.d-none]="cat.valid || cat.untouched">Category is required</mat-error>
           </mat-form-field>
         </div>
     
         <!-- Radio buttons for gender of clothing -->
         <div class="card">
-          <mat-button-toggle-group [(ngModel)]="gender" id="genderToggles" name="fontStyle" aria-label="Font Style">
+          <mat-button-toggle-group #gend [(ngModel)]="gender" id="genderToggles" name="fontStyle" aria-label="Font Style">
             <mat-button-toggle value="Male">Male</mat-button-toggle>
             <mat-button-toggle value="Female">Female</mat-button-toggle>
             <mat-button-toggle value="Unisex">Unisex</mat-button-toggle>
           </mat-button-toggle-group>
+          <small *ngIf="gend.valid || gend.untouched">Select the gender that most closely matches your item</small>
+          <small *ngIf="gend.invalid">Gender is required</small>
         </div>
     
         <!-- Drop down selector for item size -->
         <div id="sizeDropdown" class="card">
           <mat-form-field>
-            <mat-select placeholder="Select a Size" [(ngModel)]="sSize" name="itemSize" required>
+            <mat-select #siz placeholder="Select a Size" [(ngModel)]="sSize" name="itemSize" required>
               <mat-option *ngFor="let size of sizes" [value]="size.value">
                   {{ size.viewValue }}
               </mat-option>
             </mat-select>
+            <mat-hint>Your best guess is okay!</mat-hint>
+            <mat-error [class.d-none]="siz.valid || siz.untouched">Size is required</mat-error>
           </mat-form-field>
         </div>
 
-          <!-- <ng5-slider [(value)]="value" [options]="options" style="margin-bottom: 2.5rem;"></ng5-slider> -->
-          <!-- <div id="sliderSpan">
+          <!-- <ng5-slider [(value)]="value" [options]="options" style="margin-bottom: 2.5rem;"></ng5-slider>
+          <div id="sliderSpan">
             <div id="sliderLabels">
               <span class="labeltxt">XS</span>
               <span class="labeltxt">S</span>
@@ -80,7 +89,7 @@
             <div>
               test
             </div>
-          </div> -->      
+          </div>       -->
     </form>
 
     <div class="card">
