@@ -1,5 +1,5 @@
 import { Express } from "express";
-import { getIncomingTradeRequestsForUser, updateTradeRequestStatus } from '../controllers/tradeControllers';
+import { getIncomingTradeRequestsForUser, updateTradeRequestStatus, updateTradeRequestStatusAndCreateSwapId } from '../controllers/tradeControllers';
 
 const tradeRequestRoutes = (app: Express) => {
 
@@ -14,9 +14,17 @@ const tradeRequestRoutes = (app: Express) => {
 
         // To change a status of a specific trade request.
         .post((request, response) => {
-            const tradeRequestId = request.body.tradeRequestId;
+            const tradeRequest = request.body.tradeRequest;
+            console.log(tradeRequest);
+            const tradeRequestId = tradeRequest.trade_requestid;
             const status = request.body.status;
-            updateTradeRequestStatus(response, tradeRequestId, status)
+            if (status === 'Reject') {
+                updateTradeRequestStatus(response, tradeRequestId, status)
+            } else if (status === 'Accept') {
+                updateTradeRequestStatusAndCreateSwapId(response, tradeRequest, status)
+            } else {
+                response.send({ error: `${status} is not valid. Only 'Accept' or 'Reject' are accepted.` });
+            }
         })
 }
 

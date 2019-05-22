@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { TradeRequest } from '../models/TradeRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -25,9 +26,9 @@ export class TradeRequestService {
    * @param tradeRequestId an id of a trade request which status is going to be updated
    * @param status a string that indicates a status, can be either 'Accept' or 'Reject'
    */
-  postTradeRequestStatus(tradeRequestId: number, status: string) {
+  postTradeRequestStatus(tradeRequest: TradeRequest, status: string) {
     if (status === 'Accept' || status === 'Reject') {
-      return this.http.post<any>(`/api/traderequests`, { tradeRequestId: tradeRequestId, status: status });
+      return this.http.post<any>(`/api/traderequests`, { tradeRequest: tradeRequest, status: status });
     } else {
       console.log(`A status ${status} for the trade request is not valid. Only 'Accept' or 'Reject' are accepted.`);
     }

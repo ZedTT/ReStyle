@@ -2,9 +2,9 @@
  * A module containing all the methods to handle the database queries that involve trades.
  */
 
-import { query } from "../db/dbInit";
+import { query, connect } from "../db/dbInit";
 import { Response } from "express";
-import { new_trade_request_with_return, get_trade_request_inbox_details, status_update_trade_request } from "../db/sql_library";
+import { new_trade_request_with_return, get_trade_request_inbox_details, status_update_trade_request, add_swap_with_return } from "../db/sql_library";
 import { TradeRequestInterface } from '../models/TradeRequestInterface';
 
 /**
@@ -74,4 +74,27 @@ export function updateTradeRequestStatus(response: Response, tradeRequestId: num
             }
         }
     });
+}
+
+export function updateTradeRequestStatusAndCreateSwapId(response: Response, tradeRequest: TradeRequestInterface, status: string) {
+    connect((err, client, done) => {
+        if (err) {
+            console.log("Transaction connection error:", err)
+            done()
+            return
+        } else {
+            client.query(add_swap_with_return, [tradeRequest.requesterId], (err, res) => {
+
+            })
+        }
+    })
+    // const tradeRequest = {
+    //     requesterId: request.body.requesterId,
+    //     notifiedUserId: request.body.notifiedUserId,
+    //     requesterTradeItems: request.body.requesterTradeItems,
+    //     notifiedUserTradeItems: request.body.notifiedUserTradeItems
+    //   };
+    // add_swap_with_return [userID1, userID 2] - get swapId
+    // item_add_swapID [swapID, [itemID1, itemID2] ]
+    // update_trade_request [status]
 }
