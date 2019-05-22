@@ -139,7 +139,7 @@
         </div>    
       </form>
     <div class="buttonPair btn-group">
-      <button class="btn buttons btn-secondary editCancel">Cancel</button>
+      <button class="btn buttons btn-secondary editCancel" mat-button (click)="openSnackBar()">Cancel</button>
       <button type="submit" form="editProfileContainer" value="Submit" (click)="onSubmit()" class="btn buttons btn-primary editSave">Submit</button>
     </div>
     

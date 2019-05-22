@@ -22,7 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule, MatRadioModule, MatSelectModule, MatSliderModule,
 // tslint:disable-next-line: max-line-length
   MatInputModule, MatButtonToggleModule, MatDividerModule, MatSlideToggleModule,
-  MatIconModule } from '@angular/material'; // tsLint max line 140
+  MatStepperModule, MatIconModule, MatSnackBarModule } from '@angular/material'; // tsLint max line 140
 import { FileUploadModule } from 'primeng/fileupload';
 import { NgbdCarouselComponent } from './components/ngbd-carousel/ngbd-carousel.component';
 import { TradePageComponent } from './components/trade-page/trade-page.component';
@@ -127,10 +127,10 @@ firebase.initializeApp(environment.firebase);
     MatSlideToggleModule,
     Ng5SliderModule,
     NgxMaskModule.forRoot(),
-    Ng5SliderModule,
-    NgxMaskModule.forRoot(),
-    Ng5SliderModule,
-    MatIconModule
+    MatIconModule,
+    MatStepperModule,
+    MatIconModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

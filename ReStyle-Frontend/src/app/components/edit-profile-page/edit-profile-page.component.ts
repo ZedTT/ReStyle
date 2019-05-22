@@ -4,6 +4,7 @@ import { UserDetailsInterface } from '../../models/UserDetailsInterface';
 import { EditProfileService } from '../../services/edit-profile.service';
 import { UserAccountService } from '../../services/user-account.service';
 import { Router } from '@angular/router';
+import {MatSnackBar} from '@angular/material';
 
 export interface PreferredContact {
   value: string;
@@ -50,8 +51,16 @@ export class EditProfilePageComponent implements OnInit {
     private editProfileService: EditProfileService,
     private userAccountService: UserAccountService,
     private ngZone: NgZone,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
     ) { }
+
+  openSnackBar() {
+    this.snackBar.open('Hello', 'Ok', {
+      duration: 2000,
+      verticalPosition: 'top'
+    });
+  }
 
   ngOnInit() {
     firebase.auth().onAuthStateChanged(user => {
@@ -99,6 +108,8 @@ export class EditProfilePageComponent implements OnInit {
        */
       return this.router.navigate(['/userprofile']);
     });
+
+    this.openSnackBar();
   }
 
 }
