@@ -116,13 +116,19 @@ export class AddItemPageComponent implements OnInit {
       photos : [this.selectedFile]
     };
 
-    this.addItemService.submitNewItem(newItem);
+    this.addItemService.submitNewItem(newItem).subscribe(res => {
+      console.log(res);
+      if (res.error) {
+        alert('Please fill in all fields (Including image!)');
+        return null;
+      }
+      /**
+       * if the item was added successfully
+       * navigate the user to user profile page
+       */
+      return this.router.navigate(['/userprofile']);
+    }) ;
 
-    /**
-     * if the item was added successfully
-     * navigate the user to user profile page
-     */
-    this.router.navigate(['/userprofile']);
   }
 
   ngOnInit() {
