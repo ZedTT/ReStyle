@@ -46,7 +46,7 @@ export const insert_user_no_return =
 */
 export const get_user =
 	"SELECT * FROM dev.restyle_user " +
-	"WHERE userID = $1"
+	"WHERE userID = $1 "
 
 /*
 	Get user rating based on the userID 
@@ -56,7 +56,7 @@ export const get_user =
 */
 export const get_user_rating =
 	"SELECT AVG(rating) FROM dev.rating " +
-	"WHERE userID = $1"
+	"WHERE userID = $1 "
 
 /*
 	Get the the data from both the item table 
