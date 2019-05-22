@@ -1,0 +1,26 @@
+<div class="request">
+  <div class="user-image-container">
+    <div class="user-image responsiveSquareImage" [ngStyle]="getUserImage()"></div>
+    <p class="user-name">{{ request.requesterusername }}</p>
+  </div>
+  <div class="swap">
+    <mat-icon class="swap-icon">swap_horiz</mat-icon> 
+    <div class="l1">Your items</div>
+    <div class="thumbnails thumbnails1">
+      <app-trade-request-thumbnail class="thumbnail" [ngClass]="setArraySizeClass(request.requesteeitemphotos.length)"
+      *ngFor="let picture of request.requesteeitemphotos" [picture]="picture">
+      </app-trade-request-thumbnail>
+    </div>
+    <div class="l2">Their items</div>
+    <div class="thumbnails thumbnails2">
+      <app-trade-request-thumbnail class="thumbnail" [ngClass]="setArraySizeClass(request.requesteritemphotos.length)"
+      *ngFor="let picture of request.requesteritemphotos" [picture]="picture">
+      </app-trade-request-thumbnail>
+    </div>
+  </div>
+  <div class="buttons">
+    <button class="button" name="Accept" (click)="onAccept()"><mat-icon>check_circle_outline</mat-icon></button> 
+    <button class="button" name="Reject" (click)="onReject()"><mat-icon>delete</mat-icon></button>
+  </div>
+</div>
+

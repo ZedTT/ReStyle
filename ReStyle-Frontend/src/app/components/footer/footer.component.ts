@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserAccountService } from '../../services/user-account.service';
 import { firebase } from 'firebaseui-angular';
-import { RouterLink, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
@@ -35,9 +35,6 @@ export class FooterComponent implements OnInit {
     } else {
       this.userImagePath = '/images/defaultAvatar.png';
     }
-
-
-
   }
 
   setClasses() {
@@ -52,6 +49,13 @@ export class FooterComponent implements OnInit {
 
   toggleEasterEgg() {
     this.easterEggEnabled = !this.easterEggEnabled;
+  }
+
+  redirectIfLoggedIn(path: string) {
+    if (this.authenticated) {
+      return this.router.navigate([ path ]);
+    }
+    return this.router.navigate([ '/login' ]);
   }
 
 }

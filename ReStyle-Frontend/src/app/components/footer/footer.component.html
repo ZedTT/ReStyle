@@ -10,7 +10,7 @@
   <button [routerLink]="[ '/filter' ]" disabled>
     <mat-icon>filter_list</mat-icon>
   </button>
-  <div [routerLink]="[ '/userprofile' ]">
+  <div (click)="redirectIfLoggedIn('/userprofile')"> <!-- [routerLink]="[ '/userprofile' ]" -->
     <img class="user-image" src="{{ userImagePath }}">
   </div>
 </div>

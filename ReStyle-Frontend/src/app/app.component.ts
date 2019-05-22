@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  easterEggOutput() {
+  easterEggOutput(event) {
     this.footer.toggleEasterEgg();
     const props: any = ['circle', 'square', 'triangle', 'line'];
     const svgs: string[] = [

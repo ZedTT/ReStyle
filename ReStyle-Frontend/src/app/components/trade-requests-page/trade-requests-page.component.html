@@ -1,3 +1,10 @@
-<p>
-  trade-requests-page works!
-</p>
+<div>
+  <div class="pageTitle">
+    <h5>Trade Requests</h5>
+  </div>
+  <div class="parentDiv">
+    <app-trade-request *ngFor="let request of requests" [request]="request" (acceptRequest)="acceptTradeRequest($event)"
+      (rejectRequest)="rejectTradeRequest($event)">
+    </app-trade-request>
+  </div>
+</div>

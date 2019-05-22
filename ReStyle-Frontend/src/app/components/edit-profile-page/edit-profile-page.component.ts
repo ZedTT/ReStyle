@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { firebase } from 'firebaseui-angular';
 import { UserDetailsInterface } from '../../models/UserDetailsInterface';
 import { EditProfileService } from '../../services/edit-profile.service';
+import { UserAccountService } from '../../services/user-account.service';
+import { Router } from '@angular/router';
 
 export interface PreferredContact {
   value: string;
@@ -15,7 +17,8 @@ export interface PreferredContact {
 
 export class EditProfilePageComponent implements OnInit {
 
-  imgURL: any = 'https://i.imgur.com/H9hqFVV.jpg';
+  imgURL: any = '/images/defaultAvatar.png';
+  profilePic: string;
   selectedFile: File;
   sPref: string;
   displayname: string;
@@ -43,9 +46,27 @@ export class EditProfilePageComponent implements OnInit {
     };
   }
 
-  constructor(private editProfileService: EditProfileService) { }
+  constructor(
+    private editProfileService: EditProfileService,
+    private userAccountService: UserAccountService,
+    private ngZone: NgZone,
+    private router: Router
+    ) { }
 
   ngOnInit() {
+    firebase.auth().onAuthStateChanged(user => {
+      this.ngZone.run(() => {
+        this.userAccountService.getUserDetail(user.uid).subscribe(temp => {
+          this.imgURL = '/images/' + temp.profilePic;
+          this.profilePic = temp.profilePic;
+          this.displayname = temp.displayname;
+          this.phone = temp.phone;
+          this.city = temp.city;
+          this.postalcode = temp.postalcode;
+          this.sPref = temp.preferredContact;
+        });
+      });
+    });
   }
 
   onSubmit() {
@@ -55,18 +76,29 @@ export class EditProfilePageComponent implements OnInit {
 
     if (!this.uid) {return null; }
 
-    const newItem: UserDetailsInterface = {
+    const newInfo: UserDetailsInterface = {
       userId: this.uid,
       displayname: this.displayname.trim(),
       phone: this.phone,
       email: this.email.trim(),
-      postalcode: this.postalcode,
+      postalcode: this.postalcode.toUpperCase(),
       city: this.city.trim(),
       preferredContact: this.sPref,
-      profilePic: this.selectedFile
+      profilePic: this.selectedFile ? this.selectedFile : this.profilePic
     };
 
-    this.editProfileService.submitEditedProfile(newItem);
+    this.editProfileService.submitEditedProfile(newInfo).subscribe(res => {
+      console.log(res);
+      if (res.error) {
+        alert('Please fill in all fields');
+        return null;
+      }
+      /**
+       * if the item was added successfully
+       * navigate the user to user profile page
+       */
+      return this.router.navigate(['/userprofile']);
+    });
   }
 
 }
