@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UserDetailsInterface } from '../models/UserDetailsInterface';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -10,7 +11,7 @@ export class EditProfileService {
 
   constructor(private http: HttpClient) { }
 
-  submitEditedProfile(newItem: UserDetailsInterface) {
+  submitEditedProfile(newItem: UserDetailsInterface): Observable<any> {
     const fd = new FormData();
     fd.append('userId', newItem.userId);
     fd.append('displayname', newItem.displayname);
@@ -21,9 +22,6 @@ export class EditProfileService {
     fd.append('preferredContact', newItem.preferredContact);
     fd.append('profilePic', newItem.profilePic);
 
-    this.http.post('/api/userdetails', fd)
-      .subscribe(res => {
-      console.log(res);
-    });
+    return this.http.post('/api/userdetails', fd);
   }
 }

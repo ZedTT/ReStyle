@@ -127,7 +127,7 @@ export class AddItemPageComponent implements OnInit {
        * navigate the user to user profile page
        */
       return this.router.navigate(['/userprofile']);
-    }) ;
+    });
 
   }
 
