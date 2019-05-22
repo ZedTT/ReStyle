@@ -75,12 +75,11 @@ export class EditProfilePageComponent implements OnInit {
       displayname: this.displayname.trim(),
       phone: this.phone,
       email: this.email.trim(),
-      postalcode: this.postalcode,
+      postalcode: this.postalcode.toUpperCase(),
       city: this.city.trim(),
       preferredContact: this.sPref,
       profilePic: this.selectedFile ? this.selectedFile : this.profilePic
     };
-
     this.editProfileService.submitEditedProfile(newItem);
   }
 

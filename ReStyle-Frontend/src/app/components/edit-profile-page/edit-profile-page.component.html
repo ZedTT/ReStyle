@@ -107,7 +107,7 @@
                     value="postalcode" 
                     name="postalcode" 
                     [(ngModel)]="postalcode" 
-                    pattern="[A-Z0-9]{6}" 
+                    pattern="[A-Za-z0-9]{6}" 
                     mask="A 0 A  0 A 0" 
                     [showMaskTyped] = "true"
                   >
@@ -138,7 +138,6 @@
           </div>
         </div>    
       </form>
-
     <div class="buttonPair btn-group">
       <button class="btn buttons btn-secondary editCancel">Cancel</button>
       <button type="submit" form="editProfileContainer" value="Submit" (click)="onSubmit()" class="btn buttons btn-primary editSave">Submit</button>
