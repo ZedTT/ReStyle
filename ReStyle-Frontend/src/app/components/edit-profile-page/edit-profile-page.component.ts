@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { firebase } from 'firebaseui-angular';
 import { UserDetailsInterface } from '../../models/UserDetailsInterface';
 import { EditProfileService } from '../../services/edit-profile.service';
+import {MatSnackBar} from '@angular/material';
 
 export interface PreferredContact {
   value: string;
@@ -43,7 +44,17 @@ export class EditProfilePageComponent implements OnInit {
     };
   }
 
-  constructor(private editProfileService: EditProfileService) { }
+  constructor(
+    private editProfileService: EditProfileService,
+    private snackBar: MatSnackBar
+    ) { }
+
+  openSnackBar() {
+    this.snackBar.open('Hello', 'Ok', {
+      duration: 2000,
+      verticalPosition: 'top'
+    });
+  }
 
   ngOnInit() {
   }
@@ -67,6 +78,8 @@ export class EditProfilePageComponent implements OnInit {
     };
 
     this.editProfileService.submitEditedProfile(newItem);
+
+    this.openSnackBar();
   }
 
 }
