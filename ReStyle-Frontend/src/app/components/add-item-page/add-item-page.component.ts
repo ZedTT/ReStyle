@@ -28,6 +28,7 @@ export class AddItemPageComponent implements OnInit {
   sCat: string;
   sSize: number;
   gender: string;
+  // ! This code is for the slider which is currently not implemented
   // value = 2;
   // options: Options = {
   //   showTicksValues: true,
@@ -130,26 +131,25 @@ export class AddItemPageComponent implements OnInit {
     const validGender = !!this.gender;
     const validSize = !!this.sSize;
 
-    // open dialog box
-    const dialogRef = this.dialog.open(ConfirmationBoxComponent, {
-      width: '250px',
-      height: '200px',
-      data: 'Are you sure you would like to add this item?'
-    });
-
-    // when the dialog box is closed
-    dialogRef.afterClosed().subscribe(result => {
-      // if yes is clicked, will return true, handle this here
-      // else do nothing if they clicked no
-      if (result) {
-        /**
-         * To validate the correctness of all form fields that need to be filled including the uploaded image.
-         */
-        if (!(validImage && validTitle && validDescription && validCategory && validGender && validSize)) {
-          // Open the snack bar to notify the user that they need to make all fields valid
-          this.openSnackBar('Please fill in all the fields correctly and upload an image!', 'Dismiss');
-          return null;
-        } else {
+    /**
+     * To validate the correctness of all form fields that need to be filled including the uploaded image.
+     */
+    if (!(validImage && validTitle && validDescription && validCategory && validGender && validSize)) {
+      // Open the snack bar to notify the user that they need to make all fields valid
+      this.openSnackBar('Please fill in all the fields correctly and upload an image!', 'Dismiss');
+      return null;
+    } else {
+      // open dialog box
+      const dialogRef = this.dialog.open(ConfirmationBoxComponent, {
+        width: '250px',
+        height: '200px',
+        data: 'Are you sure you would like to add this item?'
+      });
+      // when the dialog box is closed
+      dialogRef.afterClosed().subscribe(result => {
+        // if yes is clicked, will return true, handle this here
+        // else do nothing if they clicked no
+        if (result) {
           // Build the object that represents the new item.
           const newItem: AddedItemInterface = {
             ownerId: uid,
@@ -176,16 +176,22 @@ export class AddItemPageComponent implements OnInit {
                */
               return this.router.navigate(['/userprofile']);
             }
+
           });
+
         }
-      }
-    });
+
+      });
+
+    }
 
   }
 
+  // ! This code sits here until we re implement the slider
   // Formats the values on the size slider (0 = XS, 1 = S, 2 = M, 3 = L, 4 = XL)
   // formatLabel(value: number | null) { // TODO: use an array for this instead of if statements
   //   const sizeArray: string[] = ['XS', 'S', 'M', 'L', 'XL'];
   //   return sizeArray[value];
   // }
+
 }
