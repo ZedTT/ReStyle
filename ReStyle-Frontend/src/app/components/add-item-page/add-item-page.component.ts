@@ -87,6 +87,9 @@ export class AddItemPageComponent implements OnInit {
 
   constructor(private addItemService: AddItemService, private router: Router, private snackBar: MatSnackBar) { }
 
+  ngOnInit() {
+  }
+
   openSnackBar(message: string, actionMessage: string) {
     this.snackBar.open(message, actionMessage, {
       duration: 4000,
@@ -121,6 +124,9 @@ export class AddItemPageComponent implements OnInit {
     const validGender = !!this.gender;
     const validSize = !!this.sSize;
 
+    /**
+     * To validate the correctness of all form fields that need to be filled including the uploaded image.
+     */
     if (!(validImage && validTitle && validDescription && validCategory && validGender && validSize)) {
       this.openSnackBar('Please fill in all the fields correctly and upload an image!', 'Dismiss');
       return null;
@@ -151,9 +157,6 @@ export class AddItemPageComponent implements OnInit {
     }
 
 
-  }
-
-  ngOnInit() {
   }
 
   // Formats the values on the size slider (0 = XS, 1 = S, 2 = M, 3 = L, 4 = XL)
