@@ -84,10 +84,11 @@ export class LoginCardComponent implements OnInit {
   logOut() {
     firebase.auth().signOut()
     .then(() => {
-      console.log('User is signed out.');
-      console.log(`Does current user exist? ${firebase.auth().currentUser !== null}`);
-      this.changeDetectorRef.detectChanges();
-      // Sign-out successful.
+      this.ngZone.run(() => {
+        console.log('User is signed out.');
+        console.log(`Does current user exist? ${firebase.auth().currentUser !== null}`);
+        // Sign-out successful.
+      });
     }).catch((error) => {
       console.log('An error is caught.');
       // An error happened

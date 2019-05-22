@@ -4,7 +4,8 @@ import { TradeService } from '../../services/trade.service';
 import { UserAccountService } from '../../services/user-account.service';
 import { firebase } from 'firebaseui-angular';
 import { getTreeControlMissingError } from '@angular/cdk/tree';
-import { getBootstrapListener } from '@angular/router/src/router_module';
+import { getBootstrapListener, routerNgProbeToken } from '@angular/router/src/router_module';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -29,7 +30,8 @@ export class UserProfileComponent implements OnInit {
   constructor(
     private tradeService: TradeService,
     private ngZone: NgZone,
-    private userAccountService: UserAccountService
+    private userAccountService: UserAccountService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -98,5 +100,18 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
+  logOut() {
+    firebase.auth().signOut()
+    .then(() => {
+      this.ngZone.run(() => {
+        // redirect the user back to home page after log out.
+        this.router.navigate(['/']);
+        // Sign-out successful.
+      });
+    }).catch((error) => {
+      console.log('An error is caught.');
+      // An error happened
+    });
+  }
 
 }
