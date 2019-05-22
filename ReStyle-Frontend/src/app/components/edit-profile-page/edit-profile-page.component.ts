@@ -73,38 +73,11 @@ export class EditProfilePageComponent implements OnInit {
       displayname: this.displayname.trim(),
       phone: this.phone,
       email: this.email.trim(),
-      postalcode: this.postalcode,
-      city: this.city.trim(),
-
-    this.uid = firebase.auth().currentUser.uid;
-    this.email = firebase.auth().currentUser.email;
-
-    if (!this.uid) {return null; }
-
-    const newItem: UserDetailsInterface = {
-      userId: this.uid,
-      displayname: this.displayname.trim(),
-      phone: this.phone,
-      email: this.email.trim(),
-      postalcode: this.postalcode,
-      city: this.city.trim(),
-
-    this.uid = firebase.auth().currentUser.uid;
-    this.email = firebase.auth().currentUser.email;
-
-    if (!this.uid) {return null; }
-
-    const newItem: UserDetailsInterface = {
-      userId: this.uid,
-      displayname: this.displayname.trim(),
-      phone: this.phone,
-      email: this.email.trim(),
-      postalcode: this.postalcode,
+      postalcode: this.postalcode.toUpperCase(),
       city: this.city.trim(),
       preferredContact: this.sPref,
       profilePic: this.selectedFile
     };
-
     this.editProfileService.submitEditedProfile(newItem);
   }
 
