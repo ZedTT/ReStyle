@@ -125,7 +125,7 @@ export class AddItemPageComponent implements OnInit {
     if (!uid) { return null; }
 
     const validImage = !!this.selectedFile;
-    const validTitle = !!this.title && this.title.match('[A-Za-z0-9 ]{8,40}');
+    const validTitle = !!this.title && this.title.match('[ -~]{8,40}');
     const validDescription = !!this.description && this.description.match('[ -~]{12,140}');
     const validCategory = !!this.sCat;
     const validGender = !!this.gender;
@@ -181,7 +181,7 @@ export class AddItemPageComponent implements OnInit {
 
         }
 
-      });
+      }); // Callback hell look away.
 
     }
 
