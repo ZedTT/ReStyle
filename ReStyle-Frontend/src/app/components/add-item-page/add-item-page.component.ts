@@ -3,6 +3,7 @@ import { AddedItemInterface } from '../../models/AddedItemInterface';
 import { AddItemService } from '../../services/add-item.service';
 // import { Options } from 'ng5-slider';
 import { firebase } from 'firebaseui-angular';
+import { Router } from '@angular/router';
 
 export interface Category {
   value: string;
@@ -83,7 +84,7 @@ export class AddItemPageComponent implements OnInit {
   imgURL: any;
   public message: string;
 
-  constructor(private addItemService: AddItemService) {}
+  constructor(private addItemService: AddItemService, private router: Router) {}
 
   onFileSelected(fileEvent) {
 
@@ -115,7 +116,19 @@ export class AddItemPageComponent implements OnInit {
       photos : [this.selectedFile]
     };
 
-    this.addItemService.submitNewItem(newItem);
+    this.addItemService.submitNewItem(newItem).subscribe(res => {
+      console.log(res);
+      if (res.error) {
+        alert('Please fill in all fields (Including image!)');
+        return null;
+      }
+      /**
+       * if the item was added successfully
+       * navigate the user to user profile page
+       */
+      return this.router.navigate(['/userprofile']);
+    }) ;
+
   }
 
   ngOnInit() {
