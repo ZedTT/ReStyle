@@ -19,7 +19,7 @@ export class EditProfilePageComponent implements OnInit {
   imgURL: any = '/images/defaultAvatar.png';
   profilePic: string;
   selectedFile: File;
-  sPref: string = null;
+  sPref: string;
   displayname: string;
   phone: string;
   email: string;
