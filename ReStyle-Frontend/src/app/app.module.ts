@@ -41,6 +41,7 @@ import { TradeRequestComponent } from './components/trade-request/trade-request.
 import { TradeRequestThumbnailComponent } from './components/trade-request-thumbnail/trade-request-thumbnail.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
+import { TradeAcceptedComponent } from './components/trade-accepted/trade-accepted.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -101,7 +102,8 @@ firebase.initializeApp(environment.firebase);
     TradeRequestComponent,
     TradeRequestThumbnailComponent,
     NotFoundComponent,
-    PrivacyPolicyComponent
+    PrivacyPolicyComponent,
+    TradeAcceptedComponent
   ],
   imports: [
     BrowserModule,

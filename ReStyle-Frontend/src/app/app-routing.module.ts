@@ -10,6 +10,8 @@ import { TradeRequestsPageComponent } from './components/trade-requests-page/tra
 import { AboutUsPageComponent } from './components/about-us-page/about-us-page.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
+import { TradeColumnComponent } from './components/trade-column/trade-column.component';
+import { TradeAcceptedComponent } from './components/trade-accepted/trade-accepted.component';
 
 
 const routes: Routes = [
@@ -21,6 +23,7 @@ const routes: Routes = [
   { path: 'userprofile', component: UserProfileComponent },
   { path: 'traderequests', component: TradeRequestsPageComponent },
   { path: 'privacypolicy', component: PrivacyPolicyComponent},
+  { path: 'tradeaccepted', component: TradeAcceptedComponent},
   { path: 'aboutus', component: AboutUsPageComponent},
   { path: '404', component: NotFoundComponent },
   { path: '**', redirectTo: '/404', pathMatch: 'full' }
