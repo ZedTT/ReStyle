@@ -1,5 +1,5 @@
 import { Component, ViewChild, EventEmitter, OnInit, Output, NgZone } from '@angular/core';
-import { firebase } from 'firebaseui-angular'
+import { firebase } from 'firebaseui-angular';
 import ConfettiGenerator from 'confetti-js';
 
 @Component({
