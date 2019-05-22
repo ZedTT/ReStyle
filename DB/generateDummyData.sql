@@ -102,12 +102,12 @@ INSERT INTO dev.contact_details (userID, email, phoneNumber, preferredMethodOfCo
 	Addresses for all six dummy users
 */
 INSERT INTO dev.address (userID, unit, street, city, postalCode) VALUES 
-('QqJVsgMeiVcF1bW0x9b28sHK9fh2', 'testUnit', 'testStreet', 'Vancouver', 'testPostalCode'),
-('nsisodvqeNOTDCitaseopWjovEJ2', 'testUnit', 'testStreet', 'Vancouver', 'testPostalCode'),
-('fBzo9P6FJYQRbPq5CZFEsPWqtU23', 'testUnit', 'testStreet', 'Vancouver', 'testPostalCode'),
-('IDrpipjIpYOtcpGAaMT8ZWGT0J32', 'testUnit', 'testStreet', 'Vancouver', 'testPostalCode'),
-('4WiXU5rgqRWrGZSJXxSkQl3Kpdz1', 'testUnit', 'testStreet', 'Vancouver', 'testPostalCode'),
-('rCjzKDG6rjUwjj6I5BepsLbvgPr1', 'testUnit', 'testStreet', 'Vancouver', 'testPostalCode');
+('QqJVsgMeiVcF1bW0x9b28sHK9fh2', 'testUnit', 'testStreet', 'Vancouver', 'V5K 0A1'),
+('nsisodvqeNOTDCitaseopWjovEJ2', 'testUnit', 'testStreet', 'Vancouver', 'V5K 1A1'),
+('fBzo9P6FJYQRbPq5CZFEsPWqtU23', 'testUnit', 'testStreet', 'Vancouver', 'V5K 1A4'),
+('IDrpipjIpYOtcpGAaMT8ZWGT0J32', 'testUnit', 'testStreet', 'Vancouver', 'V5K 1A5'),
+('4WiXU5rgqRWrGZSJXxSkQl3Kpdz1', 'testUnit', 'testStreet', 'Vancouver', 'V5K 1A6'),
+('rCjzKDG6rjUwjj6I5BepsLbvgPr1', 'testUnit', 'testStreet', 'Vancouver', 'V5K 1A7');
 
 
 
