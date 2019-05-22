@@ -4,6 +4,7 @@ import { AddItemService } from '../../services/add-item.service';
 // import { Options } from 'ng5-slider';
 import { firebase } from 'firebaseui-angular';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 export interface Category {
   value: string;
@@ -84,7 +85,17 @@ export class AddItemPageComponent implements OnInit {
   imgURL: any;
   public message: string;
 
-  constructor(private addItemService: AddItemService, private router: Router) {}
+  constructor(private addItemService: AddItemService, private router: Router, private snackBar: MatSnackBar) { }
+
+  ngOnInit() {
+  }
+
+  openSnackBar(message: string, actionMessage: string) {
+    this.snackBar.open(message, actionMessage, {
+      duration: 4000,
+      verticalPosition: 'bottom'
+    });
+  }
 
   onFileSelected(fileEvent) {
 
@@ -106,32 +117,46 @@ export class AddItemPageComponent implements OnInit {
 
     if (!uid) { return null; }
 
-    const newItem: AddedItemInterface = {
-      ownerId : uid,
-      title: this.title.trim(),
-      description: this.description.trim(),
-      gender : this.gender,
-      size: this.sSize,
-      category : this.sCat,
-      photos : [this.selectedFile]
-    };
+    const validImage = !!this.selectedFile;
+    const validTitle = !!this.title && this.title.match('[A-Za-z0-9 ]{8,40}');
+    const validDescription = !!this.description && this.description.match('[ -~]{12,140}');
+    const validCategory = !!this.sCat;
+    const validGender = !!this.gender;
+    const validSize = !!this.sSize;
 
-    this.addItemService.submitNewItem(newItem).subscribe(res => {
-      console.log(res);
-      if (res.error) {
-        alert('Please fill in all fields (Including image!)');
-        return null;
-      }
-      /**
-       * if the item was added successfully
-       * navigate the user to user profile page
-       */
-      return this.router.navigate(['/userprofile']);
-    });
+    /**
+     * To validate the correctness of all form fields that need to be filled including the uploaded image.
+     */
+    if (!(validImage && validTitle && validDescription && validCategory && validGender && validSize)) {
+      this.openSnackBar('Please fill in all the fields correctly and upload an image!', 'Dismiss');
+      return null;
+    } else {
+      const newItem: AddedItemInterface = {
+        ownerId: uid,
+        title: this.title.trim(),
+        description: this.description.trim(),
+        gender: this.gender,
+        size: this.sSize,
+        category: this.sCat,
+        photos: [this.selectedFile]
+      };
+      this.addItemService.submitNewItem(newItem).subscribe(res => {
+        console.log(res);
+        if (res.error) {
+          this.openSnackBar('Please fill in all fields and image correctly!', 'Dismiss');
+          return null;
+        } else {
+          this.openSnackBar('Item was added successfully!', 'Ok');
+          /**
+           * if the item was added successfully
+           * navigate the user to user profile page
+           */
+          return this.router.navigate(['/userprofile']);
+        }
+      });
+    }
 
-  }
 
-  ngOnInit() {
   }
 
   // Formats the values on the size slider (0 = XS, 1 = S, 2 = M, 3 = L, 4 = XL)

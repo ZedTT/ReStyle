@@ -67,9 +67,9 @@
                     pattern="[0-9]{10}" 
                     mask="(000) 000 - 0000" 
                     [showMaskTyped] = "true"
-                  required>
+                  >
                 <mat-hint>10-digit Mobile Number</mat-hint>
-                <mat-error [class.d-none]="phoneno.valid || phoneno.untouched">10-digit Phone number is required</mat-error>
+                <mat-error [class.d-none]="phoneno.valid || phoneno.untouched">10-digit Phone number</mat-error>
                 </mat-form-field>
                 <!-- <div class="editButton"><button>Edit</button></div>
                 <div class="saveButton"><button>Save</button></div> -->
@@ -139,7 +139,7 @@
         </div>    
       </form>
     <div class="buttonPair btn-group">
-      <button class="btn buttons btn-secondary editCancel">Cancel</button>
+      <button class="btn buttons btn-secondary editCancel" mat-button [routerLink]="[ '/userprofile' ]">Cancel</button>
       <button type="submit" form="editProfileContainer" value="Submit" (click)="onSubmit()" class="btn buttons btn-primary editSave">Submit</button>
     </div>
     

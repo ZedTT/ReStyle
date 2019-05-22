@@ -25,7 +25,7 @@
             <mat-error [class.d-none]="ttl.valid || ttl.untouched">Title is required</mat-error>
           </mat-form-field>        
           <mat-form-field class="descriptionField">
-            <textarea #desc matInput id="description" placeholder="Description" value="" name="description" [(ngModel)]="description" pattern="[A-Za-z0-9 ]{12,140}"
+            <textarea #desc matInput id="description" placeholder="Description" value="" name="description" [(ngModel)]="description" pattern="[ -~]{12,140}"
             required maxlength="140" minlength="12"></textarea>
             <mat-hint>Brand, specific size info, etc</mat-hint>
             <mat-error [class.d-none]="desc.valid || desc.untouched">Description is required</mat-error>
@@ -92,8 +92,9 @@
           </div>       -->
     </form>
 
-    <div class="card">
-      <input type="submit" (click)="onSubmit()" form="addItemContainer" value="Submit" class="button submit" [routerLink]="[ '/additem' ]">
+    <div class="buttonPair btn-group">
+      <button class="btn buttons btn-secondary editCancel" mat-button [routerLink]="[ '/' ]">Cancel</button>
+      <button type="submit" form="addItemContainer" value="Submit" (click)="onSubmit()" class="btn buttons btn-primary editSave">Submit</button>
     </div>
     
   </div>
