@@ -21,14 +21,14 @@
         <div class="card">
           <mat-form-field class="titleField">
             <input #ttl matInput id="title" placeholder="Title" value="" name="title" [(ngModel)]="title" pattern="[A-Za-z0-9 ]{8,40}" maxlength="40" minlength="8" required>
-            <mat-hint>Max 40 characters</mat-hint>
-            <mat-error [class.d-none]="ttl.valid || ttl.untouched">Title is required</mat-error>
+            <mat-hint>Between 8-40 characters</mat-hint>
+            <mat-error [class.d-none]="ttl.valid || ttl.untouched">Title required (No special chars)</mat-error>
           </mat-form-field>        
           <mat-form-field class="descriptionField">
-            <textarea #desc matInput id="description" placeholder="Description" value="" name="description" [(ngModel)]="description" pattern="[A-Za-z0-9 ]{12,140}"
+            <textarea #desc matInput id="description" placeholder="Description" value="" name="description" [(ngModel)]="description" pattern="[-~]{12,140}"
             required maxlength="140" minlength="12"></textarea>
             <mat-hint>Brand, specific size info, etc</mat-hint>
-            <mat-error [class.d-none]="desc.valid || desc.untouched">Description is required</mat-error>
+            <mat-error [class.d-none]="desc.valid || desc.untouched">Description required (12-40 chars)</mat-error>
           </mat-form-field>
         </div>
         
