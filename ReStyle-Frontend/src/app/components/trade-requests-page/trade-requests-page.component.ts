@@ -12,32 +12,6 @@ export class TradeRequestsPageComponent implements OnInit {
   acceptStatus = 'Accept'; // a keyword for accept status in the database, should not be changed
   rejectStatus = 'Reject'; // a keyword for reject status in the database, should not be changed
   requests: TradeRequest[];
-  // requests: TradeRequest[] = [
-  //   {
-  //     tradeRequestId: 1,
-  //     requesterId: 'a1',
-  //     requesterUserPicturePath: 'path1',
-  //     requesterName: 'Name1',
-  //     notifiedItemsPicturePath: ['path-NA1', 'path-NA2'],
-  //     requesterItemsPicturePath: ['path-RE2', 'pathB2']
-  //   },
-  //   {
-  //     tradeRequestId: 2 ,
-  //     requesterId: 'a2',
-  //     requesterUserPicturePath: 'path2',
-  //     requesterName: 'Name2',
-  //     notifiedItemsPicturePath: ['path-NB1', 'pathB-N2'],
-  //     requesterItemsPicturePath: ['path-RE2', 'pathB21']
-  //   },
-  //   {
-  //     tradeRequestId: 3,
-  //     requesterId: 'a3',
-  //     requesterUserPicturePath: 'path3',
-  //     requesterName: 'Name3',
-  //     notifiedItemsPicturePath: ['path-NC1', 'path-NC2'],
-  //     requesterItemsPicturePath: ['path-RE2', 'pathB2']
-  //   }
-  // ];
 
   constructor(private tradeRequestService: TradeRequestService, private ngZone: NgZone) { }
 
