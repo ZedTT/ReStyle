@@ -62,11 +62,3 @@ export class EditProfilePageComponent implements OnInit {
       email: this.email,
       postalcode: this.postalcode,
       city: this.city,
-      preferredContact: this.sPref,
-      profilePic: this.selectedFile
-    };
-
-    this.editProfileService.submitEditedProfile(newItem);
-  }
-
-}
