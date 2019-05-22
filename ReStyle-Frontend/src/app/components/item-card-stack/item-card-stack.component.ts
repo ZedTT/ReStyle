@@ -66,8 +66,8 @@ export class ItemCardStackComponent implements OnInit {
     // Post an item to the hidden items list into db.
     if (this.authenticated && this.userId) {
       this.itemCardServiceService.postHiddenItem(this.userId, item.itemId).subscribe(temp => {
-        console.log(temp)
-      })
+        console.log(temp);
+      });
     } else {
       setTimeout(() => {
         this.router.navigate(['/login']); // TODO: save where the user was

@@ -22,7 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule, MatRadioModule, MatSelectModule, MatSliderModule,
 // tslint:disable-next-line: max-line-length
   MatInputModule, MatButtonToggleModule, MatDividerModule, MatSlideToggleModule,
-  MatStepperModule, MatIconModule } from '@angular/material'; // tsLint max line 140
+  MatIconModule } from '@angular/material'; // tsLint max line 140
 import { FileUploadModule } from 'primeng/fileupload';
 import { NgbdCarouselComponent } from './components/ngbd-carousel/ngbd-carousel.component';
 import { TradePageComponent } from './components/trade-page/trade-page.component';
@@ -37,7 +37,10 @@ import { TradePreviewThumbnailComponent } from './components/trade-preview-thumb
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { TradeRequestsPageComponent } from './components/trade-requests-page/trade-requests-page.component';
 import { AboutUsPageComponent } from './components/about-us-page/about-us-page.component';
+import { TradeRequestComponent } from './components/trade-request/trade-request.component';
+import { TradeRequestThumbnailComponent } from './components/trade-request-thumbnail/trade-request-thumbnail.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -55,7 +58,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
   // Terms of service url.
   tosUrl: '/',
   // Privacy policy url.
-  privacyPolicyUrl: '/',
+  privacyPolicyUrl: '/privacypolicy',
   credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM
 };
 
@@ -95,7 +98,10 @@ firebase.initializeApp(environment.firebase);
     UserProfileComponent,
     TradeRequestsPageComponent,
     AboutUsPageComponent,
-    NotFoundComponent
+    TradeRequestComponent,
+    TradeRequestThumbnailComponent,
+    NotFoundComponent,
+    PrivacyPolicyComponent
   ],
   imports: [
     BrowserModule,
@@ -118,9 +124,12 @@ firebase.initializeApp(environment.firebase);
     MatButtonToggleModule,
     FileUploadModule,
     MatDividerModule,
+    MatSlideToggleModule,
     Ng5SliderModule,
     NgxMaskModule.forRoot(),
-    MatStepperModule,
+    Ng5SliderModule,
+    NgxMaskModule.forRoot(),
+    Ng5SliderModule,
     MatIconModule
   ],
   providers: [],
