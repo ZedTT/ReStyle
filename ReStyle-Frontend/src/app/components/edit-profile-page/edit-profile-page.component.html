@@ -4,7 +4,7 @@
     <h5>Edit Profile</h5>
   </div>
 
-    <div class="parentDiv">
+  <div class="parentDiv">
       <form>    
     
         <!-- Button to upload image (with label) -->
@@ -124,6 +124,11 @@
               <div class="preferredContactCard">
                 <mat-form-field>
                   <mat-select placeholder="Contact Method" [(ngModel)]="sPref" name="preference" required>
+                    <mat-option *ngFor="let pref of prefs" [value]="pref.value">
+                        {{ pref.viewValue }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
               </div>
             </form>
           </div>

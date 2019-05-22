@@ -1,7 +1,14 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, Inject } from '@angular/core';
 import { TradeRequest } from '../../models/TradeRequest';
 import { TradeRequestService } from '../../services/trade-request.service';
 import { firebase } from 'firebaseui-angular';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+
+export interface DialogData {
+  animal: string;
+  name: string;
+}
 
 @Component({
   selector: 'app-trade-requests-page',
@@ -13,7 +20,29 @@ export class TradeRequestsPageComponent implements OnInit {
   rejectStatus = 'Reject'; // a keyword for reject status in the database, should not be changed
   requests: TradeRequest[];
 
-  constructor(private tradeRequestService: TradeRequestService, private ngZone: NgZone) { }
+  animal: string;
+  name: string;
+
+  constructor(private tradeRequestService: TradeRequestService,
+  private ngZone: NgZone, public dialog: MatDialog,
+  private confirmationDialogComponent: ConfirmationDialogComponent) { }
+
+  /**
+   * Confirm if the user actually wants to accept or reject the trade request.
+   *
+   * @param tradeRequest a trade request instance which status should be updated
+   */
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '250px',
+      data: {name: this.name, animal: this.animal}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.animal = result;
+    });
+  }
 
   ngOnInit() {
     firebase.auth().onAuthStateChanged(user => {
@@ -32,6 +61,7 @@ export class TradeRequestsPageComponent implements OnInit {
    * @param tradeRequest a trade request instance which status should be updated
    */
   acceptTradeRequest(tradeRequest: TradeRequest) {
+    this.openDialog();
     // console.log(tradeRequest)
     this.tradeRequestService.postTradeRequestStatus(tradeRequest.trade_requestid, this.acceptStatus).subscribe(temp => {
       console.log(temp);
@@ -45,6 +75,7 @@ export class TradeRequestsPageComponent implements OnInit {
    * @param tradeRequest a trade request instance which status should be updated
    */
   rejectTradeRequest(tradeRequest: TradeRequest) {
+    this.openDialog();
     // console.log(tradeRequest)
     this.tradeRequestService.postTradeRequestStatus(tradeRequest.trade_requestid, this.rejectStatus).subscribe(temp => {
       console.log(temp);
