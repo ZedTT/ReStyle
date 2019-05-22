@@ -52,10 +52,10 @@ export class FooterComponent implements OnInit {
   }
 
   redirectIfLoggedIn(path: string) {
-    if (!this.authenticated) {
-      this.router.navigate([ '/login' ]);
+    if (this.authenticated) {
+      return this.router.navigate([ path ]);
     }
-    this.router.navigate([ path ]);
+    return this.router.navigate([ '/login' ]);
   }
 
 }
