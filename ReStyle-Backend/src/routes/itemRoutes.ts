@@ -54,17 +54,22 @@ const itemRoutes = (app: Express) => {
           console.log("Error while uploading an image: ", err);
           return response.status(422).send({ error: err.message })
         }
-        // request.body should be of type AddedItemInterface
-        let body = request.body
-        // replace the photos array which is currently of type File with an array of the paths
-        body.photos = [request.file.filename];
-        // change the size to a number instead of a string
-        body.size = parseInt(body.size);
-        // create a new AddItemModel object using the body
-        let item = new AddItemModel(body);
 
-        // insert the new user into the DB
-        insertItemForUserWithId(response, item);
+        if (request.file) {
+          // request.body should be of type AddedItemInterface
+          let body = request.body
+          // replace the photos array which is currently of type File with an array of the paths
+          body.photos = [request.file.filename];
+          // change the size to a number instead of a string
+          body.size = parseInt(body.size);
+          // create a new AddItemModel object using the body
+          let item = new AddItemModel(body);
+
+          // insert the new user into the DB
+          insertItemForUserWithId(response, item);
+        } else {
+          response.send({ error: "File was not sent." });
+        }
       });
     });
 
