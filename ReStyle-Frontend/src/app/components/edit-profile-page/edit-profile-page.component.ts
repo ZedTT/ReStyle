@@ -110,7 +110,7 @@ export class EditProfilePageComponent implements OnInit {
       this.editProfileService.submitEditedProfile(newInfo).subscribe(res => {
         console.log(res);
         if (res.error) {
-          this.openSnackBar('Please fill in all fields correctly!', 'Dismiss');
+          this.openSnackBar('Please fill in all the fields correctly!', 'Dismiss');
           return null;
         } else {
           this.openSnackBar('Profile was updated successfully!', 'Ok');
