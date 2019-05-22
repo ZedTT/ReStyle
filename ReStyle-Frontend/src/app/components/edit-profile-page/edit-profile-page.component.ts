@@ -4,6 +4,7 @@ import { UserDetailsInterface } from '../../models/UserDetailsInterface';
 import { EditProfileService } from '../../services/edit-profile.service';
 import { UserAccountService } from '../../services/user-account.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 export interface PreferredContact {
   value: string;
@@ -50,8 +51,16 @@ export class EditProfilePageComponent implements OnInit {
     private editProfileService: EditProfileService,
     private userAccountService: UserAccountService,
     private ngZone: NgZone,
-    private router: Router
-    ) { }
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) { }
+
+  openSnackBar(message: string, actionMessage: string) {
+    this.snackBar.open(message, actionMessage, {
+      duration: 4000,
+      verticalPosition: 'bottom'
+    });
+  }
 
   ngOnInit() {
     firebase.auth().onAuthStateChanged(user => {
@@ -74,7 +83,7 @@ export class EditProfilePageComponent implements OnInit {
     this.uid = firebase.auth().currentUser.uid;
     this.email = firebase.auth().currentUser.email;
 
-    if (!this.uid) {return null; }
+    if (!this.uid) { return null; }
 
     const newInfo: UserDetailsInterface = {
       userId: this.uid,
@@ -87,18 +96,34 @@ export class EditProfilePageComponent implements OnInit {
       profilePic: this.selectedFile ? this.selectedFile : this.profilePic
     };
 
-    this.editProfileService.submitEditedProfile(newInfo).subscribe(res => {
-      console.log(res);
-      if (res.error) {
-        alert('Please fill in all fields');
-        return null;
-      }
-      /**
-       * if the item was added successfully
-       * navigate the user to user profile page
-       */
-      return this.router.navigate(['/userprofile']);
-    });
+    // TODO: create variables for patterns and use them in .html and .ts files
+    const validDisplayName = this.displayname.match('[A-Za-z0-9 ]{3,20}');
+    const validPhoneNumber = this.phone.length === 0 || this.phone.match('[0-9]{10}');
+    const validCity = this.city.match('[A-Za-z ]{3,20}');
+    const validPostalcode = this.postalcode.length === 0 || this.postalcode.match('[A-Za-z0-9]{6}');
+    const validPreferredContact = !!this.sPref;
+
+    if (!(validDisplayName && validPhoneNumber && validCity && validPostalcode && validPreferredContact)) {
+      this.openSnackBar('Please fill in all fields correctly!', 'Dismiss');
+      return null;
+    } else {
+      this.editProfileService.submitEditedProfile(newInfo).subscribe(res => {
+        console.log(res);
+        if (res.error) {
+          this.openSnackBar('Please fill in all the fields correctly!', 'Dismiss');
+          return null;
+        } else {
+          this.openSnackBar('Profile was updated successfully!', 'Ok');
+          /**
+           * if the item was added successfully
+           * navigate the user to user profile page
+           */
+          return this.router.navigate(['/userprofile']);
+        }
+      });
+
+    }
+
   }
 
 }
