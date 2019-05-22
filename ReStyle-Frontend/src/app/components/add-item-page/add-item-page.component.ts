@@ -146,24 +146,29 @@ export class AddItemPageComponent implements OnInit {
          * To validate the correctness of all form fields that need to be filled including the uploaded image.
          */
         if (!(validImage && validTitle && validDescription && validCategory && validGender && validSize)) {
+          // Open the snack bar to notify the user that they need to make all fields valid
           this.openSnackBar('Please fill in all the fields correctly and upload an image!', 'Dismiss');
           return null;
         } else {
+          // Build the object that represents the new item.
           const newItem: AddedItemInterface = {
             ownerId: uid,
-            title: this.title.trim(),
-            description: this.description.trim(),
+            title: this.title.trim(), // trim whitespace
+            description: this.description.trim(), // trim whitespace
             gender: this.gender,
             size: this.sSize,
             category: this.sCat,
             photos: [this.selectedFile]
           };
+          // Send the item to back end
           this.addItemService.submitNewItem(newItem).subscribe(res => {
             console.log(res);
+            // handle errors
             if (res.error) {
               this.openSnackBar('Please fill in all fields and image correctly!', 'Dismiss');
               return null;
             } else {
+              // * Happy path, notify the user that the item was successfully added
               this.openSnackBar('Item was added successfully!', 'Ok');
               /**
                * if the item was added successfully
@@ -175,8 +180,6 @@ export class AddItemPageComponent implements OnInit {
         }
       }
     });
-
-
 
   }
 
