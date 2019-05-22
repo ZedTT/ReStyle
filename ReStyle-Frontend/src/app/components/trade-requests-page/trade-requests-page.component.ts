@@ -54,28 +54,28 @@ export class TradeRequestsPageComponent implements OnInit {
 
   /**
    * Sets an 'Accept' status for a trade request in a database.
-   * 
+   *
    * @param tradeRequest a trade request instance which status should be updated
    */
   acceptTradeRequest(tradeRequest: TradeRequest) {
     // console.log(tradeRequest)
     this.tradeRequestService.postTradeRequestStatus(tradeRequest.trade_requestid, this.acceptStatus).subscribe(temp => {
-      console.log(temp)
+      console.log(temp);
       this.requests = this.requests.filter(r => r.trade_requestid !== tradeRequest.trade_requestid);
-    })
+    });
   }
 
   /**
    * Sets a 'Reject' status for a trade request in a database.
-   * 
+   *
    * @param tradeRequest a trade request instance which status should be updated
    */
   rejectTradeRequest(tradeRequest: TradeRequest) {
     // console.log(tradeRequest)
     this.tradeRequestService.postTradeRequestStatus(tradeRequest.trade_requestid, this.rejectStatus).subscribe(temp => {
-      console.log(temp)
+      console.log(temp);
       this.requests = this.requests.filter(r => r.trade_requestid !== tradeRequest.trade_requestid);
-    })
+    });
   }
 
 }
