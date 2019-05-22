@@ -84,7 +84,7 @@ const userRoutes = (app: Express) => {
                     postalcode: textFields.postalcode,
                     city: textFields.city,
                     preferredContact: textFields.preferredContact,
-                    profilePic: request.file.filename
+                    profilePic: request.file ? request.file.filename : textFields.profilePic
                 }
                 updateUserDetails(response, userDetails)
             })

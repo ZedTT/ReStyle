@@ -17,6 +17,7 @@ export interface PreferredContact {
 export class EditProfilePageComponent implements OnInit {
 
   imgURL: any = '/images/defaultAvatar.png';
+  profilePic: string;
   selectedFile: File;
   sPref: string = null;
   displayname: string;
@@ -51,6 +52,7 @@ export class EditProfilePageComponent implements OnInit {
       this.ngZone.run(() => {
         this.userAccountService.getUserDetail(user.uid).subscribe(temp => {
           this.imgURL = '/images/' + temp.profilePic;
+          this.profilePic = temp.profilePic;
           this.displayname = temp.displayname;
           this.phone = temp.phone;
           this.city = temp.city;
@@ -76,7 +78,7 @@ export class EditProfilePageComponent implements OnInit {
       postalcode: this.postalcode,
       city: this.city.trim(),
       preferredContact: this.sPref,
-      profilePic: this.selectedFile
+      profilePic: this.selectedFile ? this.selectedFile : this.profilePic
     };
 
     this.editProfileService.submitEditedProfile(newItem);
