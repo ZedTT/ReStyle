@@ -66,7 +66,7 @@ export class AddItemPageComponent implements OnInit {
     { value: 'Shirt', viewValue: '👕 Shirts' },
     { value: 'Pants', viewValue: '👖 Pants' },
     { value: 'Dresses', viewValue: '👗 Dress' },
-    { value: 'Skirts', viewValue: '🩳 Skirt' },
+    { value: 'Skirts', viewValue: '👗 Skirt' },
     { value: 'Outerwear', viewValue: '🧥 Outerwear' },
     { value: 'Accessories', viewValue: '👜 Accessories' },
     { value: 'Miscellaneous', viewValue: '➕ Miscellaneous' }
@@ -127,7 +127,7 @@ export class AddItemPageComponent implements OnInit {
        * navigate the user to user profile page
        */
       return this.router.navigate(['/userprofile']);
-    }) ;
+    });
 
   }
 

@@ -3,6 +3,7 @@ import { firebase } from 'firebaseui-angular';
 import { UserDetailsInterface } from '../../models/UserDetailsInterface';
 import { EditProfileService } from '../../services/edit-profile.service';
 import { UserAccountService } from '../../services/user-account.service';
+import { Router } from '@angular/router';
 
 export interface PreferredContact {
   value: string;
@@ -45,7 +46,12 @@ export class EditProfilePageComponent implements OnInit {
     };
   }
 
-  constructor(private editProfileService: EditProfileService, private userAccountService: UserAccountService, private ngZone: NgZone) { }
+  constructor(
+    private editProfileService: EditProfileService,
+    private userAccountService: UserAccountService,
+    private ngZone: NgZone,
+    private router: Router
+    ) { }
 
   ngOnInit() {
     firebase.auth().onAuthStateChanged(user => {
@@ -70,7 +76,7 @@ export class EditProfilePageComponent implements OnInit {
 
     if (!this.uid) {return null; }
 
-    const newItem: UserDetailsInterface = {
+    const newInfo: UserDetailsInterface = {
       userId: this.uid,
       displayname: this.displayname.trim(),
       phone: this.phone,
@@ -80,7 +86,19 @@ export class EditProfilePageComponent implements OnInit {
       preferredContact: this.sPref,
       profilePic: this.selectedFile ? this.selectedFile : this.profilePic
     };
-    this.editProfileService.submitEditedProfile(newItem);
+
+    this.editProfileService.submitEditedProfile(newInfo).subscribe(res => {
+      console.log(res);
+      if (res.error) {
+        alert('Please fill in all fields');
+        return null;
+      }
+      /**
+       * if the item was added successfully
+       * navigate the user to user profile page
+       */
+      return this.router.navigate(['/userprofile']);
+    });
   }
 
 }
