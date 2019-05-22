@@ -12,8 +12,6 @@
           <div id="profileImg">
             <img 
               [src]="imgURL" 
-              height="80" 
-              width="80" 
               *ngIf="imgURL">
           </div>
           <input 
@@ -42,7 +40,7 @@
                     #username 
                     id="username" 
                     placeholder="User Name" 
-                    value="" 
+                    value="displayname" 
                     name="User Name"
                     [(ngModel)]="displayname" 
                     pattern="[A-Za-z0-9]{3,20}"
@@ -50,7 +48,7 @@
                     minlength="3"
                     required>
                   <mat-hint>{{username.value?.length || 0}}/20 (Max 20 Characters)</mat-hint>
-                  <mat-error [class.d-none]="username.valid || username.untouched">Username is required</mat-error>
+                  <mat-error [class.d-none]="username.valid || username.untouched">Username is required. 3-20 chars, no symbols.</mat-error>
                 </mat-form-field>
                 <!-- <div class="editButton"><button>Edit</button></div>
                 <div class="saveButton"><button>Save</button></div> -->
@@ -63,7 +61,7 @@
                     id="phone"
                     #phoneno
                     placeholder="Phone Number" 
-                    value="" 
+                    value="phone" 
                     name="phone" 
                     [(ngModel)]="phone" 
                     pattern="[0-9]{10}" 
@@ -71,7 +69,7 @@
                     [showMaskTyped] = "true"
                   required>
                 <mat-hint>10-digit Mobile Number</mat-hint>
-                <mat-error [class.d-none]="phoneno.valid || phoneno.untouched">Phone number is required</mat-error>
+                <mat-error [class.d-none]="phoneno.valid || phoneno.untouched">10-digit Phone number is required</mat-error>
                 </mat-form-field>
                 <!-- <div class="editButton"><button>Edit</button></div>
                 <div class="saveButton"><button>Save</button></div> -->
@@ -84,7 +82,7 @@
                     #cit
                     id="city" 
                     placeholder="City" 
-                    value="" 
+                    value="city" 
                     name="city" 
                     [(ngModel)]="city" 
                     pattern="[A-Za-z ]{3,20}"
@@ -106,7 +104,7 @@
                     #pcode
                     id="postalcode" 
                     placeholder="Postal Code" 
-                    value="" 
+                    value="postalcode" 
                     name="postalcode" 
                     [(ngModel)]="postalcode" 
                     pattern="[A-Z0-9]{6}" 
@@ -123,7 +121,12 @@
               <!-- Dropdown selector for user's preferred contact method -->
               <div class="preferredContactCard">
                 <mat-form-field>
-                  <mat-select placeholder="Contact Method" [(ngModel)]="sPref" name="preference" required>
+                  <mat-select 
+                    placeholder="Contact Method" 
+                    [(ngModel)]="sPref" 
+                    name="preference"
+                    value="preferredContact"
+                    required>
                       <mat-option *ngFor="let pref of prefs" [value]="pref.value">
                           {{ pref.viewValue }}
                       </mat-option>

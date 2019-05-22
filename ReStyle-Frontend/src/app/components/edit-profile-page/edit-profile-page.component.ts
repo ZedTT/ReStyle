@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { firebase } from 'firebaseui-angular';
 import { UserDetailsInterface } from '../../models/UserDetailsInterface';
 import { EditProfileService } from '../../services/edit-profile.service';
+import { UserAccountService } from '../../services/user-account.service';
 
 export interface PreferredContact {
   value: string;
@@ -15,9 +16,9 @@ export interface PreferredContact {
 
 export class EditProfilePageComponent implements OnInit {
 
-  imgURL: any = 'https://i.imgur.com/H9hqFVV.jpg';
+  imgURL: any = '/images/defaultAvatar.png';
   selectedFile: File;
-  sPref: string;
+  sPref: string = null;
   displayname: string;
   phone: string;
   email: string;
@@ -43,9 +44,21 @@ export class EditProfilePageComponent implements OnInit {
     };
   }
 
-  constructor(private editProfileService: EditProfileService) { }
+  constructor(private editProfileService: EditProfileService, private userAccountService: UserAccountService, private ngZone: NgZone) { }
 
   ngOnInit() {
+    firebase.auth().onAuthStateChanged(user => {
+      this.ngZone.run(() => {
+        this.userAccountService.getUserDetail(user.uid).subscribe(temp => {
+          this.imgURL = '/images/' + temp.profilePic;
+          this.displayname = temp.displayname;
+          this.phone = temp.phone;
+          this.city = temp.city;
+          this.postalcode = temp.postalcode;
+          this.sPref = temp.preferredContact;
+        });
+      });
+    });
   }
 
   onSubmit() {
