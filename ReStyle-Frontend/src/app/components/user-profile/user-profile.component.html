@@ -14,11 +14,12 @@
     </div>
     <div id='button-container'>
       <button class="button edit-profile-button" [routerLink]="[ '/editprofile' ]"> edit profile </button>
+      <button class="button log-out-button" (click)="logOut()">Log out</button>
     </div>
   </div>
   
   <div id='inventory-container'>
     <app-trade-item class='item-picture' *ngFor="let item of myItemsArray" [item]="item"></app-trade-item>
-    <div class="add-new-item-card" [routerLink]="[ '/additem' ]">+</div>
+    <div class="add-new-item-card" [routerLink]="[ '/additem' ]"></div>
   </div>
 </div>

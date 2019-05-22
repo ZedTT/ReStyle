@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AddedItemInterface } from '../models/AddedItemInterface';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class AddItemService {
 
   constructor(private http: HttpClient) { }
 
-  submitNewItem(newItem: AddedItemInterface) {
+  submitNewItem(newItem: AddedItemInterface): Observable<any> {
     const fd = new FormData();
     fd.append('ownerId', newItem.ownerId);
     fd.append('title', newItem.title);
@@ -19,11 +20,7 @@ export class AddItemService {
     fd.append('category', newItem.category);
     fd.append('photo', newItem.photos[0]); // photo not photos intentional
 
-    this.http.post('/api/items', fd)
-      .subscribe(res => {
-      console.log(res);
-    });
-
+    return this.http.post('/api/items', fd);
 
   }
 

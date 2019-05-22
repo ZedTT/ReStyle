@@ -47,13 +47,17 @@
 #button-container
     grid-area: three
     margin: 0 auto
+    display: flex
+    justify-content: space-around
+    flex-wrap: wrap
+    align-items: center
 
 .button
+    margin-top: 10px
     padding: .5rem 4rem
     border-radius: 15px
-
-.edit-profile-button
-    align-self: center
+    // width: 100px
+    max-width: 300px
 
 #inventory-container
     display: grid
@@ -74,6 +78,6 @@
     color: lighten($card-background-color, 50%)
     height: 0
     padding-bottom: calc(100% + 24px)
-    background-image: url(/assets/icons/addcircle.png)
+    background-image: url(/assets/icons/addbutton.png)
     background-size: cover
     background-position: 50%

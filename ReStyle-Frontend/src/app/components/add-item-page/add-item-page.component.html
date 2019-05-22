@@ -5,12 +5,12 @@
   </div>
   
   <div class="parent-div after-page-title">
-    <form id="addItemContainer" class="form" (submit)="onSubmit()">    
+    <form id="addItemContainer" class="form">    
     
         <!-- Button to upload image (with label) -->
         <div id="imgupload" class="card">
           <input name="photo" type="file" accept="image/*" id="filepick" (change)="onFileSelected($event)" 
-          max-size=32154 style="display: none" #fileinput>
+          max-size=32154 style="display: none" #fileinput required >
           <div id ="uploadButton" class="btn btn-outline-primary" (click)="fileinput.click()">Choose Image</div>
           <br>{{ fileName }}
           <img [src]="imgURL" height="80" width="80" *ngIf="imgURL">
@@ -93,7 +93,7 @@
     </form>
 
     <div class="card">
-      <input type="submit" form="addItemContainer" value="Submit" class="button submit" [routerLink]="[ '/additem' ]">
+      <input type="submit" (click)="onSubmit()" form="addItemContainer" value="Submit" class="button submit" [routerLink]="[ '/additem' ]">
     </div>
     
   </div>

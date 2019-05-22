@@ -10,7 +10,7 @@ About BCIT CST: https://www.bcit.ca/study/programs/5500dipma
 
 Deployed website URL: [http://restyle-0510.azurewebsites.net/](http://restyle-0510.azurewebsites.net/)
 
-Our web application, ReStyle allows users to easily trade clothes with other users. It promotes sharing and reusing of clothes that otherwise would be disposed. Just by using the app for swapping users are unconsciously helping the environment.
+Our web application, ReStyle, allows users to easily trade clothes with other users. It promotes sharing and reusing of clothes that otherwise would be disposed. Just by using the app for swapping users are unconsciously helping the environment.
 
 Our application solves the problem that arises when people wish to refresh their wardrobe, without purchasing new items of clothing. For fashion lovers who like to update their closet on a consistent basis but want to minimize their environmental impact and save money, our app will be provide a great solution.
 
