@@ -17,10 +17,20 @@ export class TradeRequestComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Used in trade-request.component.html to display user profile picture.
+   */
   getUserImage() {
     return { 'background-image': `url(/images/${this.request.requesterpicturepath})` };
   }
 
+  /**
+   * Used in trade-request.component.html.
+   * Sets the classes to accurately display the thumbnails
+   * according to the number of items.
+   *
+   * @param len the length of item array, i.e. the number of items
+   */
   setArraySizeClass(len) {
     const classes = {
       'len-one': (len < 2),
