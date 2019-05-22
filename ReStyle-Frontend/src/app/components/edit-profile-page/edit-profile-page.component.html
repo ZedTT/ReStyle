@@ -43,7 +43,7 @@
                     value="displayname" 
                     name="User Name"
                     [(ngModel)]="displayname" 
-                    pattern="[A-Za-z0-9]{3,20}"
+                    pattern="[A-Za-z0-9 ]{3,20}"
                     maxlength="20"
                     minlength="3"
                     required>
@@ -121,6 +121,7 @@
               <!-- Dropdown selector for user's preferred contact method -->
               <div class="preferredContactCard">
                 <mat-form-field>
+<<<<<<< Updated upstream
                   <mat-select 
                     placeholder="Contact Method" 
                     [(ngModel)]="sPref" 
@@ -133,6 +134,9 @@
                   </mat-select>
                   <mat-hint>Choose Email or Phone</mat-hint>
                 </mat-form-field>
+=======
+                  <mat-select placeholder="Contact Method" [(ngModel)]="sPref" name="preference" required>
+>>>>>>> Stashed changes
               </div>
             </form>
           </div>

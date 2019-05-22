@@ -74,6 +74,7 @@ export class EditProfilePageComponent implements OnInit {
       phone: this.phone,
       email: this.email.trim(),
       postalcode: this.postalcode,
+<<<<<<< Updated upstream
       city: this.city.trim(),
       preferredContact: this.sPref,
       profilePic: this.selectedFile
@@ -83,3 +84,6 @@ export class EditProfilePageComponent implements OnInit {
   }
 
 }
+=======
+      city: this.city,
+>>>>>>> Stashed changes
