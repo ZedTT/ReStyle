@@ -46,7 +46,7 @@ export const insert_user_no_return =
 */
 export const get_user =
 	"SELECT * FROM dev.restyle_user " +
-	"WHERE userID = $1"
+	"WHERE userID = $1 "
 
 /*
 	Get user rating based on the userID 
@@ -56,7 +56,7 @@ export const get_user =
 */
 export const get_user_rating =
 	"SELECT AVG(rating) FROM dev.rating " +
-	"WHERE userID = $1"
+	"WHERE userID = $1 "
 
 /*
 	Get the the data from both the item table 
@@ -88,7 +88,7 @@ export const get_user_item_data =
 export const update_user_profile_pic =
 	"UPDATE dev.restyle_user AS u " +
 	"SET u.userPhotoPath = $1 "
-"WHERE userID = $2 "
+	"WHERE userID = $2 "
 
 /*
 	Update user name 
@@ -270,8 +270,8 @@ export const get_hide_list =
 	[23,'15CGtMJ5bSnEkRPpYEgyvVWeLt2']
 */
 export const add_hide_with_return =
-"UPDATE dev.hide SET items = array_append(items, $1) " +
-"WHERE userID = $2 RETURNING * "
+	"UPDATE dev.hide SET items = array_append(items, $1) " +
+	"WHERE userID = $2 RETURNING * "
 
 
 /*
@@ -349,24 +349,24 @@ export const status_update_trade_request =
 
 
 export const get_trade_request_inbox_details = 
-"SELECT " +
-"t.trade_requestID, " +
-"t.requester_userID1 AS requesterId, " +
-"u1.userPhotoPath AS requesterPicturePath, " +				
-"u1.userName AS requesterUserName, " +			
-"ARRAY_AGG(DISTINCT i1.photoPaths) AS requesterItemPhotos, " +				
-"ARRAY_AGG(DISTINCT i2.photoPaths) AS requesteeItemPhotos " + 					
-"FROM dev.trade_request AS t " +
-"LEFT JOIN dev.restyle_user AS u1 " +
-"ON t.requester_userID1 = u1.userID " +
-"LEFT JOIN dev.item AS i1 " +
-"ON t.requester_userID1 = i1.userid " +
-"LEFT JOIN dev.item as i2 " +
-"ON t.notified_userID2  = i2.userid " +
-"WHERE i1.itemid = ANY (t.requester_itemarray1) " +
-"AND i2.itemid = ANY(t.notified_itemArray2) " +
-"AND t.notified_userID2 = $1 AND t.status IS NULL " +
-"GROUP BY t.trade_requestID, t.requester_userID1,u1.userPhotoPath,u1.userName  "
+	"SELECT " +
+	"t.trade_requestID, " +
+	"t.requester_userID1 AS requesterId, " +
+	"u1.userPhotoPath AS requesterPicturePath, " +				
+	"u1.userName AS requesterUserName, " +			
+	"ARRAY_AGG(DISTINCT i1.photoPaths) AS requesterItemPhotos, " +				
+	"ARRAY_AGG(DISTINCT i2.photoPaths) AS requesteeItemPhotos " + 					
+	"FROM dev.trade_request AS t " +
+	"LEFT JOIN dev.restyle_user AS u1 " +
+	"ON t.requester_userID1 = u1.userID " +
+	"LEFT JOIN dev.item AS i1 " +
+	"ON t.requester_userID1 = i1.userid " +
+	"LEFT JOIN dev.item as i2 " +
+	"ON t.notified_userID2  = i2.userid " +
+	"WHERE i1.itemid = ANY (t.requester_itemarray1) " +
+	"AND i2.itemid = ANY(t.notified_itemArray2) " +
+	"AND t.notified_userID2 = $1 AND t.status IS NULL " +
+	"GROUP BY t.trade_requestID, t.requester_userID1,u1.userPhotoPath,u1.userName "
 
 /*
 --------------------------------------------------Swap Queries-------------------------------
