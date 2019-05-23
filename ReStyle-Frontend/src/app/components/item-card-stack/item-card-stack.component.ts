@@ -57,7 +57,7 @@ export class ItemCardStackComponent implements OnInit {
    * @param item the item to be passed. Emitted from item-card.component.ts
    */
   passItem(item: ItemCard) {
-    console.log(item);
+    // console.log(item);
     item.pass = true;
     // Remove the item from the list so that there isn't a blank space in the scrolling space.
     setTimeout(() => {
@@ -66,7 +66,7 @@ export class ItemCardStackComponent implements OnInit {
     // Post an item to the hidden items list into db.
     if (this.authenticated && this.userId) {
       this.itemCardServiceService.postHiddenItem(this.userId, item.itemId).subscribe(temp => {
-        console.log(temp);
+        // console.log(temp);
       });
     } else {
       setTimeout(() => {
@@ -81,7 +81,7 @@ export class ItemCardStackComponent implements OnInit {
    * @param item the item to be traded. Emitted from the item-card.component.ts
    */
   tradeItem(item: ItemCard) {
-    console.log(item);
+    // console.log(item);
     item.trade = true;
     setTimeout(() => {
       if (this.authenticated) {

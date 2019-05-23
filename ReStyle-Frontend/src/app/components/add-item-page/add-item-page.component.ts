@@ -162,7 +162,7 @@ export class AddItemPageComponent implements OnInit {
           };
           // Send the item to back end
           this.addItemService.submitNewItem(newItem).subscribe(res => {
-            console.log(res);
+            // console.log(res);
             // handle errors
             if (res.error) {
               this.openSnackBar('Please fill in all fields and image correctly!', 'Dismiss');

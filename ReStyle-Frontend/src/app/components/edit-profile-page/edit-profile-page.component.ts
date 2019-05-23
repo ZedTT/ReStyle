@@ -123,7 +123,7 @@ export class EditProfilePageComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
           this.editProfileService.submitEditedProfile(newInfo).subscribe(res => {
-            console.log(res);
+            // console.log(res);
             if (res.error) {
               this.openSnackBar('Please fill in all the fields correctly!', 'Dismiss');
               return null;

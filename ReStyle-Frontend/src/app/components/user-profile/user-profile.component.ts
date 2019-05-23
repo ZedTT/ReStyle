@@ -55,8 +55,8 @@ export class UserProfileComponent implements OnInit {
           // console.log(this.meId);
           this.getMyInventory(this.meId);
           this.userAccountService.getUserDetail(user.uid).subscribe(u => {
-            console.log('getUserDetail function is working');
-            console.log(u);
+            // console.log('getUserDetail function is working');
+            // console.log(u);
             this.meName = u.displayname;
             this.mePhone = u.phone;
             this.meEmail = u.email;
@@ -87,10 +87,10 @@ export class UserProfileComponent implements OnInit {
         for (const item of temp) {
           item.selected = false;
         }
-        console.log(uid);
-        console.log(temp);
+        // console.log(uid);
+        // console.log(temp);
         this.myItemsArray = temp;
-        console.log(this.myItemsArray);
+        // console.log(this.myItemsArray);
         // We need this to remind angular that we changed things
         // Specifically because onAuthStateChanged causes this to be called twice in rapid succession
         // This is only needed on refresh

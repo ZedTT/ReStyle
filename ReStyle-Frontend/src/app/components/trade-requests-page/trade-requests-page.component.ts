@@ -26,7 +26,7 @@ export class TradeRequestsPageComponent implements OnInit {
     firebase.auth().onAuthStateChanged(user => {
       this.ngZone.run(() => { // make firebase run in ng zone
         this.tradeRequestService.getTradeRequestsByUser(user ? user.uid : null).subscribe(temp => {
-          console.log(temp);
+          // console.log(temp);
           this.requests = temp;
           this.isEmpty = this.requests.length < 1;
         });
@@ -53,7 +53,7 @@ export class TradeRequestsPageComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) { // only continue if true is returned
         this.tradeRequestService.postTradeRequestStatus(tradeRequest.trade_requestid, this.acceptStatus).subscribe(temp => {
-          console.log(temp);
+          // console.log(temp);
           this.requests = this.requests.filter(r => r.trade_requestid !== tradeRequest.trade_requestid);
         });
       }
@@ -76,7 +76,7 @@ export class TradeRequestsPageComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.tradeRequestService.postTradeRequestStatus(tradeRequest.trade_requestid, this.rejectStatus).subscribe(temp => {
-          console.log(temp);
+          // console.log(temp);
           this.requests = this.requests.filter(r => r.trade_requestid !== tradeRequest.trade_requestid);
         });
       }
