@@ -4,6 +4,8 @@ import { TradeItem } from '../../models/TradeItem';
 import { TradeService } from '../../services/trade.service';
 import { firebase } from 'firebaseui-angular';
 import { UserAccountService } from '../../services/user-account.service';
+import { ConfirmationBoxComponent } from '../confirmation-box/confirmation-box.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-trade-page',
@@ -42,7 +44,8 @@ export class TradePageComponent implements OnInit {
     private tradeService: TradeService,
     private ngZone: NgZone, // ? See https://stackoverflow.com/questions/40054416/detect-changes-made-by-firebase-sdk-in-angular-2
     // We need to force firebase to run inside of the angular zone to avoid using changeDetectorRef
-    private userAccountService: UserAccountService
+    private userAccountService: UserAccountService,
+    private dialog: MatDialog
     ) { }
 
   ngOnInit() {
@@ -196,29 +199,40 @@ export class TradePageComponent implements OnInit {
    * and will not make the post request.
    */
   requestTrade() {
-    const requesterTradeItems: number[] = [];
-    const notifiedUserTradeItems: number[] = [];
-    // fill the requesterTradeItems array with item ids
-    this.thumbnailsMe.forEach(item => {
-      requesterTradeItems.push(item.itemId);
+    const dialogRef = this.dialog.open(ConfirmationBoxComponent, {
+      width: '250px',
+      height: '200px',
+      data: 'Are you sure you would like to make this trade request?'
     });
-    // fill the notifiedUserTradeItems array with item ids
-    this.thumbnailsThem.forEach(item => {
-      notifiedUserTradeItems.push(item.itemId);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const requesterTradeItems: number[] = [];
+        const notifiedUserTradeItems: number[] = [];
+        // fill the requesterTradeItems array with item ids
+        this.thumbnailsMe.forEach(item => {
+          requesterTradeItems.push(item.itemId);
+        });
+        // fill the notifiedUserTradeItems array with item ids
+        this.thumbnailsThem.forEach(item => {
+          notifiedUserTradeItems.push(item.itemId);
+        });
+        // check that both users are trading at least one item
+        if (requesterTradeItems.length > 0 && notifiedUserTradeItems.length > 0) {
+          // post the trade request to the server
+          this.tradeService.requestTrade(
+            this.meId, this.themId,
+            requesterTradeItems,
+            notifiedUserTradeItems
+            );
+          // navigate the user back to the home page (or maybe the trade inbox page?)
+          this.router.navigate(['/']);
+        } else {
+          alert('Each user must trade at least one item');
+        }
+      }
     });
-    // check that both users are trading at least one item
-    if (requesterTradeItems.length > 0 && notifiedUserTradeItems.length > 0) {
-      // post the trade request to the server
-      this.tradeService.requestTrade(
-        this.meId, this.themId,
-        requesterTradeItems,
-        notifiedUserTradeItems
-        );
-      // navigate the user back to the home page (or maybe the trade inbox page?)
-      this.router.navigate(['/']);
-    } else {
-      alert('Each user must trade at least one item');
-    }
+
   }
 
 }

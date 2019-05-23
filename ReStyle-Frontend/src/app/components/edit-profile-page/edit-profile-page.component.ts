@@ -4,7 +4,8 @@ import { UserDetailsInterface } from '../../models/UserDetailsInterface';
 import { EditProfileService } from '../../services/edit-profile.service';
 import { UserAccountService } from '../../services/user-account.service';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
+import { ConfirmationBoxComponent } from '../confirmation-box/confirmation-box.component';
 
 export interface PreferredContact {
   value: string;
@@ -52,7 +53,8 @@ export class EditProfilePageComponent implements OnInit {
     private userAccountService: UserAccountService,
     private ngZone: NgZone,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) { }
 
   openSnackBar(message: string, actionMessage: string) {
@@ -103,23 +105,41 @@ export class EditProfilePageComponent implements OnInit {
     const validPostalcode = this.postalcode.length === 0 || this.postalcode.match('[A-Za-z0-9]{6}');
     const validPreferredContact = !!this.sPref;
 
+    // check that everything is valid
     if (!(validDisplayName && validPhoneNumber && validCity && validPostalcode && validPreferredContact)) {
+      // if not valid, open snack bar
       this.openSnackBar('Please fill in all fields correctly!', 'Dismiss');
+      // break
       return null;
     } else {
-      this.editProfileService.submitEditedProfile(newInfo).subscribe(res => {
-        console.log(res);
-        if (res.error) {
-          this.openSnackBar('Please fill in all the fields correctly!', 'Dismiss');
-          return null;
-        } else {
-          this.openSnackBar('Profile was updated successfully!', 'Ok');
-          /**
-           * if the item was added successfully
-           * navigate the user to user profile page
-           */
-          return this.router.navigate(['/userprofile']);
+      // if not not valid (valid)
+      // open dialog box
+      const dialogRef = this.dialog.open(ConfirmationBoxComponent, {
+        width: '250px',
+        height: '200px',
+        data: 'Are you sure you would like to edit your profile?'
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.editProfileService.submitEditedProfile(newInfo).subscribe(res => {
+            console.log(res);
+            if (res.error) {
+              this.openSnackBar('Please fill in all the fields correctly!', 'Dismiss');
+              return null;
+            } else {
+              this.openSnackBar('Profile was updated successfully!', 'Ok');
+              /**
+               * if the profile was editted successfully
+               * navigate the user to user profile page
+               */
+              return this.router.navigate(['/userprofile']);
+            }
+
+          });
+
         }
+
       });
 
     }

@@ -20,7 +20,7 @@
         
         <div class="card">
           <mat-form-field class="titleField">
-            <input #ttl matInput id="title" placeholder="Title" value="" name="title" [(ngModel)]="title" pattern="[A-Za-z0-9 ]{8,40}" maxlength="40" minlength="8" required>
+            <input #ttl matInput id="title" placeholder="Title" value="" name="title" [(ngModel)]="title" pattern="[ -~]{8,40}" maxlength="40" minlength="8" required>
             <mat-hint>Max 40 characters</mat-hint>
             <mat-error [class.d-none]="ttl.valid || ttl.untouched">Title is required</mat-error>
           </mat-form-field>        

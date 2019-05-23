@@ -4,7 +4,8 @@ import { AddItemService } from '../../services/add-item.service';
 // import { Options } from 'ng5-slider';
 import { firebase } from 'firebaseui-angular';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
+import { ConfirmationBoxComponent } from '../confirmation-box/confirmation-box.component';
 
 export interface Category {
   value: string;
@@ -27,6 +28,7 @@ export class AddItemPageComponent implements OnInit {
   sCat: string;
   sSize: number;
   gender: string;
+  // ! This code is for the slider which is currently not implemented
   // value = 2;
   // options: Options = {
   //   showTicksValues: true,
@@ -85,7 +87,12 @@ export class AddItemPageComponent implements OnInit {
   imgURL: any;
   public message: string;
 
-  constructor(private addItemService: AddItemService, private router: Router, private snackBar: MatSnackBar) { }
+  constructor(
+    private addItemService: AddItemService,
+    private router: Router,
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
+    ) { }
 
   ngOnInit() {
   }
@@ -118,7 +125,7 @@ export class AddItemPageComponent implements OnInit {
     if (!uid) { return null; }
 
     const validImage = !!this.selectedFile;
-    const validTitle = !!this.title && this.title.match('[A-Za-z0-9 ]{8,40}');
+    const validTitle = !!this.title && this.title.match('[ -~]{8,40}');
     const validDescription = !!this.description && this.description.match('[ -~]{12,140}');
     const validCategory = !!this.sCat;
     const validGender = !!this.gender;
@@ -128,40 +135,63 @@ export class AddItemPageComponent implements OnInit {
      * To validate the correctness of all form fields that need to be filled including the uploaded image.
      */
     if (!(validImage && validTitle && validDescription && validCategory && validGender && validSize)) {
+      // Open the snack bar to notify the user that they need to make all fields valid
       this.openSnackBar('Please fill in all the fields correctly and upload an image!', 'Dismiss');
       return null;
     } else {
-      const newItem: AddedItemInterface = {
-        ownerId: uid,
-        title: this.title.trim(),
-        description: this.description.trim(),
-        gender: this.gender,
-        size: this.sSize,
-        category: this.sCat,
-        photos: [this.selectedFile]
-      };
-      this.addItemService.submitNewItem(newItem).subscribe(res => {
-        console.log(res);
-        if (res.error) {
-          this.openSnackBar('Please fill in all fields and image correctly!', 'Dismiss');
-          return null;
-        } else {
-          this.openSnackBar('Item was added successfully!', 'Ok');
-          /**
-           * if the item was added successfully
-           * navigate the user to user profile page
-           */
-          return this.router.navigate(['/userprofile']);
-        }
+      // open dialog box
+      const dialogRef = this.dialog.open(ConfirmationBoxComponent, {
+        width: '250px',
+        height: '200px',
+        data: 'Are you sure you would like to add this item?'
       });
-    }
+      // when the dialog box is closed
+      dialogRef.afterClosed().subscribe(result => {
+        // if yes is clicked, will return true, handle this here
+        // else do nothing if they clicked no
+        if (result) {
+          // Build the object that represents the new item.
+          const newItem: AddedItemInterface = {
+            ownerId: uid,
+            title: this.title.trim(), // trim whitespace
+            description: this.description.trim(), // trim whitespace
+            gender: this.gender,
+            size: this.sSize,
+            category: this.sCat,
+            photos: [this.selectedFile]
+          };
+          // Send the item to back end
+          this.addItemService.submitNewItem(newItem).subscribe(res => {
+            console.log(res);
+            // handle errors
+            if (res.error) {
+              this.openSnackBar('Please fill in all fields and image correctly!', 'Dismiss');
+              return null;
+            } else {
+              // * Happy path, notify the user that the item was successfully added
+              this.openSnackBar('Item was added successfully!', 'Ok');
+              /**
+               * if the item was added successfully
+               * navigate the user to user profile page
+               */
+              return this.router.navigate(['/userprofile']);
+            }
 
+          });
+
+        }
+
+      });
+
+    }
 
   }
 
+  // ! This code sits here until we re implement the slider
   // Formats the values on the size slider (0 = XS, 1 = S, 2 = M, 3 = L, 4 = XL)
   // formatLabel(value: number | null) { // TODO: use an array for this instead of if statements
   //   const sizeArray: string[] = ['XS', 'S', 'M', 'L', 'XL'];
   //   return sizeArray[value];
   // }
+
 }

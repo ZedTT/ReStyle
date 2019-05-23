@@ -22,7 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule, MatRadioModule, MatSelectModule, MatSliderModule,
 // tslint:disable-next-line: max-line-length
   MatInputModule, MatButtonToggleModule, MatDividerModule, MatSlideToggleModule,
-  MatStepperModule, MatIconModule, MatSnackBarModule } from '@angular/material'; // tsLint max line 140
+  MatIconModule, MatDialogModule, MatStepperModule, MatSnackBarModule } from '@angular/material'; // tsLint max line 140
 import { FileUploadModule } from 'primeng/fileupload';
 import { NgbdCarouselComponent } from './components/ngbd-carousel/ngbd-carousel.component';
 import { TradePageComponent } from './components/trade-page/trade-page.component';
@@ -41,6 +41,8 @@ import { TradeRequestComponent } from './components/trade-request/trade-request.
 import { TradeRequestThumbnailComponent } from './components/trade-request-thumbnail/trade-request-thumbnail.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
+import { ConfirmationBoxComponent } from './components/confirmation-box/confirmation-box.component';
+import { MatDialog } from '@angular/material';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -101,7 +103,8 @@ firebase.initializeApp(environment.firebase);
     TradeRequestComponent,
     TradeRequestThumbnailComponent,
     NotFoundComponent,
-    PrivacyPolicyComponent
+    PrivacyPolicyComponent,
+    ConfirmationBoxComponent
   ],
   imports: [
     BrowserModule,
@@ -128,10 +131,18 @@ firebase.initializeApp(environment.firebase);
     MatSlideToggleModule,
     Ng5SliderModule,
     NgxMaskModule.forRoot(),
+    Ng5SliderModule,
+    NgxMaskModule.forRoot(),
+    Ng5SliderModule,
+    MatIconModule,
+    MatDialogModule,
     MatIconModule,
     MatStepperModule,
     MatIconModule,
     MatSnackBarModule
+  ],
+  entryComponents: [
+    ConfirmationBoxComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
