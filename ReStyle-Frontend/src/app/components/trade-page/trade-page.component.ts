@@ -5,7 +5,7 @@ import { TradeService } from '../../services/trade.service';
 import { firebase } from 'firebaseui-angular';
 import { UserAccountService } from '../../services/user-account.service';
 import { ConfirmationBoxComponent } from '../confirmation-box/confirmation-box.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-trade-page',
@@ -45,8 +45,9 @@ export class TradePageComponent implements OnInit {
     private ngZone: NgZone, // ? See https://stackoverflow.com/questions/40054416/detect-changes-made-by-firebase-sdk-in-angular-2
     // We need to force firebase to run inside of the angular zone to avoid using changeDetectorRef
     private userAccountService: UserAccountService,
-    private dialog: MatDialog
-    ) { }
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
+  ) { }
 
   ngOnInit() {
     // Url will look like /trade?you=QqJVsgMeiVcF1bW0x9b28sHK9fh2&item=1
@@ -82,8 +83,8 @@ export class TradePageComponent implements OnInit {
     this.getColumnThem();
     // get the picture for the other user
     this.userAccountService.getUserData(this.themId).subscribe(u => {
-      console.log('them', this.themId);
-      console.log(u);
+      // console.log('them', this.themId);
+      // console.log(u);
       if (u.userPhotoPath) {
         this.userImageThem = u.userPhotoPath;
         this.userNameThem = u.userName;
@@ -136,7 +137,6 @@ export class TradePageComponent implements OnInit {
         // to get tsLint to calm down, try opening the TradeItem model.
         // ItemID used to be a string in the TradeItem model, and it gets confused
         if (typeof item.itemId === 'number' && item.itemId === this.itemId) {
-          console.log('true');
           item.selected = true;
           this.toggleItemThem(item);
           item0 = item;
@@ -191,6 +191,13 @@ export class TradePageComponent implements OnInit {
     // console.log(this.thumbnailsThem);
   }
 
+  openSnackBar(message: string, actionMessage: string) {
+    this.snackBar.open(message, actionMessage, {
+      duration: 4000,
+      verticalPosition: 'bottom'
+    });
+  }
+
   /**
    * Makes a post request to the server when the user clicks Request Trade button
    * Creates arrays of item ids based on the thumbnails arrays
@@ -224,11 +231,19 @@ export class TradePageComponent implements OnInit {
             this.meId, this.themId,
             requesterTradeItems,
             notifiedUserTradeItems
-            );
-          // navigate the user back to the home page (or maybe the trade inbox page?)
-          this.router.navigate(['/']);
+          ).subscribe(res => {
+            // console.log(res);
+            if (!res.error) {
+              // * Happy path, notify the user that the item was successfully added
+              this.openSnackBar('Trade request was sent successfully!', 'Ok');
+              // navigate the user back to the home page (or maybe the trade inbox page?)
+              this.router.navigate(['/']);
+            } else {
+              this.openSnackBar('Something went wrong, please try again.', 'Dismiss');
+            }
+          });
         } else {
-          alert('Each user must trade at least one item');
+          this.openSnackBar('Each user must trade at least one item.', 'Dismiss');
         }
       }
     });
