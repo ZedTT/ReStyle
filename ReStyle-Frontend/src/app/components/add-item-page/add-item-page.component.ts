@@ -181,7 +181,7 @@ export class AddItemPageComponent implements OnInit {
 
         }
 
-      }); // Callback hell look away.
+      });
 
     }
 
