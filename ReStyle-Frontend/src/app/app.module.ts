@@ -110,6 +110,7 @@ firebase.initializeApp(environment.firebase);
     HttpClientModule,
     AppRoutingModule,
     // Prateek, required for carousel
+    // tslint:disable-next-line: deprecation
     NgbModule.forRoot(),
     // Firebase
     AngularFireModule.initializeApp(environment.firebase),
