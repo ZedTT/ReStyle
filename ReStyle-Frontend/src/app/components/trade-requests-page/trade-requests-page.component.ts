@@ -14,6 +14,7 @@ export class TradeRequestsPageComponent implements OnInit {
   acceptStatus = 'Accept'; // a keyword for accept status in the database, should not be changed
   rejectStatus = 'Reject'; // a keyword for reject status in the database, should not be changed
   requests: TradeRequest[];
+  isEmpty: boolean;
 
   constructor(
     private tradeRequestService: TradeRequestService,
@@ -24,9 +25,10 @@ export class TradeRequestsPageComponent implements OnInit {
   ngOnInit() {
     firebase.auth().onAuthStateChanged(user => {
       this.ngZone.run(() => { // make firebase run in ng zone
-        this.tradeRequestService.getTradeRequestsByUser(user.uid).subscribe(temp => {
+        this.tradeRequestService.getTradeRequestsByUser(user ? user.uid : null).subscribe(temp => {
           console.log(temp);
           this.requests = temp;
+          this.isEmpty = this.requests.length < 1;
         });
       });
     });

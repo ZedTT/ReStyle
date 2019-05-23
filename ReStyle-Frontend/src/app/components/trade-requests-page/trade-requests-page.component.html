@@ -6,5 +6,6 @@
     <app-trade-request *ngFor="let request of requests" [request]="request" (acceptRequest)="acceptTradeRequest($event)"
       (rejectRequest)="rejectTradeRequest($event)">
     </app-trade-request>
+    <div class="no-requests" *ngIf="isEmpty">No trade requests yet, come back later!</div>
   </div>
 </div>
