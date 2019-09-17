@@ -6,7 +6,8 @@ import { Pool, QueryResult, PoolClient } from 'pg'
 import { connectionString } from './dbKey';
 
 const pool = new Pool({
-    connectionString: connectionString
+    connectionString: connectionString,
+    ssl: true,
 })
 
 /**

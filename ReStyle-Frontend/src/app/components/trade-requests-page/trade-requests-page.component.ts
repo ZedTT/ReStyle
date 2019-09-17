@@ -2,6 +2,8 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { TradeRequest } from '../../models/TradeRequest';
 import { TradeRequestService } from '../../services/trade-request.service';
 import { firebase } from 'firebaseui-angular';
+import { ConfirmationBoxComponent } from '../confirmation-box/confirmation-box.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-trade-requests-page',
@@ -14,13 +16,17 @@ export class TradeRequestsPageComponent implements OnInit {
   requests: TradeRequest[];
   isEmpty: boolean;
 
-  constructor(private tradeRequestService: TradeRequestService, private ngZone: NgZone) { }
+  constructor(
+    private tradeRequestService: TradeRequestService,
+    private ngZone: NgZone, // make firebase behave
+    private dialog: MatDialog // for the dialog box
+  ) { }
 
   ngOnInit() {
     firebase.auth().onAuthStateChanged(user => {
-      this.ngZone.run(() => {
+      this.ngZone.run(() => { // make firebase run in ng zone
         this.tradeRequestService.getTradeRequestsByUser(user ? user.uid : null).subscribe(temp => {
-          console.log(temp);
+          // console.log(temp);
           this.requests = temp;
           this.isEmpty = this.requests.length < 1;
         });
@@ -34,10 +40,23 @@ export class TradeRequestsPageComponent implements OnInit {
    * @param tradeRequest a trade request instance which status should be updated
    */
   acceptTradeRequest(tradeRequest: TradeRequest) {
+    // * log for debug
     // console.log(tradeRequest)
-    this.tradeRequestService.postTradeRequestStatus(tradeRequest.trade_requestid, this.acceptStatus).subscribe(temp => {
-      console.log(temp);
-      this.requests = this.requests.filter(r => r.trade_requestid !== tradeRequest.trade_requestid);
+
+    // open a confirmation dialog box with parameters
+    const dialogRef = this.dialog.open(ConfirmationBoxComponent, {
+      width: '250px',
+      height: '200px',
+      data: 'Are you sure you would like to accept this trade request?'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) { // only continue if true is returned
+        this.tradeRequestService.postTradeRequestStatus(tradeRequest.trade_requestid, this.acceptStatus).subscribe(temp => {
+          // console.log(temp);
+          this.requests = this.requests.filter(r => r.trade_requestid !== tradeRequest.trade_requestid);
+        });
+      }
     });
   }
 
@@ -48,9 +67,19 @@ export class TradeRequestsPageComponent implements OnInit {
    */
   rejectTradeRequest(tradeRequest: TradeRequest) {
     // console.log(tradeRequest)
-    this.tradeRequestService.postTradeRequestStatus(tradeRequest.trade_requestid, this.rejectStatus).subscribe(temp => {
-      console.log(temp);
-      this.requests = this.requests.filter(r => r.trade_requestid !== tradeRequest.trade_requestid);
+    const dialogRef = this.dialog.open(ConfirmationBoxComponent, {
+      width: '250px',
+      height: '200px',
+      data: 'Are you sure you would like to reject this trade request?'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.tradeRequestService.postTradeRequestStatus(tradeRequest.trade_requestid, this.rejectStatus).subscribe(temp => {
+          // console.log(temp);
+          this.requests = this.requests.filter(r => r.trade_requestid !== tradeRequest.trade_requestid);
+        });
+      }
     });
   }
 
