@@ -4,6 +4,8 @@ import { TradeRequestService } from '../../services/trade-request.service';
 import { firebase } from 'firebaseui-angular';
 import { ConfirmationBoxComponent } from '../confirmation-box/confirmation-box.component';
 import { MatDialog } from '@angular/material';
+import { UserAccountService } from '../../services/user-account.service';
+import { UserDetailsInterface } from '../../models/UserDetailsInterface';
 
 @Component({
   selector: 'app-trade-requests-page',
@@ -18,6 +20,7 @@ export class TradeRequestsPageComponent implements OnInit {
 
   constructor(
     private tradeRequestService: TradeRequestService,
+    private userAccountService: UserAccountService,
     private ngZone: NgZone, // make firebase behave
     private dialog: MatDialog // for the dialog box
   ) { }
@@ -52,6 +55,17 @@ export class TradeRequestsPageComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) { // only continue if true is returned
+        this.userAccountService.getUserDetail(tradeRequest.requesterid).subscribe(temp => {
+          const details: UserDetailsInterface = temp;
+          alert(
+            'You have accepted the trade request! '
+            + 'To organise a time and place to meet and swap clothing, '
+            + `please contact ${details.displayname} with the following contact information:\n`
+            + details.preferredContact ? `Preferred Contact: ${details.preferredContact}\n` : ''
+            + details.email ? `Email: ${details.email}\n` : ''
+            + details.phone ? `Phone: ${details.phone}` : ''
+            );
+        });
         this.tradeRequestService.postTradeRequestStatus(tradeRequest.trade_requestid, this.acceptStatus).subscribe(temp => {
           // console.log(temp);
           this.requests = this.requests.filter(r => r.trade_requestid !== tradeRequest.trade_requestid);
