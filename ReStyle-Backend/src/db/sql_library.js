@@ -224,7 +224,7 @@ export const display_items_paginated =
 */
 export const item_add_swapID =
 	"UPDATE dev.item SET swapID = $1 " +
-	"WHERE itemID = Any($2::INT[]) "
+	"WHERE itemID = Any($2::INT[]) RETURNING * "
 
 /*
 --------------------------------------------------Hide Queries-------------------------------
@@ -346,8 +346,6 @@ export const status_update_trade_request =
 	[requesteeUserID]
 	
 */
-
-
 export const get_trade_request_inbox_details = 
 	"SELECT " +
 	"t.trade_requestID, " +
@@ -383,6 +381,7 @@ export const get_trade_request_inbox_details =
 */
 export const add_swap_with_return =
 	"INSERT INTO dev.swap " +
+	"(userID1, userID2) " +
 	"VALUES ($1, $2) RETURNING * "
 
 /*

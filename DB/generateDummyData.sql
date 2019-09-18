@@ -89,12 +89,12 @@ VALUES
 	Contact details added to all six users
 */
 INSERT INTO dev.contact_details (userID, email, phoneNumber, preferredMethodOfContact) VALUES 
-('QqJVsgMeiVcF1bW0x9b28sHK9fh2', 'testuser1@test.aa', '6041234567', NULL),
-('nsisodvqeNOTDCitaseopWjovEJ2', 'testuser2@test.aa', '6041234567', NULL),
-('fBzo9P6FJYQRbPq5CZFEsPWqtU23', 'testuser3@test.aa', '6041234567', NULL),
-('IDrpipjIpYOtcpGAaMT8ZWGT0J32', 'testuser4@test.aa', '6041234567', NULL),
-('4WiXU5rgqRWrGZSJXxSkQl3Kpdz1', 'testuser5@test.aa', '6041234567', NULL),
-('rCjzKDG6rjUwjj6I5BepsLbvgPr1', 'testuser6@test.aa', '6041234567', NULL);
+('QqJVsgMeiVcF1bW0x9b28sHK9fh2', 'testuser1@test.aa', '6041234567', 'Email'),
+('nsisodvqeNOTDCitaseopWjovEJ2', 'testuser2@test.aa', '6041234567', 'Email'),
+('fBzo9P6FJYQRbPq5CZFEsPWqtU23', 'testuser3@test.aa', '6041234567', 'Email'),
+('IDrpipjIpYOtcpGAaMT8ZWGT0J32', 'testuser4@test.aa', '6041234567', 'Phone'),
+('4WiXU5rgqRWrGZSJXxSkQl3Kpdz1', 'testuser5@test.aa', '6041234567', 'Phone'),
+('rCjzKDG6rjUwjj6I5BepsLbvgPr1', 'testuser6@test.aa', '6041234567', 'Phone');
 
 /*
 	Testing inserting data into address table

@@ -2,9 +2,9 @@
  * A module containing all the methods to handle the database queries that involve trades.
  */
 
-import { query } from "../db/dbInit";
+import { query, connect } from "../db/dbInit";
 import { Response } from "express";
-import { new_trade_request_with_return, get_trade_request_inbox_details, status_update_trade_request } from "../db/sql_library";
+import { new_trade_request_with_return, get_trade_request_inbox_details, status_update_trade_request, add_swap_with_return, item_add_swapID } from "../db/sql_library";
 import { TradeRequestInterface } from '../models/TradeRequestInterface';
 
 /**
@@ -22,7 +22,6 @@ export function createNewTradeRequest(response: Response, tradeRequest: TradeReq
             if (err) {
                 console.log("Error:", err);
             } else {
-                // console.log("Inside new_trade_request_with_return", res.rows);
                 if (res.rows.length == 1) {
                     response.send({ message: "Trade request added successfully." });
                 } else {
@@ -46,7 +45,6 @@ export function getIncomingTradeRequestsForUser(response: Response, notifiedUser
             console.log("Error inside get_trade_request_inbox_details query: ", err.message);
             response.send({ error: err.message });
         } else {
-            // console.log(res.rows);
             response.send(res.rows);
         }
     });
@@ -55,23 +53,60 @@ export function getIncomingTradeRequestsForUser(response: Response, notifiedUser
 /**
  * For trade requests inbox page. Sets a status for a given trade request after
  * a user clicks on Accept or Reject button.
+ * If status of the trade request is Accepted, adds swap record 
+ * and updates item records with swapID.
  * 
  * @param response response object to send a response 
  * @param tradeRequestId an ID of a trade request which status needs to be changed
  * @param status can be only 'Accept' or 'Reject'
  */
 export function updateTradeRequestStatus(response: Response, tradeRequestId: number, status: string) {
-    query(status_update_trade_request, [status, tradeRequestId], (err, res) => {
-        if (err) {
-            console.log("Error inside status_update_trade_request query: ", err.message);
-            response.send({ error: err.message });
-        } else {
-            // console.log(res.rows);
-            if (res.rows.length == 1) {
-                response.send({ message: `Trade request with id: ${tradeRequestId} was updated successfully to ${status}.` });
-            } else {
+    connect(async (err, client, done) => {
+        try {
+            // Updates the trade request table with a new status, either Accept or Reject.
+            // Returns the rows that were updated.
+            const tradeRequestRes = await client.query(status_update_trade_request, [status, tradeRequestId]);
+
+            if (tradeRequestRes.rows.length !== 1) {
                 response.send({ error: `Trade request with id: ${tradeRequestId} was NOT updated.` });
+                // Stop executing on error.
+                return;
             }
+
+            // If status of the trade request is Accepted: add swap record and update item with swapID.
+            if (status.match('Accept')) {
+                const requester_userID = tradeRequestRes.rows[0].requester_userid1;
+                const notified_userID = tradeRequestRes.rows[0].notified_userid2;
+                const swappedItems = tradeRequestRes.rows[0].requester_itemarray1;
+
+                swappedItems.concat(tradeRequestRes.rows[0].notified_itemarray2);
+
+                const swapRes = await client.query(add_swap_with_return, [requester_userID, notified_userID]);
+
+                if (swapRes.rows.length !== 1) {
+                    response.send({ error: `Swap for users with id: ${requester_userID} and ${notified_userID} was NOT created.` });
+                    // Stop executing on error.
+                    return;
+                }
+
+                const swapID = swapRes.rows[0].swapid;
+                const itemRes = await client.query(item_add_swapID, [swapID, swappedItems]);
+
+                if (itemRes.rows.length !== 1) {
+                    response.send({ error: `Swap with id: ${swapID} was NOT added for items.` });
+                    // Stop executing on error.
+                    return;
+                }
+            }
+
+            response.send({ message: `Trade request with id: ${tradeRequestId} was updated successfully to ${status}.` });
+
+        } catch (e) {
+            console.log("Error inside status_update_trade_request query: ", e.message);
+            response.send({ error: e.message });
+
+        } finally {
+            client.release()
         }
     });
 }
