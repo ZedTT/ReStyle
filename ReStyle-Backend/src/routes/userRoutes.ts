@@ -47,6 +47,7 @@ const userRoutes = (app: Express) => {
             const uid = request.body.uid;
             const userName = request.body.userName;
             const email = request.body.email;
+            console.log(email);
 
             // insert the new user into the DB
             insertNewUser(response, uid, userName, email)

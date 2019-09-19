@@ -20,10 +20,10 @@ export class LoginCardComponent implements OnInit {
         const uid = user.uid;
         const userName = user.displayName;
         const email = user.email;
-        // console.log(uid, userName, email);
+        console.log(uid, userName, email);
         // console.log(userAccountService.postUserData(uid, userName, email));
         userAccountService.postUserData(uid, userName, email).subscribe(res => {
-          // console.log(res);
+          console.log(res);
         });
         // });
       }

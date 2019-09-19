@@ -57,13 +57,14 @@ export class TradeRequestsPageComponent implements OnInit {
       if (result) { // only continue if true is returned
         this.userAccountService.getUserDetail(tradeRequest.requesterid).subscribe(temp => {
           const details: UserDetailsInterface = temp;
-          alert(
-            'You have accepted the trade request! '
-            + 'To organise a time and place to meet and swap clothing, '
-            + `please contact ${details.displayname} with the following contact information:\n`
-            + details.preferredContact ? `Preferred Contact: ${details.preferredContact}\n` : ''
-            + details.email ? `Email: ${details.email}\n` : ''
-            + details.phone ? `Phone: ${details.phone}` : ''
+          console.log(
+            // 'You have accepted the trade request! '
+            // + 'To organise a time and place to meet and swap clothing, '
+            // + `please contact ${details.displayname} with the following contact information:\n`
+            // + details.preferredContact ? `Preferred Contact: ${details.preferredContact}\n` : ''
+            // + details.email ? `Email: ${details.email}\n` : ''
+            // + details.phone ? `Phone: ${details.phone}` : ''
+            details
             );
         });
         this.tradeRequestService.postTradeRequestStatus(tradeRequest.trade_requestid, this.acceptStatus).subscribe(temp => {
