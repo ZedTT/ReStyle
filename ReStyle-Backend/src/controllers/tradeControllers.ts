@@ -77,9 +77,9 @@ export function updateTradeRequestStatus(response: Response, tradeRequestId: num
             if (status.match('Accept')) {
                 const requester_userID = tradeRequestRes.rows[0].requester_userid1;
                 const notified_userID = tradeRequestRes.rows[0].notified_userid2;
-                const swappedItems = tradeRequestRes.rows[0].requester_itemarray1;
+                let swappedItems = tradeRequestRes.rows[0].requester_itemarray1;
 
-                swappedItems.concat(tradeRequestRes.rows[0].notified_itemarray2);
+                swappedItems = swappedItems.concat(tradeRequestRes.rows[0].notified_itemarray2);
 
                 const swapRes = await client.query(add_swap_with_return, [requester_userID, notified_userID]);
 
