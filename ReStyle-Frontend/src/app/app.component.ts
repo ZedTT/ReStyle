@@ -10,6 +10,7 @@ import ConfettiGenerator from 'confetti-js';
 export class AppComponent implements OnInit {
   @ViewChild('footer') footer;
   title = 'ReStyle';
+  confettiOn = false;
 
   constructor(private ngZone: NgZone) {
   }
@@ -64,6 +65,9 @@ export class AppComponent implements OnInit {
       target: 'confetti', props, rotate: true
     };
     const confetti = new ConfettiGenerator(confettiSettings);
-    confetti.render();
+    if (!this.confettiOn) {
+      confetti.render();
+      this.confettiOn = true;
+    }
   }
 }
