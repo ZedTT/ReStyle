@@ -2,4 +2,5 @@
   <img [routerLink]="[ '/aboutus' ]" class="info-icon" src="assets/icons/logo.png">
   <div id="header-title" (click)="toggleEasterEgg()">RESTYLE</div>
   <mat-icon [routerLink]="[ '/traderequests' ]" class="trade-icon">mail_outline</mat-icon>
+  <div *ngIf="incomingTradeRequestExists">HELLO</div>
 </nav>

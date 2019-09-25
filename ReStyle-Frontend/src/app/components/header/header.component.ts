@@ -1,4 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, NgZone } from '@angular/core';
+import * as firebase from 'firebase';
+import { TradeRequestService } from 'src/app/services/trade-request.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -8,13 +10,15 @@ export class HeaderComponent implements OnInit {
   @Output() easterEggOutput: EventEmitter<boolean> = new EventEmitter();
   easterEggEnabled: boolean;
   easterEggClickCount = 0;
+  incomingTradeRequestExists: boolean;
 
-  constructor() {
+  constructor(private tradeRequestService: TradeRequestService, private ngZone: NgZone) {
     this.easterEggEnabled = false;
    }
 
   ngOnInit() {
     this.setClasses();
+    this.checkForIncomingTradeRequests();
   }
 
   setClasses() {
@@ -26,6 +30,16 @@ export class HeaderComponent implements OnInit {
       'easter-egg': this.easterEggEnabled
     };
     return classes;
+  }
+
+  checkForIncomingTradeRequests() {
+    firebase.auth().onAuthStateChanged(user => {
+      this.ngZone.run(() => { // make firebase run in ng zone
+        this.tradeRequestService.getTradeRequestsByUser(user ? user.uid : null).subscribe(temp => {
+          this.incomingTradeRequestExists = (temp) ? (temp.length >= 1) : false;
+        });
+      });
+    });
   }
 
   toggleEasterEgg() {
