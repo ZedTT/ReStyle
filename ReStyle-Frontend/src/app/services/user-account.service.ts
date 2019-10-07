@@ -14,7 +14,8 @@ export class UserAccountService {
     return this.http.post<any>('/api/users',
     {
       'uid': uid,
-      'userName': userName
+      'userName': userName,
+      'email': email
     }); // ? Does this still work if we fix the tsLint issues?
   }
 
